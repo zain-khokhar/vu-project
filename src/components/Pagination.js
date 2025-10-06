@@ -3,18 +3,28 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-export default function Pagination({ pagination }) {
+export default function Pagination({ pagination = {}, baseUrl = '/documents' }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { currentPage, totalPages, hasPrev, hasNext } = pagination;
+  
+  // Add default values in case pagination is undefined
+  const { 
+    currentPage = 1, 
+    totalPages = 1, 
+    hasPrev = false, 
+    hasNext = false 
+  } = pagination || {};
 
   const navigateToPage = (page) => {
     const params = new URLSearchParams(searchParams);
     params.set('page', page.toString());
-    router.push(`/documents?${params.toString()}`);
+    router.push(`${baseUrl}?${params.toString()}`);
   };
 
   const getPageNumbers = () => {
+    // If totalPages is less than 2, return empty array
+    if (totalPages <= 1) return [];
+    
     const delta = 2;
     const range = [];
     const rangeWithDots = [];
@@ -25,24 +35,31 @@ export default function Pagination({ pagination }) {
       range.push(i);
     }
 
-    if (currentPage - delta > 2) {
-      rangeWithDots.push(1, '...');
-    } else {
-      rangeWithDots.push(1);
+    // Only add page 1 if total pages > 1
+    if (totalPages > 1) {
+      if (currentPage - delta > 2) {
+        rangeWithDots.push(1, '...');
+      } else {
+        rangeWithDots.push(1);
+      }
     }
 
     rangeWithDots.push(...range);
 
-    if (currentPage + delta < totalPages - 1) {
-      rangeWithDots.push('...', totalPages);
-    } else {
-      rangeWithDots.push(totalPages);
+    // Only add last page if it's different from page 1
+    if (totalPages > 1) {
+      if (currentPage + delta < totalPages - 1) {
+        rangeWithDots.push('...', totalPages);
+      } else if (totalPages > 1) {
+        rangeWithDots.push(totalPages);
+      }
     }
 
     return rangeWithDots;
   };
 
-  if (totalPages <= 1) return null;
+  // If pagination data isn't valid or totalPages <= 1, don't render anything
+  if (!pagination || totalPages <= 1) return null;
 
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">

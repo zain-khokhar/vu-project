@@ -46,13 +46,6 @@ export default function Navbar() {
               <Upload className="h-4 w-4" />
               <span>Upload</span>
             </Link>
-            <Link 
-              href="/admin/seed" 
-              className="flex items-center space-x-1 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
-            >
-              <Search className="h-4 w-4" />
-              <span>Seed DB</span>
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}

@@ -25,12 +25,14 @@ function DocumentsLoading() {
 
 // Server component for documents content
 async function DocumentsContent({ searchParams }) {
-  const page = parseInt(searchParams.page) || 1;
-  const search = searchParams.search || '';
-  const type = searchParams.type || '';
-  const subject = searchParams.subject || '';
-  const university = searchParams.university || '';
-  const year = searchParams.year || '';
+  // Await searchParams as required by Next.js 15
+  const params = await searchParams;
+  const page = parseInt(params.page) || 1;
+  const search = params.search || '';
+  const type = params.type || '';
+  const subject = params.subject || '';
+  const university = params.university || '';
+  const year = params.year || '';
 
   const [documentsResult, filterOptionsResult] = await Promise.all([
     getDocuments({ page, search, type, subject, university, year }),

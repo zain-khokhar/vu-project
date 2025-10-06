@@ -3,6 +3,7 @@ import { PenTool, BookOpen } from 'lucide-react';
 import { getBlogs } from '@/actions/blogs';
 import BlogCard from '@/components/BlogCard';
 import Pagination from '@/components/Pagination';
+import FeaturedPosts from '@/components/FeaturedPosts';
 
 export const metadata = {
   title: 'Blogs - DocLibrary',
@@ -10,85 +11,64 @@ export const metadata = {
 };
 
 export default async function BlogsPage({ searchParams }) {
-  const page = parseInt(searchParams?.page) || 1;
-  const result = await getBlogs(page, 12);
-  
-  const { blogs = [], pagination = {} } = result.success 
-    ? result 
+  // Await searchParams as required by Next.js 15
+  const params = await searchParams;
+  const page = parseInt(params?.page) || 1;
+  const result = await getBlogs(page, 9);
+
+  const { blogs = [], pagination = {} } = result.success
+    ? result
     : { blogs: [], pagination: {} };
+
+  // Enhance the pagination object with hasPrev and hasNext flags
+  const enhancedPagination = pagination ? {
+    ...pagination,
+    hasPrev: pagination.currentPage > 1,
+    hasNext: pagination.hasMore || pagination.currentPage < pagination.totalPages
+  } : {};
+
+  // Add category for each blog if it doesn't exist
+  const enhancedBlogs = blogs.map(blog => ({
+    ...blog,
+    tags: blog.tags || ['General'],
+  }));
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <div className="flex items-center space-x-3 mb-2">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <BookOpen className="h-6 w-6 text-blue-600" />
-                </div>
-                <h1 className="text-3xl font-bold text-gray-900">
-                  Blog Posts
-                </h1>
-              </div>
-              <p className="text-gray-600">
-                Discover insights, tutorials, and knowledge shared by our community
-              </p>
-            </div>
+      {/* Featured Posts Section */}
 
-            <Link
-              href="/blog/write"
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center space-x-2"
-            >
-              <PenTool className="h-5 w-5" />
-              <span>Write Blog</span>
-            </Link>
-          </div>
 
-          {/* Stats */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900">
-                  {pagination.totalCount || 0}
-                </div>
-                <div className="text-sm text-gray-500">Total Posts</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900">
-                  {pagination.totalPages || 0}
-                </div>
-                <div className="text-sm text-gray-500">Pages</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900">
-                  {blogs.length}
-                </div>
-                <div className="text-sm text-gray-500">This Page</div>
-              </div>
-            </div>
-          </div>
+      <div className=" py-8">
+
+        {enhancedBlogs.length > 0 && (
+          <FeaturedPosts blogs={enhancedBlogs} />
+        )}
+        <div className='w-full mt-16 sm:mt-24 md:mt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+
+          <h2 className="text-3xl max-w-7xl mx-auto font-bold text-gray-900 mb-10">Latest Posts</h2>
         </div>
 
         {/* Content */}
         {blogs.length > 0 ? (
           <>
             {/* Blog Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <div className="grid max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-16 mt-16">
+
               {blogs.map((blog) => (
-                <BlogCard key={blog._id} blog={blog} />
+                <article key={blog._id} className='col-span-1 row-span-1 relative'>
+
+                  <BlogCard key={blog._id} blog={blog} />
+                </article>
               ))}
             </div>
 
             {/* Pagination */}
-            {pagination.totalPages > 1 && (
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
               <Pagination
-                currentPage={pagination.currentPage}
-                totalPages={pagination.totalPages}
+                pagination={enhancedPagination}
                 baseUrl="/blogs"
               />
-            )}
+            </div>
           </>
         ) : (
           <div className="text-center py-16">
@@ -101,13 +81,7 @@ export default async function BlogsPage({ searchParams }) {
             <p className="text-gray-600 mb-6">
               Be the first to share your knowledge with the community!
             </p>
-            <Link
-              href="/blog/write"
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center space-x-2"
-            >
-              <PenTool className="h-5 w-5" />
-              <span>Write First Blog</span>
-            </Link>
+            
           </div>
         )}
       </div>

@@ -11,41 +11,124 @@ export default async function Home() {
   const { blogs } = blogsResult.success ? blogsResult : { blogs: [] };
 
   return (
-    <div className="bg-white">
+    <div className="">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
+      <section className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-12 md:py-20 lg:py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Free Academic
-              <span className="text-blue-600 block">Document Library</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Access thousands of educational documents including handouts, books, notes, 
-              and exams. No login required, no premium features, just free knowledge for everyone.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/documents" 
-                className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
-              >
-                <Search className="h-5 w-5" />
-                <span>Browse Documents</span>
-              </Link>
-              <Link 
-                href="/services" 
-                className="bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
-              >
-                <Users className="h-5 w-5" />
-                <span>Our Services</span>
-              </Link>
-              <Link 
-                href="/admin/upload" 
-                className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors flex items-center justify-center space-x-2"
-              >
-                <BookOpen className="h-5 w-5" />
-                <span>Upload Document</span>
-              </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Text Content */}
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                  Free Academic
+                  <span className="text-blue-600 block mt-2">Document Library</span>
+                </h1>
+                <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-xl">
+                  Access thousands of educational documents including handouts, books, notes, 
+                  and exams. No login required, no premium features, just free knowledge for everyone.
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link 
+                  href="/documents" 
+                  className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center space-x-2"
+                >
+                  <Search className="h-5 w-5" />
+                  <span>Browse Documents</span>
+                </Link>
+                <Link 
+                  href="/admin/upload" 
+                  className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center space-x-2"
+                >
+                  <BookOpen className="h-5 w-5" />
+                  <span>Upload Document</span>
+                </Link>
+              </div>
+
+              {/* Quick Stats */}
+              <div className="flex flex-wrap gap-6 pt-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm text-gray-600 font-medium">100% Free Access</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm text-gray-600 font-medium">Instant Downloads</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm text-gray-600 font-medium">No Registration</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - Image Blocks */}
+            <div className="relative h-[400px] md:h-[500px] lg:h-[600px]">
+              {/* Card 1 - Top */}
+              <div className="absolute top-0 right-0 w-[85%] md:w-[75%] h-[28%] bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300 border border-gray-100">
+                <div className="h-full bg-gradient-to-br from-blue-100 to-blue-200 p-6 flex flex-col justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-2 bg-blue-600 rounded-lg">
+                      <BookOpen className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-gray-900">Documents</h3>
+                      <p className="text-sm text-gray-600">Handouts & Books</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="flex -space-x-2">
+                      <div className="w-8 h-8 rounded-full bg-blue-300 border-2 border-white"></div>
+                      <div className="w-8 h-8 rounded-full bg-blue-400 border-2 border-white"></div>
+                      <div className="w-8 h-8 rounded-full bg-blue-500 border-2 border-white"></div>
+                    </div>
+                    <span className="text-sm text-gray-600 font-medium">1000+ Files</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2 - Middle */}
+              <div className="absolute top-[36%] left-0 w-[85%] md:w-[75%] h-[28%] bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300 border border-gray-100">
+                <div className="h-full bg-gradient-to-br from-green-100 to-green-200 p-6 flex flex-col justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-2 bg-green-600 rounded-lg">
+                      <FileText className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-gray-900">Blog Posts</h3>
+                      <p className="text-sm text-gray-600">Insights & Tutorials</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-bold text-gray-900">500+</span>
+                    <ArrowRight className="h-5 w-5 text-green-600" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3 - Bottom */}
+              <div className="absolute bottom-0 right-0 w-[85%] md:w-[75%] h-[28%] bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300 border border-gray-100">
+                <div className="h-full bg-gradient-to-br from-purple-100 to-purple-200 p-6 flex flex-col justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-2 bg-purple-600 rounded-lg">
+                      <Users className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-gray-900">Community</h3>
+                      <p className="text-sm text-gray-600">Students Worldwide</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Download className="h-5 w-5 text-purple-600" />
+                    <span className="text-sm text-gray-600 font-medium">Free Downloads</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative Elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-200 rounded-full blur-3xl opacity-50"></div>
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-200 rounded-full blur-3xl opacity-50"></div>
             </div>
           </div>
         </div>

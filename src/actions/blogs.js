@@ -43,8 +43,8 @@ export async function createBlog(formData) {
     let counter = 1;
     // Ensure uniqueness
     while (await Blog.findOne({ slug })) {
-        slug = `${baseSlug}-${counter}`;
-        counter++;
+      slug = `${baseSlug}-${counter}`;
+      counter++;
     }
     console.log(slug)
 
@@ -98,6 +98,7 @@ export async function getBlogs(page = 1, limit = 12) {
         .lean(),
       Blog.countDocuments({ published: true })
     ]);
+    
 
     const totalPages = Math.ceil(totalCount / limit);
     const hasMore = page < totalPages;
@@ -152,7 +153,6 @@ export async function getLatestBlogs(limit = 6) {
       .sort({ createdAt: -1 })
       .limit(limit)
       .lean();
-
     return {
       success: true,
       blogs: JSON.parse(JSON.stringify(blogs))

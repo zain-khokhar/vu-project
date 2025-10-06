@@ -7,29 +7,29 @@ import { formatDate } from '@/lib/utils';
 import BlogContent from '@/components/BlogContent';
 import AuthorInfo from '@/components/AuthorInfo';
 
-export async function generateMetadata({ params }) {
-  const { slug } = params;
-  const result = await getBlogBySlug(slug);
+// export async function generateMetadata({ params }) {
+//   const { slug } = await params;
+//   const result = await getBlogBySlug(slug);
   
-  if (!result.success) {
-    return {
-      title: 'Blog Not Found - DocLibrary'
-    };
-  }
+//   if (!result.success) {
+//     return {
+//       title: 'Blog Not Found - DocLibrary'
+//     };
+//   }
 
-  const { blog } = result;
+//   const { blog } = result;
   
-  return {
-    title: `${blog.title} - DocLibrary Blog`,
-    description: blog.excerpt,
-    keywords: `blog, ${blog.title}`,
-    openGraph: {
-      title: blog.title,
-      description: blog.excerpt,
-      images: [blog.coverImage],
-    }
-  };
-}
+//   return {
+//     title: `${blog.title} - DocLibrary Blog`,
+//     description: blog.excerpt,
+//     keywords: `blog, ${blog.title}`,
+//     openGraph: {
+//       title: blog.title,
+//       description: blog.excerpt,
+//       images: [blog.coverImage],
+//     }
+//   };
+// }
 
 // Estimate reading time based on word count (average 200 WPM)
 function getReadingTime(content) {
@@ -40,7 +40,7 @@ function getReadingTime(content) {
 }
 
 export default async function BlogPostPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const result = await getBlogBySlug(slug);
 
   if (!result.success) {
@@ -119,12 +119,12 @@ export default async function BlogPostPage({ params }) {
           >
             ← More Blog Posts
           </Link>
-          <Link
+          {/* <Link
             href="/blog/write"
             className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors text-center font-medium"
           >
             Write Your Own Blog →
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
