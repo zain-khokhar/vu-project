@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "question": "What is the speed of light in a vacuum?",
+    "options": ["3 × 10^8 m/s", "3 × 10^6 m/s", "1 × 10^8 m/s", "5 × 10^8 m/s"],
+    "correct": "3 × 10^8 m/s",
+    "explanation": "Light travels at approximately 3 × 10^8 meters per second in a vacuum, which is a fundamental constant in physics.",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 2,
+    "question": "What is Newton's First Law of Motion?",
+    "options": [
+      "Force equals mass times acceleration",
+      "An object at rest stays at rest unless acted upon by force",
+      "For every action there is an equal and opposite reaction",
+      "Energy cannot be created or destroyed"
+    ],
+    "correct": "An object at rest stays at rest unless acted upon by force",
+    "explanation": "Newton's First Law states that an object will remain at rest or in uniform motion unless acted upon by an external force.",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 3,
+    "question": "What is the SI unit of force?",
+    "options": ["Joule", "Newton", "Watt", "Pascal"],
+    "correct": "Newton",
+    "explanation": "The SI unit of force is the Newton (N), named after Sir Isaac Newton. 1 Newton = 1 kg⋅m/s²",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 4,
+    "question": "What happens to the resistance of a conductor when its temperature increases?",
+    "options": [
+      "It increases",
+      "It decreases",
+      "It remains constant",
+      "It becomes zero"
+    ],
+    "correct": "It increases",
+    "explanation": "For most conductors, resistance increases with temperature due to increased collision between electrons and atoms.",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 5,
+    "question": "What is the formula for kinetic energy?",
+    "options": ["KE = mv", "KE = ½mv²", "KE = mgh", "KE = mc²"],
+    "correct": "KE = ½mv²",
+    "explanation": "Kinetic energy is calculated as KE = ½mv², where m is mass and v is velocity.",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 6,
+    "question": "What type of lens is used to correct myopia (nearsightedness)?",
+    "options": ["Convex lens", "Concave lens", "Bifocal lens", "Cylindrical lens"],
+    "correct": "Concave lens",
+    "explanation": "A concave (diverging) lens is used to correct myopia by spreading out light rays before they reach the eye.",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 7,
+    "question": "What is the acceleration due to gravity on Earth?",
+    "options": ["9.8 m/s²", "10 m/s²", "8.9 m/s²", "11.2 m/s²"],
+    "correct": "9.8 m/s²",
+    "explanation": "The standard acceleration due to gravity on Earth's surface is approximately 9.8 m/s² (or 9.81 m/s² more precisely).",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 8,
+    "question": "What is Ohm's Law?",
+    "options": ["V = IR", "P = VI", "E = mc²", "F = ma"],
+    "correct": "V = IR",
+    "explanation": "Ohm's Law states that Voltage (V) equals Current (I) times Resistance (R), or V = IR.",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 9,
+    "question": "What is the principle behind a transformer?",
+    "options": [
+      "Electromagnetic induction",
+      "Photoelectric effect",
+      "Thermionic emission",
+      "Nuclear fission"
+    ],
+    "correct": "Electromagnetic induction",
+    "explanation": "A transformer works on the principle of electromagnetic induction, where a changing magnetic field induces voltage in a coil.",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 10,
+    "question": "What is the wavelength range of visible light?",
+    "options": [
+      "400-700 nm",
+      "100-400 nm",
+      "700-1000 nm",
+      "1-100 nm"
+    ],
+    "correct": "400-700 nm",
+    "explanation": "Visible light has wavelengths approximately between 400 nm (violet) and 700 nm (red).",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 11,
+    "question": "What is the relationship between frequency and wavelength?",
+    "options": [
+      "Directly proportional",
+      "Inversely proportional",
+      "No relationship",
+      "Exponential relationship"
+    ],
+    "correct": "Inversely proportional",
+    "explanation": "Frequency and wavelength are inversely proportional: λ = c/f, where c is the speed of light.",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 12,
+    "question": "What is the unit of electric charge?",
+    "options": ["Ampere", "Coulomb", "Volt", "Ohm"],
+    "correct": "Coulomb",
+    "explanation": "The SI unit of electric charge is the Coulomb (C), named after Charles-Augustin de Coulomb.",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 13,
+    "question": "Which law states that energy cannot be created or destroyed?",
+    "options": [
+      "Law of Conservation of Energy",
+      "Newton's Second Law",
+      "Ohm's Law",
+      "Coulomb's Law"
+    ],
+    "correct": "Law of Conservation of Energy",
+    "explanation": "The Law of Conservation of Energy states that energy can neither be created nor destroyed, only transformed from one form to another.",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 14,
+    "question": "What is the SI unit of power?",
+    "options": ["Joule", "Newton", "Watt", "Pascal"],
+    "correct": "Watt",
+    "explanation": "The SI unit of power is the Watt (W), which equals one Joule per second.",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 15,
+    "question": "What is the escape velocity from Earth?",
+    "options": ["11.2 km/s", "9.8 km/s", "15.0 km/s", "7.9 km/s"],
+    "correct": "11.2 km/s",
+    "explanation": "The escape velocity from Earth is approximately 11.2 km/s, the minimum speed needed to escape Earth's gravitational pull.",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 16,
+    "question": "What type of wave is sound?",
+    "options": [
+      "Transverse wave",
+      "Longitudinal wave",
+      "Electromagnetic wave",
+      "Surface wave"
+    ],
+    "correct": "Longitudinal wave",
+    "explanation": "Sound is a longitudinal wave where particles oscillate parallel to the direction of wave propagation.",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 17,
+    "question": "What is the principle of a hydraulic lift?",
+    "options": [
+      "Pascal's Principle",
+      "Archimedes' Principle",
+      "Bernoulli's Principle",
+      "Newton's Third Law"
+    ],
+    "correct": "Pascal's Principle",
+    "explanation": "A hydraulic lift works on Pascal's Principle: pressure applied to a confined fluid is transmitted equally in all directions.",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 18,
+    "question": "What is the speed of sound in air at 20°C?",
+    "options": ["343 m/s", "300 m/s", "400 m/s", "500 m/s"],
+    "correct": "343 m/s",
+    "explanation": "At 20°C, sound travels through air at approximately 343 m/s (about 1,235 km/h).",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 19,
+    "question": "What is the work done when force is perpendicular to displacement?",
+    "options": ["Maximum", "Zero", "Half of maximum", "Negative"],
+    "correct": "Zero",
+    "explanation": "When force is perpendicular to displacement, work done is zero because W = F⋅d⋅cos(90°) = 0.",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 20,
+    "question": "What is the equivalent resistance of two 10Ω resistors in parallel?",
+    "options": ["20Ω", "10Ω", "5Ω", "2.5Ω"],
+    "correct": "5Ω",
+    "explanation": "For parallel resistors, 1/R_total = 1/R1 + 1/R2. So 1/R = 1/10 + 1/10 = 2/10, therefore R = 5Ω.",
+    "difficulty": "Medium",
+    "importance": 4
+  }
+]

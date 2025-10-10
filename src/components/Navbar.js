@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BookOpen, Search, Upload } from 'lucide-react';
+import { BookOpen, Search, Upload, Brain } from 'lucide-react';
 
 export default function Navbar() {
   return (
@@ -32,6 +32,13 @@ export default function Navbar() {
               className="text-gray-700 hover:text-blue-600 transition-colors"
             >
               Blogs
+            </Link>
+            <Link 
+              href="/quiz" 
+              className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 transition-colors"
+            >
+              <Brain className="h-4 w-4" />
+              <span>Quiz</span>
             </Link>
             <Link 
               href="/services" 
@@ -80,6 +87,12 @@ export default function Navbar() {
             className="block px-3 py-2 text-gray-700 hover:text-blue-600"
           >
             Blogs
+          </Link>
+          <Link 
+            href="/quiz" 
+            className="block px-3 py-2 text-gray-700 hover:text-blue-600"
+          >
+            Quiz
           </Link>
           <Link 
             href="/services" 

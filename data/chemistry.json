@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "question": "What is the chemical formula for water?",
+    "options": ["H2O", "CO2", "NaCl", "O2"],
+    "correct": "H2O",
+    "explanation": "Water is composed of two hydrogen atoms bonded to one oxygen atom, hence H2O.",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 2,
+    "question": "What is the pH of a neutral solution?",
+    "options": ["7", "0", "14", "1"],
+    "correct": "7",
+    "explanation": "A neutral solution has a pH of 7, which is neither acidic (pH < 7) nor basic (pH > 7).",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 3,
+    "question": "What is Avogadro's number?",
+    "options": ["6.022 × 10^23", "3.14", "9.8", "1.6 × 10^-19"],
+    "correct": "6.022 × 10^23",
+    "explanation": "Avogadro's number is 6.022 × 10^23, representing the number of particles in one mole of a substance.",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 4,
+    "question": "Which element has the atomic number 1?",
+    "options": ["Hydrogen", "Helium", "Carbon", "Oxygen"],
+    "correct": "Hydrogen",
+    "explanation": "Hydrogen is the first element in the periodic table with atomic number 1.",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 5,
+    "question": "What is the most abundant gas in Earth's atmosphere?",
+    "options": ["Nitrogen", "Oxygen", "Carbon Dioxide", "Argon"],
+    "correct": "Nitrogen",
+    "explanation": "Nitrogen makes up about 78% of Earth's atmosphere, making it the most abundant gas.",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 6,
+    "question": "What type of bond is formed when electrons are shared between atoms?",
+    "options": ["Covalent bond", "Ionic bond", "Metallic bond", "Hydrogen bond"],
+    "correct": "Covalent bond",
+    "explanation": "A covalent bond forms when two atoms share one or more pairs of electrons.",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 7,
+    "question": "What is the atomic mass of Carbon-12?",
+    "options": ["12 amu", "6 amu", "18 amu", "24 amu"],
+    "correct": "12 amu",
+    "explanation": "Carbon-12 has an atomic mass of exactly 12 atomic mass units (amu) and is used as the standard for atomic mass.",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 8,
+    "question": "Which of the following is a noble gas?",
+    "options": ["Helium", "Nitrogen", "Oxygen", "Chlorine"],
+    "correct": "Helium",
+    "explanation": "Helium is a noble gas (Group 18) with a complete outer electron shell, making it very stable and unreactive.",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 9,
+    "question": "What is the process of a solid turning directly into a gas called?",
+    "options": ["Sublimation", "Evaporation", "Condensation", "Melting"],
+    "correct": "Sublimation",
+    "explanation": "Sublimation is the phase transition where a solid changes directly to a gas without passing through the liquid phase.",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 10,
+    "question": "What is the chemical symbol for Gold?",
+    "options": ["Au", "Ag", "Fe", "Cu"],
+    "correct": "Au",
+    "explanation": "Gold's chemical symbol is Au, derived from its Latin name 'Aurum'.",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 11,
+    "question": "What is the valency of Carbon?",
+    "options": ["4", "2", "6", "8"],
+    "correct": "4",
+    "explanation": "Carbon has a valency of 4, meaning it can form four covalent bonds with other atoms.",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 12,
+    "question": "Which acid is found in vinegar?",
+    "options": ["Acetic acid", "Citric acid", "Sulfuric acid", "Hydrochloric acid"],
+    "correct": "Acetic acid",
+    "explanation": "Vinegar contains acetic acid (CH3COOH), typically in a 5-8% solution.",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 13,
+    "question": "What is the molecular formula of glucose?",
+    "options": ["C6H12O6", "C12H22O11", "CH4", "CO2"],
+    "correct": "C6H12O6",
+    "explanation": "Glucose is a simple sugar with the molecular formula C6H12O6.",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 14,
+    "question": "What is the charge of an electron?",
+    "options": ["-1.6 × 10^-19 C", "+1.6 × 10^-19 C", "0", "-1"],
+    "correct": "-1.6 × 10^-19 C",
+    "explanation": "An electron carries a negative charge of approximately -1.6 × 10^-19 coulombs.",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 15,
+    "question": "What is the process of breaking down glucose to produce energy called?",
+    "options": ["Cellular respiration", "Photosynthesis", "Fermentation", "Digestion"],
+    "correct": "Cellular respiration",
+    "explanation": "Cellular respiration is the process by which cells break down glucose to produce ATP (energy).",
+    "difficulty": "Medium",
+    "importance": 5
+  }
+]
