@@ -141,9 +141,9 @@ export default function QuizClient({ quizData, settings }) {
     ((currentQuestionIndex + 1) / selectedQuestions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="max-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-8xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
           {/* LEFT SIDE - Question Card */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 h-full flex flex-col">
@@ -236,7 +236,7 @@ export default function QuizClient({ quizData, settings }) {
           </div>
 
           {/* RIGHT SIDE - Stats & Navigation */}
-          <div className="lg:col-span-1 space-y-6">
+          <div className="lg:col-span-1 space-y-6 h-full">
             {/* Timer Card */}
             <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
               <div className="flex items-center justify-between mb-4">
@@ -255,39 +255,13 @@ export default function QuizClient({ quizData, settings }) {
                 </p>
               </div>
             </div>
-
-            {/* Progress Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-              <h3 className="font-semibold text-gray-900 mb-4">Progress</h3>
-              <div className="space-y-4">
-                <div>
-                  <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-                    <span>Questions Answered</span>
-                    <span className="font-bold text-gray-900">
-                      {getAnsweredCount()} / {selectedQuestions.length}
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
-                    <div
-                      className="bg-gradient-to-r from-indigo-600 to-purple-600 h-2 rounded-full transition-all duration-300"
-                      style={{
-                        width: `${
-                          (getAnsweredCount() / selectedQuestions.length) * 100
-                        }%`,
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Question Bubble Menu */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 max-h-[300px] overflow-y-auto">
               <h3 className="font-semibold text-gray-900 mb-4 flex items-center">
-                <Hash className="h-5 w-5 mr-2 text-indigo-600" />
+                <Hash className="h-4 w-4 mr-2 text-indigo-600 " />
                 All Questions
               </h3>
-              <div className="grid grid-cols-5 gap-2 max-h-[400px] overflow-y-auto">
+              <div className="grid grid-cols-5 gap-2 overflow-y-auto">
                 {selectedQuestions.map((_, index) => {
                   const isAnswered = userAnswers[index] !== undefined;
                   const isCurrent = index === currentQuestionIndex;
@@ -296,16 +270,16 @@ export default function QuizClient({ quizData, settings }) {
                     <button
                       key={index}
                       onClick={() => goToQuestion(index)}
-                      className={`aspect-square rounded-lg font-semibold text-sm transition-all duration-200 flex items-center justify-center ${
+                      className={`aspect-square rounded-full h-14 w-14 font-semibold text-sm transition-all duration-200 flex items-center justify-center ${
                         isCurrent
-                          ? "bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-lg scale-110 ring-2 ring-indigo-300"
+                          ? "bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-lg ring-2 ring-indigo-300"
                           : isAnswered
                           ? "bg-green-500 text-white hover:bg-green-600 shadow-md"
                           : "bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-gray-300"
                       }`}
                     >
                       {isAnswered && !isCurrent ? (
-                        <CheckCircle className="h-5 w-5" />
+                        <CheckCircle className="h-4 w-4" />
                       ) : (
                         index + 1
                       )}
@@ -326,6 +300,30 @@ export default function QuizClient({ quizData, settings }) {
                   <div className="flex items-center gap-1">
                     <div className="w-4 h-4 rounded bg-gradient-to-br from-indigo-600 to-purple-600"></div>
                     <span className="text-gray-600">Current</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Progress Card */}
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+              <h3 className="font-semibold text-gray-900 mb-4">Progress</h3>
+              <div className="space-y-4">
+                <div>
+                  <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
+                    <span>Questions Answered</span>
+                    <span className="font-bold text-gray-900">
+                      {getAnsweredCount()} / {selectedQuestions.length}
+                    </span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                    <div
+                      className="bg-gradient-to-r from-indigo-600 to-purple-600 h-2 rounded-full transition-all duration-300"
+                      style={{
+                        width: `${
+                          (getAnsweredCount() / selectedQuestions.length) * 100
+                        }%`,
+                      }}
+                    />
                   </div>
                 </div>
               </div>

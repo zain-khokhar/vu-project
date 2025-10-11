@@ -198,5 +198,55 @@
     "explanation": "Genetics is the branch of biology that studies heredity, genes, and genetic variation in living organisms.",
     "difficulty": "Easy",
     "importance": 5
+  },
+    {
+    "id": 21,
+    "question": "What is the smallest unit of heredity?",
+    "options": ["Gene", "Chromosome", "DNA", "Allele"],
+    "correct": "Gene",
+    "explanation": "A gene is the smallest unit of heredity, consisting of a specific sequence of DNA that codes for a particular trait.",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 22,
+    "question": "What is the pH of human blood normally?",
+    "options": ["7.4", "7.0", "8.0", "6.5"],
+    "correct": "7.4",
+    "explanation": "Normal human blood pH is approximately 7.4, which is slightly alkaline. This is tightly regulated by the body.",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 23,
+    "question": "What is the function of white blood cells?",
+    "options": [
+      "Carry oxygen",
+      "Fight infections",
+      "Clot blood",
+      "Transport nutrients"
+    ],
+    "correct": "Fight infections",
+    "explanation": "White blood cells (leukocytes) are part of the immune system and help fight infections and foreign invaders.",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 24,
+    "question": "What is the largest gland in the human body?",
+    "options": ["Thyroid", "Liver", "Pancreas", "Pituitary"],
+    "correct": "Liver",
+    "explanation": "The liver is the largest internal organ and gland in the human body, performing over 500 vital functions including detoxification.",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 25,
+    "question": "What is the study of heredity called?",
+    "options": ["Genetics", "Ecology", "Anatomy", "Physiology"],
+    "correct": "Genetics",
+    "explanation": "Genetics is the branch of biology that studies heredity, genes, and genetic variation in living organisms.",
+    "difficulty": "Easy",
+    "importance": 5
   }
 ]
