@@ -1,6 +1,5 @@
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import LayoutContent from "@/components/LayoutContent";
 
 export const metadata = {
   title: "DocLibrary - Free Document Sharing Platform",
@@ -13,12 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="antialiased bg-gray-50 min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">
+      <body className="antialiased min-h-screen flex flex-col bg-gray-50">
+        <LayoutContent>
           {children}
-        </main>
-        <Footer />
+        </LayoutContent>
       </body>
     </html>
   );
