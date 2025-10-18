@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { 
+import {
   CheckSquare,
   Settings,
   FileText,
@@ -12,8 +12,11 @@ import {
   Lightbulb,
   Wrench,
   Sparkles,
-  ArrowLeft
+  ArrowLeft,
+  Star,
+  Zap
 } from 'lucide-react';
+import CTA from '@/components/CTA';
 
 export const metadata = {
   title: 'Our Services - DocLibrary',
@@ -23,24 +26,42 @@ export const metadata = {
 
 // Service Card Component
 const ServiceCard = ({ icon: Icon, title, description, highlight = false }) => (
-  <div className={`bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-300 hover:border-blue-300 ${highlight ? 'ring-2 ring-blue-100' : ''}`}>
-    <div className="flex items-start space-x-4">
-      <div className={`flex-shrink-0 p-3 rounded-lg ${highlight ? 'bg-blue-100' : 'bg-gray-100'}`}>
-        <Icon className={`h-6 w-6 ${highlight ? 'text-blue-600' : 'text-gray-600'}`} />
+  <div className={`group backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden relative ${highlight ? 'ring-2 ring-indigo-200/50' : ''}`}>
+    {/* Glossy overlay */}
+    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+    
+    <div className="relative flex items-start space-x-4">
+      <div className={`flex-shrink-0 p-4 rounded-2xl transition-all duration-500 ${highlight ? 'bg-gradient-to-br from-indigo-400/30 via-purple-400/20 to-blue-400/30 group-hover:scale-110' : 'bg-gradient-to-br from-indigo-100/50 via-purple-100/30 to-blue-100/50 group-hover:scale-110'}`}>
+        <Icon className={`h-6 w-6 transition-all duration-500 ${highlight ? 'text-indigo-600' : 'text-indigo-600'}`} />
       </div>
-      <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
-        <p className="text-gray-600 leading-relaxed">{description}</p>
+      <div className="flex-1">
+        <h3 className="text-lg font-medium text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors duration-300">{title}</h3>
+        <p className="text-gray-700 font-light leading-relaxed">{description}</p>
+        {highlight && (
+          <div className="mt-3 flex items-center space-x-1">
+            <Star className="h-4 w-4 text-amber-500 fill-amber-500" />
+            <span className="text-xs font-medium text-amber-600">Premium Service</span>
+          </div>
+        )}
       </div>
     </div>
   </div>
 );
 
 // Section Header Component
-const SectionHeader = ({ title, description }) => (
-  <div className="text-center mb-12">
-    <h2 className="text-3xl font-bold text-gray-900 mb-4">{title}</h2>
-    <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">{description}</p>
+const SectionHeader = ({ title, description, icon: Icon }) => (
+  <div className="mb-16">
+    <div className="flex items-center justify-center mb-6 group">
+      {Icon && (
+        <div className="p-4 bg-gradient-to-br from-indigo-500/70 via-purple-600/70 to-blue-600/70 backdrop-blur-xl rounded-3xl shadow-2xl group-hover:scale-110 transition-transform duration-500">
+          <Icon className="h-12 w-12 text-white drop-shadow-lg" />
+        </div>
+      )}
+    </div>
+    <h2 className="text-4xl md:text-5xl font-light text-gray-900 leading-tight tracking-tight mb-4 text-center bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
+      {title}
+    </h2>
+    <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed text-center font-light">{description}</p>
   </div>
 );
 
@@ -54,7 +75,7 @@ export default function ServicesPage() {
     },
     {
       icon: Settings,
-      title: "Half LMS Handling", 
+      title: "Half LMS Handling",
       description: "Choose what you want us to handle — flexible academic support.",
       highlight: true
     },
@@ -88,7 +109,7 @@ export default function ServicesPage() {
     },
     {
       icon: Folder,
-      title: "Final Term Resources", 
+      title: "Final Term Resources",
       description: "Key resources and guides for stress-free final term prep."
     }
   ];
@@ -112,35 +133,52 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Back Button */}
-        <Link 
-          href="/"
-          className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          <span>Back to Home</span>
-        </Link>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative">
+      {/* Premium Liquid Background with Smooth Gradients */}
+      <div className="fixed inset-0 -z-10">
+        {/* Base gradient layers */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-tl from-cyan-50/20 via-transparent to-indigo-50/30 opacity-60"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-50/20 via-pink-50/10 to-blue-50/20 opacity-50"></div>
 
+        {/* Smooth gradient light overlays */}
+        <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/40 via-white/20 to-transparent pointer-events-none"></div>
+        <div className="absolute bottom-0 right-0 w-full h-1/2 bg-gradient-to-t from-blue-50/30 via-purple-50/20 to-transparent pointer-events-none"></div>
+
+        {/* Liquid orbs with enhanced gradients */}
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/3 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/8 via-blue-300/8 to-purple-300/8 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transform -translate-x-1/2" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-gradient-to-l from-cyan-300/8 via-blue-300/8 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Page Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Our Services
+        {/* <div className="mb-20">
+          <div className="flex items-center justify-center mb-8 group">
+            <div className="p-4 bg-gradient-to-br from-indigo-500/70 via-purple-600/70 to-blue-600/70 backdrop-blur-xl rounded-3xl shadow-2xl group-hover:scale-110 transition-transform duration-500">
+              <Sparkles className="h-12 w-12 text-white drop-shadow-lg" />
+            </div>
+          </div>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 leading-tight tracking-tight mb-6 text-center">
+            <span className="block bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
+              Our Services
+            </span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed text-center font-light">
             Explore our professional academic and LMS support services designed to make your learning journey smooth and stress-free.
           </p>
-        </div>
+        </div> */}
 
         {/* LMS Handling Services */}
-        <section className="mb-20">
-          <SectionHeader 
-            title="LMS Handling Services Available"
+        <section className="mb-24">
+          <SectionHeader
+            icon={Zap}
+            title="LMS Handling Services"
             description="Comprehensive LMS management solutions tailored to your academic needs"
           />
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {lmsServices.map((service, index) => (
               <ServiceCard
                 key={index}
@@ -154,13 +192,14 @@ export default function ServicesPage() {
         </section>
 
         {/* Additional Academic Support */}
-        <section className="mb-20">
-          <SectionHeader 
-            title="Additional Academic Support"
+        <section className="mb-24">
+          <SectionHeader
+            icon={GraduationCap}
+            title="Academic Support Resources"
             description="Extra resources and materials to boost your academic performance"
           />
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {academicSupport.map((service, index) => (
               <ServiceCard
                 key={index}
@@ -173,13 +212,14 @@ export default function ServicesPage() {
         </section>
 
         {/* FYP Project Builder & Helper Section */}
-        <section className="mb-20">
-          <SectionHeader 
-            title="FYP Project Builder & Helper Section"
+        <section className="mb-24">
+          <SectionHeader
+            icon={Rocket}
+            title="FYP Project Builder & Helper"
             description="Complete support for your Final Year Project from conception to completion"
           />
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {fypServices.map((service, index) => (
               <ServiceCard
                 key={index}
@@ -190,35 +230,7 @@ export default function ServicesPage() {
             ))}
           </div>
         </section>
-
-        {/* Call to Action */}
-        <section className="text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white">
-            <div className="flex items-center justify-center mb-4">
-              <Sparkles className="h-8 w-8 text-yellow-300 mr-3" />
-              <h2 className="text-2xl md:text-3xl font-bold">
-                Ready to Transform Your Academic Journey?
-              </h2>
-            </div>
-            <p className="text-xl mb-8 text-blue-100">
-              Join me today for a better study experience and a brighter future!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center"
-              >
-                Get Started Today
-              </Link>
-              <Link
-                href="/documents"
-                className="bg-blue-500 text-white border-2 border-blue-400 px-8 py-4 rounded-lg font-semibold hover:bg-blue-400 transition-colors inline-flex items-center justify-center"
-              >
-                Browse Resources
-              </Link>
-            </div>
-          </div>
-        </section>
+        <CTA />
       </div>
     </div>
   );

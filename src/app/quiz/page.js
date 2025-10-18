@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BookOpen, Brain, Flask, Calculator } from 'lucide-react';
+import { BookOpen, Brain, Flask, Calculator, ArrowRight } from 'lucide-react';
 import { promises as fs } from 'fs';
 import path from 'path';
 
@@ -66,70 +66,101 @@ export default async function QuizHomePage() {
   const quizzes = await getAvailableQuizzes();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center mb-4">
-            <div className="p-3 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl shadow-lg">
-              <Brain className="h-10 w-10 text-white" />
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative">
+      {/* Premium Liquid Background */}
+      <div className="fixed inset-0 -z-10">
+        {/* Base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/20 to-purple-50/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-400/20 to-purple-400/20 opacity-40"></div>
+
+        {/* Liquid orbs */}
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/3 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/8 via-blue-300/8 to-purple-300/8 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transform -translate-x-1/2" style={{ animationDelay: '4s' }}></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        {/* Hero Section */}
+        <div className="mb-16">
+          {/* Premium Badge */}
+          <div className="mb-6">
+            <div className="relative backdrop-blur-3xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden inline-block group">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-400/20 via-purple-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <span className="relative text-sm font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-wide">INTERACTIVE LEARNING</span>
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Online Quiz System
+
+          {/* Icon */}
+          {/* <div className="flex items-center justify-center mb-6 group">
+            <div className="p-4 bg-gradient-to-br from-indigo-500/70 via-purple-600/70 to-blue-600/70 backdrop-blur-xl rounded-3xl shadow-2xl group-hover:scale-110 transition-transform duration-500">
+              <Brain className="h-12 w-12 text-white drop-shadow-lg" />
+            </div>
+          </div> */}
+
+          {/* Heading */}
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 leading-tight tracking-tight mb-4">
+            <span className="block bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
+              Online Quiz
+            </span>
+            <span className="block bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent animate-pulse">
+              System
+            </span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Test your knowledge with our interactive quizzes. Choose a category and challenge yourself!
+
+          {/* Subheading */}
+          <p className="text-lg text-gray-700 max-w-2xl -mt-16 mx-auto font-light leading-relaxed">
+            Test your knowledge with our interactive quizzes. Choose a category and challenge yourself with engaging questions!
           </p>
         </div>
 
         {/* Quiz Cards */}
         {quizzes.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {quizzes.map((quiz) => (
               <Link
                 key={quiz.id}
                 href={`/quiz/${quiz.id}`}
                 className="group"
               >
-                <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-indigo-200 transform hover:-translate-y-1">
+                <div className="h-full backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 hover:border-white/100 overflow-hidden">
+                  {/* Glossy overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 pointer-events-none"></div>
+
                   {/* Card Header with Gradient */}
-                  <div className={`bg-gradient-to-br ${quiz.color} p-6 text-white`}>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-5xl">{quiz.icon}</span>
-                      <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold">
-                        {quiz.questionsCount} Questions
+                  <div className={`bg-gradient-to-br ${quiz.color} p-6 text-white relative overflow-hidden`}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="relative flex items-center justify-between mb-4">
+                      <span className="text-6xl drop-shadow-lg">{quiz.icon}</span>
+                      <div className="backdrop-blur-xl bg-white/20 px-3 py-1.5 rounded-full text-xs font-medium border border-white/40 shadow-lg">
+                        {quiz.questionsCount} Q
                       </div>
                     </div>
-                    <h3 className="text-2xl font-bold">{quiz.name}</h3>
+                    <h3 className="text-2xl md:text-3xl font-light">{quiz.name}</h3>
                   </div>
 
                   {/* Card Body */}
-                  <div className="p-6">
-                    <div className="space-y-3 mb-4">
-                      <div className="flex items-center text-gray-600">
-                        <BookOpen className="h-5 w-5 mr-2 text-indigo-500" />
-                        <span className="text-sm">Multiple Choice Questions</span>
+                  <div className="relative p-6 space-y-4">
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3 text-gray-700">
+                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-400 to-purple-400"></div>
+                        <span className="text-sm font-light">Multiple Choice Questions</span>
                       </div>
-                      <div className="flex items-center text-gray-600">
-                        <svg className="h-5 w-5 mr-2 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span className="text-sm">Timed Quiz</span>
+                      <div className="flex items-center space-x-3 text-gray-700">
+                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400"></div>
+                        <span className="text-sm font-light">Timed Quiz Challenge</span>
                       </div>
-                      <div className="flex items-center text-gray-600">
-                        <svg className="h-5 w-5 mr-2 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span className="text-sm">Instant Results</span>
+                      <div className="flex items-center space-x-3 text-gray-700">
+                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400"></div>
+                        <span className="text-sm font-light">Instant Results & Feedback</span>
                       </div>
                     </div>
 
-                    <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center space-x-2 group-hover:shadow-lg">
-                      <span>Start Quiz</span>
-                      <svg className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
+                    <button className="w-full mt-4 group/btn relative px-6 py-3 bg-gradient-to-r from-indigo-500/80 via-purple-600/70 to-blue-600/80 text-white font-medium text-sm rounded-xl overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-indigo-500/30 hover:scale-105 active:scale-95">
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/15 via-transparent to-white/15 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 -skew-x-12 group-hover/btn:skew-x-0"></div>
+                      <div className="relative flex items-center justify-center space-x-2">
+                        <span>Start Quiz</span>
+                        <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                      </div>
                     </button>
                   </div>
                 </div>
@@ -137,60 +168,79 @@ export default async function QuizHomePage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16">
-            <div className="bg-white rounded-2xl shadow-lg p-12 max-w-md mx-auto">
-              <BookOpen className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                No Quizzes Available
-              </h3>
-              <p className="text-gray-600">
-                Please add quiz JSON files to the /data folder.
-              </p>
-            </div>
+          <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center max-w-md mx-auto mb-16">
+            <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+            <h3 className="text-2xl font-light text-gray-900 mb-2">
+              No Quizzes Available
+            </h3>
+            <p className="text-gray-700 font-light">
+              Please add quiz JSON files to the /data folder.
+            </p>
           </div>
         )}
 
         {/* Features Section */}
-        <div className="mt-16 bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            Quiz Features
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="bg-gradient-to-br from-blue-100 to-cyan-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <svg className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+        <section className="relative py-12 overflow-hidden">
+          {/* Background orbs */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-to-br from-indigo-400/10 via-blue-300/8 to-transparent rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-gradient-to-tl from-purple-400/10 via-pink-300/8 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          </div>
+
+          <div className="max-w-7xl mx-auto relative z-10">
+            {/* Section Header */}
+            <div className="text-center mb-12">
+              <div className="inline-block mb-4 group">
+                <div className="backdrop-blur-3xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-4 py-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  <span className="text-xs font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-wide">POWERFUL FEATURES</span>
+                </div>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Timed Questions</h3>
-              <p className="text-gray-600 text-sm">
-                Each question has a timer to challenge your speed and knowledge
-              </p>
+              <h2 className="text-4xl md:text-5xl font-light text-gray-900 bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
+                Quiz Features
+              </h2>
             </div>
-            <div className="text-center">
-              <div className="bg-gradient-to-br from-green-100 to-emerald-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <svg className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Detailed Results</h3>
-              <p className="text-gray-600 text-sm">
-                Get comprehensive results with explanations for each answer
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-gradient-to-br from-purple-100 to-pink-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <svg className="h-8 w-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Random Questions</h3>
-              <p className="text-gray-600 text-sm">
-                Questions are randomized each time for a fresh experience
-              </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Timed Questions",
+                  description: "Each question has a timer to challenge your speed and knowledge",
+                  icon: "⏱️",
+                  gradient: "from-blue-100/50 via-cyan-100/30 to-blue-50/50"
+                },
+                {
+                  title: "Detailed Results",
+                  description: "Get comprehensive results with explanations for each answer",
+                  icon: "📊",
+                  gradient: "from-green-100/50 via-emerald-100/30 to-green-50/50"
+                },
+                {
+                  title: "Random Questions",
+                  description: "Questions are randomized each time for a fresh experience",
+                  icon: "🔄",
+                  gradient: "from-purple-100/50 via-pink-100/30 to-purple-50/50"
+                }
+              ].map((feature, index) => (
+                <div 
+                  key={index}
+                  className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
+                  
+                  <div className={`bg-gradient-to-br ${feature.gradient} w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500`}>
+                    <span className="text-3xl drop-shadow-lg">{feature.icon}</span>
+                  </div>
+                  <h3 className="font-medium text-gray-900 mb-2 text-center">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-700 text-sm font-light text-center leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );

@@ -48,8 +48,8 @@ export default async function BlogsPage({ searchParams }) {
       </div>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative pt-32 pb-12 ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Side Content */}
             <div className="space-y-6">
@@ -57,7 +57,7 @@ export default async function BlogsPage({ searchParams }) {
               <div className="inline-block group">
                 <div className="relative backdrop-blur-3xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 via-blue-400/20 to-pink-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <span className="relative text-sm font-medium bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent tracking-wide">COMMUNITY KNOWLEDGE</span>
+                  <span className="relative text-xs font-medium bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent tracking-wide">COMMUNITY KNOWLEDGE</span>
                 </div>
               </div>
 
@@ -235,44 +235,44 @@ export default async function BlogsPage({ searchParams }) {
             </div>
           </div>
 
-        {/* Content */}
-        {blogs.length > 0 ? (
-          <>
-            {/* Blog Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {blogs.map((blog) => (
-                <div key={blog._id} className="group  overflow-hidden">
-                  {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-50/40 via-white/20 to-transparent pointer-events-none"></div>
+          {/* Content */}
+          {blogs.length > 0 ? (
+            <>
+              {/* Blog Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {blogs.map((blog) => (
+                  <div key={blog._id} className="group  overflow-hidden">
+                    {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-50/40 via-white/20 to-transparent pointer-events-none"></div>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500"></div> */}
-                  <div className="relative">
-                    <BlogCard blog={blog} />
+                    <div className="relative">
+                      <BlogCard blog={blog} />
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            {/* Pagination */}
-            <div className="mt-16 flex justify-center">
-              <Pagination
-                pagination={enhancedPagination}
-                baseUrl="/blogs"
-              />
+              {/* Pagination */}
+              <div className="mt-16 flex justify-center">
+                <Pagination
+                  pagination={enhancedPagination}
+                  baseUrl="/blogs"
+                />
+              </div>
+            </>
+          ) : (
+            <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center">
+              <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-2xl font-light text-gray-900 mb-2">No blog posts yet</h3>
+              <p className="text-gray-700 mb-6 font-light">Be the first to share your knowledge with the community!</p>
+              <Link
+                href="/blog/write"
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-500/80 via-purple-600/70 to-pink-600/80 text-white font-medium rounded-xl hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105"
+              >
+                <FileText className="h-4 w-4" />
+                <span>Write First Blog Post</span>
+              </Link>
             </div>
-          </>
-        ) : (
-          <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center">
-            <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-2xl font-light text-gray-900 mb-2">No blog posts yet</h3>
-            <p className="text-gray-700 mb-6 font-light">Be the first to share your knowledge with the community!</p>
-            <Link
-              href="/blog/write"
-              className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-500/80 via-purple-600/70 to-pink-600/80 text-white font-medium rounded-xl hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105"
-            >
-              <FileText className="h-4 w-4" />
-              <span>Write First Blog Post</span>
-            </Link>
-          </div>
-        )}
+          )}
         </div>
       </section>
     </div>

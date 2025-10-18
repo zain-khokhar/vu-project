@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { User, Clock, Hash, Play, ArrowLeft } from "lucide-react";
+import { User, Clock, Hash, Play, ArrowLeft, Brain, Sparkles, Target, Zap } from "lucide-react";
 import { useRouter } from "next/navigation";
 import QuizClient from "@/components/QuizClient";
 
@@ -38,36 +38,59 @@ export default function QuizSetup({ quizData }) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative">
+      {/* Premium Liquid Background */}
+      <div className="fixed inset-0 -z-10">
+        {/* Base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/20 to-purple-50/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-400/20 to-purple-400/20 opacity-40"></div>
+
+        {/* Liquid orbs */}
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/3 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/8 via-blue-300/8 to-purple-300/8 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transform -translate-x-1/2" style={{ animationDelay: '4s' }}></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
         <button
           onClick={() => router.push("/quiz")}
-          className="mb-6 flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
+          className="mb-8 group flex items-center space-x-2 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-4 py-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
         >
-          <ArrowLeft className="h-5 w-5" />
-          <span>Back to Quizzes</span>
+          <ArrowLeft className="h-4 w-4 text-indigo-600 group-hover:-translate-x-1 transition-transform duration-300" />
+          <span className="text-sm font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Back to Quizzes</span>
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Setup Card - Takes 2 columns on large screens */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+            <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-500">
+              {/* Glossy overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
               {/* Header */}
-              <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-8 text-white text-center">
-                <h1 className="text-3xl md:text-4xl font-bold mb-2">
-                  {quizData.displayName} Quiz
-                </h1>
-                <p className="text-indigo-100">
-                  {quizData.totalQuestions} questions available
-                </p>
+              <div className="relative bg-gradient-to-br from-indigo-500 via-purple-600 to-blue-600 p-8 text-white overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative flex items-center space-x-4 mb-4">
+                  <div className="p-3 bg-white/20 backdrop-blur-xl rounded-2xl group-hover:scale-110 transition-transform duration-500">
+                    <Brain className="h-8 w-8 text-white drop-shadow-lg" />
+                  </div>
+                  <div>
+                    <h1 className="text-3xl md:text-4xl font-light mb-1">
+                      {quizData.displayName} Quiz
+                    </h1>
+                    <p className="text-indigo-100 font-light">
+                      {quizData.totalQuestions} questions available
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Setup Form */}
-              <form onSubmit={handleStartQuiz} className="p-8 space-y-6">
+              <form onSubmit={handleStartQuiz} className="relative p-8 space-y-8">
                 {/* Username Input */}
-                <div>
-                  <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                <div className="space-y-3">
+                  <label className="flex items-center text-sm font-medium text-gray-700">
                     <User className="h-5 w-5 mr-2 text-indigo-600" />
                     Your Name *
                   </label>
@@ -77,15 +100,15 @@ export default function QuizSetup({ quizData }) {
                     onChange={(e) =>
                       setSettings({ ...settings, username: e.target.value })
                     }
-                    placeholder="Enter your name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                    placeholder="Enter your name to start"
+                    className="w-full px-4 py-4 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-300 text-gray-900 placeholder-gray-500 shadow-lg hover:shadow-xl"
                     required
                   />
                 </div>
 
                 {/* Number of Questions */}
-                <div>
-                  <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                <div className="space-y-3">
+                  <label className="flex items-center text-sm font-medium text-gray-700">
                     <Hash className="h-5 w-5 mr-2 text-indigo-600" />
                     Number of Questions
                   </label>
@@ -97,10 +120,10 @@ export default function QuizSetup({ quizData }) {
                         onClick={() =>
                           setSettings({ ...settings, questionCount: count })
                         }
-                        className={`py-3 px-4 rounded-lg font-semibold transition-all ${
+                        className={`py-4 px-4 rounded-2xl font-medium transition-all duration-500 hover:scale-105 ${
                           settings.questionCount === count
-                            ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg scale-105"
-                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                            ? "backdrop-blur-xl bg-gradient-to-r from-indigo-500 via-purple-600 to-blue-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
+                            : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-indigo-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-indigo-300"
                         }`}
                       >
                         {count}
@@ -110,8 +133,8 @@ export default function QuizSetup({ quizData }) {
                 </div>
 
                 {/* Time Per Question */}
-                <div>
-                  <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                <div className="space-y-3">
+                  <label className="flex items-center text-sm font-medium text-gray-700">
                     <Clock className="h-5 w-5 mr-2 text-indigo-600" />
                     Time Per Question
                   </label>
@@ -126,10 +149,10 @@ export default function QuizSetup({ quizData }) {
                             timePerQuestion: option.value,
                           })
                         }
-                        className={`py-3 px-4 rounded-lg font-semibold transition-all ${
+                        className={`py-4 px-4 rounded-2xl font-medium transition-all duration-500 hover:scale-105 ${
                           settings.timePerQuestion === option.value
-                            ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg scale-105"
-                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                            ? "backdrop-blur-xl bg-gradient-to-r from-indigo-500 via-purple-600 to-blue-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
+                            : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-indigo-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-indigo-300"
                         }`}
                       >
                         {option.label}
@@ -139,32 +162,35 @@ export default function QuizSetup({ quizData }) {
                 </div>
 
                 {/* Quiz Info */}
-                <div className="bg-indigo-50 rounded-lg p-4 space-y-2">
-                  <h3 className="font-semibold text-indigo-900 mb-2">
+                <div className="backdrop-blur-xl bg-gradient-to-r from-indigo-50/50 via-purple-50/30 to-blue-50/50 border border-indigo-100/50 rounded-2xl p-6 space-y-4">
+                  <h3 className="font-medium text-indigo-900 flex items-center">
+                    <Sparkles className="h-5 w-5 mr-2 text-indigo-600" />
                     Quiz Summary
                   </h3>
-                  <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="grid grid-cols-2 gap-4 text-sm">
                     <div className="flex items-center text-gray-700">
+                      <Target className="h-4 w-4 mr-2 text-indigo-500" />
                       <span className="font-medium">Questions:</span>
-                      <span className="ml-2">{settings.questionCount}</span>
+                      <span className="ml-2 text-indigo-600 font-semibold">{settings.questionCount}</span>
                     </div>
                     <div className="flex items-center text-gray-700">
+                      <Clock className="h-4 w-4 mr-2 text-indigo-500" />
                       <span className="font-medium">Per Question:</span>
-                      <span className="ml-2">{settings.timePerQuestion}s</span>
+                      <span className="ml-2 text-indigo-600 font-semibold">{settings.timePerQuestion}s</span>
                     </div>
                     <div className="flex items-center text-gray-700">
+                      <Zap className="h-4 w-4 mr-2 text-indigo-500" />
                       <span className="font-medium">Total Time:</span>
-                      <span className="ml-2">
+                      <span className="ml-2 text-indigo-600 font-semibold">
                         {Math.floor(
                           (settings.questionCount * settings.timePerQuestion) / 60
-                        )}
-                        m {(settings.questionCount * settings.timePerQuestion) % 60}
-                        s
+                        )}m {(settings.questionCount * settings.timePerQuestion) % 60}s
                       </span>
                     </div>
                     <div className="flex items-center text-gray-700">
+                      <Brain className="h-4 w-4 mr-2 text-indigo-500" />
                       <span className="font-medium">Format:</span>
-                      <span className="ml-2">MCQs</span>
+                      <span className="ml-2 text-indigo-600 font-semibold">MCQs</span>
                     </div>
                   </div>
                 </div>
@@ -173,10 +199,13 @@ export default function QuizSetup({ quizData }) {
                 <button
                   type="submit"
                   disabled={!settings.username.trim()}
-                  className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-lg font-bold text-lg hover:from-indigo-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"
+                  className="w-full group relative px-8 py-5 bg-gradient-to-r from-indigo-500/80 via-purple-600/70 to-blue-600/80 text-white font-medium text-lg rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/30 hover:scale-105 active:scale-95 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:shadow-none"
                 >
-                  <Play className="h-6 w-6" />
-                  <span>Start Quiz</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/15 via-transparent to-white/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -skew-x-12 group-hover/btn:skew-x-0"></div>
+                  <div className="relative flex items-center justify-center space-x-3">
+                    <Play className="h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
+                    <span>Start Quiz</span>
+                  </div>
                 </button>
               </form>
             </div>
@@ -185,92 +214,97 @@ export default function QuizSetup({ quizData }) {
           {/* Sidebar - Takes 1 column on large screens */}
           <div className="lg:col-span-1 space-y-6">
             {/* Quiz Stats Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-              <h3 className="font-semibold text-gray-900 mb-4 flex items-center">
-                <svg className="h-5 w-5 mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-                Quiz Stats
-              </h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Total Questions</span>
-                  <span className="font-semibold text-indigo-600">{quizData.totalQuestions}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Selected</span>
-                  <span className="font-semibold text-indigo-600">{settings.questionCount}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Time per Q</span>
-                  <span className="font-semibold text-indigo-600">{settings.timePerQuestion}s</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Total Time</span>
-                  <span className="font-semibold text-indigo-600">
-                    {Math.floor((settings.questionCount * settings.timePerQuestion) / 60)}m {((settings.questionCount * settings.timePerQuestion) % 60)}s
-                  </span>
+            <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-500 group">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
+              <div className="relative">
+                <h3 className="font-medium text-gray-900 mb-6 flex items-center">
+                  <Target className="h-5 w-5 mr-2 text-indigo-600" />
+                  Quiz Stats
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center p-3 backdrop-blur-xl bg-gradient-to-r from-indigo-50/50 via-purple-50/30 to-blue-50/50 border border-indigo-100/50 rounded-xl">
+                    <span className="text-sm text-gray-600 font-light">Total Questions</span>
+                    <span className="font-semibold text-indigo-600 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">{quizData.totalQuestions}</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 backdrop-blur-xl bg-gradient-to-r from-indigo-50/50 via-purple-50/30 to-blue-50/50 border border-indigo-100/50 rounded-xl">
+                    <span className="text-sm text-gray-600 font-light">Selected</span>
+                    <span className="font-semibold text-indigo-600 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">{settings.questionCount}</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 backdrop-blur-xl bg-gradient-to-r from-indigo-50/50 via-purple-50/30 to-blue-50/50 border border-indigo-100/50 rounded-xl">
+                    <span className="text-sm text-gray-600 font-light">Time per Q</span>
+                    <span className="font-semibold text-indigo-600 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">{settings.timePerQuestion}s</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 backdrop-blur-xl bg-gradient-to-r from-indigo-50/50 via-purple-50/30 to-blue-50/50 border border-indigo-100/50 rounded-xl">
+                    <span className="text-sm text-gray-600 font-light">Total Time</span>
+                    <span className="font-semibold text-indigo-600 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                      {Math.floor((settings.questionCount * settings.timePerQuestion) / 60)}m {((settings.questionCount * settings.timePerQuestion) % 60)}s
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Tips Section */}
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
-                <svg
-                  className="h-5 w-5 mr-2 text-yellow-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                Quiz Tips
-              </h3>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li className="flex items-start">
-                  <span className="text-indigo-600 mr-2">•</span>
-                  <span>
-                    Read each question carefully before selecting an answer
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-indigo-600 mr-2">•</span>
-                  <span>Keep an eye on the timer for each question</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-indigo-600 mr-2">•</span>
-                  <span>Questions are randomized for a unique experience</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-indigo-600 mr-2">•</span>
-                  <span>
-                    You'll see detailed explanations after completing the quiz
-                  </span>
-                </li>
-              </ul>
+            <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-500 group">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
+              <div className="relative">
+                <h3 className="font-medium text-gray-900 mb-4 flex items-center">
+                  <Sparkles className="h-5 w-5 mr-2 text-yellow-500" />
+                  Quiz Tips
+                </h3>
+                <ul className="space-y-3 text-sm text-gray-600">
+                  <li className="flex items-start p-2 backdrop-blur-xl bg-gradient-to-r from-yellow-50/50 via-orange-50/30 to-yellow-50/50 border border-yellow-100/50 rounded-lg">
+                    <span className="text-indigo-600 mr-3 mt-0.5">•</span>
+                    <span className="font-light leading-relaxed">
+                      Read each question carefully before selecting an answer
+                    </span>
+                  </li>
+                  <li className="flex items-start p-2 backdrop-blur-xl bg-gradient-to-r from-yellow-50/50 via-orange-50/30 to-yellow-50/50 border border-yellow-100/50 rounded-lg">
+                    <span className="text-indigo-600 mr-3 mt-0.5">•</span>
+                    <span className="font-light leading-relaxed">Keep an eye on the timer for each question</span>
+                  </li>
+                  <li className="flex items-start p-2 backdrop-blur-xl bg-gradient-to-r from-yellow-50/50 via-orange-50/30 to-yellow-50/50 border border-yellow-100/50 rounded-lg">
+                    <span className="text-indigo-600 mr-3 mt-0.5">•</span>
+                    <span className="font-light leading-relaxed">Questions are randomized for a unique experience</span>
+                  </li>
+                  <li className="flex items-start p-2 backdrop-blur-xl bg-gradient-to-r from-yellow-50/50 via-orange-50/30 to-yellow-50/50 border border-yellow-100/50 rounded-lg">
+                    <span className="text-indigo-600 mr-3 mt-0.5">•</span>
+                    <span className="font-light leading-relaxed">
+                      You'll see detailed explanations after completing the quiz
+                    </span>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             {/* Quick Actions */}
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
-                <svg className="h-5 w-5 mr-2 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                Quick Actions
-              </h3>
-              <div className="space-y-2">
-                <button
-                  onClick={() => router.push("/quiz")}
-                  className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
-                >
-                  ← Back to Quiz List
-                </button>
-                <button
-                  onClick={() => window.location.reload()}
-                  className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
-                >
-                  🔄 Reset Settings
-                </button>
+            <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-500 group">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
+              <div className="relative">
+                <h3 className="font-medium text-gray-900 mb-4 flex items-center">
+                  <Zap className="h-5 w-5 mr-2 text-green-500" />
+                  Quick Actions
+                </h3>
+                <div className="space-y-2">
+                  <button
+                    onClick={() => router.push("/quiz")}
+                    className="w-full text-left px-4 py-3 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-xl text-sm text-gray-600 hover:text-indigo-600 hover:border-indigo-300 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl group/btn"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <ArrowLeft className="h-4 w-4 group-hover/btn:-translate-x-1 transition-transform duration-300" />
+                      <span>Back to Quiz List</span>
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="w-full text-left px-4 py-3 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-xl text-sm text-gray-600 hover:text-indigo-600 hover:border-indigo-300 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl group/btn"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <span className="text-indigo-600">🔄</span>
+                      <span>Reset Settings</span>
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
