@@ -2,29 +2,44 @@
   {
     "id": 1,
     "question": "The multiplexer----------- is used to decide which value is transferred to be written back to the register file.",
-    "options": ["MP2", "MP3", "MP4", "MP5"],
+    "options": [
+      "MP2",
+      "MP3",
+      "MP4",
+      "MP5"
+    ],
     "correct": "MP5",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 1
+    "difficulty": "Medium",
+    "importance": 5
   },
   {
     "id": 2,
     "question": "Which of the following condition is evaluated when executing the branch instruction “brzr R2, R1”?",
-    "options": ["If(R2==0)", "If( R1 >0 )", "If( R1==0)", "If( R1 < 0)"],
+    "options": [
+      "If(R2==0)",
+      "If( R1 >0 )",
+      "If( R1==0)",
+      "If( R1 < 0)"
+    ],
     "correct": "If( R1==0)",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 4
+    "difficulty": "Easy",
+    "importance": 1
   },
   {
     "id": 3,
     "question": "In case of SRC processor, bits --------of IR (instruction register) are reserved for the opcode.",
-    "options": ["0 to 4", "11 to 15", "27 to 31", "59 to 63"],
+    "options": [
+      "0 to 4",
+      "11 to 15",
+      "27 to 31",
+      "59 to 63"
+    ],
     "correct": "27 to 31",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 4
+    "importance": 3
   },
   {
     "id": 4,
@@ -38,16 +53,21 @@
     "correct": "(op<4..0>=2): R[ra] M [rel]",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 1
+    "importance": 4
   },
   {
     "id": 5,
     "question": "-------------Instruction is used to divide a register value by immediate value in FALCON-E processor.",
-    "options": ["div", "idiv", "divi", "divim"],
+    "options": [
+      "div",
+      "idiv",
+      "divi",
+      "divim"
+    ],
     "correct": "divi",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 4
+    "difficulty": "Medium",
+    "importance": 3
   },
   {
     "id": 6,
@@ -60,17 +80,22 @@
     ],
     "correct": "Op-code(or the operation code)",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 3
+    "difficulty": "Easy",
+    "importance": 4
   },
   {
     "id": 7,
     "question": "Which of the following control signal is NOT activated during instruction fetch operation?",
-    "options": ["PCout", "LC", "LMAR", "Cout"],
+    "options": [
+      "PCout",
+      "LC",
+      "LMAR",
+      "Cout"
+    ],
     "correct": "Cout",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 5
+    "difficulty": "Hard",
+    "importance": 4
   },
   {
     "id": 8,
@@ -84,25 +109,35 @@
     "correct": "in and out",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 2
+    "importance": 1
   },
   {
     "id": 9,
     "question": "--------------- provides a temporary storage for the address of memory location to be accessed.",
-    "options": ["MAR", "MBR", "PC", "LPC"],
+    "options": [
+      "MAR",
+      "MBR",
+      "PC",
+      "LPC"
+    ],
     "correct": "MAR",
     "explanation": "N/A",
-    "difficulty": "Hard",
+    "difficulty": "Easy",
     "importance": 3
   },
   {
     "id": 10,
     "question": "Which of the following register is used to enable the tri-stable buffers with the MBR?",
-    "options": ["MBRout", "MARout", "LMBR", "INC4"],
+    "options": [
+      "MBRout",
+      "MARout",
+      "LMBR",
+      "INC4"
+    ],
     "correct": "MBRout",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 1
+    "difficulty": "Hard",
+    "importance": 4
   },
   {
     "id": 11,
@@ -115,8 +150,8 @@
     ],
     "correct": "It will store the register R8 contents to the memory location M[PC+34]",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 1
+    "difficulty": "Medium",
+    "importance": 2
   },
   {
     "id": 12,
@@ -129,7 +164,7 @@
     ],
     "correct": "Next Instruction",
     "explanation": "N/A",
-    "difficulty": "Hard",
+    "difficulty": "Easy",
     "importance": 3
   },
   {
@@ -143,26 +178,36 @@
     ],
     "correct": "To hold the current status of the processor",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 3
+    "difficulty": "Medium",
+    "importance": 4
   },
   {
     "id": 14,
     "question": "mul is the example of a(n) ------------operation.",
-    "options": ["Logic", "Shift", "Arithmetic", "Data transfer"],
+    "options": [
+      "Logic",
+      "Shift",
+      "Arithmetic",
+      "Data transfer"
+    ],
     "correct": "Arithmetic",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 5
+    "difficulty": "Medium",
+    "importance": 3
   },
   {
     "id": 15,
     "question": "Control Signal for RTL “IR< ---MBR” will be---------",
-    "options": ["MBRout,LIR", "PC< --C", "PC< --MBR", "PC< --IR"],
+    "options": [
+      "MBRout,LIR",
+      "PC< --C",
+      "PC< --MBR",
+      "PC< --IR"
+    ],
     "correct": "MBRout,LIR",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 4
+    "difficulty": "Medium",
+    "importance": 5
   },
   {
     "id": 16,
@@ -175,17 +220,22 @@
     ],
     "correct": "It will load the register R3 with the contents of the memory location M[PC+58]",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 5
+    "difficulty": "Easy",
+    "importance": 1
   },
   {
     "id": 17,
     "question": "The status register of the 68000 has---------condition codes.",
-    "options": ["2", "3", "5", "8"],
+    "options": [
+      "2",
+      "3",
+      "5",
+      "8"
+    ],
     "correct": "5",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 3
+    "importance": 4
   },
   {
     "id": 18,
@@ -199,16 +249,22 @@
     "correct": "ldr instruction",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 4
+    "importance": 5
   },
   {
     "id": 19,
     "question": "For the ------ type instruction, we require a register to hold the data that is to be loaded from the memory, or stored back to the memory.",
-    "options": ["Jump", "Control", "L", "load/store", "Branch"],
+    "options": [
+      "Jump",
+      "Control",
+      "L",
+      "load/store",
+      "Branch"
+    ],
     "correct": "load/store",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 5
+    "importance": 4
   },
   {
     "id": 20,
@@ -222,66 +278,101 @@
     "correct": "Control Unit",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 2
+    "importance": 1
   },
   {
     "id": 21,
     "question": "In CPU design, -------------creates or forms the interface between the data path and control unit.",
-    "options": ["Buses", "ALU", "Control signal", "cache"],
+    "options": [
+      "Buses",
+      "ALU",
+      "Control signal",
+      "cache"
+    ],
     "correct": "Control signal",
     "explanation": "N/A",
-    "difficulty": "Medium",
+    "difficulty": "Easy",
     "importance": 2
   },
   {
     "id": 22,
     "question": "------------- Control signal enables the input to the PC for receiving a value that is currently on the internal processor bus.",
-    "options": ["LPC", "INC4", "LC", "Cout"],
+    "options": [
+      "LPC",
+      "INC4",
+      "LC",
+      "Cout"
+    ],
     "correct": "LPC",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 2
+    "difficulty": "Hard",
+    "importance": 4
   },
   {
     "id": 23,
     "question": "In SRC, the effective address is computed a run-time by adding a constant to value of --------- register.",
-    "options": ["FLAGS", "IR", "PC", "Ra"],
+    "options": [
+      "FLAGS",
+      "IR",
+      "PC",
+      "Ra"
+    ],
     "correct": "PC",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 3
+    "importance": 4
   },
   {
     "id": 24,
     "question": "----------- control signal allow the content of the program counter register to be written onto the internal processor bus.",
-    "options": ["INC4", "LPC", "PCout", "LC"],
+    "options": [
+      "INC4",
+      "LPC",
+      "PCout",
+      "LC"
+    ],
     "correct": "PCout",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 25,
+    "question": "In ----------instruction format of EAGLE processor, there is no field reserved for the operands.",
+    "options": [
+      "Type V",
+      "Type Y",
+      "Type X",
+      "Type Z"
+    ],
+    "correct": "Type Z",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 26,
+    "question": "In Type C instruction of SRC,----------- bits are allocated for constant values.",
+    "options": [
+      "16",
+      "17",
+      "21",
+      "22"
+    ],
+    "correct": "22",
     "explanation": "N/A",
     "difficulty": "Hard",
     "importance": 1
   },
   {
-    "id": 25,
-    "question": "In ----------instruction format of EAGLE processor, there is no field reserved for the operands.",
-    "options": ["Type V", "Type Y", "Type X", "Type Z"],
-    "correct": "Type Z",
-    "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 5
-  },
-  {
-    "id": 26,
-    "question": "In Type C instruction of SRC,----------- bits are allocated for constant values.",
-    "options": ["16", "17", "21", "22"],
-    "correct": "22",
-    "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 2
-  },
-  {
     "id": 27,
     "question": "A general purpose digital computer has----------main components.",
-    "options": ["2", "3", "4", "5"],
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
     "correct": "5",
     "explanation": "N/A",
     "difficulty": "Easy",
@@ -290,7 +381,12 @@
   {
     "id": 28,
     "question": "The instruction ---------- will load the register R3 with the contents of the memory location M[PC+56].",
-    "options": ["lar R3,M[56]", "ldr R3,M[56]", "ldr R3,56", "lr R3,[56]"],
+    "options": [
+      "lar R3,M[56]",
+      "ldr R3,M[56]",
+      "ldr R3,56",
+      "lr R3,[56]"
+    ],
     "correct": "ldr R3,56",
     "explanation": "N/A",
     "difficulty": "Medium",
@@ -308,79 +404,119 @@
     "correct": "-32 to + 31",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 3
+    "importance": 4
   },
   {
     "id": 30,
     "question": "In a FALCON-A assembly program, labels are used to implement----------- jump.",
-    "options": ["Direct", "Indirect", "Relative", "Displacement"],
+    "options": [
+      "Direct",
+      "Indirect",
+      "Relative",
+      "Displacement"
+    ],
     "correct": "Relative",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 2
+    "difficulty": "Easy",
+    "importance": 1
   },
   {
     "id": 31,
     "question": "In “Jump [8]” instruction, the size of the constant fields is---------bits.",
-    "options": ["4", "5", "8", "16"],
+    "options": [
+      "4",
+      "5",
+      "8",
+      "16"
+    ],
     "correct": "8",
-    "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 3
-  },
-  {
-    "id": 32,
-    "question": "The multiplexer --------- is used to decide which value is transferred to be written back to the register file.",
-    "options": ["MP2", "MP3", "MP3", "MP5"],
-    "correct": "MP5",
     "explanation": "N/A",
     "difficulty": "Hard",
     "importance": 1
   },
   {
+    "id": 32,
+    "question": "The multiplexer --------- is used to decide which value is transferred to be written back to the register file.",
+    "options": [
+      "MP2",
+      "MP3",
+      "MP3",
+      "MP5"
+    ],
+    "correct": "MP5",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
     "id": 33,
     "question": "-------------- is a register which takes input from the ALSU as memory address to be accessed and transfer the memory contents on that location onto the memory sub-system.",
-    "options": ["PC", "MBR", "MAR", "IR"],
+    "options": [
+      "PC",
+      "MBR",
+      "MAR",
+      "IR"
+    ],
     "correct": "MAR",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 5
+    "difficulty": "Hard",
+    "importance": 1
   },
   {
     "id": 34,
     "question": "In pipe-lined processor, there should be a ---------port register file so that if the register write and register read stages overlap they can be performed in parallel.",
-    "options": ["Four", "Three", "Two", "One"],
+    "options": [
+      "Four",
+      "Three",
+      "Two",
+      "One"
+    ],
     "correct": "Two",
     "explanation": "N/A",
-    "difficulty": "Medium",
+    "difficulty": "Hard",
     "importance": 2
   },
   {
     "id": 35,
     "question": "Which of the following registers is used as an implicit operand in MUL/DIV instruction of FALCON-A?",
-    "options": ["R0", "PC", "IR", "SP"],
+    "options": [
+      "R0",
+      "PC",
+      "IR",
+      "SP"
+    ],
     "correct": "R0",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 2
+    "difficulty": "Medium",
+    "importance": 4
   },
   {
     "id": 36,
     "question": "Which one of the following control signals causes the data from the bus to be read into the register MAR.",
-    "options": ["MARout", "MARin", "LMAR", "None of the given"],
+    "options": [
+      "MARout",
+      "MARin",
+      "LMAR",
+      "None of the given"
+    ],
     "correct": "LMAR",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 1
+    "difficulty": "Medium",
+    "importance": 4
   },
   {
     "id": 37,
     "question": "To set the value of micro-PC from branch address, the value of 4 to 1 multiplexer is------------",
-    "options": ["00", "01", "10", "11"],
+    "options": [
+      "00",
+      "01",
+      "10",
+      "11"
+    ],
     "correct": "10",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 1
+    "difficulty": "Medium",
+    "importance": 2
   },
   {
     "id": 38,
@@ -393,44 +529,64 @@
     ],
     "correct": "1-address instruction",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 1
+    "difficulty": "Hard",
+    "importance": 2
   },
   {
     "id": 39,
     "question": "Which of the following branch instruction has a condition which is always executed?",
-    "options": ["JZ", "JUMP", "JPL", "JMI"],
+    "options": [
+      "JZ",
+      "JUMP",
+      "JPL",
+      "JMI"
+    ],
     "correct": "JUMP",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 4
+    "difficulty": "Hard",
+    "importance": 3
   },
   {
     "id": 40,
     "question": "--------------hazard occurs when attempting to access same resource in different ways at the same time.",
-    "options": ["Branch", "Data", "Structural", "Instruction"],
+    "options": [
+      "Branch",
+      "Data",
+      "Structural",
+      "Instruction"
+    ],
     "correct": "Structural",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 4
+    "importance": 1
   },
   {
     "id": 41,
     "question": "--------------- is an example of Miscellaneous instruction.",
-    "options": ["Shift", "Store", "Halt", "Call"],
+    "options": [
+      "Shift",
+      "Store",
+      "Halt",
+      "Call"
+    ],
     "correct": "Halt",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 5
+    "importance": 2
   },
   {
     "id": 42,
     "question": "Which type of instructions enables mathematical computations?",
-    "options": ["Arithmetic", "Control", "Data transfer", "Numeric"],
+    "options": [
+      "Arithmetic",
+      "Control",
+      "Data transfer",
+      "Numeric"
+    ],
     "correct": "Arithmetic",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 1
+    "difficulty": "Easy",
+    "importance": 2
   },
   {
     "id": 43,
@@ -443,8 +599,8 @@
     ],
     "correct": "Very Long Instruction Word",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 3
+    "difficulty": "Medium",
+    "importance": 5
   },
   {
     "id": 44,
@@ -458,7 +614,7 @@
     "correct": "Control signal",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 5
+    "importance": 3
   },
   {
     "id": 45,
@@ -472,34 +628,49 @@
     "correct": "32 Registers R0 to R31",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 5
+    "importance": 4
   },
   {
     "id": 46,
     "question": "Which of the following RTL description is used for specifying the operation of an SRC instruction?",
-    "options": ["IR<31..27>", "IR<22..26>", "IR<21..17>", "IR<21..0>"],
+    "options": [
+      "IR<31..27>",
+      "IR<22..26>",
+      "IR<21..17>",
+      "IR<21..0>"
+    ],
     "correct": "IR<31..27>",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 3
+    "importance": 2
   },
   {
     "id": 47,
     "question": "What is the size of the memory space that is available to FALCON-A processor?",
-    "options": ["2^8 bytes", "2^16 bytes", "2^32 bytes", "2^64 bytes"],
+    "options": [
+      "2^8 bytes",
+      "2^16 bytes",
+      "2^32 bytes",
+      "2^64 bytes"
+    ],
     "correct": "2^16 bytes",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 4
+    "difficulty": "Hard",
+    "importance": 3
   },
   {
     "id": 48,
     "question": "How can we refer to an instruction register (IR), of 16 bits (numbered 0 to 15) using RTL.",
-    "options": ["IR<16..0>", "IR<15..0>", "IR<16..1>", "IR<15..1>"],
+    "options": [
+      "IR<16..0>",
+      "IR<15..0>",
+      "IR<16..1>",
+      "IR<15..1>"
+    ],
     "correct": "IR<15..0>",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 4
+    "importance": 2
   },
   {
     "id": 49,
@@ -512,8 +683,8 @@
     ],
     "correct": "To hold the current status of the processor.",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 1
+    "difficulty": "Medium",
+    "importance": 3
   },
   {
     "id": 50,
@@ -526,22 +697,32 @@
     ],
     "correct": "It will load the register R3 with the contents of the memory location M [PC+58]",
     "explanation": "N/A",
-    "difficulty": "Hard",
+    "difficulty": "Easy",
     "importance": 3
   },
   {
     "id": 51,
     "question": "What is the instruction length of the FALCON-E processor?",
-    "options": ["8 bits", "16 bits", "32 bits", "64 bits"],
+    "options": [
+      "8 bits",
+      "16 bits",
+      "32 bits",
+      "64 bits"
+    ],
     "correct": "32 bits",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 3
+    "importance": 2
   },
   {
     "id": 52,
     "question": "Which one of the following portions of an instruction represents the operation to be performed?",
-    "options": ["Address", "Instruction code", "Opcode", "Operand"],
+    "options": [
+      "Address",
+      "Instruction code",
+      "Opcode",
+      "Operand"
+    ],
     "correct": "Opcode",
     "explanation": "N/A",
     "difficulty": "Hard",
@@ -558,7 +739,7 @@
     ],
     "correct": "Processor-Memory-Switch level (PMS level)",
     "explanation": "N/A",
-    "difficulty": "Medium",
+    "difficulty": "Hard",
     "importance": 4
   },
   {
@@ -572,8 +753,8 @@
     ],
     "correct": "Opcode= ADD, DR=R1, SA=R2, SB=R3",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 5
+    "difficulty": "Medium",
+    "importance": 2
   },
   {
     "id": 55,
@@ -587,7 +768,7 @@
     "correct": "Logic Design Level",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 4
+    "importance": 5
   },
   {
     "id": 56,
@@ -601,16 +782,21 @@
     "correct": "Register format instructions",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 4
+    "importance": 2
   },
   {
     "id": 57,
     "question": "P: R3 <- R5 MAR <- IR These two are instructions written using RTL .If these two operations is to occur simultaneously then which symbol will we use to separate them so that it becomes a correct statement with the condition that two operations occur simultaneously?",
-    "options": ["Parentheses ()", "Arrow <-", "Colon :", "Comma ,"],
+    "options": [
+      "Parentheses ()",
+      "Arrow <-",
+      "Colon :",
+      "Comma ,"
+    ],
     "correct": "Comma ,",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 4
+    "difficulty": "Hard",
+    "importance": 5
   },
   {
     "id": 58,
@@ -623,8 +809,8 @@
     ],
     "correct": "Load/store",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 2
+    "difficulty": "Easy",
+    "importance": 5
   },
   {
     "id": 59,
@@ -637,8 +823,8 @@
     ],
     "correct": "Processor-Memory-Switch level (PMS level)",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 5
+    "difficulty": "Hard",
+    "importance": 3
   },
   {
     "id": 60,
@@ -652,7 +838,7 @@
     "correct": "Opcode= ADD, DR=R1, SA=R2, SB=R3",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 4
+    "importance": 1
   },
   {
     "id": 61,
@@ -666,7 +852,7 @@
     "correct": "Logic Design Level",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 5
+    "importance": 4
   },
   {
     "id": 62,
@@ -679,17 +865,22 @@
     ],
     "correct": "Register format instructions",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 1
+    "difficulty": "Hard",
+    "importance": 2
   },
   {
     "id": 63,
     "question": "P: R3 <- R5 MAR <- IR These two are instructions written using RTL .If these two operations is to occur simultaneously then which symbol will we use to separate them so that it becomes a correct statement with the condition that two operations occur simultaneously?",
-    "options": ["Parentheses ()", "Arrow <-", "Colon :", "Comma ,"],
+    "options": [
+      "Parentheses ()",
+      "Arrow <-",
+      "Colon :",
+      "Comma ,"
+    ],
     "correct": "Comma ,",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 5
+    "difficulty": "Easy",
+    "importance": 1
   },
   {
     "id": 64,
@@ -702,35 +893,49 @@
     ],
     "correct": "Load/store",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 3
+    "difficulty": "Medium",
+    "importance": 5
   },
   {
     "id": 65,
     "question": "What does the word ‘D’ in the ‘D-flip-Flop’ stands for?",
-    "options": ["Data", "Digital", "Dynamic", "Double"],
+    "options": [
+      "Data",
+      "Digital",
+      "Dynamic",
+      "Double"
+    ],
     "correct": "Data",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 5
+    "importance": 3
   },
   {
     "id": 66,
     "question": "The instruction--------------- will load the register R3 with the contents of the memory location M [PC+56]",
-    "options": ["Add R3, 56", "lar R3, 56", "ldr R3, 56", "str R3, 56"],
+    "options": [
+      "Add R3, 56",
+      "lar R3, 56",
+      "ldr R3, 56",
+      "str R3, 56"
+    ],
     "correct": "ldr R3, 56",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 1
+    "importance": 2
   },
   {
     "id": 67,
     "question": "What is the instruction length of the FALCON-E processor?",
-    "options": ["8 bits", "16 bits", "32 bits"],
+    "options": [
+      "8 bits",
+      "16 bits",
+      "32 bits"
+    ],
     "correct": "32 bits",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 2
+    "importance": 5
   },
   {
     "id": 68,
@@ -743,44 +948,64 @@
     ],
     "correct": "7 bytes, 16 bytes",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 2
+    "difficulty": "Hard",
+    "importance": 3
   },
   {
     "id": 69,
     "question": "Which one of the following portions of an instruction represents the operation to be performed?",
-    "options": ["Address", "Instruction code", "Opcode", "Operand"],
+    "options": [
+      "Address",
+      "Instruction code",
+      "Opcode",
+      "Operand"
+    ],
     "correct": "Opcode",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 2
+    "importance": 1
   },
   {
     "id": 70,
     "question": "Which operator is used to ‘name’ registers, or part of registers, in the Register Transfer Language?",
-    "options": [":=", "&", "%", "©"],
+    "options": [
+      ":=",
+      "&",
+      "%",
+      "©"
+    ],
     "correct": ":=",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 4
+    "importance": 2
   },
   {
     "id": 71,
     "question": "What is the size of the memory space that is available to FALCON-A processor?",
-    "options": ["2^8 bytes", "2^16 bytes", "2^32 bytes", "2^64 bytes"],
+    "options": [
+      "2^8 bytes",
+      "2^16 bytes",
+      "2^32 bytes",
+      "2^64 bytes"
+    ],
     "correct": "2^16 bytes",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 2
+    "difficulty": "Medium",
+    "importance": 3
   },
   {
     "id": 72,
     "question": "An “assembler” that runs on one processor and translates an assembly language program written for another processor into the machine language of the other processor is called a ----------------",
-    "options": ["compiler", "cross assembler", "debugger", "linker"],
+    "options": [
+      "compiler",
+      "cross assembler",
+      "debugger",
+      "linker"
+    ],
     "correct": "cross assembler",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 5
+    "importance": 1
   },
   {
     "id": 73,
@@ -793,8 +1018,8 @@
     ],
     "correct": "str instruction",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 4
+    "difficulty": "Easy",
+    "importance": 1
   },
   {
     "id": 74,
@@ -807,17 +1032,22 @@
     ],
     "correct": "Effective address",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 2
+    "difficulty": "Hard",
+    "importance": 4
   },
   {
     "id": 75,
     "question": "How can we refer to an instruction register (IR), of 16 bits (numbered 0 to 15) using RTL?",
-    "options": ["IR<16..0>", "IR<15..0>", "IR<16..1>", "IR<15..1>"],
+    "options": [
+      "IR<16..0>",
+      "IR<15..0>",
+      "IR<16..1>",
+      "IR<15..1>"
+    ],
     "correct": "IR<15..0>",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 4
+    "difficulty": "Easy",
+    "importance": 5
   },
   {
     "id": 76,
@@ -830,13 +1060,18 @@
     ],
     "correct": "It will store the register R8 contents to the memory location M [PC+34]",
     "explanation": "N/A",
-    "difficulty": "Hard",
+    "difficulty": "Easy",
     "importance": 4
   },
   {
     "id": 77,
     "question": "Which type of instructions help in changing the flow of the program as and when required?",
-    "options": ["Arithmetic", "Control", "Data transfer", "Floating point"],
+    "options": [
+      "Arithmetic",
+      "Control",
+      "Data transfer",
+      "Floating point"
+    ],
     "correct": "Control",
     "explanation": "N/A",
     "difficulty": "Medium",
@@ -854,7 +1089,7 @@
     "correct": "(a), (c) & (d)",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 1
+    "importance": 3
   },
   {
     "id": 79,
@@ -867,26 +1102,36 @@
     ],
     "correct": "Processor-Memory-Switch level (PMS level)",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 4
+    "difficulty": "Medium",
+    "importance": 1
   },
   {
     "id": 80,
     "question": "Which one of the following is/are the features of Register Transfer Language? a) It is a symbolic language b) It is describing the internal organization of digital computers c) It is an elementary operation performed (during one clock pulse), on the information stored in one or more registers d) It is high level language.",
-    "options": ["(b) only", "& (b) only", ",(b) & (d)", "(b),(c) & (d)"],
+    "options": [
+      "(b) only",
+      "& (b) only",
+      ",(b) & (d)",
+      "(b),(c) & (d)"
+    ],
     "correct": "(b),(c) & (d)",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 5
+    "difficulty": "Medium",
+    "importance": 4
   },
   {
     "id": 81,
     "question": "Motorola MC68000 is an example of---------microprocessor.",
-    "options": ["CISC", "RISC", "SRC", "FALCON"],
+    "options": [
+      "CISC",
+      "RISC",
+      "SRC",
+      "FALCON"
+    ],
     "correct": "CISC",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 2
+    "difficulty": "Hard",
+    "importance": 1
   },
   {
     "id": 82,
@@ -900,52 +1145,77 @@
     "correct": "Instruction Register",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 3
+    "importance": 5
   },
   {
     "id": 83,
     "question": "For any of the instructions that are a part of the instruction set of the SRC, there are certain required; which may be used to select the appropriate function for the ALU to be performed, to select the appropriate registers, or the appropriate memory location.",
-    "options": ["Registers", "Control signals", "Memory", "None of the given"],
+    "options": [
+      "Registers",
+      "Control signals",
+      "Memory",
+      "None of the given"
+    ],
     "correct": "Control signals",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 4
+    "difficulty": "Easy",
+    "importance": 1
   },
   {
     "id": 84,
     "question": "The external interface of FALCON-A consists of a data bus.",
-    "options": ["8-bit", "16-bit", "24-bit", "32-bit"],
+    "options": [
+      "8-bit",
+      "16-bit",
+      "24-bit",
+      "32-bit"
+    ],
     "correct": "16-bit",
     "explanation": "N/A",
-    "difficulty": "Medium",
+    "difficulty": "Hard",
     "importance": 2
   },
   {
     "id": 85,
     "question": "In which one of the following techniques, the time a processor spends waiting for instructions to be fetched from memory is minimize",
-    "options": ["Perfecting", "Pipelining", "Superscalar operation", "Speedup"],
+    "options": [
+      "Perfecting",
+      "Pipelining",
+      "Superscalar operation",
+      "Speedup"
+    ],
     "correct": "Pipelining",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 3
+    "difficulty": "Easy",
+    "importance": 1
   },
   {
     "id": 86,
     "question": "enable the input to the PC for receiving a value that is currently on the internal processor bus.",
-    "options": ["LPC", "INC4", "LC", "Cout"],
+    "options": [
+      "LPC",
+      "INC4",
+      "LC",
+      "Cout"
+    ],
     "correct": "LPC",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 3
+    "difficulty": "Easy",
+    "importance": 4
   },
   {
     "id": 87,
     "question": "The processor must have a way of saving information about its state or context so that it can be restored upon return from the -------------",
-    "options": ["Exception", "Function", "Thread", "Stack"],
+    "options": [
+      "Exception",
+      "Function",
+      "Thread",
+      "Stack"
+    ],
     "correct": "Exception",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 3
+    "difficulty": "Easy",
+    "importance": 5
   },
   {
     "id": 88,
@@ -958,13 +1228,18 @@
     ],
     "correct": "Upward compatibility",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 1
+    "difficulty": "Easy",
+    "importance": 4
   },
   {
     "id": 89,
     "question": "control signal allows the contents of the Program Counter register to be written onto the internal processor bus.",
-    "options": ["INC4", "LPC", "PCout", "LC"],
+    "options": [
+      "INC4",
+      "LPC",
+      "PCout",
+      "LC"
+    ],
     "correct": "PCout",
     "explanation": "N/A",
     "difficulty": "Hard",
@@ -982,7 +1257,7 @@
     "correct": "Accumulator",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 3
+    "importance": 1
   },
   {
     "id": 91,
@@ -995,17 +1270,22 @@
     ],
     "correct": "Time to execute a program or program mix",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 5
+    "difficulty": "Easy",
+    "importance": 4
   },
   {
     "id": 92,
     "question": "The external interface of FALCON-A consists of a address bus.",
-    "options": ["8-bit", "16-bit", "24-bit", "32-bit"],
+    "options": [
+      "8-bit",
+      "16-bit",
+      "24-bit",
+      "32-bit"
+    ],
     "correct": "16-bit",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 4
+    "difficulty": "Easy",
+    "importance": 1
   },
   {
     "id": 93,
@@ -1018,8 +1298,8 @@
     ],
     "correct": "Memory Buffer Register",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 2
+    "difficulty": "Medium",
+    "importance": 1
   },
   {
     "id": 94,
@@ -1033,7 +1313,7 @@
     "correct": "16-bit , 16-bit",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 1
+    "importance": 4
   },
   {
     "id": 95,
@@ -1046,8 +1326,8 @@
     ],
     "correct": "Upward compatibility",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 3
+    "difficulty": "Easy",
+    "importance": 5
   },
   {
     "id": 96,
@@ -1060,8 +1340,8 @@
     ],
     "correct": "Accumulator",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 1
+    "difficulty": "Medium",
+    "importance": 4
   },
   {
     "id": 97,
@@ -1074,134 +1354,204 @@
     ],
     "correct": "Memory address register",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 3
+    "difficulty": "Hard",
+    "importance": 5
   },
   {
     "id": 98,
     "question": "FALCON-A processor bus has 16 lines or is 16-bits wide while that of SRC is wide.",
-    "options": ["8-bits", "16-bits", "32-bits", "64-bits"],
+    "options": [
+      "8-bits",
+      "16-bits",
+      "32-bits",
+      "64-bits"
+    ],
     "correct": "32-bits",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 3
+    "importance": 2
   },
   {
     "id": 99,
     "question": "enable the input to the PC for receiving a value that is currently on the internal processor bus.",
-    "options": ["LPC", "INC4", "LC", "Cout"],
+    "options": [
+      "LPC",
+      "INC4",
+      "LC",
+      "Cout"
+    ],
     "correct": "LPC",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 1
+    "difficulty": "Medium",
+    "importance": 3
   },
   {
     "id": 100,
     "question": "The external interface of FALCON-A consists of a data bus.",
-    "options": ["8-bit", "16-bit", "24-bit", "32-bit"],
+    "options": [
+      "8-bit",
+      "16-bit",
+      "24-bit",
+      "32-bit"
+    ],
     "correct": "16-bit",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 1
+    "difficulty": "Medium",
+    "importance": 2
   },
   {
     "id": 101,
     "question": "For any of the instructions that are a part of the instruction set of the SRC, there are certain required; which may be used to select the appropriate function for the ALU to be performed, to select appropriate registers, or the appropriate memory location",
-    "options": ["Registers", "Control signals", "Memory", "None of the given"],
+    "options": [
+      "Registers",
+      "Control signals",
+      "Memory",
+      "None of the given"
+    ],
     "correct": "Control signals",
     "explanation": "N/A",
-    "difficulty": "Easy",
+    "difficulty": "Medium",
     "importance": 2
   },
   {
     "id": 102,
     "question": "Among the two approaches available to design a control unit, hardware approach is relatively---------- as compared to micro-programming.",
-    "options": ["Slow", "Fast", "Average", "Better"],
+    "options": [
+      "Slow",
+      "Fast",
+      "Average",
+      "Better"
+    ],
     "correct": "Fast",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 103,
+    "question": "The MAR is connected directly to the-----------",
+    "options": [
+      "MBR",
+      "CPU Internal bus",
+      "CPU external bus",
+      "LIC"
+    ],
+    "correct": "CPU external bus",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 104,
+    "question": "Which of the following is not a part of processor state?",
+    "options": [
+      "IR",
+      "PC",
+      "Stacks",
+      "Registers"
+    ],
+    "correct": "Stacks",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 105,
+    "question": "--------------------- form the branch control field in the micro instruction.",
+    "options": [
+      "C Bits",
+      "M Bits",
+      "B BITS",
+      "M Bits"
+    ],
+    "correct": "B BITS",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 106,
+    "question": "During the RESET operation of processor, control step counter is set to---------------",
+    "options": [
+      "1",
+      "0",
+      "2",
+      "-1"
+    ],
+    "correct": "0",
     "explanation": "N/A",
     "difficulty": "Hard",
     "importance": 1
   },
   {
-    "id": 103,
-    "question": "The MAR is connected directly to the-----------",
-    "options": ["MBR", "CPU Internal bus", "CPU external bus", "LIC"],
-    "correct": "CPU external bus",
-    "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 2
-  },
-  {
-    "id": 104,
-    "question": "Which of the following is not a part of processor state?",
-    "options": ["IR", "PC", "Stacks", "Registers"],
-    "correct": "Stacks",
-    "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 3
-  },
-  {
-    "id": 105,
-    "question": "--------------------- form the branch control field in the micro instruction.",
-    "options": ["C Bits", "M Bits", "B BITS", "M Bits"],
-    "correct": "B BITS",
-    "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 4
-  },
-  {
-    "id": 106,
-    "question": "During the RESET operation of processor, control step counter is set to---------------",
-    "options": ["1", "0", "2", "-1"],
-    "correct": "0",
-    "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 1
-  },
-  {
     "id": 107,
     "question": "An “assembler” that runs on one processor and translates an assembly language program written for another processor into the machine language of the other processor is called a------------",
-    "options": ["Compiler", "Cross assembler", "Debugger", "linker"],
+    "options": [
+      "Compiler",
+      "Cross assembler",
+      "Debugger",
+      "linker"
+    ],
     "correct": "Cross assembler",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 3
+    "importance": 2
   },
   {
     "id": 108,
     "question": "In FALCON-A processor, the size of each I/O port is---------------",
-    "options": ["16 bits", "8 bits", "8 bytes", "256 bytes"],
+    "options": [
+      "16 bits",
+      "8 bits",
+      "8 bytes",
+      "256 bytes"
+    ],
     "correct": "16 bits",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 2
+    "difficulty": "Hard",
+    "importance": 5
   },
   {
     "id": 109,
     "question": "-------------------is defined as the number of instructions processed per second.",
-    "options": ["Memory access", "Throughput", "ALU operation", "Latency"],
+    "options": [
+      "Memory access",
+      "Throughput",
+      "ALU operation",
+      "Latency"
+    ],
     "correct": "Throughput",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 1
+    "difficulty": "Hard",
+    "importance": 3
   },
   {
     "id": 110,
     "question": "In FALCON-A ISA, which of the following opcodes is used to perform “No Operation”?",
-    "options": ["20", "21", "22", "23"],
+    "options": [
+      "20",
+      "21",
+      "22",
+      "23"
+    ],
     "correct": "20",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 5
+    "difficulty": "Hard",
+    "importance": 2
   },
   {
     "id": 111,
     "question": "-------------------- is an example of Miscellaneous instruction:",
-    "options": ["Shift", "Store", "Halt", "Cell"],
+    "options": [
+      "Shift",
+      "Store",
+      "Halt",
+      "Cell"
+    ],
     "correct": "Halt",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 4
+    "difficulty": "Hard",
+    "importance": 5
   },
   {
     "id": 112,
@@ -1214,8 +1564,8 @@
     ],
     "correct": "S1 = 1 and S0 = 1",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 5
+    "difficulty": "Medium",
+    "importance": 1
   },
   {
     "id": 113,
@@ -1228,35 +1578,50 @@
     ],
     "correct": "(8aIR<7>©IR<7..0>)",
     "explanation": "N/A",
-    "difficulty": "Medium",
+    "difficulty": "Hard",
     "importance": 5
   },
   {
     "id": 114,
     "question": "In MC68000,--------------- register is used as stack pointer:",
-    "options": ["A0", "A7", "D0", "D7"],
+    "options": [
+      "A0",
+      "A7",
+      "D0",
+      "D7"
+    ],
     "correct": "A7",
     "explanation": "N/A",
-    "difficulty": "Easy",
+    "difficulty": "Hard",
     "importance": 4
   },
   {
     "id": 115,
     "question": "In which of the following instructions, the data moves between a register in the processor and a memory location:",
-    "options": ["Arithmetic", "Load/ Store", "Branch", "Logic"],
+    "options": [
+      "Arithmetic",
+      "Load/ Store",
+      "Branch",
+      "Logic"
+    ],
     "correct": "Load/ Store",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 3
+    "difficulty": "Medium",
+    "importance": 4
   },
   {
     "id": 116,
     "question": "The size of data bus of mc68000 processor is:",
-    "options": ["8 bits", "16 bits", "20 bits", "32 bits"],
+    "options": [
+      "8 bits",
+      "16 bits",
+      "20 bits",
+      "32 bits"
+    ],
     "correct": "16 bits",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 5
+    "importance": 3
   },
   {
     "id": 117,
@@ -1270,7 +1635,7 @@
     "correct": "Clearing all registers",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 2
+    "importance": 3
   },
   {
     "id": 118,
@@ -1283,16 +1648,21 @@
     ],
     "correct": "In and out",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 5
+    "difficulty": "Easy",
+    "importance": 4
   },
   {
     "id": 119,
     "question": "In Type C instruction of SRC , -------------------- bits are allocated for content value:",
-    "options": ["16", "17", "21", "22"],
+    "options": [
+      "16",
+      "17",
+      "21",
+      "22"
+    ],
     "correct": "22",
     "explanation": "N/A",
-    "difficulty": "Hard",
+    "difficulty": "Easy",
     "importance": 1
   },
   {
@@ -1306,17 +1676,22 @@
     ],
     "correct": "Reduced instruction set computer",
     "explanation": "N/A",
-    "difficulty": "Hard",
+    "difficulty": "Easy",
     "importance": 5
   },
   {
     "id": 121,
     "question": "Which of the followings is not an example of super-scalar processors?",
-    "options": ["PowerPC601", "IAPX88", "Intel P6", "DEC Alpha 21164"],
+    "options": [
+      "PowerPC601",
+      "IAPX88",
+      "Intel P6",
+      "DEC Alpha 21164"
+    ],
     "correct": "IAPX88",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 1
+    "difficulty": "Hard",
+    "importance": 4
   },
   {
     "id": 122,
@@ -1329,17 +1704,22 @@
     ],
     "correct": "M[8]<15..0:=M[8] ©M[9]",
     "explanation": "N/A",
-    "difficulty": "Medium",
+    "difficulty": "Easy",
     "importance": 1
   },
   {
     "id": 123,
     "question": "------------------form the branch address field in the micro instruction:",
-    "options": ["C bits", "M bits", "B bits", "A bits"],
+    "options": [
+      "C bits",
+      "M bits",
+      "B bits",
+      "A bits"
+    ],
     "correct": "M bits",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 5
+    "difficulty": "Easy",
+    "importance": 4
   },
   {
     "id": 124,
@@ -1352,8 +1732,8 @@
     ],
     "correct": "It will load register R3 with the contents of the memory location M[PC+58]",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 4
+    "difficulty": "Hard",
+    "importance": 3
   },
   {
     "id": 125,
@@ -1366,17 +1746,22 @@
     ],
     "correct": "Memory Mapping Unit( MMU)",
     "explanation": "N/A",
-    "difficulty": "Easy",
+    "difficulty": "Hard",
     "importance": 1
   },
   {
     "id": 126,
     "question": "For a processor having 32 general purpose register,--------------- bits are required for each register field in the instruction:",
-    "options": ["32", "3", "8", "5"],
+    "options": [
+      "32",
+      "3",
+      "8",
+      "5"
+    ],
     "correct": "5",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 1
+    "difficulty": "Easy",
+    "importance": 4
   },
   {
     "id": 127,
@@ -1389,8 +1774,8 @@
     ],
     "correct": "Memory Buffer Register",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 2
+    "difficulty": "Easy",
+    "importance": 5
   },
   {
     "id": 128,
@@ -1403,89 +1788,134 @@
     ],
     "correct": "M[56]<0..31>:=M[59]M[58]M[57]M[56]",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 2
+    "difficulty": "Easy",
+    "importance": 1
   },
   {
     "id": 129,
     "question": "Which of the following branch instruction has a condition which is always executed?",
-    "options": ["JZ", "JUMP", "JPL", "JMI"],
+    "options": [
+      "JZ",
+      "JUMP",
+      "JPL",
+      "JMI"
+    ],
     "correct": "JUMP",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 2
+    "importance": 5
   },
   {
     "id": 130,
     "question": "Which of the following EAGLE instruction is used to initialize all the registers by setting them to 0?",
-    "options": ["NOP", "HALT", "INIT", "RESET"],
+    "options": [
+      "NOP",
+      "HALT",
+      "INIT",
+      "RESET"
+    ],
     "correct": "INIT",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 1
+    "difficulty": "Easy",
+    "importance": 4
   },
   {
     "id": 131,
     "question": "Which notation do we use to name different fields of a register in RTL?",
-    "options": ["0", "<=", "+", ":="],
+    "options": [
+      "0",
+      "<=",
+      "+",
+      ":="
+    ],
     "correct": ":=",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 2
+    "difficulty": "Medium",
+    "importance": 3
   },
   {
     "id": 132,
     "question": "Which of the following instruction is considered most important in pipelined EAGLE architecture?",
-    "options": ["HALT", "NOP", "INIT", "RESET"],
+    "options": [
+      "HALT",
+      "NOP",
+      "INIT",
+      "RESET"
+    ],
     "correct": "NOP",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 4
+    "difficulty": "Medium",
+    "importance": 5
   },
   {
     "id": 133,
     "question": "The ALSU function “INC2” increments the------------- by 2 and the output is stored in the buffer register.",
-    "options": ["PC,A", "IR,A", "PC,C", "IR,C"],
+    "options": [
+      "PC,A",
+      "IR,A",
+      "PC,C",
+      "IR,C"
+    ],
     "correct": "PC,C",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 4
+    "importance": 1
   },
   {
     "id": 134,
     "question": "Which temporary register is loaded with either a register value from the register file or a constant from the instruction?",
-    "options": ["Y3", "X3", "Z4", "Z5"],
+    "options": [
+      "Y3",
+      "X3",
+      "Z4",
+      "Z5"
+    ],
     "correct": "X3",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 2
+    "difficulty": "Medium",
+    "importance": 4
   },
   {
     "id": 135,
     "question": "“Finite-state machine” concepts are usually used to represent the control unit where every state corresponds to ------------ clock cycles(s).",
-    "options": ["1", "2", "4", "16"],
+    "options": [
+      "1",
+      "2",
+      "4",
+      "16"
+    ],
     "correct": "1",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 4
+    "importance": 3
   },
   {
     "id": 136,
     "question": "Total number of data registers in Motorola 68000 processor are----------",
-    "options": ["8", "12", "24", "32"],
+    "options": [
+      "8",
+      "12",
+      "24",
+      "32"
+    ],
     "correct": "8",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 1
+    "importance": 5
   },
   {
     "id": 137,
     "question": "-----------------instruction is used to load a register with an immediate value.",
-    "options": ["la", "lar", "ld", "ldr"],
+    "options": [
+      "la",
+      "lar",
+      "ld",
+      "ldr"
+    ],
     "correct": "la",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 2
+    "importance": 3
   },
   {
     "id": 138,
@@ -1499,25 +1929,35 @@
     "correct": "Electrical system",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 3
+    "importance": 5
   },
   {
     "id": 139,
     "question": "In FALCON-A processor , the size of each I/O port is-------------",
-    "options": ["16 bit", "8 bit", "8 bytes", "256 bytes"],
+    "options": [
+      "16 bit",
+      "8 bit",
+      "8 bytes",
+      "256 bytes"
+    ],
     "correct": "16 bit",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 5
+    "difficulty": "Hard",
+    "importance": 1
   },
   {
     "id": 140,
     "question": "Type A of SRC has which of the following instruction?",
-    "options": ["(a)&(b)", "(b)&(c)", "(a)&(e)", "(b)&(e)"],
+    "options": [
+      "(a)&(b)",
+      "(b)&(c)",
+      "(a)&(e)",
+      "(b)&(e)"
+    ],
     "correct": "(a)&(e)",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 4
+    "importance": 5
   },
   {
     "id": 141,
@@ -1530,7 +1970,7 @@
     ],
     "correct": "Pipelining",
     "explanation": "N/A",
-    "difficulty": "Hard",
+    "difficulty": "Medium",
     "importance": 3
   },
   {
@@ -1544,17 +1984,21 @@
     ],
     "correct": "Upward compatibility",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 2
+    "difficulty": "Medium",
+    "importance": 4
   },
   {
     "id": 143,
     "question": "Which of the following register stores a previously calculated value or a value loaded from the main memory?",
-    "options": ["Accumulator", "Address Mask", "Program counter"],
+    "options": [
+      "Accumulator",
+      "Address Mask",
+      "Program counter"
+    ],
     "correct": "Accumulator",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 5
+    "difficulty": "Easy",
+    "importance": 4
   },
   {
     "id": 144,
@@ -1568,7 +2012,7 @@
     "correct": "Time to execute a program or program mix",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 2
+    "importance": 4
   },
   {
     "id": 145,
@@ -1581,44 +2025,64 @@
     ],
     "correct": "7 bytes ,16 bytes",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 1
+    "difficulty": "Medium",
+    "importance": 2
   },
   {
     "id": 146,
     "question": "Which of the the given below measures is/are used for comparison of performance of various machine?",
-    "options": ["Execution time", "MFLOPS", "MIPS", "All of the given"],
+    "options": [
+      "Execution time",
+      "MFLOPS",
+      "MIPS",
+      "All of the given"
+    ],
     "correct": "All of the given",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 1
+    "importance": 3
   },
   {
     "id": 147,
     "question": "There are------------- type of RESET operation in SRC.",
-    "options": ["Three", "Four", "Two", "five"],
+    "options": [
+      "Three",
+      "Four",
+      "Two",
+      "five"
+    ],
     "correct": "Two",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 1
+    "importance": 4
   },
   {
     "id": 148,
     "question": "Type checking allows the--------------to determine memory for variables.",
-    "options": ["Compiler", "Debugger", "Linker", "loader"],
+    "options": [
+      "Compiler",
+      "Debugger",
+      "Linker",
+      "loader"
+    ],
     "correct": "Compiler",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 4
+    "importance": 3
   },
   {
     "id": 149,
     "question": "In FALCON-A processor, memory word size is----------------",
-    "options": ["1 byte", "4 bytes", "8 bytes", "2 bytes"],
+    "options": [
+      "1 byte",
+      "4 bytes",
+      "8 bytes",
+      "2 bytes"
+    ],
     "correct": "2 bytes",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 2
+    "difficulty": "Easy",
+    "importance": 3
   },
   {
     "id": 150,
@@ -1631,26 +2095,36 @@
     ],
     "correct": "It will load the register R3 with the relative address itself (PC+36)",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 5
+    "difficulty": "Easy",
+    "importance": 3
   },
   {
     "id": 151,
     "question": "To connect together five (5) m-bit registers in a point-to-point scheme, connections are required.",
-    "options": ["25", "30", "20", "24"],
+    "options": [
+      "25",
+      "30",
+      "20",
+      "24"
+    ],
     "correct": "20",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 4
+    "importance": 2
   },
   {
     "id": 152,
     "question": "For the type instructions, we require a register to hold the data that is to be loaded from the memory, or stored back to the memory.",
-    "options": ["JUMP", "LOAD/Store", "Control", "None of the Given"],
+    "options": [
+      "JUMP",
+      "LOAD/Store",
+      "Control",
+      "None of the Given"
+    ],
     "correct": "LOAD/Store",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 2
+    "importance": 1
   },
   {
     "id": 153,
@@ -1663,13 +2137,18 @@
     ],
     "correct": "Asseembly Language",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 5
+    "difficulty": "Medium",
+    "importance": 4
   },
   {
     "id": 154,
     "question": "In a register-based machine having 64 registers, a field is required in instruction to identify a register.",
-    "options": ["4-bit", "6-bit", "8-bit", "16-bit"],
+    "options": [
+      "4-bit",
+      "6-bit",
+      "8-bit",
+      "16-bit"
+    ],
     "correct": "6-bit",
     "explanation": "N/A",
     "difficulty": "Hard",
@@ -1678,47 +2157,72 @@
   {
     "id": 155,
     "question": "For any of the instructions that are a part of the instruction set of the SRC, there are cerain_________required; which may be used to select the appropriate function for the ALU to be performed, to select the appropriate registers, or the appropriate memory location.",
-    "options": ["Register", "Control signals", "Memory", "None of the given"],
+    "options": [
+      "Register",
+      "Control signals",
+      "Memory",
+      "None of the given"
+    ],
     "correct": "Control signals",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 156,
+    "question": "FALCON-A processor bus has 16 lines or is 16-bits wide while that of SRC _____wide.",
+    "options": [
+      "8-bits",
+      "16-bits",
+      "32-bits",
+      "64-bits"
+    ],
+    "correct": "32-bits",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 157,
+    "question": "What is the instruction length of the FALCON-A processor?",
+    "options": [
+      "8-bits",
+      "16-bits",
+      "32-bits",
+      "64-bits"
+    ],
+    "correct": "16-bits",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 158,
+    "question": "_________control signals enable the input to the PC for receiving a value that is currently on the internal processor bus.",
+    "options": [
+      "LPC",
+      "INC4",
+      "LC",
+      "I2"
+    ],
+    "correct": "LPC",
     "explanation": "N/A",
     "difficulty": "Hard",
     "importance": 2
   },
   {
-    "id": 156,
-    "question": "FALCON-A processor bus has 16 lines or is 16-bits wide while that of SRC _____wide.",
-    "options": ["8-bits", "16-bits", "32-bits", "64-bits"],
-    "correct": "32-bits",
-    "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 1
-  },
-  {
-    "id": 157,
-    "question": "What is the instruction length of the FALCON-A processor?",
-    "options": ["8-bits", "16-bits", "32-bits", "64-bits"],
-    "correct": "16-bits",
-    "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 5
-  },
-  {
-    "id": 158,
-    "question": "_________control signals enable the input to the PC for receiving a value that is currently on the internal processor bus.",
-    "options": ["LPC", "INC4", "LC", "I2"],
-    "correct": "LPC",
-    "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 5
-  },
-  {
     "id": 159,
     "question": "Which one of the following is a bi-stable device, capable of storing one bit of information?",
-    "options": ["Decoder", "Flip-Flop", "Multiplexer", "Diplexer"],
+    "options": [
+      "Decoder",
+      "Flip-Flop",
+      "Multiplexer",
+      "Diplexer"
+    ],
     "correct": "Flip-Flop",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 2
+    "importance": 5
   },
   {
     "id": 160,
@@ -1732,43 +2236,63 @@
     "correct": "str instruction",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 1
+    "importance": 5
   },
   {
     "id": 161,
     "question": "Which field of the machine language instruction is the “type of operation” that is to be performed?",
-    "options": ["Op-code", "CPU registers", "Momory cells", "I/O locations"],
+    "options": [
+      "Op-code",
+      "CPU registers",
+      "Momory cells",
+      "I/O locations"
+    ],
     "correct": "Op-code",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 2
+    "importance": 5
   },
   {
     "id": 162,
     "question": "The instruction ___________ will load the register R3 with the contenets of the m\\emory location M [PC+56]",
-    "options": ["Add R3, 56", "lar R3, 56", "ldr R3, 56", "str R3, 56"],
+    "options": [
+      "Add R3, 56",
+      "lar R3, 56",
+      "ldr R3, 56",
+      "str R3, 56"
+    ],
     "correct": "ldr R3, 56",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 4
+    "difficulty": "Easy",
+    "importance": 1
   },
   {
     "id": 163,
     "question": "_______ operation is required to change the processor’s state to a known, defined value.",
-    "options": ["Change", "Reset", "Update", "None of the given"],
+    "options": [
+      "Change",
+      "Reset",
+      "Update",
+      "None of the given"
+    ],
     "correct": "Reset",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 3
+    "difficulty": "Medium",
+    "importance": 1
   },
   {
     "id": 164,
     "question": "which type of instructions help in changing the flow of the program as and when required?",
-    "options": ["Arithmetic", "Control", "Data transfer", "Floating point"],
+    "options": [
+      "Arithmetic",
+      "Control",
+      "Data transfer",
+      "Floating point"
+    ],
     "correct": "Control",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 2
+    "importance": 5
   },
   {
     "id": 165,
@@ -1781,17 +2305,22 @@
     ],
     "correct": "Program Counter",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 5
+    "difficulty": "Medium",
+    "importance": 3
   },
   {
     "id": 166,
     "question": "Which one of the following is the memory organization of EAGLE processor?",
-    "options": ["8-bits", "16-bits", "32-bit", "64-bits"],
+    "options": [
+      "8-bits",
+      "16-bits",
+      "32-bit",
+      "64-bits"
+    ],
     "correct": "16-bits",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 2
+    "difficulty": "Easy",
+    "importance": 5
   },
   {
     "id": 167,
@@ -1804,25 +2333,35 @@
     ],
     "correct": "16-bit. 16-bit",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 5
+    "difficulty": "Easy",
+    "importance": 4
   },
   {
     "id": 168,
     "question": "Type A of SRC has which of the following instructions? A) andi, instruction b) No operation or nop instruction c) lar instruction d) ldr instruction e) Stop operation or stop instruction",
-    "options": ["& (b)", "(b) & (c)", "& (e)", "(b) & (e)"],
+    "options": [
+      "& (b)",
+      "(b) & (c)",
+      "& (e)",
+      "(b) & (e)"
+    ],
     "correct": "c) lar instruction",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 2
+    "importance": 3
   },
   {
     "id": 169,
     "question": "What is the instruction length of the SRC processor?",
-    "options": ["8 bits", "16 bits", "32 bits", "64 bits"],
+    "options": [
+      "8 bits",
+      "16 bits",
+      "32 bits",
+      "64 bits"
+    ],
     "correct": "32 bits",
     "explanation": "N/A",
-    "difficulty": "Hard",
+    "difficulty": "Easy",
     "importance": 1
   },
   {
@@ -1836,8 +2375,8 @@
     ],
     "correct": "2^32 * 8 bits",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 5
+    "difficulty": "Hard",
+    "importance": 1
   },
   {
     "id": 171,
@@ -1850,35 +2389,50 @@
     ],
     "correct": "P: R2 ¬ R1 (not confirms)",
     "explanation": "N/A",
-    "difficulty": "Medium",
+    "difficulty": "Easy",
     "importance": 3
   },
   {
     "id": 172,
     "question": "The instruction ---------------will load the register R3 with the contents of the memory location M [PC+56]",
-    "options": ["Add R3, 56", "lar R3, 56", "ldr R3, 56", "str R3, 56"],
+    "options": [
+      "Add R3, 56",
+      "lar R3, 56",
+      "ldr R3, 56",
+      "str R3, 56"
+    ],
     "correct": "ldr R3, 56",
     "explanation": "N/A",
-    "difficulty": "Hard",
+    "difficulty": "Easy",
     "importance": 3
   },
   {
     "id": 173,
     "question": "----------are faster than cache memory",
-    "options": ["Accumulator register", "CPU registers", "I/O devices", "ROM"],
+    "options": [
+      "Accumulator register",
+      "CPU registers",
+      "I/O devices",
+      "ROM"
+    ],
     "correct": "CPU registers",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 3
+    "difficulty": "Medium",
+    "importance": 2
   },
   {
     "id": 174,
     "question": "P: R3 ¬ R5 MAR ¬ IR These two are instructions written using RTL .If these two operations is to occur simultaneously then which symbol will we use to separate them so that it becomes a correct statement with the condition that two operations occur simultaneously?",
-    "options": ["Arrow ¬", "Colon :", "Comma ,", "Parentheses ()"],
+    "options": [
+      "Arrow ¬",
+      "Colon :",
+      "Comma ,",
+      "Parentheses ()"
+    ],
     "correct": "Comma ,",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 2
+    "difficulty": "Medium",
+    "importance": 3
   },
   {
     "id": 175,
@@ -1891,17 +2445,22 @@
     ],
     "correct": "Pipelining",
     "explanation": "N/A",
-    "difficulty": "Easy",
+    "difficulty": "Hard",
     "importance": 4
   },
   {
     "id": 176,
     "question": "The processor must have a way of saving information about its state or context so that it can be restored upon return from the -------------",
-    "options": ["Exception", "Function", "Stack", "Thread"],
+    "options": [
+      "Exception",
+      "Function",
+      "Stack",
+      "Thread"
+    ],
     "correct": "Exception",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 5
+    "difficulty": "Hard",
+    "importance": 2
   },
   {
     "id": 177,
@@ -1914,52 +2473,77 @@
     ],
     "correct": "Logic Design Level",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 5
+    "difficulty": "Medium",
+    "importance": 1
   },
   {
     "id": 178,
     "question": "__________ enable the input to the PC for receiving a value that is currently on the internal processor bus.",
-    "options": ["LPC", "INC4", "LC", "Cout"],
+    "options": [
+      "LPC",
+      "INC4",
+      "LC",
+      "Cout"
+    ],
     "correct": "LPC",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 2
+    "difficulty": "Hard",
+    "importance": 3
   },
   {
     "id": 179,
     "question": "________ operation is required to change the processor’s state to a known, defined value.",
-    "options": ["Change", "Reset", "Update", "None of the given"],
+    "options": [
+      "Change",
+      "Reset",
+      "Update",
+      "None of the given"
+    ],
     "correct": "Reset",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 1
+    "difficulty": "Easy",
+    "importance": 5
   },
   {
     "id": 180,
     "question": "There are _________ types of reset operations in SRC",
-    "options": ["Two", "Three", "Four", "Five"],
+    "options": [
+      "Two",
+      "Three",
+      "Four",
+      "Five"
+    ],
     "correct": "Two",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 1
+    "difficulty": "Easy",
+    "importance": 5
   },
   {
     "id": 181,
     "question": "_____________ controller controls the sequence of the flow of microinstructions.",
-    "options": ["Multiplexer", "Microprogram", "ALU", "None of the given"],
+    "options": [
+      "Multiplexer",
+      "Microprogram",
+      "ALU",
+      "None of the given"
+    ],
     "correct": "Microprogram",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 4
+    "importance": 1
   },
   {
     "id": 182,
     "question": "FALCON-A processor bus has 16 lines or is 16-bits wide while that of SRC is __________ wide.",
-    "options": ["8-bits", "24-bits", "32-bits", "64-bits"],
+    "options": [
+      "8-bits",
+      "24-bits",
+      "32-bits",
+      "64-bits"
+    ],
     "correct": "32-bits",
     "explanation": "N/A",
-    "difficulty": "Easy",
+    "difficulty": "Medium",
     "importance": 2
   },
   {
@@ -1974,7 +2558,7 @@
     "correct": "(i),(ii),(iii) and (iv)",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 5
+    "importance": 3
   },
   {
     "id": 184,
@@ -1987,80 +2571,120 @@
     ],
     "correct": "Instruction Register",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 2
+    "difficulty": "Easy",
+    "importance": 4
   },
   {
     "id": 185,
     "question": "_____________all memory systems are dumb, in that they respond to only two commands: read or write",
-    "options": ["Virtually", "Logically", "Physically", "None of These"],
+    "options": [
+      "Virtually",
+      "Logically",
+      "Physically",
+      "None of These"
+    ],
     "correct": "Virtually",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 2
+    "importance": 3
   },
   {
     "id": 186,
     "question": "To access an operand in memory, the CPU must first generate an address, which it then issues to the __________",
-    "options": ["MEMORY", "REGISTER", "DATA BUS", "ALL OF ABOVE"],
+    "options": [
+      "MEMORY",
+      "REGISTER",
+      "DATA BUS",
+      "ALL OF ABOVE"
+    ],
     "correct": "MEMORY",
     "explanation": "N/A",
-    "difficulty": "Easy",
+    "difficulty": "Hard",
     "importance": 4
   },
   {
     "id": 187,
     "question": "___________ or Branch instructions affect the order in which instructions are performed, or control the flow of the program",
-    "options": ["Control", "DATA MOVMENT", "Arithmetic", "LOGICAL"],
+    "options": [
+      "Control",
+      "DATA MOVMENT",
+      "Arithmetic",
+      "LOGICAL"
+    ],
     "correct": "Control",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 188,
+    "question": "The code size of 2-address instruction is ________________.",
+    "options": [
+      "5 bytes",
+      "7 bytes",
+      "3 bytes",
+      "2 bytes"
+    ],
+    "correct": "7 bytes",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 189,
+    "question": "The data movement instructions ___________ data within the machine and to or from input/output devices.",
+    "options": [
+      "Store",
+      "Load",
+      "Move",
+      "None of Above"
+    ],
+    "correct": "Move",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 190,
+    "question": "Register-register instructions use ____________ memory operands out of a total of 3 operands",
+    "options": [
+      "1",
+      "3",
+      "0",
+      "2"
+    ],
+    "correct": "0",
     "explanation": "N/A",
     "difficulty": "Easy",
     "importance": 4
   },
   {
-    "id": 188,
-    "question": "The code size of 2-address instruction is ________________.",
-    "options": ["5 bytes", "7 bytes", "3 bytes", "2 bytes"],
-    "correct": "7 bytes",
+    "id": 191,
+    "question": "_____________all memory systems are dumb, in that they respond to only two commands: read or write.",
+    "options": [
+      "Virtually",
+      "Logically",
+      "Physically",
+      "None of Above"
+    ],
+    "correct": "Virtually",
     "explanation": "N/A",
     "difficulty": "Easy",
     "importance": 5
   },
   {
-    "id": 189,
-    "question": "The data movement instructions ___________ data within the machine and to or from input/output devices.",
-    "options": ["Store", "Load", "Move", "None of Above"],
-    "correct": "Move",
-    "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 2
-  },
-  {
-    "id": 190,
-    "question": "Register-register instructions use ____________ memory operands out of a total of 3 operands",
-    "options": ["1", "3", "0", "2"],
-    "correct": "0",
-    "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 1
-  },
-  {
-    "id": 191,
-    "question": "_____________all memory systems are dumb, in that they respond to only two commands: read or write.",
-    "options": ["Virtually", "Logically", "Physically", "None of Above"],
-    "correct": "Virtually",
-    "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 4
-  },
-  {
     "id": 192,
     "question": "Flip-flop is a ____________device, capable of storing one bit of Information",
-    "options": ["Bi-stable", "Unit-stable", "Stable", "Storage"],
+    "options": [
+      "Bi-stable",
+      "Unit-stable",
+      "Stable",
+      "Storage"
+    ],
     "correct": "Bi-stable",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 1
+    "importance": 4
   },
   {
     "id": 193,
@@ -2074,7 +2698,7 @@
     "correct": "Direct Addressing Mode",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 3
+    "importance": 1
   },
   {
     "id": 194,
@@ -2087,17 +2711,22 @@
     ],
     "correct": "Execution Time = IC x CPI x T",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 4
+    "difficulty": "Medium",
+    "importance": 3
   },
   {
     "id": 195,
     "question": "An “assembler” that runs on one processor and translates an assembly language program written for another processor into the machine language of the other processor is called a ----------------",
-    "options": ["compiler", "cross assembler", "debugger", "linker"],
+    "options": [
+      "compiler",
+      "cross assembler",
+      "debugger",
+      "linker"
+    ],
     "correct": "cross assembler",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 2
+    "importance": 1
   },
   {
     "id": 196,
@@ -2110,17 +2739,22 @@
     ],
     "correct": "It will load the register R3 with the relative address itself (PC+36).",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 2
+    "difficulty": "Medium",
+    "importance": 5
   },
   {
     "id": 197,
     "question": "Which operator is used to „name‟ registers, or part of registers, in the Register Transfer Language?",
-    "options": [":=", "&", "%", "©"],
+    "options": [
+      ":=",
+      "&",
+      "%",
+      "©"
+    ],
     "correct": ":=",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 1
+    "difficulty": "Easy",
+    "importance": 4
   },
   {
     "id": 198,
@@ -2133,8 +2767,8 @@
     ],
     "correct": "To hold the current status of the processor.",
     "explanation": "N/A",
-    "difficulty": "Hard",
-    "importance": 4
+    "difficulty": "Medium",
+    "importance": 3
   },
   {
     "id": 199,
@@ -2147,8 +2781,8 @@
     ],
     "correct": "assembly language",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 1
+    "difficulty": "Hard",
+    "importance": 4
   },
   {
     "id": 200,
@@ -2161,7 +2795,7 @@
     ],
     "correct": "Load/store",
     "explanation": "N/A",
-    "difficulty": "Easy",
+    "difficulty": "Medium",
     "importance": 3
   },
   {
@@ -2175,8 +2809,8 @@
     ],
     "correct": "It will store the register R8 contents to the memory location M [PC+34]",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 1
+    "difficulty": "Hard",
+    "importance": 4
   },
   {
     "id": 202,
@@ -2190,7 +2824,7 @@
     "correct": "It will load the register R3 with the contents of the memory location M [PC+58]",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 1
+    "importance": 4
   },
   {
     "id": 203,
@@ -2203,7 +2837,7 @@
     ],
     "correct": "Processor-Memory-Switch level (PMS level)",
     "explanation": "N/A",
-    "difficulty": "Medium",
+    "difficulty": "Easy",
     "importance": 1
   },
   {
@@ -2217,17 +2851,22 @@
     ],
     "correct": "ldr instruction",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 4
+    "difficulty": "Medium",
+    "importance": 3
   },
   {
     "id": 205,
     "question": "For the __________ type instructions, we require a register to hold the data that is to be loaded from the memory, or stored back to the memory",
-    "options": ["Jump", "Control", "load/store", "None of the given"],
+    "options": [
+      "Jump",
+      "Control",
+      "load/store",
+      "None of the given"
+    ],
     "correct": "load/store",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 4
+    "difficulty": "Hard",
+    "importance": 3
   },
   {
     "id": 206,
@@ -2239,35 +2878,50 @@
     ],
     "correct": "Register format instructions",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 5
+    "difficulty": "Hard",
+    "importance": 4
   },
   {
     "id": 207,
     "question": "What is the size of the memory space that is available to FALCON-A processor?",
-    "options": ["2^8 bytes", "2^16 bytes", "2^32 bytes", "2^64 bytes"],
+    "options": [
+      "2^8 bytes",
+      "2^16 bytes",
+      "2^32 bytes",
+      "2^64 bytes"
+    ],
     "correct": "2^16 bytes",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 5
+    "difficulty": "Easy",
+    "importance": 4
   },
   {
     "id": 208,
     "question": "How can we refer to an instruction register (IR), of 16 bits (numbered 0 to 15) using RTL?",
-    "options": ["IR<16..0>", "IR<15..0>", "IR<16..1>", "IR<15..1>"],
+    "options": [
+      "IR<16..0>",
+      "IR<15..0>",
+      "IR<16..1>",
+      "IR<15..1>"
+    ],
     "correct": "IR<15..0>",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 2
+    "importance": 1
   },
   {
     "id": 209,
     "question": "Which one of the following portions of an instruction represents the operation to be performed?",
-    "options": ["Address", "Instruction code", "Opcode", "Operand"],
+    "options": [
+      "Address",
+      "Instruction code",
+      "Opcode",
+      "Operand"
+    ],
     "correct": "Opcode",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 2
+    "importance": 3
   },
   {
     "id": 210,
@@ -2280,17 +2934,22 @@
     ],
     "correct": "Opcode= ADD, DR=R1, SA=R2, SB=R3",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 1
+    "difficulty": "Hard",
+    "importance": 3
   },
   {
     "id": 211,
     "question": "What does the word „D‟ in the „D-flip-Flop‟ stands for?",
-    "options": ["Data", "Digital", "Dynamic", "Double"],
+    "options": [
+      "Data",
+      "Digital",
+      "Dynamic",
+      "Double"
+    ],
     "correct": "Data",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 5
+    "importance": 1
   },
   {
     "id": 212,
@@ -2303,7 +2962,7 @@
     ],
     "correct": "7 bytes, 16 bytes",
     "explanation": "N/A",
-    "difficulty": "Medium",
+    "difficulty": "Easy",
     "importance": 5
   },
   {
@@ -2318,7 +2977,7 @@
     "correct": "Effective address",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 3
+    "importance": 2
   },
   {
     "id": 214,
@@ -2332,7 +2991,7 @@
     "correct": "(a), (c) & (d)",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 4
+    "importance": 2
   },
   {
     "id": 215,
@@ -2345,17 +3004,22 @@
     ],
     "correct": "(b),(c) & (d)",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 1
+    "difficulty": "Hard",
+    "importance": 5
   },
   {
     "id": 216,
     "question": "Motorola MC68000 is an example of ---------microprocessor.",
-    "options": ["CISC", "RISC", "SRC", "FALCON"],
+    "options": [
+      "CISC",
+      "RISC",
+      "SRC",
+      "FALCON"
+    ],
     "correct": "CISC",
     "explanation": "N/A",
-    "difficulty": "Medium",
-    "importance": 3
+    "difficulty": "Easy",
+    "importance": 2
   },
   {
     "id": 217,
@@ -2369,24 +3033,34 @@
     "correct": "Instruction Register",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 5
+    "importance": 1
   },
   {
     "id": 218,
     "question": "The external interface of FALCON-A consists of a ________ data bus.",
-    "options": ["8-bit", "16-bit", "24-bit", "32-bit"],
+    "options": [
+      "8-bit",
+      "16-bit",
+      "24-bit",
+      "32-bit"
+    ],
     "correct": "16-bit",
     "explanation": "N/A",
     "difficulty": "Medium",
-    "importance": 4
+    "importance": 1
   },
   {
     "id": 219,
     "question": "In which one of the following techniques, the time a processor spends waiting for instructions to be fetched from memory is minimized?",
-    "options": ["Perfecting", "Pipelining", "Superscalar operation", "Speedup"],
+    "options": [
+      "Perfecting",
+      "Pipelining",
+      "Superscalar operation",
+      "Speedup"
+    ],
     "correct": "Perfecting",
     "explanation": "N/A",
-    "difficulty": "Hard",
+    "difficulty": "Medium",
     "importance": 5
   },
   {
@@ -2401,16 +3075,21 @@
     "correct": "Upward compatibility",
     "explanation": "N/A",
     "difficulty": "Easy",
-    "importance": 4
+    "importance": 2
   },
   {
     "id": 221,
     "question": "_________ control signal allows the contents of the Program Counter register to be written onto the internal processor bus.",
-    "options": ["INC4", "LPC", "PCout", "LC"],
+    "options": [
+      "INC4",
+      "LPC",
+      "PCout",
+      "LC"
+    ],
     "correct": "PCout",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 1
+    "importance": 3
   },
   {
     "id": 222,
@@ -2423,8 +3102,8 @@
     ],
     "correct": "Accumulator",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 3
+    "difficulty": "Hard",
+    "importance": 4
   },
   {
     "id": 223,
@@ -2438,7 +3117,7 @@
     "correct": "Time to execute a program or program mix",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 5
+    "importance": 1
   },
   {
     "id": 224,
@@ -2451,17 +3130,22 @@
     ],
     "correct": "Memory Buffer Register",
     "explanation": "N/A",
-    "difficulty": "Hard",
+    "difficulty": "Easy",
     "importance": 3
   },
   {
     "id": 225,
     "question": "-------------- performs the data operations as commanded by the program instructions.",
-    "options": ["Control", "Data path", "Structural RTL", "Timing"],
+    "options": [
+      "Control",
+      "Data path",
+      "Structural RTL",
+      "Timing"
+    ],
     "correct": "Data path",
     "explanation": "N/A",
-    "difficulty": "Easy",
-    "importance": 3
+    "difficulty": "Medium",
+    "importance": 5
   },
   {
     "id": 226,
@@ -2475,6 +3159,6 @@
     "correct": "Memory address register",
     "explanation": "N/A",
     "difficulty": "Hard",
-    "importance": 2
+    "importance": 3
   }
 ]

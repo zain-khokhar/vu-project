@@ -10,9 +10,9 @@ export const metadata = {
 
 async function getAvailableQuizzes() {
   try {
-    const dataDirectory = path.join(process.cwd(), 'data');
+    const dataDirectory = path.join(process.cwd(), 'src');
     const files = await fs.readdir(dataDirectory);
-    const jsonFiles = files.filter(file => file.endsWith('.json'));
+    const jsonFiles = files.filter(file => file.endsWith('.json') && !file.includes('package'));
     
     const quizzes = await Promise.all(
       jsonFiles.map(async (file) => {
@@ -195,7 +195,7 @@ export default async function QuizHomePage() {
                   <span className="text-xs font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-wide">POWERFUL FEATURES</span>
                 </div>
               </div>
-              <h2 className="text-4xl md:text-5xl font-light text-gray-900 bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-light bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
                 Quiz Features
               </h2>
             </div>

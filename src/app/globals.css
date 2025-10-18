@@ -288,3 +288,6 @@ html {
   color: #2563eb;
   font-weight: 600;
 }
+input{
+  outline: none !important;
+}
