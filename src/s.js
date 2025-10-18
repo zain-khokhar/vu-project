@@ -1,56 +1,55 @@
 ﻿import fs from "fs";
 
-function getRandomDifficulty() {
-  const difficulties = ["Easy", "Medium", "Hard"];
-  return difficulties[Math.floor(Math.random() * difficulties.length)];
+function parseQuestions(text) {
+  const lines = text.split('\n').map(line => line.trim()).filter(line => line);
+  const questions = [];
+  let currentQuestion = null;
+
+  for (const line of lines) {
+    // Check if line starts with a number followed by .
+    const numMatch = line.match(/^(\d+)\.\s*(.+)$/);
+    if (numMatch) {
+      // New question
+      if (currentQuestion) {
+        questions.push(currentQuestion);
+      }
+      const id = parseInt(numMatch[1]);
+      const questionText = numMatch[2];
+      currentQuestion = {
+        id,
+        question: questionText,
+        options: [],
+        correct: ""
+      };
+    } else if (currentQuestion && line.match(/^[a-d]\.\s*.+/)) {
+      // Option line
+      const optionMatch = line.match(/^([a-d])\.\s*(.+)$/);
+      if (optionMatch) {
+        currentQuestion.options.push(optionMatch[2]);
+      }
+    } else if (currentQuestion) {
+      // Continuation of question or option
+      if (currentQuestion.options.length === 0) {
+        currentQuestion.question += ' ' + line;
+      } else {
+        // Last option continuation
+        currentQuestion.options[currentQuestion.options.length - 1] += ' ' + line;
+      }
+    }
+  }
+
+  if (currentQuestion) {
+    questions.push(currentQuestion);
+  }
+
+  return questions;
 }
 
-function getRandomImportance() {
-  return Math.floor(Math.random() * 5) + 1; // 1–5
-}
+// Read the file
+const text = fs.readFileSync('./questions.txt', 'utf8');
+const questions = parseQuestions(text);
 
-function parsePDFTextToMCQs(inputFile, outputFile) {
-  const rawText = fs.readFileSync(inputFile, "utf-8");
+// Write to JSON
+fs.writeFileSync('./questions_output.json', JSON.stringify(questions, null, 2));
 
-  // 🧹 Clean up the text
-  const cleanedText = rawText
-    .replace(/\n+/g, " ")
-    .replace(/\s\s+/g, " ")
-    .trim();
-
-  // 🧩 Split into questions by "Question No:"
-  const questionBlocks = cleanedText.split(/Question No:\s*\d+/g).filter(Boolean);
-
-  const mcqs = [];
-
-  questionBlocks.forEach((block, index) => {
-    // Extract question text
-    const questionMatch = block.match(/Please choose one\s*(.*?)\s*►/);
-    const question = questionMatch ? questionMatch[1].trim() : `Question ${index + 1}`;
-
-    // Extract all options
-    const options = Array.from(block.matchAll(/►\s*([^►]+)/g)).map(o =>
-      o[1].replace(/\(Page.*?\)/, "").trim()
-    );
-
-    // Detect answer (the one before a "(Page" tag)
-    const answerMatch = block.match(/►\s*([^►]+?)\s*\(Page/i);
-    const correct = answerMatch ? answerMatch[1].trim() : options[0] || "N/A";
-
-    mcqs.push({
-      id: index + 1,
-      question,
-      options,
-      correct,
-      explanation: correct, // same as correct answer
-      difficulty: getRandomDifficulty(),
-      importance: getRandomImportance(),
-    });
-  });
-
-  fs.writeFileSync(outputFile, JSON.stringify(mcqs, null, 2));
-  console.log(`✅ Parsed ${mcqs.length} MCQs saved to ${outputFile}`);
-}
-
-// Usage
-parsePDFTextToMCQs("./CS201_extracted.txt", "./CS201_mcqs.json");
+console.log('Converted to JSON successfully!');
