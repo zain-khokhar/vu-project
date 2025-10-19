@@ -216,10 +216,10 @@ export default async function BlogsPage({ searchParams }) {
       {/* Latest Posts Section */}
       <section className="relative py-20 overflow-hidden">
         {/* Liquid Background Orbs */}
-        <div className="absolute inset-0 -z-10">
+        {/* <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 right-1/3 w-96 h-96 bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        </div>
+        </div> */}
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header with Liquid Badge */}
