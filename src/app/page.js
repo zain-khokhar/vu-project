@@ -17,18 +17,19 @@ export default async function Home() {
       {/* Premium Liquid Background */}
       <div className="fixed inset-0 -z-10">
         {/* Base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/20 to-purple-50/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-400/20 to-purple-400/20 opacity-40"></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/20 to-purple-50/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-400/20 to-purple-400/20 opacity-40"></div> */}
 
         {/* Liquid orbs with enhanced blur */}
-        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+        {/* <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
         <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/8 via-blue-300/8 to-purple-300/8 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transform -translate-x-1/2 -translate-y-1/2" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/8 via-blue-300/8 to-purple-300/8 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transform -translate-x-1/2 -translate-y-1/2" style={{ animationDelay: '4s' }}></div> */}
 
         {/* Liquid flow effects */}
-        <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-blue-300/20 to-transparent rounded-full blur-2xl animate-bounce" style={{ animationDuration: '6s' }}></div>
-        <div className="absolute bottom-32 right-32 w-24 h-24 bg-gradient-to-tl from-purple-300/20 to-transparent rounded-full blur-2xl animate-bounce" style={{ animationDuration: '8s', animationDelay: '1s' }}></div>
+        {/* <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-blue-300/20 to-transparent rounded-full blur-2xl animate-bounce" style={{ animationDuration: '6s' }}></div>
+        <div className="absolute bottom-32 right-32 w-24 h-24 bg-gradient-to-tl from-purple-300/20 to-transparent rounded-full blur-2xl animate-bounce" style={{ animationDuration: '8s', animationDelay: '1s' }}></div> */}
       </div>
+      <div className="absolute inset-0 gradient-mesh pointer-events-none"></div>
 
       {/* Enhanced Decorative Elements */}
       <div className="fixed inset-0 -z-5 pointer-events-none overflow-hidden">

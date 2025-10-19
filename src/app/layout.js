@@ -6,7 +6,11 @@ export const metadata = {
   description: "Access thousands of educational documents including handouts, books, notes, and exams. A free platform for students worldwide.",
   keywords: "documents, education, books, notes, exams, handouts, free, student resources",
   author: "DocLibrary",
-  viewport: "width=device-width, initial-scale=1"
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }) {

@@ -1798,5 +1798,180 @@
       "Registers A and C"
     ],
     "correct": "Memory address register"
+  },
+  {
+    "id": 53,
+    "question": "What is the size of the memory space that is available to FALCON-A processor?",
+    "options": ["2^8 bytes", "2^16 bytes", "2^32 bytes", "2^64 bytes"],
+    "correct": "2^16 bytes"
+  },
+  {
+    "id": 54,
+    "question": "How can we refer to an instruction register (IR), of 16 bits (numbered 0 to 15) using RTL?",
+    "options": ["IR<16..0>", "IR<15..0>", "IR<16..1>", "IR<15..1>"],
+    "correct": "IR<15..0>"
+  },
+  {
+    "id": 55,
+    "question": "Which one of the following portions of an instruction represents the operation to be performed?",
+    "options": ["Address", "Instruction code", "Opcode", "Operand"],
+    "correct": "Opcode"
+  },
+  {
+    "id": 56,
+    "question": "Identify the opcode, destination register (DR), source registers (SA and SB i/e source register A and source register B) from the following example. ADD R1, R2, R3",
+    "options": [
+      "Opcode= R1, DR=ADD, SA=R2, SB=R3",
+      "Opcode= ADD, DR=R1, SA=R2, SB=R3",
+      "Opcode= R2, DR=ADD, SA=R1, SB=R3",
+      "Opcode= ADD, DR=R3, SA=R2, SB=R1"
+    ],
+    "correct": "Opcode= ADD, DR=R1, SA=R2, SB=R3"
+  },
+  {
+    "id": 57,
+    "question": "What does the word „D‟ in the „D-flip-Flop‟ stands for?",
+    "options": ["Data", "Digital", "Dynamic", "Double"],
+    "correct": "Data"
+  },
+  {
+    "id": 58,
+    "question": "Which one of the following is the code size and the Number of memory bytes respectively for a 2-address instruction?",
+    "options": [
+      "4 bytes, 7 bytes",
+      "7 bytes, 16 bytes",
+      "10 bytes, 19 bytes",
+      "13 bytes, 22 bytes"
+    ],
+    "correct": "7 bytes, 16 bytes"
+  },
+  {
+    "id": 59,
+    "question": "Which of the following can be defined as an address of the operand in a computer type instruction or the target address in a branch type instruction?",
+    "options": [
+      "Base address",
+      "Binary address",
+      "Effective address",
+      "All of the given"
+    ],
+    "correct": "Effective address"
+  },
+  {
+    "id": 60,
+    "question": "Whic of the following statements is/are true about RISC processors‟ claimed advantages over CISC processors? (a) Keeping regularly accessed variables in registers as opposed to keeping them in memory facilitates faster execution. (b) RISC CPUs outperform CISC CPU‟s in procedural programming environments. (c) Instruction pipelining has helped RISC CPU‟s to attain a target of 1 cycle per instruction. (d) It is easier to maintain the “family concept” in RISC CPUs.",
+    "options": [
+      "(a), (b) &(c)",
+      "(b), (c) & (e)",
+      "(c), (d) & (e)",
+      "(a), (c) & (d)"
+    ],
+    "correct": "(a), (c) & (d)"
+  },
+  {
+    "id": 61,
+    "question": "Which one of the following is/are the features of Register Transfer Language? a) It is a symbolic language b) It is describing the internal organization of digital computers c) It is an elementary operation performed (during one clock pulse), on the information stored in one or more registers d) It is high level language",
+    "options": [
+      "(b) only",
+      "(a) & (b) only",
+      "(a) ,(b) & (d)",
+      "(b),(c) & (d)"
+    ],
+    "correct": "(b),(c) & (d)"
+  },
+  {
+    "id": 62,
+    "question": "Motorola MC68000 is an example of ---------microprocessor.",
+    "options": ["CISC", "RISC", "SRC", "FALCON"],
+    "correct": "CISC"
+  },
+  {
+    "id": 63,
+    "question": "Which one of the following registers holds the instruction that is being executed?",
+    "options": [
+      "Accumulator",
+      "Address Mask",
+      "Instruction Register",
+      "Program Counter"
+    ],
+    "correct": "Instruction Register"
+  },
+  {
+    "id": 64,
+    "question": "The external interface of FALCON-A consists of a ________ data bus.",
+    "options": ["8-bit", "16-bit", "24-bit", "32-bit"],
+    "correct": "16-bit"
+  },
+  {
+    "id": 65,
+    "question": "In which one of the following techniques, the time a processor spends waiting for instructions to be fetched from memory is minimized?",
+    "options": ["Perfecting", "Pipelining", "Superscalar operation", "Speedup"],
+    "correct": "Perfecting"
+  },
+  {
+    "id": 66,
+    "question": "-----------is the ability of application software to operate on models of equipment newer than the model for which it was originally developed.",
+    "options": [
+      "Backward compatibility",
+      "Data migration",
+      "Reverse engineering",
+      "Upward compatibility"
+    ],
+    "correct": "Upward compatibility"
+  },
+  {
+    "id": 67,
+    "question": "_________ control signal allows the contents of the Program Counter register to be written onto the internal processor bus.",
+    "options": ["INC4", "LPC", "PCout", "LC"],
+    "correct": "PCout"
+  },
+  {
+    "id": 68,
+    "question": "Which one of the following registers stores a previously calculated value or a value loaded from the main memory?",
+    "options": [
+      "Accumulator",
+      "Address Mask",
+      "Instruction Register",
+      "Program Counter"
+    ],
+    "correct": "Accumulator"
+  },
+  {
+    "id": 69,
+    "question": "Computer system performance is usually measured by the ---------------",
+    "options": [
+      "Time to execute a program or program mix",
+      "The speed with which it executes programs",
+      "Processor’s utilization in solving the problems",
+      "Instructions that can be carried out simultaneously"
+    ],
+    "correct": "Time to execute a program or program mix"
+  },
+  {
+    "id": 70,
+    "question": "Which one of the following register(s) that is/are programmer invisible and is/are required to hold an operand or result value while the bus is busy transmitting some other value?",
+    "options": [
+      "Instruction Register",
+      "Memory address register",
+      "Memory Buffer Register",
+      "Registers A and C"
+    ],
+    "correct": "Memory Buffer Register"
+  },
+  {
+    "id": 71,
+    "question": "-------------- performs the data operations as commanded by the program instructions.",
+    "options": ["Control", "Data path", "Structural RTL", "Timing"],
+    "correct": "Data path"
+  },
+  {
+    "id": 72,
+    "question": "Which one of the following register(s) contain(s) the address of the place the CPU wants to work with in the main memory and is/are directly connected to the RAM chips on the motherboard?",
+    "options": [
+      "Instruction Register",
+      "Memory address register",
+      "Memory Buffer Register",
+      "Registers A and C"
+    ],
+    "correct": "Memory address register"
   }
 ]

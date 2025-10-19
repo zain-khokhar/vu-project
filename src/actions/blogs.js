@@ -163,6 +163,25 @@ export async function getLatestBlogs(limit = 6) {
   }
 }
 
+// Get all blogs (for static path generation)
+export async function getAllBlogs() {
+  try {
+    await connectDB();
+
+    const blogs = await Blog.find({ published: true })
+      .select('slug')
+      .lean();
+    
+    return {
+      success: true,
+      blogs: JSON.parse(JSON.stringify(blogs))
+    };
+  } catch (error) {
+    console.error('Error fetching all blogs:', error);
+    return { success: false, error: 'Failed to fetch all blogs' };
+  }
+}
+
 // Update a blog (for future admin functionality)
 export async function updateBlog(id, updateData) {
   try {

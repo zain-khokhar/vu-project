@@ -9,10 +9,10 @@ export default function SearchFilters({ filterOptions }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
-  
+
   const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
   const [showFilters, setShowFilters] = useState(false);
-  
+
   const currentFilters = {
     type: searchParams.get('type') || '',
     subject: searchParams.get('subject') || '',
@@ -27,7 +27,7 @@ export default function SearchFilters({ filterOptions }) {
 
   const updateURL = (newFilters) => {
     const params = new URLSearchParams(searchParams);
-    
+
     // Update or remove parameters
     Object.entries(newFilters).forEach(([key, value]) => {
       if (value) {
@@ -36,10 +36,10 @@ export default function SearchFilters({ filterOptions }) {
         params.delete(key);
       }
     });
-    
+
     // Reset to page 1 when filters change
     params.delete('page');
-    
+
     const queryString = params.toString();
     startTransition(() => {
       router.push(`/documents${queryString ? `?${queryString}` : ''}`);
@@ -56,33 +56,34 @@ export default function SearchFilters({ filterOptions }) {
   const hasActiveFilters = Object.values(currentFilters).some(filter => filter) || searchTerm;
 
   return (
-    <div className="bg-white border-b border-gray-200 sticky top-16 z-40">
+    <div className="sticky top-16 z-40 backdrop-blur-2xl bg-gradient-to-r from-white/80 via-white/70 to-white/80 border-b border-white/60 shadow-lg shadow-purple-500/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         {/* Search Bar */}
         <form onSubmit={handleSearch} className="flex gap-3 mb-4">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <div className="flex-1 relative group">
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
             <input
               type="text"
               placeholder="Search documents..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-11 pr-4 py-2.5 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/50 to-white/60 border border-white/70 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-white/90 focus:ring-2 focus:ring-blue-400/50 transition-all duration-300 font-light"
             />
           </div>
           <button
             type="submit"
             disabled={isPending}
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+            className="group relative px-6 py-2.5 bg-gradient-to-r from-blue-500/80 via-blue-600/70 to-purple-600/80 text-white font-medium text-sm rounded-xl overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/30 hover:scale-105 active:scale-95 disabled:opacity-50"
           >
-            Search
+            <div className="absolute inset-0 bg-gradient-to-r from-white/15 via-transparent to-white/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -skew-x-12 group-hover:skew-x-0"></div>
+            <div className="relative">Search</div>
           </button>
           <button
             type="button"
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            className="group flex items-center space-x-2 px-4 py-2.5 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/50 to-white/60 text-gray-900 font-medium text-sm rounded-xl border border-white/70 hover:border-white/90 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 hover:scale-105"
           >
-            <Filter className="h-4 w-4" />
+            <Filter className="h-4 w-4 group-hover:rotate-12 transition-transform" />
             <span>Filters</span>
           </button>
         </form>
@@ -90,47 +91,47 @@ export default function SearchFilters({ filterOptions }) {
         {/* Active Filters */}
         {hasActiveFilters && (
           <div className="flex flex-wrap items-center gap-2 mb-4">
-            <span className="text-sm font-medium text-gray-600">Active filters:</span>
-            
+            <span className="text-sm font-medium text-gray-700">Active filters:</span>
+
             {searchTerm && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+              <span className="inline-flex items-center gap-1 px-3 py-1.5 backdrop-blur-xl bg-gradient-to-r from-blue-100/80 via-blue-50/70 to-blue-100/80 text-blue-800 rounded-full text-sm border border-blue-200/60 hover:border-blue-300/80 transition-all duration-300">
                 Search: "{searchTerm}"
                 <button
                   onClick={() => {
                     setSearchTerm('');
                     updateURL({ search: '' });
                   }}
-                  className="hover:bg-blue-200 rounded-full p-0.5"
+                  className="hover:bg-blue-200/60 rounded-full p-0.5 transition-colors"
                 >
                   <X className="h-3 w-3" />
                 </button>
               </span>
             )}
-            
+
             {Object.entries(currentFilters).map(([key, value]) => {
               if (!value) return null;
-              
+
               const displayValue = key === 'type' ? documentTypes[value]?.label : value;
-              
+
               return (
                 <span
                   key={key}
-                  className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+                  className="inline-flex items-center gap-1 px-3 py-1.5 backdrop-blur-xl bg-gradient-to-r from-purple-100/80 via-purple-50/70 to-purple-100/80 text-purple-800 rounded-full text-sm border border-purple-200/60 hover:border-purple-300/80 transition-all duration-300"
                 >
                   {key.charAt(0).toUpperCase() + key.slice(1)}: {displayValue}
                   <button
                     onClick={() => updateURL({ [key]: '' })}
-                    className="hover:bg-gray-200 rounded-full p-0.5"
+                    className="hover:bg-purple-200/60 rounded-full p-0.5 transition-colors"
                   >
                     <X className="h-3 w-3" />
                   </button>
                 </span>
               );
             })}
-            
+
             <button
               onClick={clearAllFilters}
-              className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+              className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
             >
               Clear all
             </button>
@@ -139,16 +140,16 @@ export default function SearchFilters({ filterOptions }) {
 
         {/* Filter Options */}
         {showFilters && (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 bg-gray-50 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-5 backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-lg">
             {/* Type Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2 ml-0.5">
                 Type
               </label>
               <select
                 value={currentFilters.type}
                 onChange={(e) => updateURL({ type: e.target.value })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/50 to-white/60 border border-white/70 rounded-xl px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-white/90 focus:ring-2 focus:ring-blue-400/50 transition-all duration-300 font-light"
               >
                 <option value="">All Types</option>
                 {Object.entries(documentTypes).map(([value, config]) => (
@@ -161,13 +162,13 @@ export default function SearchFilters({ filterOptions }) {
 
             {/* Subject Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2 ml-0.5">
                 Subject
               </label>
               <select
                 value={currentFilters.subject}
                 onChange={(e) => updateURL({ subject: e.target.value })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/50 to-white/60 border border-white/70 rounded-xl px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-white/90 focus:ring-2 focus:ring-blue-400/50 transition-all duration-300 font-light"
               >
                 <option value="">All Subjects</option>
                 {filterOptions.subjects?.map((subject) => (
@@ -180,13 +181,13 @@ export default function SearchFilters({ filterOptions }) {
 
             {/* University Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2 ml-0.5">
                 University
               </label>
               <select
                 value={currentFilters.university}
                 onChange={(e) => updateURL({ university: e.target.value })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/50 to-white/60 border border-white/70 rounded-xl px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-white/90 focus:ring-2 focus:ring-blue-400/50 transition-all duration-300 font-light"
               >
                 <option value="">All Universities</option>
                 {filterOptions.universities?.map((university) => (
@@ -199,13 +200,13 @@ export default function SearchFilters({ filterOptions }) {
 
             {/* Year Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2 ml-0.5">
                 Year
               </label>
               <select
                 value={currentFilters.year}
                 onChange={(e) => updateURL({ year: e.target.value })}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/50 to-white/60 border border-white/70 rounded-xl px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-white/90 focus:ring-2 focus:ring-blue-400/50 transition-all duration-300 font-light"
               >
                 <option value="">All Years</option>
                 {filterOptions.years?.map((year) => (

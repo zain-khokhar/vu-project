@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Download, X, Loader2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Download, X, Loader2, ExternalLink } from 'lucide-react';
 
 // Set up PDF.js worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;

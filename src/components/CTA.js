@@ -61,19 +61,20 @@ export function CTA() {
           {/* <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 rounded-[2.5rem] blur-2xl opacity-30 animate-pulse"></div> */}
 
           {/* Main CTA card */}
-          <div className="relative bg-white/40 backdrop-blur rounded-[2.5rem] p-12 lg:p-16 text-center overflow-hidden">
+          <div className="relative bg-white/40 backdrop-blur rounded-[3rem] p-12 lg:p-16 text-center overflow-hidden shadow-2xl">
             {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-transparent to-blue-600/20 pointer-events-none"></div>
+            {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-transparent to-blue-600/20 pointer-events-none"></div> */}
 
             {/* Floating elements */}
-            <div className="absolute top-10 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl animate-pulse"></div>
-            <div className="absolute bottom-10 left-10 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+            {/* <div className="absolute top-10 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl animate-pulse"></div>
+            <div className="absolute bottom-10 left-10 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div> */}
 
             <div className="max-w-3xl mx-auto flex flex-col gap-6 relative z-10">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 w-fit shadow-lg mx-auto">
                 <Sparkles className="h-4 w-4 text-purple-600 animate-pulse" />
                 <span className="text-sm bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">Limited Time Offer</span>
               </div>
+
 
               <h2 className="text-4xl lg:text-5xl bg-gradient-to-br from-[#1a1f36] to-[#667eea] bg-clip-text text-transparent">
                 Ready to transform your document management?
@@ -86,7 +87,7 @@ export function CTA() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                 <Button
                   size="lg"
-                  className="gap-2 bg-gradient-to-br from-[#6b46ff] to-[#764ba2] text-white border-0 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300 hover:scale-105"
+                  className="gap-2 bg-gradient-to-br from-[#6b46ff] to-[#764ba2] text-white border-0 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300"
                 >
                   Start Free Trial
                   <ArrowRight className="h-4 w-4" />
