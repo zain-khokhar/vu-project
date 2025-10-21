@@ -153,25 +153,65 @@ export function generateBlogStructuredData(blog, readingTime) {
   const plainTextContent = extractPlainText(blog.content);
   const excerpt = blog.excerpt || generateExcerpt(plainTextContent);
   const wordCount = getWordCount(blog.content);
-  
-  return {
+
+  // Ensure we have valid dates
+  const publishedDate = blog.createdAt ? new Date(blog.createdAt).toISOString() : new Date().toISOString();
+  const modifiedDate = blog.updatedAt ? new Date(blog.updatedAt).toISOString() : publishedDate;
+
+  // Create the structured data with both root-level and @graph approaches
+  const structuredData = {
     '@context': 'https://schema.org',
+    // Root-level BlogPosting for Google Rich Results
+    '@type': 'BlogPosting',
+    headline: blog.title,
+    name: blog.title,
+    description: excerpt,
+    image: blog.coverImage, // Simple URL for Google Rich Results
+    author: blog.author ? {
+      '@type': 'Person',
+      name: blog.author.name,
+      url: blog.author.website || `${baseUrl}/authors/${blog.author._id}`,
+      image: blog.author.avatar,
+    } : {
+      '@type': 'Organization',
+      name: 'DocLibrary',
+      url: baseUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'DocLibrary',
+      url: baseUrl,
+      logo: `${baseUrl}/logo.png`,
+    },
+    datePublished: publishedDate,
+    dateModified: modifiedDate,
+    mainEntityOfPage: `${baseUrl}/blogs/${blog.slug}`,
+    articleSection: 'Education',
+    keywords: blog.tags?.join(', ') || 'education, learning, academic',
+    wordCount: wordCount,
+    timeRequired: `PT${readingTime}M`,
+    inLanguage: 'en-US',
+    isAccessibleForFree: true,
+    url: `${baseUrl}/blogs/${blog.slug}`,
     '@graph': [
-      // Main Article
+      // Main Article - BlogPosting (detailed version)
       {
         '@type': 'BlogPosting',
         '@id': `${baseUrl}/blogs/${blog.slug}#article`,
         headline: blog.title,
         name: blog.title,
         description: excerpt,
-        image: {
-          '@type': 'ImageObject',
-          url: blog.coverImage,
-          width: 1200,
-          height: 630,
-        },
-        datePublished: blog.createdAt,
-        dateModified: blog.updatedAt || blog.createdAt,
+        image: [
+          {
+            '@type': 'ImageObject',
+            url: blog.coverImage,
+            width: 1200,
+            height: 630,
+            caption: blog.title,
+          }
+        ],
+        datePublished: publishedDate,
+        dateModified: modifiedDate,
         author: blog.author ? {
           '@type': 'Person',
           '@id': `${baseUrl}/authors/${blog.author._id}#person`,
@@ -180,12 +220,25 @@ export function generateBlogStructuredData(blog, readingTime) {
           image: blog.author.avatar ? {
             '@type': 'ImageObject',
             url: blog.author.avatar,
+            width: 150,
+            height: 150,
           } : undefined,
           description: blog.author.bio,
+          sameAs: blog.author.social ? [
+            blog.author.social.twitter,
+            blog.author.social.linkedin,
+            blog.author.social.website
+          ].filter(Boolean) : undefined,
         } : {
           '@type': 'Organization',
           name: 'DocLibrary',
           url: baseUrl,
+          logo: {
+            '@type': 'ImageObject',
+            url: `${baseUrl}/logo.png`,
+            width: 600,
+            height: 60,
+          }
         },
         publisher: {
           '@type': 'Organization',
@@ -197,7 +250,11 @@ export function generateBlogStructuredData(blog, readingTime) {
             url: `${baseUrl}/logo.png`,
             width: 600,
             height: 60,
-          }
+          },
+          sameAs: [
+            `${baseUrl}`,
+            // Add social media URLs if available
+          ]
         },
         mainEntityOfPage: {
           '@type': 'WebPage',
@@ -210,6 +267,13 @@ export function generateBlogStructuredData(blog, readingTime) {
         inLanguage: 'en-US',
         isAccessibleForFree: true,
         url: `${baseUrl}/blogs/${blog.slug}`,
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['.blog-content']
+        },
+        // Additional fields for better Google Rich Results
+        articleBody: plainTextContent.substring(0, 5000), // First 5000 chars
+        thumbnailUrl: blog.coverImage,
       },
       // BreadcrumbList
       {
@@ -256,10 +320,30 @@ export function generateBlogStructuredData(blog, readingTime) {
           '@type': 'ImageObject',
           url: blog.coverImage,
         },
-        datePublished: blog.createdAt,
-        dateModified: blog.updatedAt || blog.createdAt,
+        datePublished: publishedDate,
+        dateModified: modifiedDate,
         inLanguage: 'en-US',
+      },
+      // Organization
+      {
+        '@type': 'Organization',
+        '@id': `${baseUrl}#organization`,
+        name: 'DocLibrary',
+        url: baseUrl,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${baseUrl}/logo.png`,
+          width: 600,
+          height: 60,
+        },
+        description: 'Educational content creators and technology enthusiasts sharing knowledge with students worldwide.',
+        sameAs: [
+          `${baseUrl}`,
+          // Add social media URLs
+        ]
       }
     ]
   };
+
+  return structuredData;
 }

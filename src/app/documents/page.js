@@ -5,6 +5,11 @@ import DocumentCard from '@/components/DocumentCard';
 import SearchFilters from '@/components/SearchFilters';
 import Pagination from '@/components/Pagination';
 import { getDocuments, getFilterOptions } from '@/actions/documents';
+import {
+  generateDocumentMetadata,
+  generateDocumentStructuredData,
+  generateWebsiteStructuredData
+} from '@/lib/seo-utils';
 
 // Loading component for Suspense
 function DocumentsLoading() {
@@ -50,17 +55,38 @@ async function DocumentsContent({ searchParams }) {
 
   return (
     <div className="bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative min-h-screen">
-      {/* Premium Liquid Background */}
-      <div className="fixed inset-0 -z-10">
-        {/* Base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/20 to-purple-50/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-400/20 to-purple-400/20 opacity-40"></div>
-
-        {/* Liquid orbs with enhanced blur */}
-        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/8 via-blue-300/8 to-purple-300/8 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transform -translate-x-1/2 -translate-y-1/2" style={{ animationDelay: '4s' }}></div>
-      </div>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            generateWebsiteStructuredData(),
+            generateDocumentStructuredData({
+              type: 'CollectionPage',
+              name: search
+                ? `Search Results for "${search}"`
+                : type
+                  ? `${type.charAt(0).toUpperCase() + type.slice(1)} Documents`
+                  : 'All Educational Documents',
+              description: 'Browse our comprehensive collection of free educational documents including books, notes, handouts, past papers, and study materials.',
+              url: '/documents',
+              breadcrumbs: [
+                { name: 'Home', url: '/' },
+                { name: 'Documents', url: '/documents' },
+              ],
+              items: documents.slice(0, 10).map(doc => ({
+                title: doc.title,
+                description: doc.description || `${doc.type} for ${doc.subject}`,
+                url: `/documents/${doc.slug}`,
+                type: doc.type,
+                subject: doc.subject,
+              })),
+              totalItems: pagination?.totalCount || documents.length,
+              dateModified: new Date().toISOString(),
+            }),
+          ]),
+        }}
+      />
 
       {/* Search and Filters */}
       {/* <SearchFilters filterOptions={filterOptions} /> */}
@@ -150,7 +176,85 @@ export default function DocumentsPage({ searchParams }) {
   );
 }
 
-export const metadata = {
-  title: "Browse Documents - DocLibrary",
-  description: "Browse and search through thousands of free educational documents including books, notes, handouts, and exams.",
-};
+// Generate static params for popular document types
+export async function generateStaticParams() {
+  // Pre-generate static pages for common document types and filters
+  const staticParams = [
+    {},
+    { type: 'book' },
+    { type: 'notes' },
+    { type: 'handout' },
+    { type: 'past-paper' },
+    { type: 'assignment' },
+  ];
+
+  return staticParams;
+}
+
+// Generate dynamic metadata based on search params
+export async function generateMetadata({ searchParams }) {
+  const params = await searchParams;
+  const search = params.search || '';
+  const type = params.type || '';
+  const subject = params.subject || '';
+  const university = params.university || '';
+  const year = params.year || '';
+  const page = parseInt(params.page) || 1;
+
+  // Build dynamic title and description
+  let title = 'Browse Educational Documents';
+  let description = 'Browse our comprehensive collection of free educational documents including books, notes, handouts, past papers, and study materials.';
+  const keywords = ['educational documents', 'study materials', 'free documents', 'student resources'];
+
+  if (search) {
+    title = `Search Results for "${search}" - DocLibrary`;
+    description = `Find educational documents matching "${search}". Browse books, notes, handouts, and more.`;
+    keywords.push(search, `${search} documents`, `${search} study material`);
+  } else if (type) {
+    const typeLabel = type.charAt(0).toUpperCase() + type.slice(1).replace(/-/g, ' ');
+    title = `${typeLabel} - Educational Documents | DocLibrary`;
+    description = `Browse our collection of free ${typeLabel.toLowerCase()}. High-quality educational resources for students.`;
+    keywords.push(type, `${type} documents`, `free ${type}`);
+  }
+
+  if (subject) {
+    title = `${subject} ${type ? type.charAt(0).toUpperCase() + type.slice(1) : 'Documents'} - DocLibrary`;
+    description = `Free ${subject} ${type || 'educational materials'}. Comprehensive study resources for ${subject}.`;
+    keywords.push(subject, `${subject} documents`, `${subject} study material`);
+  }
+
+  if (university) {
+    title = `${university} ${subject || 'Documents'} - DocLibrary`;
+    description = `Educational materials from ${university}. ${subject ? `${subject} resources` : 'Study materials'} shared by students.`;
+    keywords.push(university, `${university} documents`);
+  }
+
+  if (year) {
+    keywords.push(`${year} documents`, year);
+  }
+
+  if (page > 1) {
+    title = `${title} - Page ${page}`;
+    description = `${description} - Page ${page}`;
+  }
+
+  return generateDocumentMetadata({
+    title,
+    description,
+    keywords,
+    url: '/documents',
+    canonical: page > 1 ? `/documents?page=${page}` : '/documents',
+    type: 'website',
+    images: [
+      {
+        url: '/og-documents.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'DocLibrary - Educational Documents',
+      },
+    ],
+  });
+}
+
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every hour

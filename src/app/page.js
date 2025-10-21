@@ -6,14 +6,86 @@ import { getLatestDocuments } from '@/actions/documents';
 import { getLatestBlogs } from '@/actions/blogs';
 import Features from '@/components/Features';
 import CTA from '@/components/CTA';
+import {
+  generateDocumentMetadata,
+  generateDocumentStructuredData,
+  generateWebsiteStructuredData,
+  generateFAQStructuredData,
+} from '@/lib/seo-utils';
+
+export const metadata = generateDocumentMetadata({
+  title: "DocLibrary - Free Educational Documents & Study Resources",
+  description: "Access thousands of free educational documents, books, notes, handouts, past papers, and study materials. Join our community of students and educators sharing knowledge worldwide.",
+  keywords: [
+    "educational documents",
+    "free study materials",
+    "books",
+    "notes",
+    "past papers",
+    "handouts",
+    "student resources",
+    "university documents",
+    "study guides",
+    "educational platform",
+  ],
+  url: "/",
+  type: "website",
+});
 
 export default async function Home() {
   const { documents } = await getLatestDocuments(6);
   const blogsResult = await getLatestBlogs(3);
   const { blogs } = blogsResult.success ? blogsResult : { blogs: [] };
 
+  // FAQ Structured Data
+  const faqData = [
+    {
+      question: "What is DocLibrary?",
+      answer: "DocLibrary is a free educational platform where students and educators can access and share educational documents including books, notes, handouts, past papers, and study materials.",
+    },
+    {
+      question: "Is DocLibrary really free?",
+      answer: "Yes! DocLibrary is completely free to use. You can browse, download, and share documents without any charges or hidden fees.",
+    },
+    {
+      question: "What types of documents can I find?",
+      answer: "You can find various types of educational materials including textbooks, lecture notes, handouts, past exam papers, assignments, and study guides across different subjects and courses.",
+    },
+    {
+      question: "Can I upload my own documents?",
+      answer: "Yes, you can contribute to the community by uploading your own educational documents and study materials to help other students.",
+    },
+  ];
+
   return (
     <div className="bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            generateWebsiteStructuredData(),
+            generateFAQStructuredData(faqData),
+            {
+              '@context': 'https://schema.org',
+              '@type': 'EducationalOrganization',
+              name: 'DocLibrary',
+              description: 'Free educational platform for sharing documents and study materials',
+              url: process.env.NEXT_PUBLIC_SITE_URL || 'https://doclibrary.com',
+              sameAs: [
+                'https://twitter.com/doclibrary',
+                'https://facebook.com/doclibrary',
+              ],
+              contactPoint: {
+                '@type': 'ContactPoint',
+                contactType: 'Customer Service',
+                email: 'support@doclibrary.com',
+              },
+            },
+          ]),
+        }}
+      />
+
       {/* Premium Liquid Background */}
       <div className="fixed inset-0 -z-10">
         {/* Base gradient */}

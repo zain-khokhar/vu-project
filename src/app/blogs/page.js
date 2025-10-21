@@ -4,11 +4,12 @@ import { getBlogs } from '@/actions/blogs';
 import BlogCard from '@/components/BlogCard';
 import Pagination from '@/components/Pagination';
 import FeaturedPosts from '@/components/FeaturedPosts';
-
-export const metadata = {
-  title: 'Blogs - DocLibrary',
-  description: 'Read the latest blog posts and insights from the DocLibrary community',
-};
+import {
+  generateDocumentMetadata,
+  generateDocumentStructuredData,
+  generateWebsiteStructuredData,
+  formatSEODate
+} from '@/lib/seo-utils';
 
 export default async function BlogsPage({ searchParams }) {
   // Await searchParams as required by Next.js 15
@@ -35,6 +36,35 @@ export default async function BlogsPage({ searchParams }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            generateWebsiteStructuredData(),
+            generateDocumentStructuredData({
+              type: 'Blog',
+              name: 'DocLibrary Blog',
+              description: 'Educational articles, tutorials, and insights for students and learners',
+              url: '/blogs',
+              breadcrumbs: [
+                { name: 'Home', url: '/' },
+                { name: 'Blogs', url: '/blogs' },
+              ],
+              items: enhancedBlogs.slice(0, 10).map(blog => ({
+                title: blog.title,
+                description: blog.excerpt || blog.description,
+                url: `/blogs/${blog.slug}`,
+                type: 'BlogPosting',
+                subject: blog.tags?.[0] || 'Education',
+              })),
+              totalItems: pagination?.totalCount || enhancedBlogs.length,
+              dateModified: enhancedBlogs[0]?.updatedAt || new Date().toISOString(),
+            }),
+          ]),
+        }}
+      />
+
       {/* Premium Liquid Background */}
       <div className="fixed inset-0 -z-10">
         {/* Base gradient */}
@@ -278,3 +308,60 @@ export default async function BlogsPage({ searchParams }) {
     </div>
   );
 }
+
+// Generate static params for pagination
+export async function generateStaticParams() {
+  // Pre-generate first few pages statically
+  return [
+    {},
+    { page: '1' },
+    { page: '2' },
+    { page: '3' },
+  ];
+}
+
+// Generate dynamic metadata
+export async function generateMetadata({ searchParams }) {
+  const params = await searchParams;
+  const page = parseInt(params?.page) || 1;
+
+  let title = 'Educational Blogs & Articles - DocLibrary';
+  let description = 'Read the latest educational articles, tutorials, study tips, and insights from experts. Learn about programming, data structures, web development, and more.';
+  const keywords = [
+    'educational blogs',
+    'programming tutorials',
+    'study tips',
+    'computer science articles',
+    'web development',
+    'data structures',
+    'algorithms',
+    'student resources',
+    'learning materials',
+    'tech education',
+  ];
+
+  if (page > 1) {
+    title = `Educational Blogs & Articles - Page ${page} | DocLibrary`;
+    description = `Browse educational articles and tutorials - Page ${page}. Expert insights on programming, computer science, and study strategies.`;
+  }
+
+  return generateDocumentMetadata({
+    title,
+    description,
+    keywords,
+    url: '/blogs',
+    canonical: page > 1 ? `/blogs?page=${page}` : '/blogs',
+    type: 'website',
+    images: [
+      {
+        url: '/og-blogs.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'DocLibrary Blog - Educational Articles & Tutorials',
+      },
+    ],
+  });
+}
+
+export const dynamic = 'force-static';
+export const revalidate = 1800; // Revalidate every 30 minutes

@@ -1,0 +1,151 @@
+# robots.txt for DocLibrary
+# https://doclibrary.com/robots.txt
+# Last updated: October 2025
+
+# Default crawl rules for all bots
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /private/
+Crawl-delay: 1
+
+# Google crawlers
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Googlebot-News
+User-agent: Googlebot-Video
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# Bing crawler
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# AI/LLM Crawlers
+# OpenAI
+User-agent: GPTBot
+User-agent: ChatGPT-User
+Allow: /blogs/
+Allow: /documents/
+Allow: /quiz/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /private/
+Crawl-delay: 2
+
+# Anthropic Claude
+User-agent: anthropic-ai
+User-agent: Claude-Web
+User-agent: ClaudeBot
+Allow: /blogs/
+Allow: /documents/
+Allow: /quiz/
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 2
+
+# Google Bard/Gemini
+User-agent: Google-Extended
+Allow: /blogs/
+Allow: /documents/
+Allow: /quiz/
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 2
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /blogs/
+Allow: /documents/
+Allow: /quiz/
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 2
+
+# Common Crawl (used by many AI companies)
+User-agent: CCBot
+Allow: /blogs/
+Allow: /documents/
+Allow: /quiz/
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 2
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /blogs/
+Allow: /documents/
+Allow: /quiz/
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 2
+
+# Cohere
+User-agent: cohere-ai
+Allow: /blogs/
+Allow: /documents/
+Allow: /quiz/
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 2
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /blogs/
+Allow: /documents/
+Allow: /quiz/
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 2
+
+# ByteDance (TikTok)
+User-agent: Bytespider
+Allow: /blogs/
+Allow: /documents/
+Allow: /quiz/
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 2
+
+# Diffbot
+User-agent: Diffbot
+Allow: /blogs/
+Allow: /documents/
+Allow: /quiz/
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 2
+
+# Omgili
+User-agent: Omgilibot
+Allow: /blogs/
+Allow: /documents/
+Allow: /quiz/
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 2
+
+# Social media crawlers
+User-agent: facebookexternalhit
+User-agent: Twitterbot
+User-agent: LinkedInBot
+User-agent: WhatsApp
+User-agent: TelegramBot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# Sitemaps
+Sitemap: https://doclibrary.com/sitemap.xml
+
+# Host
+Host: https://doclibrary.com
+
+# Additional information for AI/LLM crawlers
+# For detailed AI/LLM access information, see: https://doclibrary.com/llms.txt

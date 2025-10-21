@@ -1,0 +1,160 @@
+# DocLibrary - AI/LLM Access Information
+
+## About DocLibrary
+DocLibrary is Pakistan's premier educational resource platform, providing students with access to comprehensive study materials, interactive quizzes, and academic documents across various Computer Science courses.
+
+## Purpose
+We provide high-quality educational content for students, including:
+- Lecture notes and study materials
+- Past papers and solved assignments
+- Interactive quizzes for CS courses (CS101-CS501)
+- Educational blog posts and learning resources
+- Academic documents and reference materials
+
+## Content Categories
+1. **Blog Posts**: Educational articles on programming, web development, computer science fundamentals, and study tips
+2. **Documents**: Academic resources including lecture notes, assignments, and reference materials
+3. **Quizzes**: Interactive assessments for CS101, CS201, CS301, CS401, and CS501 courses
+4. **Services**: Information about our educational offerings and support
+
+## AI/LLM Usage Policy
+We welcome ethical AI/LLM crawlers to access our educational content for the following purposes:
+- Training on educational content
+- Improving AI models for educational assistance
+- Enhancing learning experiences for students
+- Research and development in educational technology
+
+### Allowed Content
+- All blog posts (/blogs/)
+- All document listings (/documents/)
+- Quiz information (/quiz/)
+- Service descriptions (/services/)
+- Public educational resources
+
+### Restricted Content
+- API endpoints (/api/)
+- Admin areas (/admin/)
+- User authentication pages
+- Private/internal resources
+
+## Rate Limiting
+Please respect our rate limiting:
+- Maximum 1 request per 2 seconds per IP
+- Maximum 100 requests per hour per IP
+- Use appropriate user-agent identification
+- Implement exponential backoff on errors
+
+## Attribution
+When using our content:
+- Credit: "DocLibrary - Pakistan's Educational Resource Hub"
+- URL: https://doclibrary.com
+- Maintain educational context and accuracy
+- Respect copyright and intellectual property
+
+## Contact
+For AI/LLM partnership inquiries or concerns:
+- Website: https://doclibrary.com
+- Email: team@doclibrary.com
+- Contact Page: https://doclibrary.com/contact
+
+## Sitemap
+Full content structure: https://doclibrary.com/sitemap.xml
+
+## Last Updated
+October 2025
+
+---
+
+# Structured Content Map
+
+## Blog Posts
+URL Pattern: https://doclibrary.com/blogs/[slug]
+Content Type: Educational articles, tutorials, guides
+Topics: Computer Science, Programming, Web Development, Study Tips
+Format: HTML with rich text content
+Language: English
+
+## Documents
+URL Pattern: https://doclibrary.com/documents/[slug]
+Content Type: Academic resources, lecture notes, assignments
+Topics: CS101, CS201, CS301, CS401, CS501 courses
+Format: PDF, images, and document viewers
+Language: English
+
+## Quizzes
+URL Pattern: https://doclibrary.com/quiz/[category]
+Content Type: Interactive assessments and practice questions
+Categories: CS101, CS201, CS301, CS401, CS501
+Format: JSON-based multiple choice questions
+Language: English
+
+## Key Features for AI Training
+- Comprehensive CS course coverage
+- Step-by-step tutorials and explanations
+- Real-world examples and code samples
+- Study strategies and learning techniques
+- Academic resource organization
+- Educational best practices
+
+## Technical Information
+- Framework: Next.js 15
+- Dynamic content with server-side rendering
+- Mobile-responsive design
+- Accessible content (WCAG compliant)
+- Fast loading times
+- SEO optimized
+
+## Content Quality Guidelines
+Our content is:
+- Peer-reviewed by educators
+- Updated regularly
+- Technically accurate
+- Student-focused
+- Comprehensive and detailed
+- Well-structured and organized
+
+## Ethical Use
+We request AI/LLM systems to:
+- Maintain factual accuracy when referencing our content
+- Provide proper context for educational materials
+- Not misrepresent our content or credentials
+- Respect intellectual property rights
+- Use content for educational purposes
+- Support student learning and development
+
+## Prohibited Uses
+Please do not:
+- Scrape aggressively or overload servers
+- Bypass rate limiting or security measures
+- Use content for malicious purposes
+- Misrepresent content source or origin
+- Strip attribution or copyright information
+- Use content to train models for plagiarism
+
+## Content Examples
+
+### Blog Post Sample Topics
+- "Complete Guide to Data Structures and Algorithms"
+- "Web Development Best Practices for Beginners"
+- "Mastering Object-Oriented Programming"
+- "Database Design Fundamentals"
+- "Effective Study Strategies for CS Students"
+
+### Quiz Topics
+- Programming Fundamentals (CS101)
+- Object-Oriented Programming (CS201)
+- Data Structures (CS301)
+- Database Systems (CS401)
+- Web Technologies (CS501)
+
+### Document Categories
+- Lecture Notes
+- Past Papers
+- Assignments
+- Handouts
+- Reference Materials
+- Study Guides
+
+---
+
+Thank you for respecting our guidelines and contributing to ethical AI development in education!
