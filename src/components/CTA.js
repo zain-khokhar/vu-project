@@ -52,22 +52,12 @@ function Button({
 export function CTA() {
   return (
     <section className="w-full py-20 relative overflow-hidden">
-      {/* Background effects */}
-      {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-400/20 to-purple-400/20 opacity-40"></div> */}
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="relative">
-          {/* Glow effect */}
-          {/* <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 rounded-[2.5rem] blur-2xl opacity-30 animate-pulse"></div> */}
 
           {/* Main CTA card */}
           <div className="relative bg-white/40 backdrop-blur rounded-[3rem] p-12 lg:p-16 text-center overflow-hidden shadow-2xl">
-            {/* Gradient overlay */}
-            {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-transparent to-blue-600/20 pointer-events-none"></div> */}
-
-            {/* Floating elements */}
-            {/* <div className="absolute top-10 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl animate-pulse"></div>
-            <div className="absolute bottom-10 left-10 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div> */}
 
             <div className="max-w-3xl mx-auto flex flex-col gap-6 relative z-10">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 w-fit shadow-lg mx-auto">
@@ -76,15 +66,15 @@ export function CTA() {
               </div>
 
 
-              <h2 className="text-4xl lg:text-5xl bg-gradient-to-br from-[#1a1f36] to-[#667eea] bg-clip-text text-transparent">
+              <h2 className="text-4xl lg:text-5xl max-sm:text-3xl bg-gradient-to-br from-[#1a1f36] to-[#667eea] bg-clip-text text-transparent">
                 Ready to transform your document management?
               </h2>
 
-              <p className="text-xl text-gray-700/70">
+              <p className="text-xl text-gray-700/70 max-sm:text-lg">
                 Join thousands of teams already using DocLibrary to stay organized and productive.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <div className="flex sm:flex-row flex-wrap gap-4 justify-center pt-4">
                 <Button
                   size="lg"
                   className="gap-2 bg-gradient-to-br from-[#6b46ff] to-[#764ba2] text-white border-0 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300"

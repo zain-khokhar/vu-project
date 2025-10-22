@@ -37,8 +37,8 @@ export default function Header({ defaultTheme = "light" }) {
 
   return (
     <header className=" top-0 left-0 right-0 z-50 w-full">
-      <div className="bg-white/40 backdrop-blur glass mx-4 mt-4 rounded-3xl shadow-lg shadow-purple-500/10">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-2">
+      <div className="bg-white/40 backdrop-blur glass mx-4 max-sm:mx-2 mt-4 rounded-3xl shadow-lg shadow-purple-500/10">
+        <div className="max-w-7xl mx-auto px-6 max-sm:px-2 lg:px-2">
           <div className="flex h-20 items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center shadow-lg">
@@ -98,8 +98,8 @@ export default function Header({ defaultTheme = "light" }) {
 
       {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed bg-white/40 backdrop-blur glass mx-4 mt-2 rounded-3xl shadow-lg">
-          <div className="px-4 py-4 space-y-3">
+        <div className="lg:hidden fixed bg-white/40 backdrop-blur glass mx-2 mt-2 rounded-3xl shadow-lg">
+          <div className="px-2 py-4 space-y-3">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
