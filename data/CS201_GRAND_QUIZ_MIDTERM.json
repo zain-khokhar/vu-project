@@ -1,0 +1,2638 @@
+[
+  {
+    "id": 1,
+    "question": "All A template function must have at least ---------- generic data type",
+    "options": ["Zero", "One", "Two", "Three"],
+    "correct": "One",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 2,
+    "question": "Which of the following statement is best regarding declaration of friend function?",
+    "options": [
+      "Friend function must be declared after public keyword .",
+      "Friend function must be declared after private keyword.",
+      "Friend function must be declared at the top within class definition.",
+      "It can be declared anywhere in class as these are not affected by the public and private keywords."
+    ],
+    "correct": "It can be declared anywhere in class as these are not affected by the public and private keywords.",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 3,
+    "question": "Which one of the following is the declaration of overloaded pre-increment operator implemented as member function?",
+    "options": [
+      "Class-name operator +() ;",
+      "Class-name operator +(int) ;",
+      "Class-name operator ++() ;",
+      "Class-name operator ++(int) ;"
+    ],
+    "correct": "Class-name operator ++() ;",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 4,
+    "question": "Class is a user defined___________.",
+    "options": [
+      "data type",
+      "memory referee",
+      "value",
+      "none of the given options."
+    ],
+    "correct": "data type",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 5,
+    "question": "How many bytes will the pointer intPtr of type int move in the following statement? intPtr += 3 ; 2",
+    "options": ["3 bytes", "6 bytes", "12 bytes", "24 bytes"],
+    "correct": "12 bytes",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 6,
+    "question": "Which of the following is the correct C++ syntax to allocate space dynamically for an array of 10 int?",
+    "options": [
+      "new int(10) ;",
+      "new int[10] ;",
+      "int new(10) ;",
+      "int new[10];"
+    ],
+    "correct": "new int[10] ;",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 7,
+    "question": "A Pointer is a special variable that contain",
+    "options": [
+      "Data values",
+      "Memory Address",
+      "Both data and values",
+      "None of the given option"
+    ],
+    "correct": "Memory Address",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 8,
+    "question": "Reference Value Type Data The code is written to __________ the program.",
+    "options": [
+      "implement",
+      "design",
+      "analysis",
+      "none of the given options FINALTERM EXAMINATION CS201 - Introduction to programming Final Term Spring 2010 Operator overloading can be performed through__________________.",
+      "Classes",
+      "Function",
+      "Operators",
+      "Reference"
+    ],
+    "correct": "Function",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 9,
+    "question": "When a value is referred by a normal variable then it is known as,",
+    "options": [
+      "Direct Reference (page 143)",
+      "Indirect Reference. 3",
+      "Partial Reference",
+      "Proper Reference When a value is referred by a normal variable is known as direct reference"
+    ],
+    "correct": "Direct Reference",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 10,
+    "question": "Which of the following function is used to increase the size of already allocated memory chunk?",
+    "options": ["malloc", "calloc", "realloc", "free"],
+    "correct": "realloc",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 11,
+    "question": "Which of the following is NOT a preprocessor directive?",
+    "options": ["#error", "#define", "#line", "#ndefine"],
+    "correct": "#ndefine",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 12,
+    "question": "The stream objects cin and cout are included in which header file?",
+    "options": ["iostream.h", "fstream.h", "istream.h", "ostream.h"],
+    "correct": "iostream.h",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 13,
+    "question": "Overloaded delete operator function takes the same parameter as an argument returned by new operator function.",
+    "options": [
+      "True",
+      "False The same pointer that is returned by the new operator, is passed as an argument to the delete operator. These rules apply to both, if operators (new and delete) are overloaded as member or non-member operators (as global operators)."
+    ],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 14,
+    "question": "When an array of object is created dynamically then there is no way to provide parameterized constructors for array of objects.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 15,
+    "question": "4 C is widely known as development language of _______ operating system.",
+    "options": [
+      "Linux",
+      "Windows",
+      "Unix",
+      "Mac OS In the start C became widely known as the development language of the UNIX operating system, and the UNIX operating system was written by using this C language. The C language is so powerful that the compiler of C and other various operating systems are written in C."
+    ],
+    "correct": "Unix",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 16,
+    "question": "Computer can understand only machine language code.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 17,
+    "question": "We can not define a function as a friend of a Template class.",
+    "options": [
+      "True",
+      "False  Class templates can have friends. A class or class template, function, or function template can be a friend to a template class. Friends can also be specializations of a class template or function template, but not partial specializations."
+    ],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 18,
+    "question": "What will be the value of ‘a’ and ‘b’ after executing the following statements? A = 3; b = a++;",
+    "options": ["3, 4", "4, 4", "3, 3", "4, 3"],
+    "correct": "4, 3",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 19,
+    "question": "Consider the following code segment. What will be the output of following code? Int addValue (int *a){ int b = (*a) + 2; return b ; } main () { int x =6 ; cout << x << “,” ; cout << addValue(&x) << “,” ; cout << x ; } 5",
+    "options": ["6,8,6", "6,6,8", "6,8,8", "6,6,6"],
+    "correct": "6,8,6",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 20,
+    "question": "_______ is used to trace the logic of the program and correct the logical errors.",
+    "options": ["Compiler", "Editor", "Linker", "Debugger"],
+    "correct": "Debugger",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 21,
+    "question": "new and delete are _____ whereas malloc and free are _____.",
+    "options": [
+      "Functions, operators",
+      "Classes, operators",
+      "Operators, functions",
+      "Operators, classes Hence, we can call new and delete operators, P# 342 we have allocated a memory space for our use by malloc function. P# 285"
+    ],
+    "correct": "Operators, functions",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 22,
+    "question": "Like member functions, ______ can also access the private data members of a class.",
+    "options": [
+      "Non-member functions",
+      "Friend functions",
+      "Any function outside class",
+      "None of the given options"
+    ],
+    "correct": "Friend functions",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 23,
+    "question": "Which situation would require the use of a non-member overloaded operator?",
+    "options": [
+      "The overloaded operator is an Assignment operator.",
+      "The left most operand is an object of a class.",
+      "The left operand is built-in data type.",
+      "The operator returns a reference. When an operator function is implemented as a non-member function, the left-most operand may be an object of the operator’s class, an object of a different class, or a built-in type"
+    ],
+    "correct": "The left operand is built-in data type.",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 24,
+    "question": "The stream insertion and stream extraction operators are already overloaded for ______.",
+    "options": [
+      "User-defined data types",
+      "Built-in data types http://www.sstutor.com/cpp/stream1.htm",
+      "User-defined and built-in data types",
+      "None of the given options 6"
+    ],
+    "correct": "Built-in data types",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 25,
+    "question": "If we define an identifier with the statement #define PI 3.1415926 then during the execution of the program the value of PI __________.",
+    "options": [
+      "can not be replaced",
+      "None of the given options",
+      "Remain constant.",
+      "can be changed by some operation"
+    ],
+    "correct": "Remain constant.",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 26,
+    "question": "Assignment operator is -------------------------associative.",
+    "options": ["right", "left", "binary", "unary"],
+    "correct": "right",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 27,
+    "question": "When ever dynamic memory allocation is made in C/C++, it is freed_____________.",
+    "options": [
+      "Explicitly",
+      "Implicitly",
+      "Both explicitly and implicitly",
+      "None of the given options"
+    ],
+    "correct": "Explicitly",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 28,
+    "question": "The appropriate data type to store the number of rows and colums of the matrix is____________.",
+    "options": [
+      "float",
+      "int (Not sure)",
+      "char",
+      "none of the given options."
+    ],
+    "correct": "int (Not sure)",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 29,
+    "question": "Which of the following function do NOT initialize the chunk of memory to all zero?",
+    "options": [
+      "calloc() function",
+      "Both malloc() and calloc()",
+      "None of the above",
+      "malloc() function  The malloc function differs from calloc in the way that the space allocated by malloc is not initialized and contains any values initially."
+    ],
+    "correct": "malloc() function",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 30,
+    "question": "The function free() returns back the allocated memory got thorough calloc and 7 malloc to _____ .",
+    "options": ["stack", "heap", "stack and heap", "None of the given options"],
+    "correct": "heap",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 31,
+    "question": "width() is member function of _____________",
+    "options": [
+      "cin object",
+      "cout object",
+      "Both cin and cout object",
+      "None of the given option"
+    ],
+    "correct": "Both cin and cout object",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 32,
+    "question": "Templates are not type safe.",
+    "options": [
+      "true",
+      "false  Templates are type-safe. This is because the types that templates act upon are known at compile time, so the compiler can perform type checking before errors occur."
+    ],
+    "correct": "false",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 33,
+    "question": "A Matrix can be composed of ints, floats or doubles as their elements. Best way is to handle this , _______________",
+    "options": [
+      "Write a separate class to handle each",
+      "Use templates",
+      "Use strings to store all types",
+      "None of the given options FINALTERM EXAMINATION Spring 2010 CS201- Introduction to Programming"
+    ],
+    "correct": "Use templates",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 34,
+    "question": "In if structure the block of statements is executed only,",
+    "options": [
+      "When the condition is false",
+      "When it contain arithmetic operators",
+      "When it contain logical operators",
+      "When the condition is true"
+    ],
+    "correct": "When the condition is true",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 35,
+    "question": "Header file: fstream.h includes the definition of the stream classes __________. 8",
+    "options": [
+      "ifstream, fstream, cout",
+      "ifstream, fstream, ofstream",
+      "fstream, cin, cout",
+      "None of the above"
+    ],
+    "correct": "ifstream, fstream, ofstream",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 36,
+    "question": "To access the data members of structure _______ is used.",
+    "options": [
+      "dot operator (.)",
+      "* operator",
+      "U operator",
+      "None of given."
+    ],
+    "correct": "dot operator (.)",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 37,
+    "question": "eof( ), bad( ), good( ), clear( ) all are manipulators.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 38,
+    "question": "Which kind of functions can access private member variables of a class?",
+    "options": [
+      "Friend functions of the class",
+      "Private member functions of the class",
+      "Public member functions of the class",
+      "Friend, private and public functions"
+    ],
+    "correct": "Friend functions of the class",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 39,
+    "question": "The return type of operator function must always be void.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 40,
+    "question": "Friend function of a class is ______________ .",
+    "options": [
+      "Member function",
+      "Non-member function",
+      "Private function",
+      "Public function"
+    ],
+    "correct": "Non-member function",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 41,
+    "question": "Function implementation of friend function must be defined outside the class.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 42,
+    "question": "9 The normal source of cin object is,",
+    "options": ["File", "Disk", "Keyboard", "RAM"],
+    "correct": "Keyboard",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 43,
+    "question": "Which of the following is correct way to initialize a variable x of int type with value 10?",
+    "options": ["int x ; x = 10;", "int x = 10;", "int x, x = 10;", "x = 10;"],
+    "correct": "int x = 10;",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 44,
+    "question": "Consider the following code segment. What will be the output of the following program? int func(int) ; int num = 10 ; int main(){ int num ; num = 5 ; cout << num ; cout << func(num) ; } int func(int x){ return num ; }",
+    "options": ["5, 5", "10, 5", "5, 10", "10, 10"],
+    "correct": "5, 10",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 45,
+    "question": "With template function, the compiler automatically detects the passed data and generates a new copy of function using passed data.",
+    "options": ["True Page 510", "False"],
+    "correct": "True Page 510",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 46,
+    "question": "What will be the correct syntax to declare two-dimensional array of float data type?",
+    "options": [
+      "float arr{2}{2} ;",
+      "float arr[2][2] ; 10",
+      "float arr[2,2] ;",
+      "float[2][2] arr ;"
+    ],
+    "correct": "float arr[2][2] ;",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 47,
+    "question": "The first parameter of operator function for << operator,",
+    "options": [
+      "Must be passed by value",
+      "Must be passed by reference",
+      "Can be passed by value or reference",
+      "Must be object of class"
+    ],
+    "correct": "Must be passed by reference",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 48,
+    "question": "Heap is constantly changing in size.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 49,
+    "question": "While calling function, the arguments are assigned to the parameters from _____________.",
+    "options": [
+      "left to right.",
+      "right to left",
+      "no specific order is followed",
+      "none of the given options."
+    ],
+    "correct": "no specific order is followed",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 50,
+    "question": "Classes defined inside other classes are called ________ classes",
+    "options": ["looped", "nested", "overloaded", "none of the given options."],
+    "correct": "nested",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 51,
+    "question": "If we define an identifier with the statement #define PI 3.1415926 then during the execution of the program the value of PI __________.",
+    "options": [
+      "can not be replaced",
+      "None of the given options",
+      "Remain constant.",
+      "can be changed by some operation"
+    ],
+    "correct": "Remain constant.",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 52,
+    "question": "Which value is returned by the destructor of a class?",
+    "options": [
+      "A pointer to the class. 11",
+      "An object of the class.",
+      "A status code determining whether the class was destructed correctly",
+      "Destructors do not return a value. (page 323)"
+    ],
+    "correct": "Destructors do not return a value. (page 323)",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 53,
+    "question": "Every class contains _______________.",
+    "options": [
+      "Constructor",
+      "Destructor",
+      "Both a constructor and a destructor (Lecture 27)",
+      "None of the given options"
+    ],
+    "correct": "Both a constructor and a destructor (Lecture 27)",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 54,
+    "question": "A template function must have",
+    "options": [
+      "One or more than one arguments",
+      "Only one argument",
+      "Zero arguments",
+      "None of the given options http://en.wikipedia.org/wiki/Template_%28programming%29"
+    ],
+    "correct": "One or more than one arguments",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 55,
+    "question": "Structured Query Language is used for ______________",
+    "options": [
+      "Databases Management (page 563)",
+      "Networks",
+      "Writing Operating System",
+      "none of the given options"
+    ],
+    "correct": "Databases Management (page 563)",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 56,
+    "question": "When a call to a user-defined function finishes, the variable defined inside the function is still in existence.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 57,
+    "question": "The precedence of an operator can be changed through operator overloading.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 58,
+    "question": "A Matrix can be composed of ints, floats or doubles as their elements. Best way is to handle this , _______________",
+    "options": [
+      "Write a separate class to handle each",
+      "Use templates",
+      "Use strings to store all types",
+      "None of the given options 12"
+    ],
+    "correct": "Use templates",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 59,
+    "question": "\"delete\" operator is used to return memory to free store, which is allocated by the \" new\" operator.",
+    "options": [
+      "True (page 332)",
+      "False FINALTERM EXAMINATION Spring 2010 CS201- Introduction to Programming"
+    ],
+    "correct": "True (page 332)",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 60,
+    "question": "Pointer is a variable which store,",
+    "options": ["Data", "Memory Address", "Data Type", "Values"],
+    "correct": "Memory Address",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 61,
+    "question": "All preprocessor directives are started with the symbol______.",
+    "options": ["*", "+", "@", "#"],
+    "correct": "#",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 62,
+    "question": "Within the statement obj1=obj2; obj1 will call the assignment operator function and obj2 will be passed as an argument to function.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 63,
+    "question": "What is the sequence of event(s) when deallocating memory using delete operator?",
+    "options": [
+      "Only block of memory is deallocated for objects",
+      "Only destructor is called for objects",
+      "Memory is deallocated first before calling destructor",
+      "Destructor is called first before deallocating memory"
+    ],
+    "correct": "Destructor is called first before deallocating memory",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 64,
+    "question": "The second parameter of operator functions for << and >> are objects of the class for which we are 13 overloading these operators.",
+    "options": ["True (page 453)", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 65,
+    "question": "To include code from the library in the program, such as iostream, a directive would be called up using this command.",
+    "options": [
+      "#include “iostream.h”",
+      "include <iostream.h>",
+      "include <iostream.h>",
+      "#include <iostream.h> (sure)"
+    ],
+    "correct": "#include <iostream.h>",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 66,
+    "question": "The number 544.53 must be stored in _____ data type.",
+    "options": ["int", "short", "float (Sure)", "char"],
+    "correct": "float (Sure)",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 67,
+    "question": "A template function can have different type of arguments.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 68,
+    "question": "For which values of the integer _value will the following code becomes an infinite loop? int number=1; while (true) { cout << number; if (number == 3) break; number += integer_value; }",
+    "options": ["any number other than 1 or 2", "only 0", "only 1", "only 2"],
+    "correct": "any number other than 1 or 2",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 69,
+    "question": "Template class cannot have static variables.",
+    "options": ["True", "False 14"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 70,
+    "question": "Which of the following is used with bit manipulation?",
+    "options": [
+      "Signed integer",
+      "Un-signed integer",
+      "Signed double",
+      "Un-signed double"
+    ],
+    "correct": "Un-signed integer",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 71,
+    "question": "Structure is a collection of ______________ under a single name.",
+    "options": [
+      "Only Functions",
+      "Only Variables",
+      "Both Functions and Variables",
+      "None of the given options"
+    ],
+    "correct": "Only Variables",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 72,
+    "question": "Which of the following is the correct C++ syntax to allocate space dynamically for an array of 10 int?",
+    "options": [
+      "new int(10) ;",
+      "new int[10] ;",
+      "int new(10) ;",
+      "int new[10];"
+    ],
+    "correct": "new int[10] ;",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 73,
+    "question": "Unary operator implemented as member function takes ____ arguments whereas non-member function takes _____ arguments.",
+    "options": ["One, zero", "Zero, one", "One, two", "Two, one"],
+    "correct": "Zero, one",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 74,
+    "question": "The first parameter of overloaded stream insertion operator is _________ where second parameter is _______",
+    "options": [
+      "input stream, object of class",
+      "object of class, output stream",
+      "output stream, object of class",
+      "object of class, input stream"
+    ],
+    "correct": "output stream, object of class",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 75,
+    "question": "We can also do conditional compilation with preprocessor directives.",
+    "options": ["True", "False 15"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 76,
+    "question": "If a symbolic constant has been defined, it will be an error to define it again.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 77,
+    "question": "While calling function, the arguments are assigned to the parameters from _____________.",
+    "options": [
+      "left to right.",
+      "right to left",
+      "no specific order is followed",
+      "none of the given options."
+    ],
+    "correct": "no specific order is followed",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 78,
+    "question": "Classes defined inside other classes are called ________ classes",
+    "options": ["looped", "nested", "overloaded", "none of the given options."],
+    "correct": "nested",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 79,
+    "question": "If we define an identifier with the statement #define PI 3.1415926 then during the execution of the program the value of PI __________.",
+    "options": [
+      "cannot be replaced",
+      "None of the given options",
+      "Remain constant.",
+      "can be changed by some operation"
+    ],
+    "correct": "Remain constant.",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 80,
+    "question": "A ssignment operator is -------------------------associative.",
+    "options": [
+      "right",
+      "left",
+      "binary",
+      "unary http://msdn.microsoft.com/en-us/library/ms173145.aspx"
+    ],
+    "correct": "right",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 81,
+    "question": "If text is a pointer of class String then what is meant by the following statement? text = new String [5];",
+    "options": [
+      "Creates an array of 5 string objects statically",
+      "creates an array of 5 string objects dynamically 16",
+      "Creates an array of pointers to string",
+      "Creates a string Object"
+    ],
+    "correct": "creates an array of 5 string objects dynamically 16",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 82,
+    "question": "The return type of the operator function for << operator is __________.",
+    "options": [
+      "class for which we overload operator",
+      "reference of ostream class (ostream&)",
+      "reference of istream class (istream&)",
+      "void"
+    ],
+    "correct": "reference of ostream class (ostream&)",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 83,
+    "question": "The code is written to __________ the program.",
+    "options": [
+      "implement",
+      "design",
+      "analysis",
+      "none of the given options."
+    ],
+    "correct": "implement",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 84,
+    "question": "Memory allocated at run time is a system resource and it is the responsibility of _____ to de-allocate the memory.",
+    "options": [
+      "System",
+      "Programmer",
+      "User of program",
+      "None of given options"
+    ],
+    "correct": "Programmer",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 85,
+    "question": "Templates are not type safe.",
+    "options": [
+      "True",
+      "False  FINALTERM EXAMINATION Spring 2010 CS201- Introduction to Programming"
+    ],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 86,
+    "question": "*.doc is _____________ by type. .",
+    "options": [
+      "Sequential File",
+      "Random Access File",
+      "Data File",
+      "Record File"
+    ],
+    "correct": "Sequential File",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 87,
+    "question": "Which of the following is NOT a preprocessor directive?",
+    "options": ["#error 17", "#define", "#line", "#ndefine"],
+    "correct": "#ndefine",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 88,
+    "question": "The return type of operator function must always be void.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 89,
+    "question": "What does (*this) represents?",
+    "options": [
+      "The current function of the class",
+      "The current pointer of the class",
+      "The current object of the class",
+      "A value of the data member"
+    ],
+    "correct": "The current object of the class",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 90,
+    "question": "The statement cin.get (); is used to,",
+    "options": [
+      "Read a string from keyboard",
+      "Read a character from keyboard",
+      "Read a string from file",
+      "Read a character from file"
+    ],
+    "correct": "Read a character from keyboard",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 91,
+    "question": "When we do dynamic memory allocation in the constructor of a class, then it is necessary to provide a destructor.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 92,
+    "question": "Overloaded new operator function takes parameter of type size_t and returns",
+    "options": [
+      "void (nothing)",
+      "void pointer",
+      "object pointer",
+      "int pointer"
+    ],
+    "correct": "void pointer",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 93,
+    "question": "The second parameter of operator functions for << and >> are objects of the class for which we are overloading these operators.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 94,
+    "question": "18 C++ is a case-sensitive language",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 95,
+    "question": "To include code from the library in the program, such as iostream, a directive would be called up using this command.",
+    "options": [
+      "#include “iostream.h”",
+      "include <iostream.h>",
+      "include <iostream.h>",
+      "#include <iostream.h> (Sure)"
+    ],
+    "correct": "#include <iostream.h> (Sure)",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 96,
+    "question": "A template function must have only generic data types.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 97,
+    "question": "Template class can not have static variables.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 98,
+    "question": "What will be the correct syntax to assign an array named arr of 5 elements to a pointer ptr ?",
+    "options": [
+      "*ptr = arr ;",
+      "ptr = arr ;",
+      "*ptr = arr[5] ;",
+      "ptr = arr[5] ;"
+    ],
+    "correct": "ptr = arr ;",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 99,
+    "question": "What will be the correct syntax to access the value of fourth element of an array using pointer ptr?",
+    "options": ["ptr[3]", "(ptr+3)", "*(ptr+3)", "Both 1and 3"],
+    "correct": "Both 1and 3",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 100,
+    "question": "If most significant bit of un-signed number is 1 then it represents a positive number.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 101,
+    "question": "19 If there is a symbol (& sign) used with the variable name followed by data type then it refers to _____ and if & is being used with variable name then it refers to _____.",
+    "options": [
+      "Address of variable, reference variable",
+      "Reference variable, value of variable",
+      "Reference variable, address of variable",
+      "Address of variable, value of variable"
+    ],
+    "correct": "Reference variable, address of variable",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 102,
+    "question": "We can also do conditional compilation with preprocessor directives.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 103,
+    "question": "The default value of a parameter can be provided inside the ________________",
+    "options": [
+      "function prototype",
+      "function definition",
+      "both function prototype or function definition",
+      "none of the given options."
+    ],
+    "correct": "function prototype",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 104,
+    "question": "Classes defined inside other classes are called ________ classes",
+    "options": ["looped", "nested", "overloaded", "none of the given options."],
+    "correct": "nested",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 105,
+    "question": "What purpose do classes serve?",
+    "options": [
+      "Data encapsulation",
+      "Providing a convenient way of modeling real-world objects",
+      "Simplifying code reuse",
+      "All of the given options"
+    ],
+    "correct": "All of the given options",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 106,
+    "question": "Every class contains _______________.",
+    "options": [
+      "Constructor",
+      "Destructor",
+      "Both a constructor and a destructor (Lecture 27)",
+      "None of the given options"
+    ],
+    "correct": "Constructor",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 107,
+    "question": "new operator is used to allocate memory from the free store during 20",
+    "options": [
+      "Compile Time",
+      "Run Time",
+      "Link Time",
+      "None of the given options"
+    ],
+    "correct": "Run Time",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 108,
+    "question": "When an object of a class is defined inside another class then,",
+    "options": [
+      "Destructor of enclosing class will be called first",
+      "Destructor of inner object will be called first",
+      "Constructor and Destructor will be called simultaneously",
+      "None of the given options"
+    ],
+    "correct": "Destructor of inner object will be called first",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 109,
+    "question": "It is possible to define a class within another class.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 110,
+    "question": "New and Delete are also used with ___________ and data types as well.",
+    "options": [
+      "Class, Objects",
+      "Structures, Pointers",
+      "Both Class and structures",
+      "None of above"
+    ],
+    "correct": "Both Class and structures",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 111,
+    "question": "With New keyword, data types and class members are initialized with meaningful values instead of garbage.",
+    "options": [
+      "True",
+      "False FINALTERM EXAMINATION Spring 2010 CS201- Introduction to Programming"
+    ],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 112,
+    "question": "If it is required to copy an array to another array then,",
+    "options": [
+      "Both arrays must be of the same size and data type",
+      "Both arrays may be of different size",
+      "Both arrays may be of different data type",
+      "Both arrays may be of different size and type 21"
+    ],
+    "correct": "Both arrays must be of the same size and data type",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 113,
+    "question": "Dealing with structures and functions passing by reference is the most economical method",
+    "options": [
+      "True",
+      "False http://mathbits.com/MathBits/CompSci/Structures/Functions.htm"
+    ],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 114,
+    "question": "eof( ), bad( ), good( ), clear( ) all are manipulators.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 115,
+    "question": "Overloaded new operator function takes parameter of type size_t and returns",
+    "options": [
+      "void (nothing)",
+      "void pointer",
+      "object pointer",
+      "int pointer"
+    ],
+    "correct": "void pointer",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 116,
+    "question": "When new operator is overloaded at global level then corresponding built-in new operator will not be visible to whole of the program.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 117,
+    "question": "If there is more than one statement in the block of a for loop, which of the following must be placed at the beginning and the ending of the loop block?",
+    "options": ["parentheses ( )", "braces { }", "brackets [ ]", "arrows < >"],
+    "correct": "braces { }",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 118,
+    "question": "The return type of a function that do not return any value must be ________",
+    "options": ["float", "int", "void", "double"],
+    "correct": "void",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 119,
+    "question": "UNIX has been developed in ________ language. 22",
+    "options": ["JAVA", "B", "C", "FORTRAN"],
+    "correct": "C",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 120,
+    "question": "Like member functions, ______ can also access the private data members of a class.",
+    "options": [
+      "Non-member functions",
+      "Friend functions",
+      "Any function outside class",
+      "None of the given options"
+    ],
+    "correct": "Friend functions",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 121,
+    "question": "Which of the following statement is best regarding declaration of friend function?",
+    "options": [
+      "Friend function must be declared after public keyword.",
+      "Friend function must be declared after private keyword.",
+      "Friend function must be declared at the top within class definition.",
+      "It can be declared anywhere in class as these are not affected by the public and private keywords."
+    ],
+    "correct": "It can be declared anywhere in class as these are not affected by the public and private keywords.",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 122,
+    "question": "The operator function overloaded for an Assignment operator (=) must be",
+    "options": [
+      "Non-member function of class",
+      "Member function of class",
+      "Friend function of class",
+      "None of the given options"
+    ],
+    "correct": "Member function of class",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 123,
+    "question": "The endl and flush are _______",
+    "options": ["Functions", "Operators", "Manipulators", "Objects"],
+    "correct": "Manipulators",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 124,
+    "question": "If a symbolic constant has been defined, it will be an error to define it again.",
+    "options": ["True  15", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 125,
+    "question": "The operator used for casting, in C, is standard ________ operator. 23",
+    "options": ["none of the given options.", "cast", "cost", "const"],
+    "correct": "cast",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 126,
+    "question": "Constructors can not be overloaded like ordinary functions.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 127,
+    "question": "Which of the following function call is correct for the function prototype? defaultParameters ( int a, int b = 7, char z = ‘*’ );",
+    "options": [
+      "defaultParameters (5);",
+      "defaultParameters (5, ‘8’);",
+      "defaultParameters (6, ‘#’);",
+      "defaultParameters (0, 0, ‘*’, 0);"
+    ],
+    "correct": "defaultParameters (5);",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 128,
+    "question": "When an operator function is defined as member function for a binary Plus (+) operator then the number of argument it take is/are.",
+    "options": ["Zero", "One", "Two", "N arguments"],
+    "correct": "One",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 129,
+    "question": "We can not define a variable of user-defined data type in the class.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 130,
+    "question": "When an object of a class is defined inside an other class then,",
+    "options": [
+      "Constructor of enclosing class will be called first",
+      "Constructor of inner object will be called first",
+      "Constructor and Destructor will be called simultaneously",
+      "None of the given options 24"
+    ],
+    "correct": "Constructor of inner object will be called first",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 131,
+    "question": "The appropriate data type to store the number of rows and colums of the matrix is____________.",
+    "options": [
+      "float",
+      "int (Not sure)",
+      "char",
+      "none of the given options."
+    ],
+    "correct": "int (Not sure)",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 132,
+    "question": "Class is a user defined___________.",
+    "options": [
+      "data type (page 317)",
+      "memory referee",
+      "value",
+      "none of the given options."
+    ],
+    "correct": "data type (page 317)",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 133,
+    "question": "A pointer variable can be,",
+    "options": [
+      "Decremented",
+      "Incremented",
+      "Multiplied",
+      "Both Iecremented and Decremented"
+    ],
+    "correct": "Both Iecremented and Decremented",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 134,
+    "question": "NULL value has been defined in ______ and _________ header files.",
+    "options": [
+      "strings.h and iostream.h",
+      "ctype.h and conio.c",
+      "conio.c and conio.h",
+      "stdlib.h and stddef.h"
+    ],
+    "correct": "stdlib.h and stddef.h",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 135,
+    "question": "A Matrix can be composed of ints, floats or doubles as their elements. Best way is to handle this , _______________",
+    "options": [
+      "Write a separate class to handle each",
+      "Use templates",
+      "Use strings to store all types",
+      "None of the given options"
+    ],
+    "correct": "Use templates",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 136,
+    "question": "\"setprecision\" manipulator will set 25",
+    "options": [
+      "The number of digits after the decimal point",
+      "The number of digits before the decimal point",
+      "The number of digits in a number",
+      "None of the given options"
+    ],
+    "correct": "The number of digits after the decimal point",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 137,
+    "question": "Which of the following option will be true, if we overload \"- =\" operator?",
+    "options": [
+      "only - operator needs to be overloaded",
+      "Minus (-) and = operators need to be overloaded",
+      "the -= operator need to be overloaded explicitly",
+      "the - and = operators need to be overloaded implicitly Fall 2009 CS201- Introduction to Programming"
+    ],
+    "correct": "the -= operator need to be overloaded explicitly",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 138,
+    "question": "In C/C++ if we define an array of size eight (8) i.e. int Arr [8]; then the last element of this array will be stored at,",
+    "options": ["Arr[0]", "Arr[8]", "Arr[7]", "Arr[-1]"],
+    "correct": "Arr[7]",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 139,
+    "question": "When an array is passed to a function then default way of passing this array is,",
+    "options": ["By data", "By reference", "By value", "By data type"],
+    "correct": "By reference",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 140,
+    "question": "Array is a data structure which store",
+    "options": ["Memory addresses", "Variables", "Data Type", "Data"],
+    "correct": "Data",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 141,
+    "question": "We can also create an array of user define data type.",
+    "options": ["True", "False 26"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 142,
+    "question": "When we define an array of objects then,",
+    "options": [
+      "Destructor will call once for whole array",
+      "Destructor will call for each object of the array",
+      "Destructor will never call",
+      "Depends on the size of array"
+    ],
+    "correct": "Destructor will call for each object of the array",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 143,
+    "question": "What is the sequence of event(s) when allocating memory using new operator?",
+    "options": [
+      "Only block of memory is allocated for objects",
+      "Only constructor is called for objects",
+      "Memory is allocated first before calling constructor",
+      "Constructor is called first before allocating memory"
+    ],
+    "correct": "Memory is allocated first before calling constructor",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 144,
+    "question": "We can delete an array of objects without specifying [] brackets if a class is not doing dynamic memory allocation internally.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 145,
+    "question": "The second parameter of operator functions for << and >> are objects of the class For which we are overloading these operators.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 146,
+    "question": "Which of the following is correct way to initialize a variable x of int type with value 10?",
+    "options": [
+      "int x ; x = 10 ;",
+      "int x = 10 ; (sure)",
+      "int x, x = 10;",
+      "x = 10 ;"
+    ],
+    "correct": "int x = 10 ; (sure)",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 147,
+    "question": "Default mechanism of function calling in case of array is _____ and in case of variable is ___.",
+    "options": [
+      "Call by value, call by reference",
+      "Call by referene, call by reference",
+      "Call by reference, call by value",
+      "Call by value, call by value"
+    ],
+    "correct": "Call by reference, call by value",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 148,
+    "question": "What does STL stand for?",
+    "options": [
+      "Source template library 27",
+      "Standard template library",
+      "Stream template library",
+      "Standard temporary library"
+    ],
+    "correct": "Standard template library",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 149,
+    "question": "Skill(s) that is/are needed by programmer’s _______________________.",
+    "options": [
+      "Paying attention to detail",
+      "Think about the reusability",
+      "Think about user interface",
+      "All of the given options"
+    ],
+    "correct": "All of the given options",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 150,
+    "question": "For which array, the size of the array should be one more than the number of elements in an array?",
+    "options": ["int", "double", "float", "char"],
+    "correct": "char",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 151,
+    "question": "new and delete are _____ whereas malloc and free are _____.",
+    "options": [
+      "Functions, operators",
+      "Classes, operators",
+      "Operators, functions",
+      "Operators, classes"
+    ],
+    "correct": "Operators, functions",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 152,
+    "question": "Friend functions are _____ of a class.",
+    "options": [
+      "Member functions",
+      "Public member functions",
+      "Private member functions",
+      "Non-member functions"
+    ],
+    "correct": "Non-member functions",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 153,
+    "question": "The prototype of friend functions must be written ____ the class and its definition must be written ____",
+    "options": [
+      "inside, inside the class",
+      "inside, outside the class",
+      "outside, inside the class",
+      "outside, outside the class"
+    ],
+    "correct": "inside, outside the class",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 154,
+    "question": "If overloaded plus operator is implemented as non-member function then which of the following statement will be true for the statement given below? obj3 = obj1 + obj2 ;",
+    "options": [
+      "obj2 will be passed as an argument to + operator whereas obj2 will 28 drive the + operator",
+      "obj1 will drive the + operator whereas obj2 will be passed as an argument to + operator",
+      "Both objects (obj1, obj2) will be passed as arguments to the + operator (not sure)",
+      "Any of the objects (obj1, obj2) can drive the + operator"
+    ],
+    "correct": "Both objects (obj1, obj2) will be passed as arguments to the + operator (not sure)",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 155,
+    "question": "Which one of the following is the declaration of overloaded pre-increment operator implemented as member function?",
+    "options": [
+      "Class-name operator +() ;",
+      "Class-name operator +(int) ;",
+      "Class-name operator ++() ; (page 389)",
+      "Class-name operator ++(int) ;"
+    ],
+    "correct": "Class-name operator ++() ; (page 389)",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 156,
+    "question": "For cin, the source is normally a ________ and destination can be ______.",
+    "options": [
+      "File, native data type",
+      "Disk, user-define type",
+      "Keyboard, variable  For cin , the source is normally keyboard and the destination can be an ordinary variable",
+      "File, user-define type"
+    ],
+    "correct": "Keyboard, variable",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 157,
+    "question": "We can also do conditional compilation with preprocessor directives.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 158,
+    "question": "The programs, in which we allocate static memory, run essentially on ________",
+    "options": [
+      "Heap",
+      "System Cache",
+      "None of the given options",
+      "Stack  The programs, in which we allocate static memory, run essentially on stack."
+    ],
+    "correct": "Stack",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 159,
+    "question": "The default value of a parameter can be provided inside the ________________",
+    "options": [
+      "function prototype",
+      "function definition",
+      "both function prototype or function definition",
+      "none of the given options. The default value of a parameter is provided inside the function prototype or function definition."
+    ],
+    "correct": "function prototype",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 160,
+    "question": "29 While calling function, the arguments are assigned to the parameters from _____________.",
+    "options": [
+      "left to right. (page 295)",
+      "right to left",
+      "no specific order is followed",
+      "none of the given options."
+    ],
+    "correct": "no specific order is followed",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 161,
+    "question": "When an operator function is defined as member function for a binary Plus (+) operator then the number of argument it take is/are.",
+    "options": ["Zero", "One", "Two", "N arguments"],
+    "correct": "One",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 162,
+    "question": "With user-defined data type variables (Objects), self assignment can produce __________.",
+    "options": [
+      "Syntax error",
+      "Logical error",
+      "Link error",
+      "Non of the given options (not sure)"
+    ],
+    "correct": "Logical error",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 163,
+    "question": "Assignment operator is used to initialize a newly declared object from existing object.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 164,
+    "question": "When an object of a class is defined inside an other class then,",
+    "options": [
+      "Constructor of enclosing class will be called first",
+      "Constructor of inner object will be called first",
+      "Constructor and Destructor will be called simultaneously",
+      "None of the given options"
+    ],
+    "correct": "Constructor of inner object will be called first",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 165,
+    "question": "In the member initializer list, the data members are initialized,",
+    "options": [
+      "From left to right",
+      "From right to left",
+      "In the order in which they are defined within class",
+      "None of the given options"
+    ],
+    "correct": "In the order in which they are defined within class",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 166,
+    "question": "new operator allocates memory from free store and return _____________. 30",
+    "options": ["A pointer", "A reference", "An integer", "A float"],
+    "correct": "A pointer",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 167,
+    "question": "\"new\" and \"delete\" keywords are _____________ in C++ language.",
+    "options": [
+      "Built-in- Function",
+      "Operators",
+      "Memory Allocation Function",
+      "None of the given options Spring 2010 CS201- Introduction to Programming"
+    ],
+    "correct": "Operators",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 168,
+    "question": "&& is -------------------- operator.",
+    "options": ["An arithmetic", "Logical", "Relational", "Unary"],
+    "correct": "Logical",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 169,
+    "question": "Which of the following function(s) is/are included in ctype.h header file?",
+    "options": [
+      "isdigit(int c)",
+      "isxdigit(int c )",
+      "tolower(int c)",
+      "All of the above"
+    ],
+    "correct": "All of the above",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 170,
+    "question": "Disks are _______________ devices having access time of _________ milliseconds.",
+    "options": [
+      "Electro-physical, 6",
+      "Electro-Mechanical, 4",
+      "Electro-physical, 5",
+      "Electro-Mechanical, 7  http://www.tns.com/taocs_dp.asp"
+    ],
+    "correct": "Electro-Mechanical, 7",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 171,
+    "question": "All preprocessor directives are started with the symbol______.",
+    "options": ["* 31", "++", "@", "#"],
+    "correct": "#",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 172,
+    "question": "When we use manipulators in our program then which header file should be included?",
+    "options": ["iostream.h", "stdlib.h", "stdio.h", "iomanip.h"],
+    "correct": "iomanip.h",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 173,
+    "question": "setprecision is a parameter less manipulator.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 174,
+    "question": "Which of the following is NOT a preprocessor directive?",
+    "options": ["#error", "#define", "#line", "#ndefine"],
+    "correct": "#ndefine",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 175,
+    "question": "We can do arithmetic with references like pointers.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 176,
+    "question": "What does (*this) represents?",
+    "options": [
+      "The current function of the class",
+      "The current pointer of the class",
+      "The current object of the class",
+      "A value of the data member"
+    ],
+    "correct": "The current object of the class",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 177,
+    "question": "Friend function of a class is ______________ .",
+    "options": [
+      "Member function",
+      "Non-member function",
+      "Private function",
+      "Public function"
+    ],
+    "correct": "Non-member function",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 178,
+    "question": "A function can declare itself a friend of a class. 32",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 179,
+    "question": "Overloaded delete operator function takes the same parameter as an argument returned by new operator function.",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 180,
+    "question": "The second parameter of operator functions for << and >> are objects of the class for which we are overloading these operators.",
+    "options": [
+      "True",
+      "False The second parameter to operator << is an object of the class that we are overloading the operator for. Similar is the case for operator >>"
+    ],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 181,
+    "question": "A template function must have at least ---------- generic data type",
+    "options": ["Zero", "One", "Two", "Three"],
+    "correct": "One",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 182,
+    "question": "A template function must have only generic data types.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 183,
+    "question": "We can not make a member function of a class as template function.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 184,
+    "question": "Which character is inserted at the end of string to indicate the end of string?",
+    "options": ["new line", "tab", "null", "carriage return"],
+    "correct": "null",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 185,
+    "question": "is used for ___________. 33",
+    "options": [
+      "calculation",
+      "reading",
+      "assigning value to variables",
+      "None of the given options."
+    ],
+    "correct": "assigning value to variables",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 186,
+    "question": "vuzs The object _______________may be used both for file input and file output",
+    "options": [
+      "fstream,",
+      "ifstream,",
+      "ofstream,",
+      "none of the given options."
+    ],
+    "correct": "fstream,",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 187,
+    "question": "Which of the following function calling mechanism is true for the function prototype given below? float func(float &);",
+    "options": [
+      "Call by value",
+      "Call by reference using pointer",
+      "Call by reference using reference variable",
+      "None of the given options"
+    ],
+    "correct": "Call by reference using reference variable",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 188,
+    "question": "The programs, in which we allocate static memory, run essentially on ________",
+    "options": ["Heap", "System Cache", "None of the given options", "Stack"],
+    "correct": "Stack",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 189,
+    "question": "Overloaded delete operator function takes parameter of void pointer and returns ________.",
+    "options": [
+      "void",
+      "void pointer",
+      "pointer to an object",
+      "pointer of type int"
+    ],
+    "correct": "void",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 190,
+    "question": "What should be the return type of the constructor?",
+    "options": [
+      "void pointer",
+      "int",
+      "same as object type",
+      "constructors do not return any thing"
+    ],
+    "correct": "constructors do not return any thing",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 191,
+    "question": "It is a way of reusing the code when we contain objects of our already written classes into a new class,",
+    "options": ["True 34", "False"],
+    "correct": "True 34",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 192,
+    "question": "vuzs Templates are not type safe.",
+    "options": ["true", "false"],
+    "correct": "false",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 193,
+    "question": "The functions used for dynamic memory allocation return pointer of type ______",
+    "options": [
+      "int",
+      "float",
+      "void",
+      "double FINALTERM EXAMINATION Fall 2008 CS201- Introduction to Programming"
+    ],
+    "correct": "void",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 194,
+    "question": "There are mainly -------------------- types of software",
+    "options": ["Two", "Three", "Four", "Five"],
+    "correct": "Two",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 195,
+    "question": "seekg() and write() are functionally _________________ .",
+    "options": [
+      "Different",
+      "Identical",
+      "Two names of same function",
+      "None of the above"
+    ],
+    "correct": "Different",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 196,
+    "question": "When a pointer is incremented, it actually jumps the number of memory addresses",
+    "options": [
+      "According to data type",
+      "1 byte exactly",
+      "1 bit exactly",
+      "A pointer variable can not be incremented"
+    ],
+    "correct": "According to data type",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 197,
+    "question": "setw is a parameterized manipulator. 35",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 198,
+    "question": "eof( ), bad( ), good( ), clear( ) all are manipulators.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 199,
+    "question": "In functions that return reference, use __________variables.",
+    "options": [
+      "Local",
+      "Global",
+      "Global or static",
+      "None of the given option"
+    ],
+    "correct": "Global or static",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 200,
+    "question": "The declarator of Plus (+) member operator function is",
+    "options": [
+      "Class-Name operator + (Class-Name rhs)",
+      "operator Class-Name + ( )",
+      "operator Class-Name + ( rhs)",
+      "Class-Name operator + ( )"
+    ],
+    "correct": "Class-Name operator + (Class-Name rhs)",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 201,
+    "question": "The compiler does not provide a copy constructor if we do not provide it.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 202,
+    "question": "What is the functionality of the following syntax to delete an array of 5 objects named arr allocated using new operator? delete arr ;",
+    "options": [
+      "Deletes all the objects of array",
+      "Deletes one object of array",
+      "Do not delete any object",
+      "Results into syntax error This statement will call the destructor only for the object pointed by the arr and deallocate the space allocated to this object"
+    ],
+    "correct": "Deletes one object of array",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 203,
+    "question": "What is the sequence of event(s) when allocating memory using new operator? 36",
+    "options": [
+      "Only block of memory is allocated for objects",
+      "Only constructor is called for objects",
+      "Memory is allocated first before calling constructor",
+      "Constructor is called first before allocating memory"
+    ],
+    "correct": "Memory is allocated first before calling constructor",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 204,
+    "question": "What is the sequence of event(s) when deallocating memory using delete operator?",
+    "options": [
+      "Only block of memory is deallocated for objects",
+      "Only destructor is called for objects",
+      "Memory is deallocated first before calling destructor",
+      "Destructor is called first before deallocating memory"
+    ],
+    "correct": "Destructor is called first before deallocating memory",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 205,
+    "question": "new and delete operators cannot be overloaded as member functions.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 206,
+    "question": "The operator function of << and >> operators are always the member function of a class.",
+    "options": ["True", "False"],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 207,
+    "question": "A template function must have at least ---------- generic data type",
+    "options": ["Zero", "One", "Two", "Three"],
+    "correct": "One",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 208,
+    "question": "If we do not mention any return_value_type with a function, it will return an _____ value.",
+    "options": ["int", "void", "double", "float"],
+    "correct": "int",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 209,
+    "question": "Suppose a program contains an array declared as int arr[100]; what will be the size of array?",
+    "options": ["0", "99", "100", "101 37"],
+    "correct": "100",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 210,
+    "question": "The name of an array represents address of first location of array element.",
+    "options": [
+      "True",
+      "False The name of the array is a constant pointer which contains the memory is the address of first element of the array"
+    ],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 211,
+    "question": "Reusing the variables in program helps to save the memory",
+    "options": ["True", "False"],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 212,
+    "question": "Which of the following option is true about new operator to dynamically allocate memory to an object?",
+    "options": [
+      "The new operator determines the size of an object",
+      "Allocates memory to object and returns pointer of valid type",
+      "Creates an object and calls the constructor to initialize the object",
+      "All of the given options"
+    ],
+    "correct": "All of the given options",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 213,
+    "question": "New and delete are _____ whereas malloc and free are _____.",
+    "options": [
+      "Functions, operators",
+      "Classes, operators",
+      "Operators, functions",
+      "Operators, classes"
+    ],
+    "correct": "Operators, functions",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 214,
+    "question": "Like member functions, ______ can also access the private data members of a class.",
+    "options": [
+      "Non-member functions",
+      "Friend functions",
+      "Any function outside class",
+      "None of the given options"
+    ],
+    "correct": "Friend functions",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 215,
+    "question": "Which of the following statement is best regarding declaration of friend function?",
+    "options": [
+      "Friend function must be declared after public keyword.",
+      "Friend function must be declared after private keyword.",
+      "Friend function must be declared at the top within class definition.",
+      "It can be declared anywhere in class as these are not affected by the public and private keywords.  38"
+    ],
+    "correct": "It can be declared anywhere in class as these are not affected by the public and private keywords.",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 216,
+    "question": "The operator function overloaded for an Assignment operator (=) must be",
+    "options": [
+      "Non-member function of class",
+      "Member function of class",
+      "Friend function of class",
+      "None of the given options"
+    ],
+    "correct": "Member function of class",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 217,
+    "question": "For non-member operator function, object on left side of the operator may be",
+    "options": [
+      "Object of operator class",
+      "Object of different class",
+      "Built-in data type",
+      "All of the given options"
+    ],
+    "correct": "All of the given options",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 218,
+    "question": "The operator function will be implemented as _____, if obj1 drive the - operator whereas obj2 is passed as arguments to - operator in the statement given below. obj3 = obj1 - obj2;",
+    "options": [
+      "Member function",
+      "Non-member function",
+      "Friend function",
+      "None of the given options"
+    ],
+    "correct": "Member function",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 219,
+    "question": "Which one of the following is the declaration of overloaded pre-increment operator implemented as member function?",
+    "options": [
+      "Class-name operator +() ;",
+      "Class-name operator +(int) ;",
+      "Class-name operator ++() ;",
+      "Class-name operator ++(int) ;"
+    ],
+    "correct": "Class-name operator ++() ;",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 220,
+    "question": "The static data members of a class are initialized _______",
+    "options": [
+      "at file scope",
+      "within class definition",
+      "within member function",
+      "within main function"
+    ],
+    "correct": "at file scope",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 221,
+    "question": "Class is a user defined___________.",
+    "options": [
+      "data type  39",
+      "memory referee",
+      "value",
+      "none of the given options."
+    ],
+    "correct": "data type  39",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 222,
+    "question": "We can also define a user-defines manipulators.",
+    "options": [
+      "True",
+      "False Parameterized manipulators require one or more arguments. setfill (near the bottom of the iomanip.h header file) is an example of a parameterized manipulator. You can create your own parameterized manipulators and your own simple manipulators."
+    ],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 223,
+    "question": "Automatic variable are created on ________.",
+    "options": [
+      "Heap",
+      "Free store",
+      "static storage",
+      "stack  FINALTERM EXAMINATION fall 2008 CS201- Introduction to Programming (Session - 2)"
+    ],
+    "correct": "stack",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  }
+]
