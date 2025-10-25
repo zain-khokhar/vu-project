@@ -94,7 +94,6 @@
       "implement",
       "design",
       "analysis",
-      "none of the given options FINALTERM EXAMINATION CS201 - Introduction to programming Final Term Spring 2010 Operator overloading can be performed through__________________.",
       "Classes",
       "Function",
       "Operators",
@@ -109,13 +108,13 @@
     "id": 9,
     "question": "When a value is referred by a normal variable then it is known as,",
     "options": [
-      "Direct Reference (page 143)",
-      "Indirect Reference. 3",
+      "Direct Reference",
+      "Indirect Reference.",
       "Partial Reference",
-      "Proper Reference When a value is referred by a normal variable is known as direct reference"
+      "Proper Reference "
     ],
     "correct": "Direct Reference",
-    "explanation": "N/A",
+    "explanation": "When a value is referred by a normal variable is known as direct reference",
     "difficulty": "Medium",
     "importance": 3
   },
@@ -151,10 +150,10 @@
     "question": "Overloaded delete operator function takes the same parameter as an argument returned by new operator function.",
     "options": [
       "True",
-      "False The same pointer that is returned by the new operator, is passed as an argument to the delete operator. These rules apply to both, if operators (new and delete) are overloaded as member or non-member operators (as global operators)."
+      "False"
     ],
     "correct": "True",
-    "explanation": "N/A",
+    "explanation": " The same pointer that is returned by the new operator, is passed as an argument to the delete operator. These rules apply to both, if operators (new and delete) are overloaded as member or non-member operators (as global operators).",
     "difficulty": "Medium",
     "importance": 4
   },
@@ -169,15 +168,15 @@
   },
   {
     "id": 15,
-    "question": "4 C is widely known as development language of _______ operating system.",
+    "question": "C is widely known as development language of _______ operating system.",
     "options": [
       "Linux",
       "Windows",
       "Unix",
-      "Mac OS In the start C became widely known as the development language of the UNIX operating system, and the UNIX operating system was written by using this C language. The C language is so powerful that the compiler of C and other various operating systems are written in C."
+      "Mac OS"
     ],
     "correct": "Unix",
-    "explanation": "N/A",
+    "explanation": " In the start C became widely known as the development language of the UNIX operating system, and the UNIX operating system was written by using this C language. The C language is so powerful that the compiler of C and other various operating systems are written in C.",
     "difficulty": "Medium",
     "importance": 1
   },
@@ -195,10 +194,10 @@
     "question": "We can not define a function as a friend of a Template class.",
     "options": [
       "True",
-      "False  Class templates can have friends. A class or class template, function, or function template can be a friend to a template class. Friends can also be specializations of a class template or function template, but not partial specializations."
+      "False"
     ],
     "correct": "False",
-    "explanation": "N/A",
+    "explanation": "  Class templates can have friends. A class or class template, function, or function template can be a friend to a template class. Friends can also be specializations of a class template or function template, but not partial specializations.",
     "difficulty": "Hard",
     "importance": 3
   },
@@ -236,10 +235,10 @@
       "Functions, operators",
       "Classes, operators",
       "Operators, functions",
-      "Operators, classes Hence, we can call new and delete operators, P# 342 we have allocated a memory space for our use by malloc function. P# 285"
+      "Operators, classes,"
     ],
     "correct": "Operators, functions",
-    "explanation": "N/A",
+    "explanation": " Hence, we can call new and delete operators, we have allocated a memory space for our use by malloc function. ",
     "difficulty": "Medium",
     "importance": 3
   },
@@ -276,7 +275,7 @@
     "question": "The stream insertion and stream extraction operators are already overloaded for ______.",
     "options": [
       "User-defined data types",
-      "Built-in data types http://www.sstutor.com/cpp/stream1.htm",
+      "Built-in data types",
       "User-defined and built-in data types",
       "None of the given options 6"
     ],
@@ -327,11 +326,11 @@
     "question": "The appropriate data type to store the number of rows and colums of the matrix is____________.",
     "options": [
       "float",
-      "int (Not sure)",
+      "int",
       "char",
       "none of the given options."
     ],
-    "correct": "int (Not sure)",
+    "correct": "int",
     "explanation": "N/A",
     "difficulty": "Medium",
     "importance": 5
@@ -392,7 +391,7 @@
       "Write a separate class to handle each",
       "Use templates",
       "Use strings to store all types",
-      "None of the given options FINALTERM EXAMINATION Spring 2010 CS201- Introduction to Programming"
+      "None of the given options"
     ],
     "correct": "Use templates",
     "explanation": "N/A",
@@ -526,8 +525,8 @@
   {
     "id": 45,
     "question": "With template function, the compiler automatically detects the passed data and generates a new copy of function using passed data.",
-    "options": ["True Page 510", "False"],
-    "correct": "True Page 510",
+    "options": ["True", "False"],
+    "correct": "True",
     "explanation": "N/A",
     "difficulty": "Hard",
     "importance": 3
@@ -537,7 +536,7 @@
     "question": "What will be the correct syntax to declare two-dimensional array of float data type?",
     "options": [
       "float arr{2}{2} ;",
-      "float arr[2][2] ; 10",
+      "float arr[2][2] ;",
       "float arr[2,2] ;",
       "float[2][2] arr ;"
     ],
@@ -613,9 +612,9 @@
       "A pointer to the class. 11",
       "An object of the class.",
       "A status code determining whether the class was destructed correctly",
-      "Destructors do not return a value. (page 323)"
+      "Destructors do not return a value."
     ],
-    "correct": "Destructors do not return a value. (page 323)",
+    "correct": "Destructors do not return a value.",
     "explanation": "N/A",
     "difficulty": "Easy",
     "importance": 4
@@ -626,10 +625,10 @@
     "options": [
       "Constructor",
       "Destructor",
-      "Both a constructor and a destructor (Lecture 27)",
+      "Both a constructor and a destructor",
       "None of the given options"
     ],
-    "correct": "Both a constructor and a destructor (Lecture 27)",
+    "correct": "Both a constructor and a destructor",
     "explanation": "N/A",
     "difficulty": "Easy",
     "importance": 5
@@ -641,7 +640,7 @@
       "One or more than one arguments",
       "Only one argument",
       "Zero arguments",
-      "None of the given options http://en.wikipedia.org/wiki/Template_%28programming%29"
+      "None of the given options"
     ],
     "correct": "One or more than one arguments",
     "explanation": "N/A",
@@ -652,12 +651,12 @@
     "id": 55,
     "question": "Structured Query Language is used for ______________",
     "options": [
-      "Databases Management (page 563)",
+      "Databases Management",
       "Networks",
       "Writing Operating System",
       "none of the given options"
     ],
-    "correct": "Databases Management (page 563)",
+    "correct": "Databases Management",
     "explanation": "N/A",
     "difficulty": "Easy",
     "importance": 5
@@ -687,7 +686,7 @@
       "Write a separate class to handle each",
       "Use templates",
       "Use strings to store all types",
-      "None of the given options 12"
+      "None of the given options"
     ],
     "correct": "Use templates",
     "explanation": "N/A",
@@ -698,10 +697,10 @@
     "id": 59,
     "question": "\"delete\" operator is used to return memory to free store, which is allocated by the \" new\" operator.",
     "options": [
-      "True (page 332)",
-      "False FINALTERM EXAMINATION Spring 2010 CS201- Introduction to Programming"
+      "True",
+      "False"
     ],
-    "correct": "True (page 332)",
+    "correct": "True",
     "explanation": "N/A",
     "difficulty": "Easy",
     "importance": 4
@@ -750,7 +749,7 @@
   {
     "id": 64,
     "question": "The second parameter of operator functions for << and >> are objects of the class for which we are 13 overloading these operators.",
-    "options": ["True (page 453)", "False"],
+    "options": ["True", "False"],
     "correct": "True",
     "explanation": "N/A",
     "difficulty": "Medium",
@@ -763,7 +762,7 @@
       "#include “iostream.h”",
       "include <iostream.h>",
       "include <iostream.h>",
-      "#include <iostream.h> (sure)"
+      "#include <iostream.h>"
     ],
     "correct": "#include <iostream.h>",
     "explanation": "N/A",
@@ -773,8 +772,8 @@
   {
     "id": 66,
     "question": "The number 544.53 must be stored in _____ data type.",
-    "options": ["int", "short", "float (Sure)", "char"],
-    "correct": "float (Sure)",
+    "options": ["int", "short", "float", "char"],
+    "correct": "float",
     "explanation": "N/A",
     "difficulty": "Easy",
     "importance": 4
@@ -874,7 +873,7 @@
   {
     "id": 75,
     "question": "We can also do conditional compilation with preprocessor directives.",
-    "options": ["True", "False 15"],
+    "options": ["True", "False"],
     "correct": "True",
     "explanation": "N/A",
     "difficulty": "Hard",
@@ -933,7 +932,7 @@
       "right",
       "left",
       "binary",
-      "unary http://msdn.microsoft.com/en-us/library/ms173145.aspx"
+      "unary"
     ],
     "correct": "right",
     "explanation": "N/A",
@@ -1001,7 +1000,7 @@
     "question": "Templates are not type safe.",
     "options": [
       "True",
-      "False  FINALTERM EXAMINATION Spring 2010 CS201- Introduction to Programming"
+      "False"
     ],
     "correct": "False",
     "explanation": "N/A",
@@ -1116,9 +1115,9 @@
       "#include “iostream.h”",
       "include <iostream.h>",
       "include <iostream.h>",
-      "#include <iostream.h> (Sure)"
+      "#include <iostream.h>"
     ],
-    "correct": "#include <iostream.h> (Sure)",
+    "correct": "#include <iostream.h>",
     "explanation": "N/A",
     "difficulty": "Easy",
     "importance": 1
@@ -1239,7 +1238,7 @@
     "options": [
       "Constructor",
       "Destructor",
-      "Both a constructor and a destructor (Lecture 27)",
+      "Both a constructor and a destructor",
       "None of the given options"
     ],
     "correct": "Constructor",
@@ -1249,7 +1248,7 @@
   },
   {
     "id": 107,
-    "question": "new operator is used to allocate memory from the free store during 20",
+    "question": "new operator is used to allocate memory from the free store during",
     "options": [
       "Compile Time",
       "Run Time",
@@ -1303,7 +1302,7 @@
     "question": "With New keyword, data types and class members are initialized with meaningful values instead of garbage.",
     "options": [
       "True",
-      "False FINALTERM EXAMINATION Spring 2010 CS201- Introduction to Programming"
+      "False"
     ],
     "correct": "False",
     "explanation": "N/A",
@@ -1329,7 +1328,7 @@
     "question": "Dealing with structures and functions passing by reference is the most economical method",
     "options": [
       "True",
-      "False http://mathbits.com/MathBits/CompSci/Structures/Functions.htm"
+      "False"
     ],
     "correct": "True",
     "explanation": "N/A",
@@ -1449,7 +1448,7 @@
   {
     "id": 124,
     "question": "If a symbolic constant has been defined, it will be an error to define it again.",
-    "options": ["True  15", "False"],
+    "options": ["True", "False"],
     "correct": "True",
     "explanation": "N/A",
     "difficulty": "Easy",
@@ -1512,7 +1511,7 @@
       "Constructor of enclosing class will be called first",
       "Constructor of inner object will be called first",
       "Constructor and Destructor will be called simultaneously",
-      "None of the given options 24"
+      "None of the given options"
     ],
     "correct": "Constructor of inner object will be called first",
     "explanation": "N/A",
@@ -1524,11 +1523,11 @@
     "question": "The appropriate data type to store the number of rows and colums of the matrix is____________.",
     "options": [
       "float",
-      "int (Not sure)",
+      "int",
       "char",
       "none of the given options."
     ],
-    "correct": "int (Not sure)",
+    "correct": "int",
     "explanation": "N/A",
     "difficulty": "Medium",
     "importance": 2
@@ -1537,12 +1536,12 @@
     "id": 132,
     "question": "Class is a user defined___________.",
     "options": [
-      "data type (page 317)",
+      "data type",
       "memory referee",
       "value",
       "none of the given options."
     ],
-    "correct": "data type (page 317)",
+    "correct": "data type",
     "explanation": "N/A",
     "difficulty": "Easy",
     "importance": 1
@@ -1610,7 +1609,7 @@
       "only - operator needs to be overloaded",
       "Minus (-) and = operators need to be overloaded",
       "the -= operator need to be overloaded explicitly",
-      "the - and = operators need to be overloaded implicitly Fall 2009 CS201- Introduction to Programming"
+      "the - and = operators need to be overloaded implicitly"
     ],
     "correct": "the -= operator need to be overloaded explicitly",
     "explanation": "N/A",
@@ -1704,11 +1703,11 @@
     "question": "Which of the following is correct way to initialize a variable x of int type with value 10?",
     "options": [
       "int x ; x = 10 ;",
-      "int x = 10 ; (sure)",
+      "int x = 10 ;",
       "int x, x = 10;",
       "x = 10 ;"
     ],
-    "correct": "int x = 10 ; (sure)",
+    "correct": "int x = 10 ;",
     "explanation": "N/A",
     "difficulty": "Hard",
     "importance": 5
@@ -1731,7 +1730,7 @@
     "id": 148,
     "question": "What does STL stand for?",
     "options": [
-      "Source template library 27",
+      "Source template library",
       "Standard template library",
       "Stream template library",
       "Standard temporary library"
@@ -1812,10 +1811,10 @@
     "options": [
       "obj2 will be passed as an argument to + operator whereas obj2 will 28 drive the + operator",
       "obj1 will drive the + operator whereas obj2 will be passed as an argument to + operator",
-      "Both objects (obj1, obj2) will be passed as arguments to the + operator (not sure)",
+      "Both objects (obj1, obj2) will be passed as arguments to the + operator",
       "Any of the objects (obj1, obj2) can drive the + operator"
     ],
-    "correct": "Both objects (obj1, obj2) will be passed as arguments to the + operator (not sure)",
+    "correct": "Both objects (obj1, obj2) will be passed as arguments to the + operator",
     "explanation": "N/A",
     "difficulty": "Hard",
     "importance": 5
@@ -1826,10 +1825,10 @@
     "options": [
       "Class-name operator +() ;",
       "Class-name operator +(int) ;",
-      "Class-name operator ++() ; (page 389)",
+      "Class-name operator ++() ;",
       "Class-name operator ++(int) ;"
     ],
-    "correct": "Class-name operator ++() ; (page 389)",
+    "correct": "Class-name operator ++() ;",
     "explanation": "N/A",
     "difficulty": "Hard",
     "importance": 4
@@ -1864,10 +1863,10 @@
       "Heap",
       "System Cache",
       "None of the given options",
-      "Stack  The programs, in which we allocate static memory, run essentially on stack."
+      "Stack"
     ],
     "correct": "Stack",
-    "explanation": "N/A",
+    "explanation": "  The programs, in which we allocate static memory, run essentially on stack.",
     "difficulty": "Hard",
     "importance": 2
   },
@@ -1887,9 +1886,9 @@
   },
   {
     "id": 160,
-    "question": "29 While calling function, the arguments are assigned to the parameters from _____________.",
+    "question": "While calling function, the arguments are assigned to the parameters from _____________.",
     "options": [
-      "left to right. (page 295)",
+      "left to right.",
       "right to left",
       "no specific order is followed",
       "none of the given options."
@@ -1915,7 +1914,7 @@
       "Syntax error",
       "Logical error",
       "Link error",
-      "Non of the given options (not sure)"
+      "Non of the given options"
     ],
     "correct": "Logical error",
     "explanation": "N/A",
@@ -1975,7 +1974,7 @@
       "Built-in- Function",
       "Operators",
       "Memory Allocation Function",
-      "None of the given options Spring 2010 CS201- Introduction to Programming"
+      "None of the given options"
     ],
     "correct": "Operators",
     "explanation": "N/A",
@@ -2012,7 +2011,7 @@
       "Electro-physical, 6",
       "Electro-Mechanical, 4",
       "Electro-physical, 5",
-      "Electro-Mechanical, 7  http://www.tns.com/taocs_dp.asp"
+      "Electro-Mechanical, 7"
     ],
     "correct": "Electro-Mechanical, 7",
     "explanation": "N/A",
@@ -2160,7 +2159,7 @@
   },
   {
     "id": 185,
-    "question": "is used for ___________. 33",
+    "question": "is used for ___________.",
     "options": [
       "calculation",
       "reading",
@@ -2262,7 +2261,7 @@
       "int",
       "float",
       "void",
-      "double FINALTERM EXAMINATION Fall 2008 CS201- Introduction to Programming"
+      "double"
     ],
     "correct": "void",
     "explanation": "N/A",
@@ -2308,7 +2307,7 @@
   },
   {
     "id": 197,
-    "question": "setw is a parameterized manipulator. 35",
+    "question": "setw is a parameterized manipulator.",
     "options": ["True", "False"],
     "correct": "True",
     "explanation": "N/A",
@@ -2368,10 +2367,10 @@
       "Deletes all the objects of array",
       "Deletes one object of array",
       "Do not delete any object",
-      "Results into syntax error This statement will call the destructor only for the object pointed by the arr and deallocate the space allocated to this object"
+      "Results into syntax error"
     ],
     "correct": "Deletes one object of array",
-    "explanation": "N/A",
+    "explanation": " This statement will call the destructor only for the object pointed by the arr and deallocate the space allocated to this object",
     "difficulty": "Medium",
     "importance": 5
   },
@@ -2453,10 +2452,10 @@
     "question": "The name of an array represents address of first location of array element.",
     "options": [
       "True",
-      "False The name of the array is a constant pointer which contains the memory is the address of first element of the array"
+      "False"
     ],
     "correct": "True",
-    "explanation": "N/A",
+    "explanation": " The name of the array is a constant pointer which contains the memory is the address of first element of the array",
     "difficulty": "Easy",
     "importance": 1
   },
@@ -2518,7 +2517,7 @@
       "Friend function must be declared after public keyword.",
       "Friend function must be declared after private keyword.",
       "Friend function must be declared at the top within class definition.",
-      "It can be declared anywhere in class as these are not affected by the public and private keywords.  38"
+      "It can be declared anywhere in class as these are not affected by the public and private keywords."
     ],
     "correct": "It can be declared anywhere in class as these are not affected by the public and private keywords.",
     "explanation": "N/A",
@@ -2628,7 +2627,7 @@
       "Heap",
       "Free store",
       "static storage",
-      "stack  FINALTERM EXAMINATION fall 2008 CS201- Introduction to Programming (Session - 2)"
+      "stack"
     ],
     "correct": "stack",
     "explanation": "N/A",
