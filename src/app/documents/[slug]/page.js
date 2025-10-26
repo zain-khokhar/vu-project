@@ -108,7 +108,7 @@ export default async function DocumentPage({ params }) {
                     className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center justify-center space-x-2"
                   >
                     <Download className="h-5 w-5" />
-                    <span>Download Document</span>
+                    <span>Download</span>
                     {previewInfo.type === 'googledrive' ? (
                       <span className="text-xs bg-blue-500 px-1 rounded">Direct</span>
                     ) : (

@@ -270,7 +270,7 @@ export default function QuizClient({ quizData, settings }) {
                 </div>
 
                 {/* Scrollable Grid */}
-                <div className="grid grid-cols-6 gap-2 pb-4 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent flex-grow">
+<div className="grid grid-cols-6 gap-2 pb-4 overflow-y-auto bg-gray-200 rounded p-2 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent flex-grow shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)]">
                   {selectedQuestions.map((_, index) => {
                     const isAnswered = userAnswers[index] !== undefined;
                     const isCurrent = index === currentQuestionIndex;

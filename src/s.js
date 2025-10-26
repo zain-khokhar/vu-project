@@ -63,7 +63,7 @@
 
 // // ========== STEP 3: Main Function ==========
 // async function main() {
-//   const pdfPath = "./CS301 MIDTERM SOLVED MCQS By JUNAID-1_removed.pdf"; // change path to your PDF file
+//   const pdfPath = "./fake.pdf"; // change path to your PDF file
 //   const txtPath = "./questions.txt";
 //   const jsonPath = "./questions2.json";
 
@@ -107,3 +107,4 @@ const updated = data.map((item, index) => ({
 fs.writeFileSync("questions_updated.json", JSON.stringify(updated, null, 2));
 
 console.log("✅ Questions updated successfully → saved to questions_updated.json");
+// https://www.mediafire.com/folder/w7enlpkoxpncm/All_VU_Subjects

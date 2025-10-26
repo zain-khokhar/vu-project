@@ -61,32 +61,32 @@ export default function GoogleDriveViewer({ fileUrl, documentTitle, onClose }) {
   return (
     <div className="fixed inset-0 z-50 bg-gray-900 bg-opacity-95">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center space-x-4">
+      <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-3 sm:px-4 py-3 flex items-center justify-between gap-2">
+        <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors flex-shrink-0"
             title="Close Preview"
           >
             <X className="h-5 w-5" />
           </button>
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900 truncate max-w-96">
+          <div className="min-w-0 flex-1">
+            <h2 className="text-sm sm:text-lg font-semibold text-gray-900 truncate">
               {documentTitle}
             </h2>
-            <p className="text-sm text-gray-600">Google Drive Preview</p>
+            <p className="text-xs sm:text-sm text-gray-600 hidden sm:block">Google Drive Preview</p>
           </div>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-2 flex-shrink-0">
           {/* Retry Button */}
           {iframeError && (
             <button
               onClick={handleRetry}
-              className="flex items-center space-x-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+              className="flex items-center space-x-1 sm:space-x-2 bg-gray-600 text-white px-2 sm:px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors text-xs sm:text-sm"
             >
-              <RefreshCw className="h-4 w-4" />
-              <span>Retry</span>
+              <RefreshCw className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">Retry</span>
             </button>
           )}
 
@@ -95,10 +95,11 @@ export default function GoogleDriveViewer({ fileUrl, documentTitle, onClose }) {
             href={downloadUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center space-x-1 sm:space-x-2 bg-blue-600 text-white px-2 sm:px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-xs sm:text-sm"
+            title="Download"
           >
-            <Download className="h-4 w-4" />
-            <span>Download</span>
+            <Download className="h-3 w-3 sm:h-4 sm:w-4" />
+            <span className="hidden sm:inline">Download</span>
           </a>
           
           {/* Open in Google Drive */}
@@ -106,10 +107,12 @@ export default function GoogleDriveViewer({ fileUrl, documentTitle, onClose }) {
             href={fileUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+            className="flex items-center space-x-1 sm:space-x-2 bg-green-600 text-white px-2 sm:px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-xs sm:text-sm"
+            title="Open in Drive"
           >
-            <ExternalLink className="h-4 w-4" />
-            <span>Open in Drive</span>
+            <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
+            <span className="hidden md:inline">Open in Drive</span>
+            <span className="hidden sm:inline md:hidden">Drive</span>
           </a>
         </div>
       </div>
