@@ -171,18 +171,7 @@ export default function DocumentsPage({ searchParams }) {
   return (
     <Suspense fallback={
       <div className="bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative min-h-screen">
-        {/* Premium Liquid Background */}
-        <div className="fixed inset-0 -z-10">
-          {/* <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/20 to-purple-50/30"></div>
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-400/20 to-purple-400/20 opacity-40"></div>
-          <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div> */}
-        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="mb-8">
-            {/* <div className="h-8 bg-gradient-to-r from-white/60 to-white/40 rounded w-64 mb-2 animate-pulse"></div>
-            <div className="h-4 bg-gradient-to-r from-white/60 to-white/40 rounded w-96 animate-pulse"></div> */}
-          </div>
           <DocumentsLoading />
         </div>
       </div>

@@ -208,11 +208,7 @@ html {
   text-decoration: underline;
 }
 
-.ProseMirror a {
-  color: #2563eb;
-  text-decoration: underline;
-  cursor: pointer;
-}
+
 
 .ProseMirror a:hover {
   color: #1d4ed8;
@@ -288,6 +284,7 @@ html {
   color: #2563eb;
   font-weight: 600;
 }
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -429,7 +426,7 @@ html {
     background-attachment: fixed;
     transition: background 0.3s ease, color 0.3s ease;
   }
-  
+
   .dark body {
     background: linear-gradient(135deg, #050510 0%, #0f0f2e 100%);
     background-attachment: fixed;
@@ -445,13 +442,13 @@ html {
     box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9);
     transition: all 0.3s ease;
   }
-  
+
   .dark .glass {
     background: rgba(15, 15, 46, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   }
-  
+
   .glass-dark {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(24px) saturate(200%);
@@ -460,23 +457,23 @@ html {
     box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8);
     transition: all 0.3s ease;
   }
-  
+
   .dark .glass-dark {
     background: rgba(15, 15, 46, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.25);
     box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
-  
+
   .gradient-primary {
     background: linear-gradient(135deg, #5b6ff5 0%, #6b2fcc 100%);
   }
-  
+
   .gradient-secondary {
     background: linear-gradient(135deg, #ec4899 0%, #dc2626 100%);
   }
-  
+
   .gradient-mesh {
-    background: 
+    background:
       radial-gradient(at 40% 20%, rgba(91, 111, 245, 0.2) 0px, transparent 50%),
       radial-gradient(at 80% 0%, rgba(107, 47, 204, 0.2) 0px, transparent 50%),
       radial-gradient(at 0% 50%, rgba(236, 72, 153, 0.2) 0px, transparent 50%),
@@ -484,9 +481,9 @@ html {
       radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.2) 0px, transparent 50%),
       radial-gradient(at 80% 100%, rgba(91, 111, 245, 0.2) 0px, transparent 50%);
   }
-  
+
   .dark .gradient-mesh {
-    background: 
+    background:
       radial-gradient(at 40% 20%, rgba(91, 111, 245, 0.3) 0px, transparent 50%),
       radial-gradient(at 80% 0%, rgba(107, 47, 204, 0.3) 0px, transparent 50%),
       radial-gradient(at 0% 50%, rgba(236, 72, 153, 0.3) 0px, transparent 50%),
@@ -556,4 +553,15 @@ html {
 
 html {
   font-size: var(--font-size);
+}
+
+/* a {
+  text-decoration: none !important;
+  color: white;
+} */
+
+.ProseMirror a {
+  color: #2563eb;
+  text-decoration: underline;
+  cursor: pointer;
 }

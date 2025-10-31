@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Upload, X, Plus, AlertCircle, CheckCircle } from 'lucide-react';
 import { createDocument } from '@/actions/documents';
 import { documentTypes } from '@/lib/utils';
-import RichTextEditor from '@/components/RichTextEditor';
+import BlogEditor from '@/components/BlogEditor';
 
 export default function UploadPage() {
   const router = useRouter();
@@ -220,7 +220,7 @@ export default function UploadPage() {
               <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
                 Description *
               </label>
-              <RichTextEditor
+              <BlogEditor
                 content={formData.description}
                 onChange={(html) => setFormData(prev => ({ ...prev, description: html }))}
                 placeholder="Provide a detailed description of the document content, topics covered, etc. Use the toolbar to format your text with headings, lists, and emphasis."

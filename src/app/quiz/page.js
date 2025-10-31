@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BookOpen, Brain, Flask, Calculator, ArrowRight } from 'lucide-react';
+import { BookOpen,ArrowRight } from 'lucide-react';
 import { promises as fs } from 'fs';
 import path from 'path';
 
