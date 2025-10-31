@@ -46,9 +46,6 @@ const MenuBar = ({ editor }) => {
   };
 
 
-
-
-
   const addCustomLink = useCallback(() => {
     if (!editor) return;
     setShowCustomLinkDialog(true);

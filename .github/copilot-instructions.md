@@ -21,6 +21,16 @@ The `vu-project` is a Next.js-based web application with the following key compo
 2. **Styling**:
    - Tailwind CSS is used for styling. Configuration is in `tailwind.config.js`.
    - Global styles are defined in `src/app/globals.css`.
+   - **Design System**: Modern flat/simple design with clean layouts (no glassmorphic effects).
+   - **Blog Content Styling**: 
+     - Blog content uses `.blog-content.prose` or `.blog-content.prose-lg` classes
+     - Default text color: `#111827` (dark gray)
+     - H1: 2.5rem, green color (#059669)
+     - H2: 2rem, dark gray
+     - H3: 1.5rem, H4: 1.25rem, H5: 1.125rem, H6: 1rem
+     - Links: No underline by default, inherit text color, show blue (#2563eb) with underline on hover
+     - Custom styled links (with `bg-`, `border-`, `inline-block` classes) maintain their design
+   - **Quiz UI**: Full-width layouts with clean, flat cards and enhanced typography
 
 3. **Routing**:
    - Follow Next.js conventions for file-based routing.
@@ -67,6 +77,31 @@ The `vu-project` is a Next.js-based web application with the following key compo
 
 - **Reusable Component**: `src/components/BlogCard.js` demonstrates how to create a card component for blogs.
 - **API Route**: `src/app/api/blogs/route.js` shows how to define a backend API endpoint.
+- **Rich Text Editor**: `src/components/BlogEditor.js` uses TipTap with custom link extensions for styled buttons.
+- **Quiz Components**: `src/components/QuizSetup.jsx` and `QuizClient.jsx` show modern flat UI patterns.
+
+## Component Guidelines
+
+### DocumentCard Component
+- Shows cover image if available
+- Falls back to displaying first 6 uppercase characters of title when no cover image exists
+
+### BlogEditor Component
+- Uses TipTap editor with custom extensions
+- Supports custom styled links with 6 design options (Primary, Success, Warning, Danger, Info, Outline)
+- Custom Link extension adds className support for button-style links
+- Professional modal interface for link insertion
+
+### Quiz Components
+- **QuizSetup**: Full-width layout with clean cards for quiz configuration
+- **QuizClient**: Modern flat design with enhanced typography and horizontal separators
+- Uses JSON files from `data/` folder for quiz questions
+
+### Blog Content Rendering
+- Blog posts render HTML content using `dangerouslySetInnerHTML`
+- Must use `className="blog-content prose prose-lg max-w-none"` on content wrapper
+- Styles defined in `globals.css` override default Tailwind prose styles
+- All custom styles use `!important` to ensure proper application
 
 ## Notes for AI Agents
 
