@@ -15,7 +15,7 @@ function safeDate(dateValue, fallback = new Date()) {
 }
 
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doclibrary.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.com';
 
   // Static routes
   const staticRoutes = [

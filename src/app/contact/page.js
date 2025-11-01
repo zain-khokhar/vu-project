@@ -360,7 +360,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Email</p>
-                    <p className="text-indigo-600 font-light">support@doclibrary.com</p>
+                    <p className="text-indigo-600 font-light">support@vuedu.com</p>
                     <p className="text-sm text-gray-600 font-light">General inquiries & support</p>
                   </div>
                 </div>

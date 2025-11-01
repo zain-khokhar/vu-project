@@ -44,7 +44,7 @@ export default function Header({ defaultTheme = "light" }) {
               <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center shadow-lg">
                 <BookOpen className="h-5 w-5 text-white" />
               </div>
-              <Link href="/" className="text-xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent hover:opacity-80 transition-opacity">DocLibrary</Link>
+              <Link href="/" className="text-xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent hover:opacity-80 transition-opacity">VUEDU</Link>
             </div>
 
             {/* Desktop Navigation */}

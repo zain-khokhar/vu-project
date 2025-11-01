@@ -19,7 +19,7 @@ import {
 import CTA from '@/components/CTA';
 
 export const metadata = {
-  title: 'Our Services - DocLibrary',
+  title: 'Our Services - VUEDU',
   description: 'Explore our professional academic and LMS support services designed to make your learning journey smooth and stress-free.',
   keywords: 'LMS handling, academic support, assignments, quizzes, final year project, FYP guidance'
 };

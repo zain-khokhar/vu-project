@@ -3,8 +3,8 @@ import { ArrowLeft, PenTool } from 'lucide-react';
 import BlogWriteForm from '@/components/BlogWriteForm';
 
 export const metadata = {
-  title: 'Write New Blog - DocLibrary',
-  description: 'Create and publish a new blog post on DocLibrary',
+  title: 'Write New Blog - VUEDU',
+  description: 'Create and publish a new blog post on VUEDU',
 };
 
 export default function BlogWritePage() {
@@ -30,7 +30,7 @@ export default function BlogWritePage() {
             </h1>
           </div>
           <p className="text-gray-600">
-            Share your knowledge and insights with the DocLibrary community.
+            Share your knowledge and insights with the VUEDU community.
           </p>
         </div>
 

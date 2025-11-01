@@ -1,7 +1,7 @@
 export default function manifest() {
   return {
-    name: 'DocLibrary - Educational Documents Platform',
-    short_name: 'DocLibrary',
+    name: 'VUEDU - Educational Documents Platform',
+    short_name: 'VUEDU',
     description: 'Access thousands of free educational documents, notes, books, and study materials',
     start_url: '/',
     display: 'standalone',

@@ -19,9 +19,9 @@ export function generateDocumentMetadata({
   canonical,
   publishedTime,
   modifiedTime,
-  author = 'DocLibrary Team'
+  author = 'VUEDU Team'
 }) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doclibrary.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.com';
   const fullUrl = url ? `${baseUrl}${url}` : baseUrl;
   const canonicalUrl = canonical || fullUrl;
 
@@ -31,7 +31,7 @@ export function generateDocumentMetadata({
     keywords: keywords.join(', '),
     authors: [{ name: author }],
     creator: author,
-    publisher: 'DocLibrary',
+    publisher: 'VUEDU',
     formatDetection: {
       email: false,
       address: false,
@@ -45,7 +45,7 @@ export function generateDocumentMetadata({
       title,
       description,
       url: fullUrl,
-      siteName: 'DocLibrary',
+      siteName: 'VUEDU',
       locale: 'en_US',
       type,
       images: images.length > 0 ? images : [
@@ -62,8 +62,8 @@ export function generateDocumentMetadata({
       title,
       description,
       images: images.length > 0 ? images : ['/og-image.jpg'],
-      creator: '@doclibrary',
-      site: '@doclibrary',
+      creator: '@vuedu',
+      site: '@vuedu',
     },
     robots: {
       index: !noindex,
@@ -106,7 +106,7 @@ export function generateDocumentStructuredData({
   dateModified,
   image
 }) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doclibrary.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.com';
   const fullUrl = url ? `${baseUrl}${url}` : baseUrl;
 
   const structuredData = {
@@ -174,7 +174,7 @@ export function generateDocumentStructuredData({
   // Add organization data
   structuredData.publisher = {
     '@type': 'Organization',
-    name: 'DocLibrary',
+    name: 'VUEDU',
     url: baseUrl,
     logo: {
       '@type': 'ImageObject',
@@ -190,12 +190,12 @@ export function generateDocumentStructuredData({
  * @returns {Object} Website JSON-LD structured data
  */
 export function generateWebsiteStructuredData() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doclibrary.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.com';
 
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'DocLibrary',
+    name: 'VUEDU',
     description: 'Free educational documents, notes, books, and study materials for students',
     url: baseUrl,
     potentialAction: {
@@ -208,16 +208,16 @@ export function generateWebsiteStructuredData() {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'DocLibrary',
+      name: 'VUEDU',
       url: baseUrl,
       logo: {
         '@type': 'ImageObject',
         url: `${baseUrl}/logo.png`,
       },
       sameAs: [
-        'https://twitter.com/doclibrary',
-        'https://facebook.com/doclibrary',
-        'https://linkedin.com/company/doclibrary',
+        'https://twitter.com/vuedu',
+        'https://facebook.com/vuedu',
+        'https://linkedin.com/company/vuedu',
       ],
     },
   };
@@ -228,12 +228,12 @@ export function generateWebsiteStructuredData() {
  * @returns {Object} Organization JSON-LD structured data
  */
 export function generateOrganizationStructuredData() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doclibrary.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.com';
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'DocLibrary',
+    name: 'VUEDU',
     alternateName: 'Doc Library',
     url: baseUrl,
     logo: `${baseUrl}/logo.png`,
@@ -241,13 +241,13 @@ export function generateOrganizationStructuredData() {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Service',
-      email: 'support@doclibrary.com',
+      email: 'support@vuedu.com',
       availableLanguage: 'English',
     },
     sameAs: [
-      'https://twitter.com/doclibrary',
-      'https://facebook.com/doclibrary',
-      'https://linkedin.com/company/doclibrary',
+      'https://twitter.com/vuedu',
+      'https://facebook.com/vuedu',
+      'https://linkedin.com/company/vuedu',
     ],
   };
 }
@@ -310,7 +310,7 @@ export function formatSEODate(date) {
  * @returns {string} Full canonical URL
  */
 export function generateCanonicalUrl(path) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doclibrary.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.com';
   return `${baseUrl}${path}`;
 }
 

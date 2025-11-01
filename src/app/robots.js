@@ -1,5 +1,5 @@
 export default function robots() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://doclibrary.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.com';
 
   return {
     rules: [

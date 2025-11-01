@@ -1,5 +1,5 @@
-# robots.txt for DocLibrary
-# https://doclibrary.com/robots.txt
+# robots.txt for VUEDU
+# https://vuedu.com/robots.txt
 # Last updated: October 2025
 
 # Default crawl rules for all bots
@@ -142,10 +142,10 @@ Disallow: /api/
 Disallow: /admin/
 
 # Sitemaps
-Sitemap: https://doclibrary.com/sitemap.xml
+Sitemap: https://vuedu.com/sitemap.xml
 
 # Host
-Host: https://doclibrary.com
+Host: https://vuedu.com
 
 # Additional information for AI/LLM crawlers
-# For detailed AI/LLM access information, see: https://doclibrary.com/llms.txt
+# For detailed AI/LLM access information, see: https://vuedu.com/llms.txt

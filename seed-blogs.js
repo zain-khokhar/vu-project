@@ -70,7 +70,7 @@ const blogPosts = [
       </ul>
 
       <h2>Tools and Platforms</h2>
-      <p>Platforms like DocLibrary make it easy to share and access organized academic materials. Upload your well-organized documents to help fellow students.</p>
+      <p>Platforms like VUEDU make it easy to share and access organized academic materials. Upload your well-organized documents to help fellow students.</p>
     `,
     published: true
   },
@@ -308,17 +308,17 @@ async function seedBlogs() {
     const { default: Author } = await import('./src/models/Author.js');
 
     // Find or create a default author
-    let author = await Author.findOne({ name: 'DocLibrary Team' });
+    let author = await Author.findOne({ name: 'VUEDU Team' });
 
     if (!author) {
       console.log('👤 Creating default author...');
       author = new Author({
-        name: 'DocLibrary Team',
-        slug: 'doclibrary-team',
+        name: 'VUEDU Team',
+        slug: 'vuedu-team',
         bio: 'Educational content creators and technology enthusiasts sharing knowledge with students worldwide.',
         avatar: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=150&h=150&fit=crop&crop=face',
-        email: 'team@doclibrary.com',
-        website: 'https://doclibrary.com'
+        email: 'team@vuedu.com',
+        website: 'https://vuedu.com'
       });
       await author.save();
       console.log('✅ Default author created');

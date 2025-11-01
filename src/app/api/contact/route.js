@@ -87,7 +87,7 @@ export async function POST(request) {
     await transporter.sendMail({
       from: process.env.SMTP_FROM,
       to: email,
-      subject: 'Thank you for contacting DocLibrary',
+      subject: 'Thank you for contacting VUEDU',
       html: `
         <h3>Thank you for your message!</h3>
         <p>Dear ${fullName},</p>
@@ -95,7 +95,7 @@ export async function POST(request) {
         <p><strong>Your message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
         <hr>
-        <p>Best regards,<br>DocLibrary Support Team</p>
+        <p>Best regards,<br>VUEDU Support Team</p>
       `
     });
     */

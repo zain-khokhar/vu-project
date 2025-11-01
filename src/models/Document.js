@@ -27,10 +27,6 @@ const documentSchema = new mongoose.Schema({
       message: 'Type must be one of: handout, book, note, exam'
     }
   },
-  coverImage: {
-    type: String,
-    required: [true, 'Cover image URL is required']
-  },
   fileUrl: {
     type: String,
     required: [true, 'File URL is required']

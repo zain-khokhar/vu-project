@@ -4,7 +4,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 export const metadata = {
-  title: 'Online Quiz System - DocLibrary',
+  title: 'Online Quiz System - VUEDU',
   description: 'Test your knowledge with our interactive quiz system',
 };
 

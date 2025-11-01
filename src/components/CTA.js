@@ -71,7 +71,7 @@ export function CTA() {
               </h2>
 
               <p className="text-xl text-gray-700/70 max-sm:text-lg">
-                Join thousands of teams already using DocLibrary to stay organized and productive.
+                Join thousands of teams already using VUEDU to stay organized and productive.
               </p>
 
               <div className="flex sm:flex-row flex-wrap gap-4 justify-center pt-4">

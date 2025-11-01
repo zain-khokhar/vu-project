@@ -14,7 +14,7 @@ import {
 } from '@/lib/seo-utils';
 
 export const metadata = generateDocumentMetadata({
-  title: "DocLibrary - Free Educational Documents & Study Resources",
+  title: "VUEDU - Free Educational Documents & Study Resources",
   description: "Access thousands of free educational documents, books, notes, handouts, past papers, and study materials. Join our community of students and educators sharing knowledge worldwide.",
   keywords: [
     "educational documents",
@@ -33,19 +33,19 @@ export const metadata = generateDocumentMetadata({
 });
 
 export default async function Home() {
-  const { documents } = await getLatestDocuments(6);
+  const { documents } = await getLatestDocuments(3);
   const blogsResult = await getLatestBlogs(3);
   const { blogs } = blogsResult.success ? blogsResult : { blogs: [] };
 
   // FAQ Structured Data
   const faqData = [
     {
-      question: "What is DocLibrary?",
-      answer: "DocLibrary is a free educational platform where students and educators can access and share educational documents including books, notes, handouts, past papers, and study materials.",
+      question: "What is VUEDU?",
+      answer: "VUEDU is a free educational platform where students and educators can access and share educational documents including books, notes, handouts, past papers, and study materials.",
     },
     {
-      question: "Is DocLibrary really free?",
-      answer: "Yes! DocLibrary is completely free to use. You can browse, download, and share documents without any charges or hidden fees.",
+      question: "Is VUEDU really free?",
+      answer: "Yes! VUEDU is completely free to use. You can browse, download, and share documents without any charges or hidden fees.",
     },
     {
       question: "What types of documents can I find?",
@@ -69,38 +69,22 @@ export default async function Home() {
             {
               '@context': 'https://schema.org',
               '@type': 'EducationalOrganization',
-              name: 'DocLibrary',
+              name: 'VUEDU',
               description: 'Free educational platform for sharing documents and study materials',
-              url: process.env.NEXT_PUBLIC_SITE_URL || 'https://doclibrary.com',
+              url: process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.com',
               sameAs: [
-                'https://twitter.com/doclibrary',
-                'https://facebook.com/doclibrary',
+                'https://twitter.com/vuedu',
+                'https://facebook.com/vuedu',
               ],
               contactPoint: {
                 '@type': 'ContactPoint',
                 contactType: 'Customer Service',
-                email: 'support@doclibrary.com',
+                email: 'support@vuedu.com',
               },
             },
           ]),
         }}
       />
-
-      {/* Premium Liquid Background */}
-      <div className="fixed inset-0 -z-10">
-        {/* Base gradient */}
-        {/* <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/20 to-purple-50/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-400/20 to-purple-400/20 opacity-40"></div> */}
-
-        {/* Liquid orbs with enhanced blur */}
-        {/* <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/8 via-blue-300/8 to-purple-300/8 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transform -translate-x-1/2 -translate-y-1/2" style={{ animationDelay: '4s' }}></div> */}
-
-        {/* Liquid flow effects */}
-        {/* <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-blue-300/20 to-transparent rounded-full blur-2xl animate-bounce" style={{ animationDuration: '6s' }}></div>
-        <div className="absolute bottom-32 right-32 w-24 h-24 bg-gradient-to-tl from-purple-300/20 to-transparent rounded-full blur-2xl animate-bounce" style={{ animationDuration: '8s', animationDelay: '1s' }}></div> */}
-      </div>
       <div className="absolute inset-0 gradient-mesh pointer-events-none"></div>
 
       {/* Enhanced Decorative Elements */}

@@ -9,14 +9,14 @@ export async function generateMetadata({ params }) {
   
   if (!result.success) {
     return {
-      title: 'Document Not Found - DocLibrary'
+      title: 'Document Not Found - VUEDU'
     };
   }
 
   const { document } = result;
   
   return {
-    title: `Preview: ${document.title} - DocLibrary`,
+    title: `Preview: ${document.title} - VUEDU`,
     description: `Preview ${document.title} online`,
   };
 }

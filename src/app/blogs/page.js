@@ -44,7 +44,7 @@ export default async function BlogsPage({ searchParams }) {
             generateWebsiteStructuredData(),
             generateDocumentStructuredData({
               type: 'Blog',
-              name: 'DocLibrary Blog',
+              name: 'VUEDU Blog',
               description: 'Educational articles, tutorials, and insights for students and learners',
               url: '/blogs',
               breadcrumbs: [
@@ -325,7 +325,7 @@ export async function generateMetadata({ searchParams }) {
   const params = await searchParams;
   const page = parseInt(params?.page) || 1;
 
-  let title = 'Educational Blogs & Articles - DocLibrary';
+  let title = 'Educational Blogs & Articles - VUEDU';
   let description = 'Read the latest educational articles, tutorials, study tips, and insights from experts. Learn about programming, data structures, web development, and more.';
   const keywords = [
     'educational blogs',
@@ -341,7 +341,7 @@ export async function generateMetadata({ searchParams }) {
   ];
 
   if (page > 1) {
-    title = `Educational Blogs & Articles - Page ${page} | DocLibrary`;
+    title = `Educational Blogs & Articles - Page ${page} | VUEDU`;
     description = `Browse educational articles and tutorials - Page ${page}. Expert insights on programming, computer science, and study strategies.`;
   }
 
@@ -357,7 +357,7 @@ export async function generateMetadata({ searchParams }) {
         url: '/og-blogs.jpg',
         width: 1200,
         height: 630,
-        alt: 'DocLibrary Blog - Educational Articles & Tutorials',
+        alt: 'VUEDU Blog - Educational Articles & Tutorials',
       },
     ],
   });

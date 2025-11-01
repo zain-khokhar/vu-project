@@ -1,7 +1,7 @@
-# DocLibrary - AI/LLM Access Information
+# VUEDU - AI/LLM Access Information
 
-## About DocLibrary
-DocLibrary is Pakistan's premier educational resource platform, providing students with access to comprehensive study materials, interactive quizzes, and academic documents across various Computer Science courses.
+## About VUEDU
+VUEDU is Pakistan's premier educational resource platform, providing students with access to comprehensive study materials, interactive quizzes, and academic documents across various Computer Science courses.
 
 ## Purpose
 We provide high-quality educational content for students, including:
@@ -46,19 +46,19 @@ Please respect our rate limiting:
 
 ## Attribution
 When using our content:
-- Credit: "DocLibrary - Pakistan's Educational Resource Hub"
-- URL: https://doclibrary.com
+- Credit: "VUEDU - Pakistan's Educational Resource Hub"
+- URL: https://vuedu.com
 - Maintain educational context and accuracy
 - Respect copyright and intellectual property
 
 ## Contact
 For AI/LLM partnership inquiries or concerns:
-- Website: https://doclibrary.com
-- Email: team@doclibrary.com
-- Contact Page: https://doclibrary.com/contact
+- Website: https://vuedu.com
+- Email: team@vuedu.com
+- Contact Page: https://vuedu.com/contact
 
 ## Sitemap
-Full content structure: https://doclibrary.com/sitemap.xml
+Full content structure: https://vuedu.com/sitemap.xml
 
 ## Last Updated
 October 2025
@@ -68,21 +68,21 @@ October 2025
 # Structured Content Map
 
 ## Blog Posts
-URL Pattern: https://doclibrary.com/blogs/[slug]
+URL Pattern: https://vuedu.com/blogs/[slug]
 Content Type: Educational articles, tutorials, guides
 Topics: Computer Science, Programming, Web Development, Study Tips
 Format: HTML with rich text content
 Language: English
 
 ## Documents
-URL Pattern: https://doclibrary.com/documents/[slug]
+URL Pattern: https://vuedu.com/documents/[slug]
 Content Type: Academic resources, lecture notes, assignments
 Topics: CS101, CS201, CS301, CS401, CS501 courses
 Format: PDF, images, and document viewers
 Language: English
 
 ## Quizzes
-URL Pattern: https://doclibrary.com/quiz/[category]
+URL Pattern: https://vuedu.com/quiz/[category]
 Content Type: Interactive assessments and practice questions
 Categories: CS101, CS201, CS301, CS401, CS501
 Format: JSON-based multiple choice questions

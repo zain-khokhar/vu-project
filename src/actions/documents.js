@@ -11,7 +11,7 @@ export async function getLatestDocuments(limit = 6) {
     const documents = await Document.find({})
       .sort({ createdAt: -1 })
       .limit(limit)
-      .select('title slug type coverImage subject university year')
+      .select('title slug type subject university year')
       .lean();
     
     return { success: true, documents: JSON.parse(JSON.stringify(documents)) };
@@ -58,7 +58,7 @@ export async function getDocuments({
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit)
-        .select('title slug type coverImage subject university year')
+        .select('title slug type subject university year')
         .lean(),
       Document.countDocuments(query)
     ]);

@@ -8,7 +8,7 @@ export async function generateMetadata({ params }) {
   const displayName = category.charAt(0).toUpperCase() + category.slice(1);
   
   return {
-    title: `${displayName} Quiz - DocLibrary`,
+    title: `${displayName} Quiz - VUEDU`,
     description: `Test your ${displayName} knowledge with our interactive quiz`,
   };
 }

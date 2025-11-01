@@ -3,7 +3,7 @@ import LayoutContent from "@/components/LayoutContent";
 import { generateDocumentMetadata, generateOrganizationStructuredData } from "@/lib/seo-utils";
 
 export const metadata = generateDocumentMetadata({
-  title: "DocLibrary - Free Educational Documents & Study Resources",
+  title: "VUEDU - Free Educational Documents & Study Resources",
   description: "Access thousands of free educational documents including books, notes, handouts, past papers, and study materials. Join our community of students and educators sharing knowledge worldwide.",
   keywords: [
     "educational documents",
@@ -28,7 +28,7 @@ export const metadata = generateDocumentMetadata({
       url: "/og-image.jpg",
       width: 1200,
       height: 630,
-      alt: "DocLibrary - Free Educational Documents Platform",
+      alt: "VUEDU - Free Educational Documents Platform",
     },
   ],
 });

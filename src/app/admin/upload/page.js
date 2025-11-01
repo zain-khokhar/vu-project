@@ -18,7 +18,6 @@ export default function UploadPage() {
     title: '',
     description: '',
     type: 'note',
-    coverImage: '',
     fileUrl: '',
     subject: '',
     university: '',
@@ -229,24 +228,6 @@ export default function UploadPage() {
 
             {/* File URLs */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="coverImage" className="block text-sm font-medium text-gray-700 mb-2">
-                  Cover Image URL *
-                </label>
-                <input
-                  type="url"
-                  id="coverImage"
-                  name="coverImage"
-                  value={formData.coverImage}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="https://example.com/image.jpg"
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  Use a service like Cloudinary, Imgur, or any public image URL
-                </p>
-              </div>
 
               <div>
                 <label htmlFor="fileUrl" className="block text-sm font-medium text-gray-700 mb-2">

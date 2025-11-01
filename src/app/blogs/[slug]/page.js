@@ -41,7 +41,7 @@ export async function generateMetadata({ params }) {
 
   if (!result.success) {
     return {
-      title: 'Blog Not Found - DocLibrary',
+      title: 'Blog Not Found - VUEDU',
       description: 'The blog post you are looking for could not be found.',
       robots: {
         index: false,

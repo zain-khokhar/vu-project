@@ -54,7 +54,7 @@ export function generateExcerpt(content, maxLength = 155) {
  * @returns {Object} Next.js metadata object
  */
 export function generateBlogMetadata(blog, slug) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://doclibrary.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.com';
   const url = `${baseUrl}/blogs/${slug}`;
   
   // Extract plain text excerpt from content
@@ -66,14 +66,14 @@ export function generateBlogMetadata(blog, slug) {
   const readingTime = Math.ceil(words.length / 200);
 
   return {
-    title: `${blog.title} | DocLibrary Blog`,
+    title: `${blog.title} | VUEDU Blog`,
     description: excerpt,
     keywords: [
       blog.title,
       'educational blog',
       'learning resources',
       'academic content',
-      'DocLibrary',
+      'VUEDU',
       ...(blog.tags || [])
     ].join(', '),
     authors: blog.author ? [{ 
@@ -81,7 +81,7 @@ export function generateBlogMetadata(blog, slug) {
       url: blog.author.website || `${baseUrl}/authors/${blog.author._id}`
     }] : [],
     creator: blog.author?.name,
-    publisher: 'DocLibrary',
+    publisher: 'VUEDU',
     formatDetection: {
       email: false,
       address: false,
@@ -96,7 +96,7 @@ export function generateBlogMetadata(blog, slug) {
       title: blog.title,
       description: excerpt,
       url: url,
-      siteName: 'DocLibrary',
+      siteName: 'VUEDU',
       locale: 'en_US',
       images: [
         {
@@ -120,8 +120,8 @@ export function generateBlogMetadata(blog, slug) {
       title: blog.title,
       description: excerpt,
       images: [blog.coverImage],
-      creator: blog.author?.twitter || '@DocLibrary',
-      site: '@DocLibrary',
+      creator: blog.author?.twitter || '@VUEDU',
+      site: '@VUEDU',
     },
     robots: {
       index: true,
@@ -149,7 +149,7 @@ export function generateBlogMetadata(blog, slug) {
  * @returns {Object} JSON-LD structured data
  */
 export function generateBlogStructuredData(blog, readingTime) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://doclibrary.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.com';
   const plainTextContent = extractPlainText(blog.content);
   const excerpt = blog.excerpt || generateExcerpt(plainTextContent);
   const wordCount = getWordCount(blog.content);
@@ -174,12 +174,12 @@ export function generateBlogStructuredData(blog, readingTime) {
       image: blog.author.avatar,
     } : {
       '@type': 'Organization',
-      name: 'DocLibrary',
+      name: 'VUEDU',
       url: baseUrl,
     },
     publisher: {
       '@type': 'Organization',
-      name: 'DocLibrary',
+      name: 'VUEDU',
       url: baseUrl,
       logo: `${baseUrl}/logo.png`,
     },
@@ -231,7 +231,7 @@ export function generateBlogStructuredData(blog, readingTime) {
           ].filter(Boolean) : undefined,
         } : {
           '@type': 'Organization',
-          name: 'DocLibrary',
+          name: 'VUEDU',
           url: baseUrl,
           logo: {
             '@type': 'ImageObject',
@@ -243,7 +243,7 @@ export function generateBlogStructuredData(blog, readingTime) {
         publisher: {
           '@type': 'Organization',
           '@id': `${baseUrl}#organization`,
-          name: 'DocLibrary',
+          name: 'VUEDU',
           url: baseUrl,
           logo: {
             '@type': 'ImageObject',
@@ -310,7 +310,7 @@ export function generateBlogStructuredData(blog, readingTime) {
         isPartOf: {
           '@type': 'WebSite',
           '@id': `${baseUrl}#website`,
-          name: 'DocLibrary',
+          name: 'VUEDU',
           url: baseUrl,
         },
         breadcrumb: {
@@ -328,7 +328,7 @@ export function generateBlogStructuredData(blog, readingTime) {
       {
         '@type': 'Organization',
         '@id': `${baseUrl}#organization`,
-        name: 'DocLibrary',
+        name: 'VUEDU',
         url: baseUrl,
         logo: {
           '@type': 'ImageObject',
