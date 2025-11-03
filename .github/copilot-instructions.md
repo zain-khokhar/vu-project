@@ -4,7 +4,7 @@ This document provides guidance for AI coding agents working on the `vu-project`
 
 ## Project Overview
 
-The `vu-project` is a Next.js-based web application with the following key components:
+The `vu-project` is a Next.js-based educational web application (VUEDU.dev) with the following key components:
 
 - **Frontend**: Located in `src/app/`, this directory contains the main pages and layouts for the application. Each subdirectory represents a route (e.g., `quiz/`, `blogs/`, `contact/`).
 - **Components**: Reusable UI components are stored in `src/components/`. Examples include `Navbar.js`, `Footer.js`, and `QuizClient.jsx`.
@@ -85,6 +85,24 @@ The `vu-project` is a Next.js-based web application with the following key compo
 ### DocumentCard Component
 - Shows cover image if available
 - Falls back to displaying first 6 uppercase characters of title when no cover image exists
+- Glossy liquid macOS theme with backdrop-blur effects
+- Smooth hover animations with gradient accents
+
+### Document Detail Page Components
+- **DocumentHeader**: Displays first 6 characters badge with semantic HTML
+- **DocumentActions**: Preview and download buttons with full accessibility
+- **DocumentMetadata**: Structured metadata grid with proper semantic markup
+- **DocumentTags**: Clickable tag list with navigation capabilities
+- **DocumentRelatedLinks**: Related documents navigation
+- All components follow WCAG 2.1 Level AA accessibility standards
+
+### SEO & Structured Data
+- **document-seo.js**: Comprehensive SEO utilities
+  - `generateDocumentMetadata()`: Full metadata including Open Graph and Twitter Cards
+  - `generateDocumentStructuredData()`: JSON-LD for EducationalOccupationalCredential
+  - `generateBreadcrumbStructuredData()`: Breadcrumb navigation schema
+  - `generateWebPageStructuredData()`: WebPage schema with mainEntity
+  - All functions follow schema.org standards
 
 ### BlogEditor Component
 - Uses TipTap editor with custom extensions
@@ -108,6 +126,27 @@ The `vu-project` is a Next.js-based web application with the following key compo
 - Always follow the file and directory structure conventions.
 - Use existing components and utilities whenever possible.
 - Document any new patterns or conventions introduced.
+- **SEO Best Practices**:
+  - Always include comprehensive metadata (title, description, keywords, Open Graph, Twitter Cards)
+  - Add JSON-LD structured data for all content pages
+  - Use semantic HTML5 elements (article, section, nav, header, footer)
+  - Include proper ARIA labels and roles for accessibility
+  - Implement breadcrumb navigation with schema markup
+  - Optimize for Core Web Vitals (LCP, FID, CLS)
+- **Accessibility Standards**:
+  - Follow WCAG 2.1 Level AA guidelines
+  - Include skip links for keyboard navigation
+  - Proper heading hierarchy (h1 → h6)
+  - Alt text for all images
+  - Focus indicators for interactive elements
+  - Screen reader-friendly hidden text with `.sr-only`
+  - Proper form labels and error messages
+- **Code Organization**:
+  - Separate concerns into dedicated component files
+  - Use utility files for shared logic
+  - Keep components small and focused (Single Responsibility Principle)
+  - Add JSDoc comments for all exported functions
+  - Use TypeScript-style prop validation comments
 
 ---
 
