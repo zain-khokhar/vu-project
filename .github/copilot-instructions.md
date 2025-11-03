@@ -18,7 +18,14 @@ The `vu-project` is a Next.js-based educational web application (VUEDU.dev) with
    - Use PascalCase for React components (e.g., `BlogCard.js`).
    - Use camelCase for utility functions and hooks (e.g., `useWindowSize.js`).
 
-2. **Styling**:
+2. **URL Structure**:
+   - **No Trailing Slashes**: All URLs must not have trailing slashes (e.g., `/blogs` not `/blogs/`)
+   - Middleware automatically redirects trailing slash URLs with 301 status
+   - Exception: Root path `/` has no trailing slash to remove
+   - Always use: `<Link href="/about">` never `<Link href="/about/">`
+   - See `URL_CONFIGURATION.md` for complete guidelines
+
+3. **Styling**:
    - Tailwind CSS is used for styling. Configuration is in `tailwind.config.js`.
    - Global styles are defined in `src/app/globals.css`.
    - **Design System**: Modern flat/simple design with clean layouts (no glassmorphic effects).

@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Trailing slash configuration - ensures consistent URLs
+  trailingSlash: false, // URLs without trailing slashes (e.g., /about instead of /about/)
+  
+  // Skip trailing slash redirect for specific paths if needed
+  skipTrailingSlashRedirect: false,
+
   images: {
     remotePatterns: [
       {
