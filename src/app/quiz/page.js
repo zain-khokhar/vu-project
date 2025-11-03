@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BookOpen,ArrowRight } from 'lucide-react';
+import { BookOpen, ArrowRight } from 'lucide-react';
 import { promises as fs } from 'fs';
 import path from 'path';
 
@@ -13,16 +13,16 @@ async function getAvailableQuizzes() {
     const dataDirectory = path.join(process.cwd(), 'data');
     const files = await fs.readdir(dataDirectory);
     const jsonFiles = files.filter(file => file.endsWith('.json'));
-    
+
     const quizzes = await Promise.all(
       jsonFiles.map(async (file) => {
         const filePath = path.join(dataDirectory, file);
         const fileContents = await fs.readFile(filePath, 'utf8');
         const questions = JSON.parse(fileContents);
-        
+
         const name = file.replace('.json', '');
         const displayName = name.charAt(0).toUpperCase() + name.slice(1);
-        
+
         return {
           id: name,
           name: displayName,
@@ -32,7 +32,7 @@ async function getAvailableQuizzes() {
         };
       })
     );
-    
+
     return quizzes;
   } catch (error) {
     console.error('Error reading quiz files:', error);
@@ -162,11 +162,6 @@ export default async function QuizHomePage() {
 
         {/* Features Section */}
         <section className="relative py-12 overflow-hidden">
-          {/* Background orbs */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-to-br from-indigo-400/10 via-blue-300/8 to-transparent rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-gradient-to-tl from-purple-400/10 via-pink-300/8 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-          </div>
 
           <div className="max-w-7xl mx-auto relative z-10">
             {/* Section Header */}
@@ -202,12 +197,12 @@ export default async function QuizHomePage() {
                   gradient: "from-purple-100/50 via-pink-100/30 to-purple-50/50"
                 }
               ].map((feature, index) => (
-                <div 
+                <div
                   key={index}
                   className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
-                  
+
                   <div className={`bg-gradient-to-br ${feature.gradient} w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500`}>
                     <span className="text-3xl drop-shadow-lg">{feature.icon}</span>
                   </div>

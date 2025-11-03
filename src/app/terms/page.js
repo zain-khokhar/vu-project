@@ -217,7 +217,7 @@ export default function TermsPage() {
                 If you have questions about these Terms and Conditions, please contact us:
               </p>
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-gray-600"><strong>Email:</strong> legal@vuedu.com</p>
+                <p className="text-gray-600"><strong>Email:</strong> legal@vuedu.dev</p>
                 <p className="text-gray-600"><strong>Address:</strong> VUEDU Legal Team</p>
                 <p className="text-gray-600">123 Education Street, Learning City, LC 12345</p>
               </div>

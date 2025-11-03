@@ -14,19 +14,28 @@ import {
 } from '@/lib/seo-utils';
 
 export const metadata = generateDocumentMetadata({
-  title: "VUEDU - Free Educational Documents & Study Resources",
-  description: "Access thousands of free educational documents, books, notes, handouts, past papers, and study materials. Join our community of students and educators sharing knowledge worldwide.",
+  title: "VUEDU - Free Educational Documents & Study Resources in Pakistan",
+  description: "Pakistan's leading educational platform. Access thousands of free educational documents, books, notes, handouts, past papers, and study materials for Pakistani universities and colleges. Join students from Karachi, Lahore, Islamabad, and across Pakistan.",
   keywords: [
-    "educational documents",
-    "free study materials",
-    "books",
-    "notes",
-    "past papers",
-    "handouts",
-    "student resources",
-    "university documents",
-    "study guides",
-    "educational platform",
+    "educational documents pakistan",
+    "free study materials pakistan",
+    "pakistani university notes",
+    "past papers pakistan",
+    "handouts pakistan",
+    "student resources pakistan",
+    "karachi university documents",
+    "lahore university notes",
+    "islamabad study materials",
+    "pakistani colleges resources",
+    "urdu study materials",
+    "vu virtual university",
+    "aiou study materials",
+    "nust resources",
+    "lums study guides",
+    "pakistan educational platform",
+    "online learning pakistan",
+    "books pakistan",
+    "study guides pakistan",
   ],
   url: "/",
   type: "website",
@@ -41,19 +50,27 @@ export default async function Home() {
   const faqData = [
     {
       question: "What is VUEDU?",
-      answer: "VUEDU is a free educational platform where students and educators can access and share educational documents including books, notes, handouts, past papers, and study materials.",
+      answer: "VUEDU is Pakistan's leading free educational platform where students and educators can access and share educational documents including books, notes, handouts, past papers, and study materials. We serve students from all major cities including Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad, and across Pakistan.",
+    },
+    {
+      question: "Is VUEDU available in Pakistan?",
+      answer: "Yes! VUEDU is specifically designed for Pakistani students and educators. We offer resources for all major Pakistani universities including Virtual University (VU), AIOU, NUST, LUMS, UET, Punjab University, Karachi University, and many more.",
     },
     {
       question: "Is VUEDU really free?",
-      answer: "Yes! VUEDU is completely free to use. You can browse, download, and share documents without any charges or hidden fees.",
+      answer: "Yes! VUEDU is completely free to use. You can browse, download, and share documents without any charges or hidden fees. We believe education should be accessible to all Pakistani students.",
     },
     {
       question: "What types of documents can I find?",
-      answer: "You can find various types of educational materials including textbooks, lecture notes, handouts, past exam papers, assignments, and study guides across different subjects and courses.",
+      answer: "You can find various types of educational materials including textbooks, lecture notes, handouts, past exam papers, assignments, study guides, and solved papers for Pakistani universities and colleges across different subjects and courses.",
     },
     {
       question: "Can I upload my own documents?",
-      answer: "Yes, you can contribute to the community by uploading your own educational documents and study materials to help other students.",
+      answer: "Yes, you can contribute to the community by uploading your own educational documents and study materials to help other Pakistani students.",
+    },
+    {
+      question: "Which Pakistani universities are covered?",
+      answer: "VUEDU covers all major Pakistani universities including Virtual University (VU), AIOU, NUST, LUMS, UET, FAST, COMSATS, Punjab University, Karachi University, Peshawar University, Quaid-e-Azam University, and many more institutions across Pakistan.",
     },
   ];
 
@@ -70,8 +87,18 @@ export default async function Home() {
               '@context': 'https://schema.org',
               '@type': 'EducationalOrganization',
               name: 'VUEDU',
-              description: 'Free educational platform for sharing documents and study materials',
-              url: process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.com',
+              description: 'Pakistan\'s leading free educational platform for sharing documents and study materials',
+              url: process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev',
+              areaServed: {
+                '@type': 'Country',
+                name: 'Pakistan',
+              },
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'PK',
+                addressRegion: 'Punjab',
+              },
+              availableLanguage: ['English', 'Urdu'],
               sameAs: [
                 'https://twitter.com/vuedu',
                 'https://facebook.com/vuedu',
@@ -79,8 +106,38 @@ export default async function Home() {
               contactPoint: {
                 '@type': 'ContactPoint',
                 contactType: 'Customer Service',
-                email: 'support@vuedu.com',
+                email: 'support@vuedu.dev',
+                areaServed: 'PK',
+                availableLanguage: ['English', 'Urdu'],
               },
+              serviceArea: {
+                '@type': 'AdministrativeArea',
+                name: 'Pakistan',
+              },
+              audience: {
+                '@type': 'EducationalAudience',
+                educationalRole: 'student',
+                geographicArea: {
+                  '@type': 'Country',
+                  name: 'Pakistan',
+                },
+              },
+              keywords: 'educational documents pakistan, study materials, university notes, past papers, virtual university, AIOU, NUST, Pakistani students',
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'VUEDU',
+              url: process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev',
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: {
+                  '@type': 'EntryPoint',
+                  urlTemplate: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev'}/documents?search={search_term_string}`,
+                },
+                'query-input': 'required name=search_term_string',
+              },
+              inLanguage: ['en', 'ur'],
             },
           ]),
         }}
@@ -188,13 +245,6 @@ export default async function Home() {
 
             {/* Right Side - Modern Liquid Showcase Cards */}
             <div className="relative h-[500px] hidden lg:block">
-              {/* Enhanced Floating Liquid Orbs */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-12 right-12 w-24 h-24 bg-gradient-to-br from-blue-400/25 via-cyan-300/20 to-transparent rounded-full blur-2xl animate-pulse"></div>
-                <div className="absolute bottom-16 left-8 w-20 h-20 bg-gradient-to-tl from-purple-400/25 via-pink-300/20 to-transparent rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-                <div className="absolute top-1/2 left-1/2 w-16 h-16 bg-gradient-to-r from-indigo-400/20 via-blue-300/15 to-transparent rounded-full blur-2xl animate-pulse transform -translate-x-1/2 -translate-y-1/2" style={{ animationDelay: '3s' }}></div>
-              </div>
-
               {/* Card 1 - Modern Liquid Document Card - Top Left */}
               <div className="absolute top-0 left-0 w-[48%] h-[45%] group">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-400/30 via-cyan-400/25 to-transparent rounded-3xl blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125"></div>

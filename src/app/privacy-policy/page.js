@@ -143,7 +143,7 @@ export default function PrivacyPolicyPage() {
                 <li><strong>Withdraw Consent:</strong> Withdraw consent for data processing where applicable</li>
               </ul>
               <p className="text-gray-600 leading-relaxed mt-4">
-                To exercise these rights, please contact us at <a href="mailto:privacy@vuedu.com" className="text-blue-600 hover:underline">privacy@vuedu.com</a>.
+                To exercise these rights, please contact us at <a href="mailto:privacy@vuedu.dev" className="text-blue-600 hover:underline">privacy@vuedu.dev</a>.
               </p>
             </section>
 
@@ -193,7 +193,7 @@ export default function PrivacyPolicyPage() {
                 If you have any questions about this Privacy Policy, please contact us:
               </p>
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-gray-600"><strong>Email:</strong> privacy@vuedu.com</p>
+                <p className="text-gray-600"><strong>Email:</strong> privacy@vuedu.dev</p>
                 <p className="text-gray-600"><strong>Address:</strong> VUEDU Privacy Team</p>
                 <p className="text-gray-600">123 Education Street, Learning City, LC 12345</p>
               </div>

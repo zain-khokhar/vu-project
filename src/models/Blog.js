@@ -18,8 +18,27 @@ const BlogSchema = new mongoose.Schema(
       required: true,
     },
     coverImage: {
-      type: String,
-      required: false,
+      url: {
+        type: String,
+        required: true,
+      },
+      alt: {
+        type: String,
+        required: true,
+        default: '',
+      },
+      publicId: {
+        type: String,
+        required: false,
+      },
+      width: {
+        type: Number,
+        required: false,
+      },
+      height: {
+        type: Number,
+        required: false,
+      },
     },
     content: {
       type: String,

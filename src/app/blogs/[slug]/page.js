@@ -7,7 +7,8 @@ import { formatDate } from '@/lib/utils';
 import {
   getReadingTime,
   generateBlogMetadata,
-  generateBlogStructuredData
+  generateBlogStructuredData,
+  getCoverImageData
 } from '@/lib/blog-utils';
 import AuthorInfo from '@/components/AuthorInfo';
 
@@ -70,6 +71,9 @@ export default async function BlogPostPage({ params }) {
   const readingTime = getReadingTime(blog.content);
   const structuredData = generateBlogStructuredData(blog, readingTime);
 
+  // Get optimized cover image data (handles both old string and new object format)
+  const coverImageData = getCoverImageData(blog.coverImage);
+
   return (
     <>
       {/* JSON-LD Structured Data */}
@@ -96,14 +100,15 @@ export default async function BlogPostPage({ params }) {
           <figure
             className="relative h-96 md:h-96 w-full glass rounded-2xl overflow-hidden mb-12 shadow-2xl"
             role="img"
-            aria-label={`Cover image for ${blog.title}`}
+            aria-label={coverImageData.alt}
           >
             <Image
-              src={blog.coverImage}
-              alt={blog.title}
+              src={coverImageData.url}
+              alt={coverImageData.alt}
               fill
               className="object-cover"
               priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
             />
           </figure>
 
@@ -114,10 +119,10 @@ export default async function BlogPostPage({ params }) {
             itemType="https://schema.org/BlogPosting"
           >
             <div className="p-8 md:p-12">
+
               {/* Meta Info */}
               <header
                 className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 pb-6 border-b border-gray-200"
-                itemProp="publisher"
                 aria-label="Post metadata"
               >
                 <div className="flex items-center space-x-4 mb-4 sm:mb-0">
@@ -133,10 +138,20 @@ export default async function BlogPostPage({ params }) {
                   </div>
                   <div className="flex items-center space-x-2 text-gray-500">
                     <Clock className="h-4 w-4" aria-hidden="true" />
-                    <span className="text-sm">{readingTime} min read</span>
+                    <span className="text-sm" itemProp="timeRequired">
+                      {readingTime} min read
+                    </span>
                   </div>
                 </div>
               </header>
+
+              {/* Hidden structured data properties */}
+              <meta itemProp="image" content={coverImageData.url} />
+              <meta itemProp="author" content={blog.author?.name || 'VUEDU'} />
+              <meta itemProp="publisher" content="VUEDU" />
+              {blog.updatedAt && (
+                <meta itemProp="dateModified" content={blog.updatedAt} />
+              )}
 
               {/* Blog Content */}
               <section

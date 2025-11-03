@@ -23,18 +23,19 @@ function generateSlug(title) {
 }
 
 // Create a new blog post
-export async function createBlog(formData) {
+export async function createBlog(data) {
   try {
     await connectDB();
 
-    const title = formData.get('title');
-    const excerpt = formData.get('excerpt');
-    const coverImage = formData.get('coverImage');
-    const content = formData.get('content');
-    const author = formData.get('author');
+    const { title, excerpt, coverImage, content, author } = data;
 
     if (!title || !excerpt || !coverImage || !content || !author) {
       return { success: false, error: 'All fields including author are required' };
+    }
+
+    // Validate coverImage structure
+    if (!coverImage.url || !coverImage.alt) {
+      return { success: false, error: 'Cover image must include URL and alt text' };
     }
 
     // Generate base slug
@@ -52,7 +53,13 @@ export async function createBlog(formData) {
       title,
       slug,
       excerpt,
-      coverImage,
+      coverImage: {
+        url: coverImage.url,
+        alt: coverImage.alt,
+        publicId: coverImage.publicId || '',
+        width: coverImage.width || 0,
+        height: coverImage.height || 0,
+      },
       content,
       author,
     });

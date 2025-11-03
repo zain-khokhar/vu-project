@@ -317,8 +317,8 @@ async function seedBlogs() {
         slug: 'vuedu-team',
         bio: 'Educational content creators and technology enthusiasts sharing knowledge with students worldwide.',
         avatar: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=150&h=150&fit=crop&crop=face',
-        email: 'team@vuedu.com',
-        website: 'https://vuedu.com'
+        email: 'team@vuedu.dev',
+        website: 'https://vuedu.dev'
       });
       await author.save();
       console.log('✅ Default author created');

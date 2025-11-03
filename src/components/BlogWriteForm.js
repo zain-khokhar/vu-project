@@ -2,15 +2,23 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Upload, Loader2, Save, User } from 'lucide-react';
+import { Upload, Loader2, Save, User, Image as ImageIcon, X } from 'lucide-react';
 import BlogEditor from '@/components/BlogEditor';
 import { createBlog } from '@/actions/blogs';
 import { getAuthors } from '@/actions/authors';
+import { uploadToCloudinary } from '@/lib/cloudinary';
 
 export default function BlogWriteForm() {
   const [title, setTitle] = useState('');
   const [excerpt, setExcerpt] = useState('');
-  const [coverImage, setCoverImage] = useState('');
+  const [coverImage, setCoverImage] = useState({
+    url: '',
+    alt: '',
+    publicId: '',
+    width: 0,
+    height: 0,
+  });
+  const [isUploading, setIsUploading] = useState(false);
   const [content, setContent] = useState('');
   const [selectedAuthor, setSelectedAuthor] = useState('');
   const [authors, setAuthors] = useState([]);
@@ -34,17 +42,56 @@ export default function BlogWriteForm() {
     fetchAuthors();
   }, []);
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // For now, we'll use a placeholder URL
-      // In production, you'd upload to a service like Cloudinary or S3
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setCoverImage(e.target.result);
-      };
-      reader.readAsDataURL(file);
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      setError('Please select a valid image file');
+      return;
     }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      setError('Image size must be less than 5MB');
+      return;
+    }
+
+    setIsUploading(true);
+    setError('');
+
+    try {
+      const result = await uploadToCloudinary(file, 'blog-covers');
+      
+      if (!result.success) {
+        setError(result.error || 'Failed to upload image. Please try again.');
+        return;
+      }
+
+      setCoverImage({
+        url: result.url,
+        alt: '', // Will be filled by user
+        publicId: result.publicId,
+        width: result.width,
+        height: result.height,
+      });
+    } catch (err) {
+      setError('Failed to upload image. Please try again.');
+      console.error('Upload error:', err);
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setCoverImage({
+      url: '',
+      alt: '',
+      publicId: '',
+      width: 0,
+      height: 0,
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -53,21 +100,27 @@ export default function BlogWriteForm() {
     setError('');
 
     // Validate form
-    if (!title.trim() || !excerpt.trim() || !coverImage || !content.trim() || !selectedAuthor) {
-      setError('All fields including author are required');
+    if (!title.trim() || !excerpt.trim() || !coverImage.url || !content.trim() || !selectedAuthor) {
+      setError('All fields including author and cover image are required');
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validate alt text
+    if (!coverImage.alt.trim()) {
+      setError('Please provide alt text for the cover image (for accessibility)');
       setIsSubmitting(false);
       return;
     }
 
     try {
-      const formData = new FormData();
-      formData.append('title', title.trim());
-      formData.append('excerpt', excerpt.trim());
-      formData.append('coverImage', coverImage);
-      formData.append('content', content);
-      formData.append('author', selectedAuthor);
-
-      const result = await createBlog(formData);
+      const result = await createBlog({
+        title: title.trim(),
+        excerpt: excerpt.trim(),
+        content,
+        coverImage,
+        author: selectedAuthor,
+      });
 
       if (result.success && result.blog && result.blog.slug) {
         router.push(`/blogs/${result.blog.slug}`);
@@ -150,7 +203,7 @@ export default function BlogWriteForm() {
             </select>
             <User className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
           </div>
-          
+
           {/* Author Preview */}
           {selectedAuthor && (
             <div className="mt-3 p-3 bg-gray-50 rounded-lg">
@@ -180,44 +233,86 @@ export default function BlogWriteForm() {
             Cover Image *
           </label>
           <div className="space-y-4">
+            {/* Upload Button */}
             <div className="flex items-center space-x-4">
-              <label className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg cursor-pointer transition-colors">
-                <Upload className="h-4 w-4" />
-                <span>Choose Image</span>
+              <label className={`flex items-center space-x-2 px-4 py-2 rounded-lg cursor-pointer transition-colors ${
+                isUploading 
+                  ? 'bg-gray-100 cursor-not-allowed' 
+                  : 'bg-blue-100 hover:bg-blue-200 text-blue-700'
+              }`}>
+                {isUploading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <span>Uploading...</span>
+                  </>
+                ) : (
+                  <>
+                    <ImageIcon className="h-4 w-4" />
+                    <span>Upload Image</span>
+                  </>
+                )}
                 <input
                   type="file"
                   accept="image/*"
                   onChange={handleImageUpload}
                   className="hidden"
+                  disabled={isUploading}
                 />
               </label>
               <span className="text-sm text-gray-500">
-                Or paste an image URL
+                Max 5MB (JPG, PNG, WebP)
               </span>
             </div>
-            
-            <input
-              type="url"
-              value={coverImage}
-              onChange={(e) => setCoverImage(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="https://example.com/image.jpg"
-            />
 
-            {/* Image Preview */}
-            {coverImage && (
-              <div className="relative h-48 w-full rounded-lg overflow-hidden border border-gray-200">
-                <img
-                  src={coverImage}
-                  alt="Cover preview"
-                  className="w-full h-full object-cover"
-                />
+            {/* Image Preview with Alt Text */}
+            {coverImage.url && (
+              <div className="space-y-3">
+                <div className="relative h-48 w-full rounded-lg overflow-hidden border border-gray-200">
+                  <img
+                    src={coverImage.url}
+                    alt={coverImage.alt || 'Cover preview'}
+                    className="h-full w-full object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleRemoveImage}
+                    className="absolute top-2 right-2 p-1.5 bg-red-500 hover:bg-red-600 text-white rounded-full transition-colors"
+                    aria-label="Remove image"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+
+                {/* Alt Text Input */}
+                <div>
+                  <label htmlFor="imageAlt" className="block text-sm font-medium text-gray-700 mb-2">
+                    Image Alt Text (for accessibility) *
+                  </label>
+                  <input
+                    id="imageAlt"
+                    type="text"
+                    value={coverImage.alt}
+                    onChange={(e) => setCoverImage({ ...coverImage, alt: e.target.value })}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Describe the image (e.g., 'JavaScript code on laptop screen')"
+                    required
+                  />
+                  <p className="mt-1 text-xs text-gray-500">
+                    Describe what's in the image for screen readers and SEO
+                  </p>
+                </div>
+
+                {/* Image Metadata */}
+                <div className="text-xs text-gray-500 space-y-1">
+                  <p>Dimensions: {coverImage.width} × {coverImage.height}px</p>
+                  <p>Uploaded to Cloudinary</p>
+                </div>
               </div>
             )}
           </div>
         </div>
 
-        {/* Content Editor */}
+        {/* Blog Content */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Content *

@@ -1,5 +1,5 @@
 # robots.txt for VUEDU
-# https://vuedu.com/robots.txt
+# https://vuedu.dev/robots.txt
 # Last updated: October 2025
 
 # Default crawl rules for all bots
@@ -142,10 +142,10 @@ Disallow: /api/
 Disallow: /admin/
 
 # Sitemaps
-Sitemap: https://vuedu.com/sitemap.xml
+Sitemap: https://vuedu.dev/sitemap.xml
 
 # Host
-Host: https://vuedu.com
+Host: https://vuedu.dev
 
 # Additional information for AI/LLM crawlers
-# For detailed AI/LLM access information, see: https://vuedu.com/llms.txt
+# For detailed AI/LLM access information, see: https://vuedu.dev/llms.txt

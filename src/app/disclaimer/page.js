@@ -228,7 +228,7 @@ export default function DisclaimerPage() {
                 If you have questions about this disclaimer or need clarification about our services:
               </p>
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-gray-600"><strong>Email:</strong> support@vuedu.com</p>
+                <p className="text-gray-600"><strong>Email:</strong> support@vuedu.dev</p>
                 <p className="text-gray-600"><strong>Subject:</strong> Disclaimer Inquiry</p>
                 <p className="text-gray-600"><strong>Address:</strong> VUEDU Support Team</p>
                 <p className="text-gray-600">123 Education Street, Learning City, LC 12345</p>

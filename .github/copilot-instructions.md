@@ -82,6 +82,21 @@ The `vu-project` is a Next.js-based educational web application (VUEDU.dev) with
 
 ## Component Guidelines
 
+### Image Management System (Cloudinary)
+- **Upload Flow**: Images upload via `/api/upload` route (server-side) for security
+- **Alt Text Required**: All images must have alt text for accessibility (WCAG 2.1 Level AA)
+- **Database Schema**: `coverImage` field stores object with `{url, alt, publicId, width, height}`
+- **Backward Compatibility**: All components handle both old string format and new object format
+- **Utilities**: 
+  - `uploadToCloudinary(file, folder)` - Upload image to Cloudinary
+  - `getCoverImageData(coverImage)` - Normalize image data (handles string or object)
+  - Server-side upload uses Cloudinary SDK for secure credential handling
+- **Environment Variables**: 
+  - `CLOUD_NAME`, `API_KEY`, `API_SECRET` (server-side only)
+  - No public credentials exposed to frontend
+- **Components Updated**: BlogCard, FeaturedPosts, BlogWriteForm, blog detail page
+- **SEO Integration**: Image metadata (url, alt, width, height) included in Open Graph and JSON-LD
+
 ### DocumentCard Component
 - Shows cover image if available
 - Falls back to displaying first 6 uppercase characters of title when no cover image exists

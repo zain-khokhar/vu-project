@@ -4,6 +4,15 @@ import { formatDate } from '@/lib/utils';
 import { Calendar, BookOpen } from 'lucide-react';
 
 export default function BlogCard({ blog }) {
+  // Handle both old string format and new object format for backward compatibility
+  const coverImageUrl = typeof blog.coverImage === 'string' 
+    ? blog.coverImage 
+    : blog.coverImage?.url || '/default-blog-cover.jpg';
+  
+  const coverImageAlt = typeof blog.coverImage === 'object' && blog.coverImage?.alt
+    ? blog.coverImage.alt
+    : blog.title;
+
   return (
     <Link href={`/blogs/${blog.slug}`}>
       <div className="group h-full flex flex-col rounded-3xl overflow-hidden backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border-2 bg-clip-padding border-transparent cursor-pointer" style={{
@@ -19,9 +28,13 @@ export default function BlogCard({ blog }) {
           {/* Glass frame */}
           <div className="relative bg-gradient-to-r from-purple-600/30 via-blue-600/30 to-purple-600/30 backdrop-blur-sm rounded-3xl p-2 ">
             <div className="relative overflow-hidden rounded-2xl h-64">
-              <Image src={blog.coverImage} width={400}
+              <Image 
+                src={coverImageUrl} 
+                width={400}
                 height={400}
-                alt={blog.title} className="w-full h-full object-cover" />
+                alt={coverImageAlt} 
+                className="w-full h-full object-cover" 
+              />
 
               {/* Glossy overlay */}
               {/* <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/20 pointer-events-none" aria-hidden /> */}

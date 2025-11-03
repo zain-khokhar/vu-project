@@ -47,18 +47,18 @@ Please respect our rate limiting:
 ## Attribution
 When using our content:
 - Credit: "VUEDU - Pakistan's Educational Resource Hub"
-- URL: https://vuedu.com
+- URL: https://vuedu.dev
 - Maintain educational context and accuracy
 - Respect copyright and intellectual property
 
 ## Contact
 For AI/LLM partnership inquiries or concerns:
-- Website: https://vuedu.com
-- Email: team@vuedu.com
-- Contact Page: https://vuedu.com/contact
+- Website: https://vuedu.dev
+- Email: team@vuedu.dev
+- Contact Page: https://vuedu.dev/contact
 
 ## Sitemap
-Full content structure: https://vuedu.com/sitemap.xml
+Full content structure: https://vuedu.dev/sitemap.xml
 
 ## Last Updated
 October 2025
@@ -68,21 +68,21 @@ October 2025
 # Structured Content Map
 
 ## Blog Posts
-URL Pattern: https://vuedu.com/blogs/[slug]
+URL Pattern: https://vuedu.dev/blogs/[slug]
 Content Type: Educational articles, tutorials, guides
 Topics: Computer Science, Programming, Web Development, Study Tips
 Format: HTML with rich text content
 Language: English
 
 ## Documents
-URL Pattern: https://vuedu.com/documents/[slug]
+URL Pattern: https://vuedu.dev/documents/[slug]
 Content Type: Academic resources, lecture notes, assignments
 Topics: CS101, CS201, CS301, CS401, CS501 courses
 Format: PDF, images, and document viewers
 Language: English
 
 ## Quizzes
-URL Pattern: https://vuedu.com/quiz/[category]
+URL Pattern: https://vuedu.dev/quiz/[category]
 Content Type: Interactive assessments and practice questions
 Categories: CS101, CS201, CS301, CS401, CS501
 Format: JSON-based multiple choice questions

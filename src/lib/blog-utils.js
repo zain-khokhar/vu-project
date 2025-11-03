@@ -48,35 +48,64 @@ export function generateExcerpt(content, maxLength = 155) {
 }
 
 /**
+ * Get cover image data (handles both old string and new object format)
+ * @param {string|Object} coverImage - Cover image (string URL or object)
+ * @returns {Object} Normalized image object
+ */
+export function getCoverImageData(coverImage) {
+  if (!coverImage) {
+    return {
+      url: '/default-blog-cover.jpg',
+      alt: 'Blog post cover image',
+      width: 1200,
+      height: 630,
+    };
+  }
+
+  // Old format: string URL
+  if (typeof coverImage === 'string') {
+    return {
+      url: coverImage,
+      alt: 'Blog post cover image',
+      width: 1200,
+      height: 630,
+    };
+  }
+
+  // New format: object with metadata
+  return {
+    url: coverImage.url || '/default-blog-cover.jpg',
+    alt: coverImage.alt || 'Blog post cover image',
+    width: coverImage.width || 1200,
+    height: coverImage.height || 630,
+    publicId: coverImage.publicId,
+  };
+}
+
+/**
  * Generate comprehensive metadata for blog posts
  * @param {Object} blog - Blog post object
  * @param {string} slug - Blog post slug
  * @returns {Object} Next.js metadata object
  */
 export function generateBlogMetadata(blog, slug) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.dev';
   const url = `${baseUrl}/blogs/${slug}`;
-  
+
   // Extract plain text excerpt from content
   const plainTextContent = extractPlainText(blog.content);
   const excerpt = blog.excerpt || generateExcerpt(plainTextContent);
-  
+
   // Calculate reading time
   const words = plainTextContent.split(' ').filter(word => word.length > 0);
-  const readingTime = Math.ceil(words.length / 200);
+
+  // Get normalized cover image data
+  const coverImageData = getCoverImageData(blog.coverImage);
 
   return {
-    title: `${blog.title} | VUEDU Blog`,
+    title: `${blog.title}`,
     description: excerpt,
-    keywords: [
-      blog.title,
-      'educational blog',
-      'learning resources',
-      'academic content',
-      'VUEDU',
-      ...(blog.tags || [])
-    ].join(', '),
-    authors: blog.author ? [{ 
+    authors: blog.author ? [{
       name: blog.author.name,
       url: blog.author.website || `${baseUrl}/authors/${blog.author._id}`
     }] : [],
@@ -100,10 +129,10 @@ export function generateBlogMetadata(blog, slug) {
       locale: 'en_US',
       images: [
         {
-          url: blog.coverImage,
-          width: 1200,
-          height: 630,
-          alt: blog.title,
+          url: coverImageData.url,
+          width: coverImageData.width,
+          height: coverImageData.height,
+          alt: coverImageData.alt,
           type: 'image/jpeg',
         }
       ],
@@ -119,7 +148,7 @@ export function generateBlogMetadata(blog, slug) {
       card: 'summary_large_image',
       title: blog.title,
       description: excerpt,
-      images: [blog.coverImage],
+      images: [coverImageData.url],
       creator: blog.author?.twitter || '@VUEDU',
       site: '@VUEDU',
     },
@@ -135,10 +164,6 @@ export function generateBlogMetadata(blog, slug) {
         'max-snippet': -1,
       }
     },
-    other: {
-      'article:reading_time': `${readingTime} min`,
-      'article:word_count': words.length.toString(),
-    }
   };
 }
 
@@ -149,10 +174,13 @@ export function generateBlogMetadata(blog, slug) {
  * @returns {Object} JSON-LD structured data
  */
 export function generateBlogStructuredData(blog, readingTime) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.dev';
   const plainTextContent = extractPlainText(blog.content);
   const excerpt = blog.excerpt || generateExcerpt(plainTextContent);
   const wordCount = getWordCount(blog.content);
+
+  // Get normalized cover image data
+  const coverImageData = getCoverImageData(blog.coverImage);
 
   // Ensure we have valid dates
   const publishedDate = blog.createdAt ? new Date(blog.createdAt).toISOString() : new Date().toISOString();
@@ -161,57 +189,20 @@ export function generateBlogStructuredData(blog, readingTime) {
   // Create the structured data with both root-level and @graph approaches
   const structuredData = {
     '@context': 'https://schema.org',
-    // Root-level BlogPosting for Google Rich Results
-    '@type': 'BlogPosting',
-    headline: blog.title,
-    name: blog.title,
-    description: excerpt,
-    image: blog.coverImage, // Simple URL for Google Rich Results
-    author: blog.author ? {
-      '@type': 'Person',
-      name: blog.author.name,
-      url: blog.author.website || `${baseUrl}/authors/${blog.author._id}`,
-      image: blog.author.avatar,
-    } : {
-      '@type': 'Organization',
-      name: 'VUEDU',
-      url: baseUrl,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'VUEDU',
-      url: baseUrl,
-      logo: `${baseUrl}/logo.png`,
-    },
-    datePublished: publishedDate,
-    dateModified: modifiedDate,
-    mainEntityOfPage: `${baseUrl}/blogs/${blog.slug}`,
-    articleSection: 'Education',
-    keywords: blog.tags?.join(', ') || 'education, learning, academic',
-    wordCount: wordCount,
-    timeRequired: `PT${readingTime}M`,
-    inLanguage: 'en-US',
-    isAccessibleForFree: true,
-    url: `${baseUrl}/blogs/${blog.slug}`,
     '@graph': [
-      // Main Article - BlogPosting (detailed version)
+      // 1. The Blog Post
       {
         '@type': 'BlogPosting',
         '@id': `${baseUrl}/blogs/${blog.slug}#article`,
         headline: blog.title,
-        name: blog.title,
         description: excerpt,
-        image: [
-          {
-            '@type': 'ImageObject',
-            url: blog.coverImage,
-            width: 1200,
-            height: 630,
-            caption: blog.title,
-          }
-        ],
-        datePublished: publishedDate,
-        dateModified: modifiedDate,
+        image: {
+          '@type': 'ImageObject',
+          url: coverImageData.url,
+          width: coverImageData.width,
+          height: coverImageData.height,
+          caption: coverImageData.alt,
+        },
         author: blog.author ? {
           '@type': 'Person',
           '@id': `${baseUrl}/authors/${blog.author._id}#person`,
@@ -220,50 +211,30 @@ export function generateBlogStructuredData(blog, readingTime) {
           image: blog.author.avatar ? {
             '@type': 'ImageObject',
             url: blog.author.avatar,
-            width: 150,
-            height: 150,
+            width: 150, // Assuming 150, adjust if known
+            height: 150, // Assuming 150, adjust if known
           } : undefined,
           description: blog.author.bio,
-          sameAs: blog.author.social ? [
-            blog.author.social.twitter,
-            blog.author.social.linkedin,
-            blog.author.social.website
-          ].filter(Boolean) : undefined,
+          sameAs: [
+            blog.author.social?.twitter,
+            blog.author.social?.linkedin,
+            blog.author.social?.website
+          ].filter(Boolean),
         } : {
           '@type': 'Organization',
-          name: 'VUEDU',
-          url: baseUrl,
-          logo: {
-            '@type': 'ImageObject',
-            url: `${baseUrl}/logo.png`,
-            width: 600,
-            height: 60,
-          }
+          '@id': `${baseUrl}#organization`
         },
         publisher: {
-          '@type': 'Organization',
-          '@id': `${baseUrl}#organization`,
-          name: 'VUEDU',
-          url: baseUrl,
-          logo: {
-            '@type': 'ImageObject',
-            url: `${baseUrl}/logo.png`,
-            width: 600,
-            height: 60,
-          },
-          sameAs: [
-            `${baseUrl}`,
-            // Add social media URLs if available
-          ]
+          '@id': `${baseUrl}#organization`
         },
+        datePublished: publishedDate,
+        dateModified: modifiedDate,
         mainEntityOfPage: {
-          '@type': 'WebPage',
-          '@id': `${baseUrl}/blogs/${blog.slug}`,
+          '@id': `${baseUrl}/blogs/${blog.slug}`
         },
         articleSection: 'Education',
-        keywords: blog.tags?.join(', ') || 'education, learning, academic',
-        timeRequired: `PT${readingTime}M`,
         wordCount: wordCount,
+        timeRequired: `PT${readingTime}M`,
         inLanguage: 'en-US',
         isAccessibleForFree: true,
         url: `${baseUrl}/blogs/${blog.slug}`,
@@ -271,36 +242,19 @@ export function generateBlogStructuredData(blog, readingTime) {
           '@type': 'SpeakableSpecification',
           cssSelector: ['.blog-content']
         },
-        // Additional fields for better Google Rich Results
-        articleBody: plainTextContent.substring(0, 5000), // First 5000 chars
-        thumbnailUrl: blog.coverImage,
+        articleBody: plainTextContent.substring(0, 5000),
       },
-      // BreadcrumbList
+      // 2. The Breadcrumbs
       {
         '@type': 'BreadcrumbList',
         '@id': `${baseUrl}/blogs/${blog.slug}#breadcrumb`,
         itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Home',
-            item: baseUrl,
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Blog',
-            item: `${baseUrl}/blogs`,
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: blog.title,
-            item: `${baseUrl}/blogs/${blog.slug}`,
-          }
+          { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/blogs` },
+          { '@type': 'ListItem', position: 3, name: blog.title, item: `${baseUrl}/blogs/${blog.slug}` }
         ]
       },
-      // WebPage
+      // 3. The Web Page
       {
         '@type': 'WebPage',
         '@id': `${baseUrl}/blogs/${blog.slug}`,
@@ -308,23 +262,20 @@ export function generateBlogStructuredData(blog, readingTime) {
         name: blog.title,
         description: excerpt,
         isPartOf: {
-          '@type': 'WebSite',
-          '@id': `${baseUrl}#website`,
-          name: 'VUEDU',
-          url: baseUrl,
+          '@id': `${baseUrl}#website` // Correctly links to #website
         },
         breadcrumb: {
-          '@id': `${baseUrl}/blogs/${blog.slug}#breadcrumb`,
+          '@id': `${baseUrl}/blogs/${blog.slug}#breadcrumb`
         },
         primaryImageOfPage: {
           '@type': 'ImageObject',
-          url: blog.coverImage,
+          url: coverImageData.url,
         },
         datePublished: publishedDate,
         dateModified: modifiedDate,
         inLanguage: 'en-US',
       },
-      // Organization
+      // 4. The Organization (Publisher)
       {
         '@type': 'Organization',
         '@id': `${baseUrl}#organization`,
@@ -336,11 +287,22 @@ export function generateBlogStructuredData(blog, readingTime) {
           width: 600,
           height: 60,
         },
-        description: 'Educational content creators and technology enthusiasts sharing knowledge with students worldwide.',
+        description: 'Educational content creators and technology enthusiasts...',
         sameAs: [
           `${baseUrl}`,
-          // Add social media URLs
+          // Add social media URLs here
         ]
+      },
+      // 5. The Website (NEWLY ADDED)
+      {
+        '@type': 'WebSite',
+        '@id': `${baseUrl}#website`,
+        url: baseUrl,
+        name: 'VUEDU',
+        publisher: {
+          '@id': `${baseUrl}#organization`
+        },
+        inLanguage: 'en-US',
       }
     ]
   };

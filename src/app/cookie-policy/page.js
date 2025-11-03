@@ -42,7 +42,7 @@ export default function CookiePage() {
                 Cookies are small text files that are stored on your device when you visit our website. They help us provide you with a better experience by remembering your preferences and enabling certain functionality.
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
-                This Cookie Policy explains how VUEDU ("we," "our," or "us") uses cookies and similar technologies when you visit our website at vuedu.com (the "Service").
+                This Cookie Policy explains how VUEDU ("we," "our," or "us") uses cookies and similar technologies when you visit our website at vuedu.dev (the "Service").
               </p>
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <p className="text-blue-800 font-medium">
@@ -263,7 +263,7 @@ export default function CookiePage() {
                 If you have questions about our use of cookies or this policy, please contact us:
               </p>
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-gray-600"><strong>Email:</strong> privacy@vuedu.com</p>
+                <p className="text-gray-600"><strong>Email:</strong> privacy@vuedu.dev</p>
                 <p className="text-gray-600"><strong>Subject:</strong> Cookie Policy Inquiry</p>
                 <p className="text-gray-600"><strong>Address:</strong> VUEDU Privacy Team</p>
                 <p className="text-gray-600">123 Education Street, Learning City, LC 12345</p>

@@ -22,6 +22,20 @@ export default function FeaturedPosts({ blogs }) {
     // Get the first three blogs for the featured section
     const [first, second, third] = blogs.slice(0, 3);
 
+    // Helper function to get cover image URL (handles both old string and new object format)
+    const getCoverImageUrl = (coverImage) => {
+        if (!coverImage) return '/default-blog-cover.jpg';
+        return typeof coverImage === 'string' ? coverImage : coverImage.url || '/default-blog-cover.jpg';
+    };
+
+    // Helper function to get cover image alt text
+    const getCoverImageAlt = (coverImage, title) => {
+        if (typeof coverImage === 'object' && coverImage?.alt) {
+            return coverImage.alt;
+        }
+        return title;
+    };
+
     return (
         <section className="w-full relative">
             {/* Liquid Background Orbs */}
@@ -45,8 +59,8 @@ export default function FeaturedPosts({ blogs }) {
                         <article className="col-span-12 lg:col-span-6 row-span-2 relative rounded-3xl overflow-hidden group h-[400px] lg:h-[500px] backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 shadow-2xl hover:shadow-3xl transition-all duration-500  hover:border-white/100">
                             <Link href={`/blogs/${first.slug}`} className="block relative w-full h-full">
                                 <Image
-                                    src={first.coverImage}
-                                    alt={first.title}
+                                    src={getCoverImageUrl(first.coverImage)}
+                                    alt={getCoverImageAlt(first.coverImage, first.title)}
                                     fill
                                     className="object-cover object-center group-hover:scale-110 transition-transform duration-700 rounded-3xl"
                                 />
@@ -77,8 +91,8 @@ export default function FeaturedPosts({ blogs }) {
                                         className="w-32 h-32 md:w-40 md:h-40 relative flex-shrink-0 rounded-2xl overflow-hidden"
                                     >
                                         <Image
-                                            src={second.coverImage}
-                                            alt={second.title}
+                                            src={getCoverImageUrl(second.coverImage)}
+                                            alt={getCoverImageAlt(second.coverImage, second.title)}
                                             fill
                                             className="object-cover object-center group-hover:scale-110 transition-transform duration-500"
                                         />
@@ -115,8 +129,8 @@ export default function FeaturedPosts({ blogs }) {
                                         className="w-32 h-32 md:w-40 md:h-40 relative flex-shrink-0 rounded-2xl overflow-hidden"
                                     >
                                         <Image
-                                            src={third.coverImage}
-                                            alt={third.title}
+                                            src={getCoverImageUrl(third.coverImage)}
+                                            alt={getCoverImageAlt(third.coverImage, third.title)}
                                             fill
                                             className="object-cover object-center group-hover:scale-110 transition-transform duration-500"
                                         />
