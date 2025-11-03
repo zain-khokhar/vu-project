@@ -10,8 +10,8 @@ import {
 
 // Glossy Liquid macOS Theme Configuration
 const typeConfig = {
-  note: {
-    label: 'Class Note',
+  handout: {
+    label: 'Handout',
     Icon: StickyNote,
     gradient: 'from-blue-400/20 via-cyan-400/20 to-blue-500/20',
     iconBg: 'bg-blue-500/20',
@@ -26,8 +26,8 @@ const typeConfig = {
     iconColor: 'text-red-600',
     badgeColor: 'bg-red-100/80 text-red-700',
   },
-  slides: {
-    label: 'Slideshow',
+  note: {
+    label: 'Note',
     Icon: FileText,
     gradient: 'from-amber-400/20 via-orange-400/20 to-amber-500/20',
     iconBg: 'bg-amber-500/20',
@@ -73,7 +73,7 @@ export default function DocumentCard({ document }) {
           {/* Title with animated underline */}
           <div className="mb-4 relative">
             <h3
-              className="text-lg font-bold text-gray-900 line-clamp-2 min-h-[3.5rem] group-hover:text-blue-600 transition-colors duration-300"
+              className="text-lg font-medium text-gray-900  line-clamp-2 min-h-[3.5rem] group-hover:text-purple-600 transition-colors duration-300"
               title={document.title}
             >
               {document.title}
@@ -111,7 +111,7 @@ export default function DocumentCard({ document }) {
 
           {/* Footer with glass effect */}
           <div className="mt-auto pt-4 border-t border-gray-400 flex items-center justify-between backdrop-blur-sm">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-lg"></div>
+            <div className="w-2 h-2 bg-green-500 rounded-full shadow-lg"></div>
             <div className="flex items-center text-gray-600 font-medium text-sm group-hover:text-purple-600 transition-colors">
               <span className="mr-1.5">Download</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />

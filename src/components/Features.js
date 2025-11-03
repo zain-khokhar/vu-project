@@ -55,7 +55,7 @@ export function Features() {
             <span className="text-sm bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">Powerful Features</span>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl mb-4 bg-gradient-to-br from-[#1a1f36] to-[#667eea] bg-clip-text text-transparent">
+          <h2 className="text-4xl lg:text-5xl mb-4 font-light bg-gradient-to-br from-[#1a1f36] to-[#667eea] bg-clip-text text-transparent">
             Everything you need to manage documents
           </h2>
           <p className="text-xl text-gray-700/70 max-w-2xl mx-auto">

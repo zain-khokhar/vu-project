@@ -31,7 +31,7 @@ export default function Header({ defaultTheme = "light" }) {
     { href: "/documents", label: "Documents" },
     { href: "/blogs", label: "Blogs" },
     { href: "/quiz", label: "Quiz" },
-    { href: "/services", label: "Services" },
+    // { href: "/services", label: "Services" },
     { href: "/contact", label: "Contact" },
   ];
 

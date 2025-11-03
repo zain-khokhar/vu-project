@@ -112,13 +112,13 @@ export default async function BlogsPage({ searchParams }) {
               {/* CTA Button */}
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <Link
-                  href="/blog/write"
+                  href="#first"
                   className="group relative px-6 py-3 bg-gradient-to-r from-purple-500/80 via-purple-600/70 to-pink-600/80 text-white font-medium text-sm rounded-xl overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/30 hover:scale-105 active:scale-95 w-fit"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/15 via-transparent to-white/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -skew-x-12 group-hover:skew-x-0"></div>
                   <div className="relative flex items-center justify-center space-x-2">
                     <FileText className="h-4 w-4 text-pink-200 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
-                    <span>Write a Blog Post</span>
+                    <span>Explore Blogs</span>
                   </div>
                 </Link>
               </div>
@@ -238,7 +238,7 @@ export default async function BlogsPage({ searchParams }) {
 
       {/* Featured Posts Section */}
       {enhancedBlogs.length > 0 && (
-        <section className="relative py-12 px-4 sm:px-6 lg:px-8">
+        <section className="relative py-12 px-4 sm:px-6 lg:px-8" id='first'>
           <FeaturedPosts blogs={enhancedBlogs} />
         </section>
       )}

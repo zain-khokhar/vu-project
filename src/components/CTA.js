@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 // Portable Button component (no Radix). Keeps the same props shape used in the project:
@@ -11,7 +12,7 @@ function Button({
   children,
   ...props
 }) {
-  const base = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+  const base = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-light transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
 
   const variants = {
     default: "bg-[#6b46ff] text-white hover:bg-[#5a3ee6]",
@@ -62,49 +63,55 @@ export function CTA() {
             <div className="max-w-3xl mx-auto flex flex-col gap-6 relative z-10">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 w-fit shadow-lg mx-auto">
                 <Sparkles className="h-4 w-4 text-purple-600 animate-pulse" />
-                <span className="text-sm bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">Limited Time Offer</span>
+                <span className="text-sm bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">🇵🇰 Trusted by 100K+ Pakistani Students</span>
               </div>
 
 
-              <h2 className="text-4xl lg:text-5xl max-sm:text-3xl bg-gradient-to-br from-[#1a1f36] to-[#667eea] bg-clip-text text-transparent">
-                Ready to transform your document management?
+              <h2 className="text-4xl font-light lg:text-5xl max-sm:text-3xl bg-gradient-to-br from-[#1a1f36] to-[#667eea] bg-clip-text text-transparent">
+                Start Your Learning Journey Today
               </h2>
 
-              <p className="text-xl text-gray-700/70 max-sm:text-lg">
-                Join thousands of teams already using VUEDU to stay organized and productive.
+              <p className="text-xl text-gray-700/70 font-light max-sm:text-lg">
+                Join thousands of Pakistani students accessing free educational resources from VU, AIOU, NUST, and all major universities across Pakistan.
               </p>
 
               <div className="flex sm:flex-row flex-wrap gap-4 justify-center pt-4">
                 <Button
                   size="lg"
+                  asChild
                   className="gap-2 bg-gradient-to-br from-[#6b46ff] to-[#764ba2] text-white border-0 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300"
                 >
-                  Start Free Trial
-                  <ArrowRight className="h-4 w-4" />
+                  <Link href="/documents">
+                    Browse Documents
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="gap-2 bg-white/30 border-white/50 hover:bg-white/40 transition-all duration-300 hover:scale-105"
+                  asChild
+                  className="gap-2 bg-white/30 border-white/50 hover:bg-white/40 transition-all shadow-xl duration-300 hover:scale-105"
                 >
-                  Contact Sales
+                  <Link href="/blogs">
+                    Explore Resources
+                  </Link>
                 </Button>
               </div>
 
               <div className="flex items-center justify-center gap-6 pt-2">
                 <div className="flex items-center gap-2 text-sm text-gray-600/60">
                   <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  <span>No credit card required</span>
+                  <span>100% Free Forever</span>
                 </div>
                 <div className="h-1 w-1 rounded-full bg-gray-400/30"></div>
                 <div className="flex items-center gap-2 text-sm text-gray-600/60">
                   <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                  <span>14-day free trial</span>
+                  <span>Instant Access</span>
                 </div>
                 <div className="h-1 w-1 rounded-full bg-gray-400/30"></div>
                 <div className="flex items-center gap-2 text-sm text-gray-600/60">
                   <div className="w-2 h-2 rounded-full bg-purple-500"></div>
-                  <span>Cancel anytime</span>
+                  <span>No Registration Required</span>
                 </div>
               </div>
             </div>

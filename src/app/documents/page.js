@@ -16,7 +16,7 @@ function DocumentsLoading() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {Array.from({ length: 6 }).map((_, i) => (
-        <div key={i} className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 rounded-3xl shadow-2xl border border-white/90 overflow-hidden animate-pulse">
+        <div key={i} className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 rounded-3xl shadow-2xl border border-white/90 overflow-hidden">
           <div className="h-48 bg-gradient-to-br from-white/40 to-white/20"></div>
           <div className="p-4 space-y-3">
             <div className="h-4 bg-gradient-to-r from-white/40 to-white/20 rounded w-3/4"></div>
@@ -33,12 +33,12 @@ function DocumentsLoading() {
 async function DocumentsContent({ searchParams }) {
   // Await searchParams as required by Next.js 15
   const params = await searchParams;
-  const page = parseInt(params.page) || 1;
-  const search = params.search || '';
-  const type = params.type || '';
-  const subject = params.subject || '';
-  const university = params.university || '';
-  const year = params.year || '';
+  const page = parseInt(params?.page) || 1;
+  const search = params?.search || '';
+  const type = params?.type || '';
+  const subject = params?.subject || '';
+  const university = params?.university || '';
+  const year = params?.year || '';
 
   const [documentsResult, filterOptionsResult] = await Promise.all([
     getDocuments({ page, search, type, subject, university, year }),
@@ -108,7 +108,7 @@ async function DocumentsContent({ searchParams }) {
               <span className="block bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
                 Educational Documents
               </span>
-              <span className="block xl:inline bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-pulse">
+              <span className="block xl:inline bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                 Library
               </span>
             </h1>
@@ -122,7 +122,7 @@ async function DocumentsContent({ searchParams }) {
       </section>
 
       {/* Search and Filters */}
-      {/* <SearchFilters filterOptions={filterOptions} /> */}
+      <SearchFilters filterOptions={filterOptions} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 relative z-10">
         {/* Documents Grid */}
@@ -199,12 +199,12 @@ export async function generateStaticParams() {
 // Generate dynamic metadata based on search params
 export async function generateMetadata({ searchParams }) {
   const params = await searchParams;
-  const search = params.search || '';
-  const type = params.type || '';
-  const subject = params.subject || '';
-  const university = params.university || '';
-  const year = params.year || '';
-  const page = parseInt(params.page) || 1;
+  const search = params?.search || '';
+  const type = params?.type || '';
+  const subject = params?.subject || '';
+  const university = params?.university || '';
+  const year = params?.year || '';
+  const page = parseInt(params?.page) || 1;
 
   // Build dynamic title and description
   let title = 'Browse Educational Documents';
@@ -261,5 +261,5 @@ export async function generateMetadata({ searchParams }) {
   });
 }
 
-export const dynamic = 'force-static';
-export const revalidate = 3600; // Revalidate every hour
+export const dynamic = 'force-dynamic'; // Enable dynamic rendering for search/filter
+export const revalidate = 0; // Disable caching for real-time search results

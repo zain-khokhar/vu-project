@@ -165,9 +165,7 @@ export default async function Home() {
               {/* Premium Badge with Liquid Effect */}
               <div className="inline-block group">
                 <div className="relative backdrop-blur-3xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500"></div>
-                  <span className="relative text-sm font-medium bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent tracking-wide"> PREMIUM LEARNING EXPERIENCE</span>
+                  <span className="relative text-xs font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent tracking-wide">🇵🇰 #1 LEARNING PLATFORM</span>
                 </div>
               </div>
 
@@ -175,44 +173,31 @@ export default async function Home() {
               <div className="space-y-3">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 leading-tight tracking-tight">
                   <span className="block bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
-                    Liquid
+                    Your Gateway to
                   </span>
                   <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-clip-text text-transparent animate-pulse">
-                    Knowledge
+                    Academic Excellence
                   </span>
                 </h1>
                 <div className="w-20 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full animate-pulse"></div>
               </div>
 
               {/* Premium Subheading */}
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-lg font-normal">
-                Experience the future of learning with our premium liquid interface. Seamlessly access world-class educational content with macOS-inspired elegance and fluid interactions.
-              </p>
+              <p className="leading-tight font-light text-xl text-gray-700 leading-relaxed max-w-lg">
+                Access free notes, past papers, books, and handouts from top Pakistani universities. Join 100,000+ students nationwide.              </p>
 
               {/* Liquid CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                <Link
-                  href="/documents"
-                  className="group relative px-4 py-2 bg-gradient-to-r from-blue-500/80 via-blue-600/70 to-purple-600/80 text-white font-medium text-sm rounded-xl overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/30 hover:scale-105 active:scale-95"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/15 via-transparent to-white/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -skew-x-12 group-hover:skew-x-0"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/8 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500"></div>
-                  <div className="relative flex items-center justify-center space-x-2">
-                    <Search className="h-4 w-4 text-blue-200 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
-                    <span>Explore Documents</span>
-                    <ArrowRight className="h-3 w-3 text-blue-200 group-hover:translate-x-1 transition-transform duration-300" />
-                  </div>
-                </Link>
+
 
                 <Link
-                  href="/admin/upload"
-                  className="group relative px-4 py-2 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/50 to-white/60 text-gray-900 font-medium text-sm rounded-xl border border-white/70 hover:border-white/90 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-white/20 hover:scale-105 active:scale-95"
+                  href="/documents"
+                  className="group relative px-4 py-2 shadow-lg backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/50 to-white/60 text-gray-900 font-medium text-sm rounded-xl border border-white/70 hover:border-white/90 overflow-hidden transition-all duration-500 hover:shadow-white/20 hover:scale-105 active:scale-95"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/8 via-purple-400/8 to-pink-400/8 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500"></div>
+
                   <div className="relative flex items-center justify-center space-x-2">
                     <BookOpen className="h-4 w-4 text-purple-600 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300" />
-                    <span>Share Knowledge</span>
+                    <span>Explore Documents</span>
                   </div>
                 </Link>
               </div>
@@ -230,14 +215,14 @@ export default async function Home() {
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative flex items-center space-x-2">
                     <div className="w-2.5 h-2.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full animate-pulse shadow-lg"></div>
-                    <span className="text-sm font-normal text-gray-900 tracking-wide">INSTANT ACCESS</span>
+                    <span className="text-sm font-normal text-gray-900 tracking-wide">10,000+ RESOURCES</span>
                   </div>
                 </div>
                 <div className="group backdrop-blur-2xl bg-gradient-to-r from-white/60 via-white/50 to-white/60 border border-white/80 rounded-2xl px-4 py-2 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:bg-white/70">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative flex items-center space-x-2">
                     <div className="w-2.5 h-2.5 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full animate-pulse shadow-lg"></div>
-                    <span className="text-sm font-normal text-gray-900 tracking-wide">NO REGISTRATION</span>
+                    <span className="text-sm font-normal text-gray-900 tracking-wide">ALL UNIVERSITIES</span>
                   </div>
                 </div>
               </div>
@@ -259,8 +244,8 @@ export default async function Home() {
                           <BookOpen className="h-4 w-4 text-white drop-shadow-lg" />
                         </div>
                         <div className="min-w-0">
-                          <h3 className="font-normal text-gray-900 text-sm">Premium Documents</h3>
-                          <p className="text-xs text-gray-700 truncate font-light">Expert Curated</p>
+                          <h3 className="font-normal text-gray-900 text-sm">VU Notes & Books</h3>
+                          <p className="text-xs text-gray-700 truncate font-light">Virtual University</p>
                         </div>
                       </div>
                       <div className="w-8 h-8 bg-gradient-to-br from-blue-400/60 via-blue-500/50 to-blue-600/60 backdrop-blur-xl rounded-xl flex items-center justify-center text-xs font-medium text-white border border-white/60 flex-shrink-0 shadow-xl">1K+</div>
@@ -268,7 +253,7 @@ export default async function Home() {
 
                     <div className="space-y-1.5">
                       <div className="flex justify-between items-center text-xs text-gray-700 font-light">
-                        <span>Quality Score</span>
+                        <span>Verified Content</span>
                         <span className="text-blue-600 font-medium text-sm">98%</span>
                       </div>
                       <div className="w-full h-1 bg-gradient-to-r from-white/40 to-white/60 rounded-full overflow-hidden border border-white/50 shadow-inner">
@@ -280,7 +265,7 @@ export default async function Home() {
                           <div className="w-4 h-4 rounded-full bg-gradient-to-r from-purple-400 to-purple-500 border-2 border-white/80 shadow-lg animate-pulse" style={{ animationDelay: '0.5s' }}></div>
                           <div className="w-4 h-4 rounded-full bg-gradient-to-r from-pink-400 to-pink-500 border-2 border-white/80 shadow-lg animate-pulse" style={{ animationDelay: '1s' }}></div>
                         </div>
-                        <span className="text-xs text-gray-700 font-light">+5.2K Downloads</span>
+                        <span className="text-xs text-gray-700 font-light">+15.2K Students</span>
                       </div>
                     </div>
                   </div>
@@ -301,15 +286,15 @@ export default async function Home() {
                           <Download className="h-4 w-4 text-white drop-shadow-lg" />
                         </div>
                         <div className="min-w-0">
-                          <h3 className="font-normal text-gray-900 text-sm">Lightning Fast</h3>
+                          <h3 className="font-normal text-gray-900 text-sm">Past Papers</h3>
                           <p className="text-xs text-gray-700 truncate font-light">This Month</p>
                         </div>
                       </div>
                       <div className="flex flex-col items-end flex-shrink-0">
-                        <span className="text-lg font-medium text-emerald-600 drop-shadow-lg">8.7K</span>
+                        <span className="text-lg font-medium text-emerald-600 drop-shadow-lg">12.5K</span>
                         <span className="text-xs text-emerald-600 font-light flex items-center gap-0.5">
                           <span className="inline-block w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
-                          +42%
+                          +58%
                         </span>
                       </div>
                     </div>
