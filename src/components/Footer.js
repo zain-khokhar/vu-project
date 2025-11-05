@@ -22,14 +22,14 @@ export default function Footer() {
             </p>
             <div className="flex items-center space-x-2 text-sm text-gray-600 font-light">
               <span>Made with</span>
-              <Heart className="h-4 w-4 text-red-500 animate-pulse" />
+              <Heart className="h-4 w-4 text-red-500  " />
               <span>for students worldwide</span>
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
             <h3 className="font-medium text-gray-900 mb-4 relative">Quick Links</h3>
             <ul className="space-y-3 text-gray-700">
               <li>
@@ -67,7 +67,7 @@ export default function Footer() {
 
           {/* Resources */}
           <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
             <h3 className="font-medium text-gray-900 mb-4 relative">Resources</h3>
             <ul className="space-y-3 text-gray-700">
               <li>

@@ -51,7 +51,7 @@ export function Features() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 w-fit shadow-lg mb-6 mx-auto">
-            <span className="h-2 w-2 rounded-full bg-purple-500 animate-pulse"></span>
+            <span className="h-2 w-2 rounded-full bg-purple-500  "></span>
             <span className="text-sm bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">Powerful Features</span>
           </div>
           
@@ -107,7 +107,7 @@ export default Features;
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="group relative p-8 backdrop-blur-3xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 rounded-3xl border border-white/90 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:border-white/100 hover:bg-white/80 overflow-hidden hover:scale-105 group-hover:shadow-blue-500/20">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 via-cyan-300/15 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-700"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-700"></div>
               <div className="relative z-10">
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-500/60 via-blue-600/50 to-blue-700/60 backdrop-blur-xl rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 border border-white/60 shadow-2xl">
                   <BookOpen className="h-7 w-7 text-white drop-shadow-lg" />
@@ -121,7 +121,7 @@ export default Features;
 
             <div className="group relative p-8 backdrop-blur-3xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 rounded-3xl border border-white/90 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:border-white/100 hover:bg-white/80 overflow-hidden hover:scale-105 group-hover:shadow-green-500/20">
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 via-green-300/15 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-700"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-700"></div>
               <div className="relative z-10">
                 <div className="w-14 h-14 bg-gradient-to-br from-emerald-500/60 via-green-600/50 to-green-700/60 backdrop-blur-xl rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-500 border border-white/60 shadow-2xl">
                   <Download className="h-7 w-7 text-white drop-shadow-lg" />
@@ -135,7 +135,7 @@ export default Features;
 
             <div className="group relative p-8 backdrop-blur-3xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 rounded-3xl border border-white/90 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:border-white/100 hover:bg-white/80 overflow-hidden hover:scale-105 group-hover:shadow-purple-500/20">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-pink-300/15 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-700"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-700"></div>
               <div className="relative z-10">
                 <div className="w-14 h-14 bg-gradient-to-br from-purple-500/60 via-purple-600/50 to-purple-700/60 backdrop-blur-xl rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 border border-white/60 shadow-2xl">
                   <Users className="h-7 w-7 text-white drop-shadow-lg" />

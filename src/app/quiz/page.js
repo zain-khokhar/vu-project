@@ -83,7 +83,7 @@ export default async function QuizHomePage() {
             <span className="block bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
               Online Quiz
             </span>
-            <span className="block xl:inline bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent animate-pulse">
+            <span className="block xl:inline bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent  ">
               System
             </span>
           </h1>
@@ -96,7 +96,18 @@ export default async function QuizHomePage() {
 
         {/* Quiz Cards */}
         {quizzes.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <>
+            {/* Section Heading */}
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-light text-gray-900 bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent mb-2">
+                Available Quizzes
+              </h2>
+              <p className="text-gray-600 font-light">
+                Choose a subject to test your knowledge
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {quizzes.map((quiz) => (
               <Link
                 key={quiz.id}
@@ -105,7 +116,7 @@ export default async function QuizHomePage() {
               >
                 <div className="h-full backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 hover:border-white/100 overflow-hidden">
                   {/* Glossy overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 pointer-events-none"></div>
 
                   {/* Card Header with Gradient */}
                   <div className={`bg-gradient-to-br ${quiz.color} p-6 text-white relative overflow-hidden`}>
@@ -148,6 +159,7 @@ export default async function QuizHomePage() {
               </Link>
             ))}
           </div>
+          </>
         ) : (
           <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center max-w-md mx-auto mb-16">
             <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
@@ -201,7 +213,7 @@ export default async function QuizHomePage() {
                   key={index}
                   className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
 
                   <div className={`bg-gradient-to-br ${feature.gradient} w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500`}>
                     <span className="text-3xl drop-shadow-lg">{feature.icon}</span>

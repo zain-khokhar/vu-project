@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { generateCSPHeader } from '@/lib/csp';
 
 /**
  * Middleware for handling trailing slashes and SEO redirects
@@ -27,7 +28,13 @@ export function middleware(request) {
   // Add security headers
   const response = NextResponse.next();
   
-  // Security headers
+  // Content Security Policy - protects against XSS attacks
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  const cspHeader = generateCSPHeader(isDevelopment);
+  
+  response.headers.set('Content-Security-Policy', cspHeader);
+  
+  // Additional security headers
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('X-Frame-Options', 'DENY');
   response.headers.set('X-XSS-Protection', '1; mode=block');

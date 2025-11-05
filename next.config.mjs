@@ -6,6 +6,15 @@ const nextConfig = {
   // Skip trailing slash redirect for specific paths if needed
   skipTrailingSlashRedirect: false,
 
+  // CSS optimization for better LCP
+  optimizeCss: true,
+  
+  // Experimental features for performance
+  experimental: {
+    optimizeCss: true,
+    scrollRestoration: true,
+  },
+
   images: {
     remotePatterns: [
       {

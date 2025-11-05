@@ -250,7 +250,7 @@ export default function QuizClient({ quizData, settings }) {
                   <p
                     className={`text-4xl font-bold ${
                       totalTimer <= 30
-                        ? "text-red-600 animate-pulse"
+                        ? "text-red-600  "
                         : "text-gray-900"
                     }`}
                   >

@@ -14,7 +14,7 @@ export default function DocumentHeader({ title, ariaLabel }) {
       aria-label={ariaLabel || "Document identifier"}
     >
       <div 
-        className="text-[140px] font-bold text-gray-800 tracking-wider select-none"
+        className="text-[140px] max-sm:[100px] font-bold text-gray-800 tracking-wider select-none"
         aria-label={`Document code: ${displayText}`}
       >
         {displayText}

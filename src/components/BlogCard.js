@@ -23,7 +23,7 @@ export default function BlogCard({ blog }) {
 
         <div className={`relative `}>
           {/* Glow effects */}
-          {/* <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/30 via-blue-600/30 to-purple-600/30 rounded-3xl blur-2xl opacity-75 animate-pulse" aria-hidden /> */}
+          {/* <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/30 via-blue-600/30 to-purple-600/30 rounded-3xl blur-2xl opacity-75  " aria-hidden /> */}
 
           {/* Glass frame */}
           <div className="relative bg-gradient-to-r from-purple-600/30 via-blue-600/30 to-purple-600/30 backdrop-blur-sm rounded-3xl p-2 ">
@@ -45,7 +45,7 @@ export default function BlogCard({ blog }) {
         {/* Content Container */}
         <div className="relative flex-1 p-5 md:p-6 flex flex-col justify-between">
           {/* Glossy Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 pointer-events-none"></div>
 
           <div className="relative">
             {/* Title */}

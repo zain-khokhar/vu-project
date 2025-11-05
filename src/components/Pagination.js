@@ -65,8 +65,8 @@ export default function Pagination({ pagination = {}, baseUrl = '/documents' }) 
     <div className="relative overflow-hidden">
       {/* Liquid Background Orbs */}
       {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-20 -left-20 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-gradient-to-br from-purple-400/20 to-pink-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute -top-20 -left-20 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-purple-500/20 rounded-full blur-3xl  "></div>
+        <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-gradient-to-br from-purple-400/20 to-pink-500/20 rounded-full blur-3xl  " style={{ animationDelay: '2s' }}></div>
       </div> */}
 
       <div className="relative backdrop-blur-2xl bg-gradient-to-r from-white/70 via-white/60 to-white/70 border border-white/80 rounded-3xl shadow-xl shadow-purple-500/10 p-6">

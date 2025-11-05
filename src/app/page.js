@@ -175,11 +175,11 @@ export default async function Home() {
                   <span className="block bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
                     Your Gateway to
                   </span>
-                  <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-clip-text text-transparent animate-pulse">
+                  <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-clip-text text-transparent  ">
                     Academic Excellence
                   </span>
                 </h1>
-                <div className="w-20 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+                <div className="w-20 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full  "></div>
               </div>
 
               {/* Premium Subheading */}
@@ -207,21 +207,21 @@ export default async function Home() {
                 <div className="group backdrop-blur-2xl bg-gradient-to-r from-white/60 via-white/50 to-white/60 border border-white/80 rounded-2xl px-4 py-2 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:bg-white/70">
                   <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative flex items-center space-x-2">
-                    <div className="w-2.5 h-2.5 bg-gradient-to-r from-green-400 to-blue-500 rounded-full animate-pulse shadow-lg"></div>
+                    <div className="w-2.5 h-2.5 bg-gradient-to-r from-green-400 to-blue-500 rounded-full   shadow-lg"></div>
                     <span className="text-sm font-normal text-gray-900 tracking-wide">100% FREE</span>
                   </div>
                 </div>
                 <div className="group backdrop-blur-2xl bg-gradient-to-r from-white/60 via-white/50 to-white/60 border border-white/80 rounded-2xl px-4 py-2 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:bg-white/70">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative flex items-center space-x-2">
-                    <div className="w-2.5 h-2.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full animate-pulse shadow-lg"></div>
+                    <div className="w-2.5 h-2.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full   shadow-lg"></div>
                     <span className="text-sm font-normal text-gray-900 tracking-wide">10,000+ RESOURCES</span>
                   </div>
                 </div>
                 <div className="group backdrop-blur-2xl bg-gradient-to-r from-white/60 via-white/50 to-white/60 border border-white/80 rounded-2xl px-4 py-2 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:bg-white/70">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative flex items-center space-x-2">
-                    <div className="w-2.5 h-2.5 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full animate-pulse shadow-lg"></div>
+                    <div className="w-2.5 h-2.5 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full   shadow-lg"></div>
                     <span className="text-sm font-normal text-gray-900 tracking-wide">ALL UNIVERSITIES</span>
                   </div>
                 </div>
@@ -235,7 +235,7 @@ export default async function Home() {
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-400/30 via-cyan-400/25 to-transparent rounded-3xl blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125"></div>
                 <div className="relative h-full backdrop-blur-3xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-700 hover:scale-105 hover:border-white/100 group-hover:shadow-blue-500/20">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-cyan-50/30 to-transparent pointer-events-none"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-700"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-700"></div>
 
                   <div className="relative p-4 h-full flex flex-col justify-between">
                     <div className="flex items-start justify-between">
@@ -257,13 +257,13 @@ export default async function Home() {
                         <span className="text-blue-600 font-medium text-sm">98%</span>
                       </div>
                       <div className="w-full h-1 bg-gradient-to-r from-white/40 to-white/60 rounded-full overflow-hidden border border-white/50 shadow-inner">
-                        <div className="h-full w-[98%] bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-full shadow-lg animate-pulse"></div>
+                        <div className="h-full w-[98%] bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-full shadow-lg  "></div>
                       </div>
                       <div className="flex items-center space-x-1 pt-1">
                         <div className="flex -space-x-1.5">
-                          <div className="w-4 h-4 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 border-2 border-white/80 shadow-lg animate-pulse"></div>
-                          <div className="w-4 h-4 rounded-full bg-gradient-to-r from-purple-400 to-purple-500 border-2 border-white/80 shadow-lg animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                          <div className="w-4 h-4 rounded-full bg-gradient-to-r from-pink-400 to-pink-500 border-2 border-white/80 shadow-lg animate-pulse" style={{ animationDelay: '1s' }}></div>
+                          <div className="w-4 h-4 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 border-2 border-white/80 shadow-lg  "></div>
+                          <div className="w-4 h-4 rounded-full bg-gradient-to-r from-purple-400 to-purple-500 border-2 border-white/80 shadow-lg  " style={{ animationDelay: '0.5s' }}></div>
+                          <div className="w-4 h-4 rounded-full bg-gradient-to-r from-pink-400 to-pink-500 border-2 border-white/80 shadow-lg  " style={{ animationDelay: '1s' }}></div>
                         </div>
                         <span className="text-xs text-gray-700 font-light">+15.2K Students</span>
                       </div>
@@ -277,7 +277,7 @@ export default async function Home() {
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/30 via-green-400/25 to-transparent rounded-3xl blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125"></div>
                 <div className="relative h-full backdrop-blur-3xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-700 hover:scale-105 hover:border-white/100 group-hover:shadow-green-500/20">
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/40 via-green-50/30 to-transparent pointer-events-none"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-700"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-700"></div>
 
                   <div className="relative p-4 h-full flex flex-col justify-between">
                     <div className="flex items-start justify-between">
@@ -293,7 +293,7 @@ export default async function Home() {
                       <div className="flex flex-col items-end flex-shrink-0">
                         <span className="text-lg font-medium text-emerald-600 drop-shadow-lg">12.5K</span>
                         <span className="text-xs text-emerald-600 font-light flex items-center gap-0.5">
-                          <span className="inline-block w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+                          <span className="inline-block w-1.5 h-1.5 bg-green-400 rounded-full  "></span>
                           +58%
                         </span>
                       </div>
@@ -301,11 +301,11 @@ export default async function Home() {
 
                     {/* Liquid Chart */}
                     <div className="flex items-end justify-between gap-0.5 h-6">
-                      <div className="flex-1 h-2 bg-gradient-to-t from-emerald-400 via-emerald-300 to-emerald-200 rounded-full opacity-70 shadow-lg animate-pulse"></div>
-                      <div className="flex-1 h-4 bg-gradient-to-t from-emerald-400 via-emerald-300 to-emerald-200 rounded-full opacity-85 shadow-lg animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                      <div className="flex-1 h-3 bg-gradient-to-t from-emerald-400 via-emerald-300 to-emerald-200 rounded-full opacity-75 shadow-lg animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-                      <div className="flex-1 h-6 bg-gradient-to-t from-emerald-500 via-emerald-400 to-emerald-300 rounded-full shadow-xl animate-pulse" style={{ animationDelay: '0.6s' }}></div>
-                      <div className="flex-1 h-3.5 bg-gradient-to-t from-emerald-400 via-emerald-300 to-emerald-200 rounded-full opacity-80 shadow-lg animate-pulse" style={{ animationDelay: '0.8s' }}></div>
+                      <div className="flex-1 h-2 bg-gradient-to-t from-emerald-400 via-emerald-300 to-emerald-200 rounded-full opacity-70 shadow-lg  "></div>
+                      <div className="flex-1 h-4 bg-gradient-to-t from-emerald-400 via-emerald-300 to-emerald-200 rounded-full opacity-85 shadow-lg  " style={{ animationDelay: '0.2s' }}></div>
+                      <div className="flex-1 h-3 bg-gradient-to-t from-emerald-400 via-emerald-300 to-emerald-200 rounded-full opacity-75 shadow-lg  " style={{ animationDelay: '0.4s' }}></div>
+                      <div className="flex-1 h-6 bg-gradient-to-t from-emerald-500 via-emerald-400 to-emerald-300 rounded-full shadow-xl  " style={{ animationDelay: '0.6s' }}></div>
+                      <div className="flex-1 h-3.5 bg-gradient-to-t from-emerald-400 via-emerald-300 to-emerald-200 rounded-full opacity-80 shadow-lg  " style={{ animationDelay: '0.8s' }}></div>
                     </div>
                   </div>
                 </div>
@@ -316,7 +316,7 @@ export default async function Home() {
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-400/30 via-pink-400/25 to-transparent rounded-3xl blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125"></div>
                 <div className="relative h-full backdrop-blur-3xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-700 hover:scale-105 hover:border-white/100 group-hover:shadow-purple-500/20">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-50/40 via-pink-50/30 to-transparent pointer-events-none"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-700"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-700"></div>
 
                   <div className="relative p-4 h-full flex flex-col justify-between">
                     <div className="flex items-start justify-between">
@@ -332,7 +332,7 @@ export default async function Home() {
                       <div className="text-right flex-shrink-0">
                         <div className="text-xl font-medium text-purple-600 drop-shadow-lg">25M</div>
                         <span className="text-xs text-purple-600 font-light flex items-center gap-0.5">
-                          <span className="inline-block w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span> Live
+                          <span className="inline-block w-1.5 h-1.5 bg-green-400 rounded-full  "></span> Live
                         </span>
                       </div>
                     </div>
@@ -340,11 +340,11 @@ export default async function Home() {
                     {/* Liquid Member Stack */}
                     <div className="flex items-center justify-between">
                       <div className="flex -space-x-2">
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 border-2 border-white/90 shadow-xl animate-pulse"></div>
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 via-purple-500 to-purple-600 border-2 border-white/90 shadow-xl animate-pulse" style={{ animationDelay: '0.3s' }}></div>
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-pink-400 via-pink-500 to-pink-600 border-2 border-white/90 shadow-xl animate-pulse" style={{ animationDelay: '0.6s' }}></div>
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 border-2 border-white/90 shadow-xl animate-pulse" style={{ animationDelay: '0.9s' }}></div>
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-600 border-2 border-white/90 shadow-xl flex items-center justify-center text-xs font-medium text-white animate-pulse" style={{ animationDelay: '1.2s' }}>+</div>
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 border-2 border-white/90 shadow-xl  "></div>
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 via-purple-500 to-purple-600 border-2 border-white/90 shadow-xl  " style={{ animationDelay: '0.3s' }}></div>
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-pink-400 via-pink-500 to-pink-600 border-2 border-white/90 shadow-xl  " style={{ animationDelay: '0.6s' }}></div>
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 border-2 border-white/90 shadow-xl  " style={{ animationDelay: '0.9s' }}></div>
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-600 border-2 border-white/90 shadow-xl flex items-center justify-center text-xs font-medium text-white  " style={{ animationDelay: '1.2s' }}>+</div>
                       </div>
                       <span className="text-xs font-light text-gray-700">Growing exponentially</span>
                     </div>
@@ -360,8 +360,8 @@ export default async function Home() {
       <section className="relative py-20 overflow-hidden">
         {/* Liquid Background Orbs */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full blur-3xl  "></div>
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full blur-3xl  " style={{ animationDelay: '2s' }}></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -390,7 +390,7 @@ export default async function Home() {
               {documents.map((document) => (
                 <div key={document._id} className="group backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 hover:border-white/100 hover:bg-white/80 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-white/20 to-transparent pointer-events-none"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500"></div>
                   <div className="relative">
                     <DocumentCard document={document} />
                   </div>
@@ -418,8 +418,8 @@ export default async function Home() {
       <section className="relative py-20 overflow-hidden">
         {/* Liquid Background Orbs */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 left-1/3 w-96 h-96 bg-gradient-to-br from-purple-400/15 via-pink-300/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-indigo-400/15 via-blue-300/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-0 left-1/3 w-96 h-96 bg-gradient-to-br from-purple-400/15 via-pink-300/10 to-transparent rounded-full blur-3xl  "></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-indigo-400/15 via-blue-300/10 to-transparent rounded-full blur-3xl  " style={{ animationDelay: '2s' }}></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

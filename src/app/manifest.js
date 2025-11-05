@@ -24,18 +24,18 @@ export default function manifest() {
     ],
     categories: ['education', 'productivity', 'books'],
     screenshots: [
-      {
-        src: '/screenshot-1.png',
-        sizes: '1280x720',
-        type: 'image/png',
-        form_factor: 'wide',
-      },
-      {
-        src: '/screenshot-2.png',
-        sizes: '750x1334',
-        type: 'image/png',
-        form_factor: 'narrow',
-      },
+      // {
+      //   src: '/screenshot-1.png',
+      //   sizes: '1280x720',
+      //   type: 'image/png',
+      //   form_factor: 'wide',
+      // },
+      // {
+      //   src: '/screenshot-2.png',
+      //   sizes: '750x1334',
+      //   type: 'image/png',
+      //   form_factor: 'narrow',
+      // },
     ],
   };
 }

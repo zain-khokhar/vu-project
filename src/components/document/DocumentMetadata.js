@@ -44,28 +44,30 @@ export default function DocumentMetadata({ document }) {
         Document Information
       </h2>
       
-      {metadata.map(({ icon: Icon, label, value, id }) => (
-        <div 
-          key={id}
-          className="flex items-start space-x-3"
-        >
-          <Icon 
-            className="h-5 w-5 text-gray-400 flex-shrink-0 mt-0.5" 
-            aria-hidden="true"
-          />
-          <div className="flex-1 min-w-0">
-            <dt className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
-              {label}
-            </dt>
-            <dd 
-              className="text-sm text-gray-900 font-semibold truncate"
-              title={value}
-            >
-              {value}
-            </dd>
+      <dl className="contents">
+        {metadata.map(({ icon: Icon, label, value, id }) => (
+          <div 
+            key={id}
+            className="flex items-start space-x-3"
+          >
+            <Icon 
+              className="h-5 w-5 text-gray-400 flex-shrink-0 mt-0.5" 
+              aria-hidden="true"
+            />
+            <div className="flex-1 min-w-0">
+              <dt className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
+                {label}
+              </dt>
+              <dd 
+                className="text-sm text-gray-900 font-semibold truncate"
+                title={value}
+              >
+                {value}
+              </dd>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </dl>
     </section>
   );
 }

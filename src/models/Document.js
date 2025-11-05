@@ -17,7 +17,7 @@ const documentSchema = new mongoose.Schema({
   description: {
     type: String,
     required: [true, 'Description is required'],
-    maxlength: [2000, 'Description cannot be more than 2000 characters']
+    maxlength: [4000, 'Description cannot be more than 4000 characters']
   },
   type: {
     type: String,

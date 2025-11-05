@@ -128,6 +128,16 @@ async function DocumentsContent({ searchParams }) {
         {/* Documents Grid */}
         {documents && documents.length > 0 ? (
           <>
+            {/* Section Heading */}
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-light text-gray-900 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-2">
+                Available Documents
+              </h2>
+              <p className="text-gray-600 font-light">
+                Browse our collection of educational materials
+              </p>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               {documents.map((document) => (
                 <div key={document._id} className="group backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 hover:border-white/100 hover:bg-white/80 overflow-hidden">

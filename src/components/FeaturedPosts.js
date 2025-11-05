@@ -40,8 +40,8 @@ export default function FeaturedPosts({ blogs }) {
         <section className="w-full relative">
             {/* Liquid Background Orbs */}
             <div className="absolute inset-0 -z-10">
-                <div className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full blur-3xl  "></div>
+                <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full blur-3xl  " style={{ animationDelay: '2s' }}></div>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -65,7 +65,7 @@ export default function FeaturedPosts({ blogs }) {
                                     className="object-cover object-center group-hover:scale-110 transition-transform duration-700 rounded-3xl"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-3xl"></div>
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 rounded-3xl"></div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 rounded-3xl"></div>
                                 <div className="absolute bottom-6 left-6 right-6 text-white">
                                     <div className="inline-block backdrop-blur-xl bg-gradient-to-r from-purple-500/70 via-pink-500/70 to-purple-500/70 px-4 py-2 rounded-full mb-4 shadow-lg">
                                         <span className="text-xs font-medium text-white">
@@ -84,7 +84,7 @@ export default function FeaturedPosts({ blogs }) {
                     {second && (
                         <article className="col-span-12 lg:col-span-6 row-span-1 p-[8px] rounded-3xl bg-gradient-to-r from-purple-400/40 via-blue-400/40 to-purple-400/40 hover:from-purple-500/50 hover:via-blue-500/50 hover:to-purple-500/50 transition-all duration-500 group">
                             <div className="bg-white rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500  overflow-hidden h-full backdrop-blur-2xl">
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 pointer-events-none"></div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 pointer-events-none"></div>
                                 <div className="relative p-6 flex items-center gap-4 h-full">
                                     <Link
                                         href={`/blogs/${second.slug}`}
@@ -122,7 +122,7 @@ export default function FeaturedPosts({ blogs }) {
                     {third && (
                         <article className="col-span-12 lg:col-span-6 row-span-1 p-[8px] rounded-3xl bg-gradient-to-r from-purple-400/40 via-blue-400/40 to-purple-400/40 hover:from-purple-500/50 hover:via-blue-500/50 hover:to-purple-500/50 transition-all duration-500 group">
                             <div className="bg-white rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500  overflow-hidden h-full backdrop-blur-2xl">
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 pointer-events-none"></div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 pointer-events-none"></div>
                                 <div className="relative p-6 flex items-center gap-4 h-full">
                                     <Link
                                         href={`/blogs/${third.slug}`}

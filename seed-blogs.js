@@ -1,384 +1,291 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-
-dotenv.config({ path: '.env.local' });
-
-const blogPosts = [
+const sampleDocuments = [
   {
-    title: "Mastering Computer Science Fundamentals: A Complete Study Guide",
-    slug: "mastering-computer-science-fundamentals",
-    excerpt: "Build a strong foundation in computer science with this comprehensive guide covering algorithms, data structures, and programming paradigms.",
-    coverImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop",
-    content: `
-      <h2>Why Computer Science Fundamentals Matter</h2>
-      <p>Computer science fundamentals form the backbone of all programming and software development. Understanding core concepts like algorithms, data structures, and computational thinking is essential for any aspiring developer.</p>
-
-      <h2>Key Topics to Master</h2>
-      <ul>
-        <li><strong>Algorithms:</strong> Learn sorting, searching, and optimization techniques</li>
-        <li><strong>Data Structures:</strong> Arrays, linked lists, stacks, queues, trees, and graphs</li>
-        <li><strong>Time Complexity:</strong> Big O notation and performance analysis</li>
-        <li><strong>Programming Paradigms:</strong> Object-oriented, functional, and procedural programming</li>
-      </ul>
-
-      <h2>Study Tips for CS Students</h2>
-      <p>Practice coding daily, work on real projects, and don't be afraid to make mistakes. Learning computer science is a journey that requires consistent effort and curiosity.</p>
-
-      <blockquote>
-        "The best error message is the one that never shows up." - Thomas Fuchs
-      </blockquote>
-    `,
-    published: true
+    title: "CS304 Object Oriented Programming",
+    slug: "cs304-object-oriented-programming",
+    description: `<h2>CS304: Object Oriented Programming</h2><p>Welcome to <strong>Object Oriented Programming (OOP)</strong>, a foundational course that introduces a powerful paradigm for software design and development. This course moves beyond procedural programming to teach you how to structure applications around <em>data</em> and <em>objects</em> rather than just functions and logic. You will learn to model real-world problems in a way that is more intuitive, manageable, and scalable, leading to code that is reusable, flexible, and easier to maintain.</p><p>The course begins with the core principles of OOP, establishing a strong foundation in concepts that are universal across many programming languages like Java, C++, Python, and C#. We will explore how to define classes, which act as blueprints for creating objects. You will understand how to encapsulate data and behavior within these objects, protecting data from outside interference and simplifying the overall program structure. This principle of encapsulation is the first pillar of object-oriented design.</p><h3>Key Topics Covered:</h3><ul><li><strong>Classes and Objects:</strong> The fundamental building blocks of OOP. Learn to define classes, create instances (objects), and use constructors and destructors.</li><li><strong>Encapsulation:</strong> Bundling data (attributes) and methods (functions) that operate on the data within a single unit, and restricting access to implementation details.</li><li><strong>Inheritance:</strong> A mechanism for creating new classes that reuse, extend, and modify the behavior defined in existing classes. This promotes code reusability (the 'is-a' relationship).</li><li><strong>Polymorphism:</strong> The ability for an object to take on many forms. You will learn about method overriding (runtime polymorphism) and method overloading (compile-time polymorphism).</li><li><strong>Abstraction:</strong> Hiding complex implementation details and exposing only the essential features of an object or system. We will explore abstract classes and interfaces.</li><li><strong>Additional Concepts:</strong> Understanding static vs. instance members, 'this' pointer/reference, friend functions (in C++), and basic association/aggregation.</li></ul><h3>Course Objectives:</h3><ol><li>Understand the core principles and benefits of the object-oriented paradigm.</li><li>Design and implement classes and objects to model real-world problems.</li><li>Effectively use inheritance and polymorphism to create flexible and reusable code.</li><li>Apply abstraction and encapsulation to build robust and maintainable software.</li><li>Gain practical experience by developing object-oriented solutions to programming challenges.</li></ol><p>By the end of this course, you will have a solid grasp of object-oriented concepts and the ability to apply them to build sophisticated, well-structured software applications. This skillset is essential for any aspiring software engineer or developer in the modern tech industry.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/13hnhE9_dpHjgCXNWO6bZuqPPfpQdB1IZ/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["programming", "basics", "algorithms", "variables", "OOP", "classes", "objects"]
   },
   {
-    title: "Effective Study Techniques for Programming Exams",
-    slug: "effective-study-techniques-programming-exams",
-    excerpt: "Discover proven study methods specifically designed for programming and computer science examinations.",
-    coverImage: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=400&fit=crop",
-    content: `
-      <h2>Active Learning Strategies</h2>
-      <p>Programming exams require more than just memorization. Focus on active learning techniques that help you understand and apply concepts.</p>
-
-      <h2>Best Practices for Programming Exams</h2>
-      <ul>
-        <li><strong>Code Regularly:</strong> Practice coding problems daily</li>
-        <li><strong>Debugging Skills:</strong> Learn to identify and fix errors quickly</li>
-        <li><strong>Algorithm Analysis:</strong> Understand time and space complexity</li>
-        <li><strong>Problem-Solving:</strong> Break down complex problems into smaller parts</li>
-      </ul>
-
-      <h2>Quiz Preparation Tips</h2>
-      <p>Use our quiz section to test your knowledge regularly. Spaced repetition and active recall are proven methods for retaining programming concepts.</p>
-    `,
-    published: true
+    title: "CS501 Advance Computer Architecture",
+    slug: "cs501-advance-computer-architecture",
+    description: `<h2>CS501: Advance Computer Architecture</h2><p>This course provides a deep dive into the principles and design of modern high-performance computer systems. Moving beyond basic computer organization, <strong>CS501 Advance Computer Architecture</strong> explores the sophisticated techniques used to achieve greater processing speed and efficiency. Students will investigate the underlying structures that power everything from mobile devices to large-scale supercomputers.</p><p>The curriculum is built around understanding the complex trade-offs in processor and system design. You will learn how instructions are processed in parallel, how memory systems are organized to minimize latency, and how multiple processors work together to solve complex problems. This course is essential for students who wish to specialize in system design, hardware engineering, or high-performance computing.</p><h3>Key Topics Covered:</h3><ul><li><strong>Instruction-Level Parallelism (ILP):</strong> Exploration of pipelining, superscalar processors, VLIW (Very Long Instruction Word) architectures, and the challenges of data and control hazards.</li><li><strong>Processor Design:</strong> A comparative study of RISC (Reduced Instruction Set Computer) and CISC (Complex Instruction Set Computer) architectures, including their design philosophies and performance characteristics.</li><li><strong>Memory Hierarchy:</strong> In-depth analysis of cache memory principles (write policies, replacement algorithms, multilevel caches), virtual memory, and main memory organization.</li><li><strong>Multiprocessor Systems:</strong> Study of shared-memory and distributed-memory multiprocessors, interconnection networks, cache coherence protocols, and synchronization mechanisms.</li><li><strong>Advanced Topics:</strong> Introduction to vector processing, GPU architectures, and domain-specific accelerators, which are becoming increasingly important in modern computing workloads.</li></ul><h3>Course Objectives:</h3><ol><li>Understand the fundamental principles of advanced computer architecture.</li><li>Analyze the performance of different architectural designs and features.</li><li>Investigate the design of pipelined and multiprocessor systems.</li><li>Comprehend the intricacies of memory hierarchies and cache coherence.</li><li>Gain exposure to recent trends in computer architecture, including parallel and vector processing.</li></ol><p>By the end of this course, students will be equipped with the conceptual grounding and design principles necessary to understand, evaluate, and contribute to the development of next-generation computer architectures.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1u1e0maSWlMvOKntK1esiC9Ch41854iMM/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["architecture", "pipelining", "memory hierarchy", "multiprocessor", "RISC", "CISC"]
   },
   {
-    title: "The Ultimate Guide to Academic Document Organization",
-    slug: "ultimate-guide-academic-document-organization",
-    excerpt: "Learn how to organize your study materials effectively for better academic performance and easier review.",
-    coverImage: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=400&fit=crop",
-    content: `
-      <h2>Digital Document Management</h2>
-      <p>In today's digital age, organizing academic documents is crucial for efficient studying and quick information retrieval.</p>
-
-      <h2>Organization Strategies</h2>
-      <ul>
-        <li><strong>File Naming:</strong> Use consistent naming conventions</li>
-        <li><strong>Folder Structure:</strong> Create logical hierarchies</li>
-        <li><strong>Tagging System:</strong> Use metadata and tags for easy search</li>
-        <li><strong>Backup Solutions:</strong> Multiple backup locations for security</li>
-      </ul>
-
-      <h2>Tools and Platforms</h2>
-      <p>Platforms like VUEDU make it easy to share and access organized academic materials. Upload your well-organized documents to help fellow students.</p>
-    `,
-    published: true
+    title: "CS410 Windows Programming",
+    slug: "cs410-windows-programming",
+    description: `<h2>CS410: Windows Programming</h2><p><strong>CS410 Windows Programming</strong> provides a comprehensive introduction to developing applications specifically for the Microsoft Windows operating system. This course focuses on the core principles of event-driven programming, which is the fundamental paradigm for building graphical user interfaces (GUIs). Students will learn how to create responsive, interactive applications that leverage the rich features of the Windows platform.</p><p>Unlike console-based programs that run sequentially, Windows applications are driven by user actions and system notifications. This course delves into the Windows message loop, teaching students how applications receive and process messages such as mouse clicks, key presses, and window resizing. You will gain hands-on experience with the Windows API (Application Programming Interface) and modern frameworks used to build robust desktop applications.</p><h3>Key Topics Covered:</h3><ul><li><strong>Event-Driven Programming:</strong> Understanding the fundamental shift from procedural to event-based application flow.</li><li><strong>Windows API (Win32):</strong> Learning to interact directly with the core Windows operating system to create windows, handle messages, and manage resources.</li><li><strong>Graphical User Interface (GUI) Design:</strong> Using standard Windows controls such as buttons, text boxes, list boxes, menus, and dialogs to build an interactive user interface.</li><li><strong>Graphics and Drawing:</strong> Introduction to the Graphics Device Interface (GDI) for drawing shapes, text, and images within an application's window.</li><li><strong>Modern Frameworks:</strong> Exploration of higher-level frameworks like .NET (using C# with Windows Forms or WPF) which simplify and accelerate Windows application development.</li><li><strong>Resource Management:</strong> Learning to manage application resources like memory, file handles, and graphical objects effectively to prevent leaks and ensure stability.</li></ul><h3>Course Objectives:</h3><ol><li>Master the concepts of event-driven programming and the Windows message architecture.</li><li>Develop the ability to design and implement graphical user interfaces using standard Windows controls.</li><li>Gain proficiency in using the Windows API and/c# .NET frameworks for application development.</li><li>Understand how to manage application resources and handle user input effectively.</li><li>Create complete, standalone desktop applications that run on the Windows platform.</li></ol><p>This course is ideal for students who want to specialize in desktop application development. The skills learned here are directly applicable to building enterprise software, utility applications, and tools that form the backbone of many business operations.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/15I8gjYuGTCsN1VxMkkXG4wnJdQYrYGPi/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["windows", "GUI", "event-driven", "Win32 API", ".NET", "C#", "desktop"]
   },
   {
-    title: "CS201: Object-Oriented Programming Mastery",
-    slug: "cs201-object-oriented-programming-mastery",
-    excerpt: "Complete guide to mastering object-oriented programming concepts with practical examples and study materials.",
-    coverImage: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=400&fit=crop",
-    content: `
-      <h2>OOP Fundamentals</h2>
-      <p>Object-oriented programming is a paradigm that uses objects and classes to structure software. Understanding OOP is essential for modern software development.</p>
-
-      <h2>Core Concepts</h2>
-      <ul>
-        <li><strong>Classes and Objects:</strong> Blueprints and instances</li>
-        <li><strong>Encapsulation:</strong> Data hiding and protection</li>
-        <li><strong>Inheritance:</strong> Code reuse and hierarchy</li>
-        <li><strong>Polymorphism:</strong> Multiple forms and interfaces</li>
-      </ul>
-
-      <h2>Practical Applications</h2>
-      <p>OOP concepts are used in everything from web applications to mobile apps. Practice implementing these concepts in real projects.</p>
-    `,
-    published: true
+    title: "CS408 HUMAN COMPUTER INTERACTION",
+    slug: "cs408-human-computer-interaction",
+    description: `<h2>CS408: Human Computer Interaction</h2><p><strong>Human Computer Interaction (HCI)</strong> is a multidisciplinary field that focuses on the design and use of computer technology, with a specific emphasis on the interfaces between people (users) and computers. <strong>CS408</strong> explores how to design, evaluate, and implement interactive computing systems that are useful, usable, and accessible to humans. This course bridges the gap between computer science, cognitive psychology, and design.</p><p>The central theme of this course is <em>user-centered design (UCD)</em>, a design philosophy that places the user's needs, goals, and limitations at the forefront of the entire development process. You will learn that a technically functional system can fail if it is not designed with the user in mind. We will cover a range of methodologies for understanding users, prototyping designs, and evaluating the usability of a system.</p><h3>Key Topics Covered:</h3><ul><li><strong>Foundations of HCI:</strong> The history, goals, and multidisciplinary nature of Human-Computer Interaction. Understanding human information processing, including perception, memory, and cognition.</li><li><strong>User-Centered Design (UCD):</strong> An in-depth look at the iterative UCD lifecycle, including user research, requirements gathering, persona creation, and scenario development.</li><li><strong>Design Principles and Guidelines:</strong> Learning established design principles (e.g., visibility, feedback, consistency), heuristics (like Nielsen's Heuristics), and accessibility guidelines (WCAG) to create effective interfaces.</li><li><strong>Prototyping Techniques:</strong> Creating and testing design ideas at different levels of fidelity, from low-fidelity paper prototypes and wireframes to high-fidelity interactive mockups.</li><li><strong>Usability Engineering and Evaluation:</strong> Planning and conducting usability tests (both formative and summative), expert reviews (heuristic evaluation, cognitive walkthroughs), and analyzing user feedback.</li><li><strong>Interaction Styles:</strong> Examining different ways users interact with computers, including command-line, menus, direct manipulation, and modern paradigms like voice and gestural interfaces.</li></ul><h3>Course Objectives:</h3><ol><li>Understand the fundamental concepts, principles, and models of Human-Computer Interaction.</li><li>Apply user-centered design methodologies to all phases of the software development lifecycle.</li><li>Design and prototype user interfaces that are intuitive, efficient, and enjoyable to use.</li><li>Conduct effective usability evaluations to identify and fix design flaws.</li><li>Appreciate the importance of accessibility and ethical considerations in design.</li></ol><p>By completing CS408, students will be able to advocate for the user and contribute to the creation of technology that not only works, but works <em>for people</em>. These skills are invaluable in roles such as UI/UX design, product management, and front-end development.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1JAk2b9xufL9RbhaGWZdlEtxZur7JPAuk/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["HCI", "UI", "UX", "usability", "user-centered design", "prototyping"]
   },
   {
-    title: "Mathematics for Computer Science: Essential Concepts",
-    slug: "mathematics-computer-science-essential-concepts",
-    excerpt: "Bridge the gap between mathematics and computer science with this comprehensive guide to essential mathematical concepts.",
-    coverImage: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800&h=400&fit=crop",
-    content: `
-      <h2>Why Math Matters in CS</h2>
-      <p>Mathematics provides the foundation for understanding algorithms, data structures, and computational complexity.</p>
-
-      <h2>Key Mathematical Areas</h2>
-      <ul>
-        <li><strong>Discrete Mathematics:</strong> Logic, sets, and graph theory</li>
-        <li><strong>Calculus:</strong> Derivatives and integrals for optimization</li>
-        <li><strong>Linear Algebra:</strong> Matrices and vector operations</li>
-        <li><strong>Probability:</strong> Statistical analysis and algorithms</li>
-      </ul>
-
-      <h2>Study Resources</h2>
-      <p>Access our collection of mathematical handouts and practice problems to strengthen your understanding of these crucial concepts.</p>
-    `,
-    published: true
+    title: "CS502 Design and Analysis of Algorithms",
+    slug: "cs502-design-and-analysis-of-algorithms",
+    description: `<h2>CS502: Design and Analysis of Algorithms</h2><p><strong>CS502 Design and Analysis of Algorithms</strong> is a cornerstone course in computer science that teaches you how to design efficient solutions to computational problems and how to analyze their performance. This course moves beyond simply writing code that works; it focuses on writing code that works <em>efficiently</em>, scaling to handle large inputs and complex challenges. Understanding algorithms is fundamental to every area of computing.</p><p>The course is built on two primary pillars: <strong>design</strong> and <strong>analysis</strong>. You will learn a toolbox of algorithm design techniques—strategies for attacking new problems, such as divide-and-conquer, dynamic programming, and greedy algorithms. Simultaneously, you will learn the mathematical tools to analyze these algorithms, primarily through <em>asymptotic notation (Big O)</em>. This analysis allows you to predict an algorithm's performance in terms of time and space, enabling you to make informed decisions about which algorithm to use for a given task.</p><h3>Key Topics Covered:</h3><ul><li><strong>Asymptotic Analysis:</strong> Mastering Big O, Omega, and Theta notation to describe the worst-case, best-case, and average-case performance of algorithms.</li><li><strong>Algorithm Design Techniques:</strong><ul><li><strong>Divide and Conquer:</strong> Solving problems by recursively breaking them down into smaller sub-problems (e.g., Merge Sort, Quick Sort).</li><li><strong>Dynamic Programming:</strong> Solving complex problems by breaking them into a collection of simpler, overlapping sub-problems and storing their solutions (e.g., Fibonacci, Knapsack).</li><li><strong>Greedy Algorithms:</strong> Making the locally optimal choice at each step with the hope of finding a global optimum (e.g., Dijkstra's algorithm, Kruskal's algorithm).</li></ul></li><li><strong>Graph Algorithms:</strong> In-depth study of graph representations and algorithms for traversal (BFS, DFS), finding shortest paths (Dijkstra, Bellman-Ford), and minimum spanning trees (Prim, Kruskal).</li><li><strong>Data Structures:</strong> Advanced data structures that support efficient algorithms, such as heaps (priority queues), hash tables, and binary search trees.</li><li><strong>Complexity Theory:</strong> An introduction to the classes P and NP, and the concept of NP-completeness, which helps identify problems that are believed to be computationally 'hard' to solve.</li></ul><h3>Course Objectives:</h3><ol><li>Analyze the time and space complexity of algorithms using asymptotic notation.</li><li>Master key algorithm design paradigms: divide-and-conquer, dynamic programming, and greedy approaches.</li><li>Design and implement efficient algorithms for a variety of computational problems, especially those involving graphs.</li><li>Understand the fundamental concepts of computational complexity, including P, NP, and NP-completeness.</li><li>Develop strong problem-solving and critical-thinking skills.</li></ol><p>This course provides the critical theoretical foundation for all other advanced courses in computer science, from artificial intelligence and machine learning to database systems and computer networks. It is essential for software engineering interviews and for writing high-performance, scalable code.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1nftwEnICLqTEygfZ3q8sLkSkzbMoffeB/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["algorithms", "data structures", "big O", "dynamic programming", "graphs", "complexity"]
   },
   {
-    title: "Database Design Principles and Best Practices",
-    slug: "database-design-principles-best-practices",
-    excerpt: "Learn the fundamentals of database design, normalization, and SQL with practical examples and real-world applications.",
-    coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
-    content: `
-      <h2>Database Design Fundamentals</h2>
-      <p>A well-designed database is crucial for application performance, data integrity, and scalability.</p>
-
-      <h2>Design Principles</h2>
-      <ul>
-        <li><strong>Normalization:</strong> Eliminating data redundancy</li>
-        <li><strong>Entity-Relationship Modeling:</strong> Visual database design</li>
-        <li><strong>Indexing Strategies:</strong> Optimizing query performance</li>
-        <li><strong>Data Integrity:</strong> Constraints and validation</li>
-      </ul>
-
-      <h2>SQL Mastery</h2>
-      <p>Master SQL queries, joins, and database operations. Practice with our collection of database design problems and solutions.</p>
-    `,
-    published: true
+    title: "CS601 Data Communication",
+    slug: "cs601-data-communication",
+    description: `<h2>CS601: Data Communication</h2><p><strong>CS601 Data Communication</strong> is a fundamental course that explores the principles and technologies behind the transfer of data between computer systems. This course lays the groundwork for understanding computer networks, focusing on the <em>physical</em> and <em>data link</em> layers of communication. You will learn how information is converted into signals, transmitted over various media, and reliably delivered to its destination, despite the inherent imperfections of the physical world.</p><p>The course demystifies the 'magic' of digital communication, breaking it down into its core components. We will investigate the properties of both analog and digital signals, the different types of transmission media (like copper wire, fiber optics, and wireless), and the techniques used to encode data onto these signals (modulation). You will also learn how systems handle errors, manage data flow, and control access to a shared communication channel.</p><h3>Key Topics Covered:</h3><ul><li><strong>Data Communication Models:</strong> Introduction to the core components of a data communication system (sender, receiver, medium, message, protocol) and layered models like the OSI and TCP/IP suites.</li><li><strong>Signals and Transmission:</strong> Understanding analog vs. digital data, periodic and aperiodic signals, bandwidth, and the causes of transmission impairment (attenuation, distortion, noise).</li><li><strong>Digital and Analog Transmission:</strong> Exploring digital-to-digital encoding (line coding), analog-to-digital conversion (PCM), digital-to-analog (modulation, e.g., ASK, FSK, PSK), and analog-to-analog (AM, FM, PM).</li><li><strong>Transmission Media:</strong> A detailed look at guided media (twisted-pair, coaxial cable, fiber optics) and unguided media (radio waves, microwaves, infrared) and their characteristics.</li><li><strong>Multiplexing:</strong> Techniques for sharing a single communication link among multiple users, including Frequency Division Multiplexing (FDM), Time Division Multiplexing (TDM), and Wave Division Multiplexing (WDM).</li><li><strong>Data Link Layer:</strong> Focusing on error detection and correction (parity, CRC), flow control (stop-and-wait, sliding window), and media access control (MAC) protocols (e.g., Aloha, CSMA/CD as used in Ethernet).</li></ul><h3>Course Objectives:</h3><ol><li>Understand the fundamental principles of data communication and the layers of protocol stacks.</li><li>Describe the characteristics of different transmission media and signaling techniques.</li><li>Analyze the processes of data encoding, modulation, and multiplexing.</li><li>Explain the mechanisms for error detection, error correction, and flow control at the data link layer.</li><li>Grasp the challenges and solutions for managing access to shared communication channels.</li></ol><p>By completing CS601, students will have a solid foundation in how data physically moves from point A to point B, preparing them for advanced studies in computer networks, telecommunications, and information security.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1oXtCp4wXKdUdE0sjqRRjJKuEPOHE-D84/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["networking", "data link", "physical layer", "signals", "modulation", "multiplexing"]
   },
   {
-    title: "Web Development Roadmap: From Beginner to Expert",
-    slug: "web-development-roadmap-beginner-to-expert",
-    excerpt: "A comprehensive learning path for aspiring web developers covering HTML, CSS, JavaScript, and modern frameworks.",
-    coverImage: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop",
-    content: `
-      <h2>Frontend Development Journey</h2>
-      <p>Web development offers endless opportunities for creativity and problem-solving. Start your journey with the fundamentals.</p>
-
-      <h2>Learning Path</h2>
-      <ol>
-        <li><strong>HTML & CSS:</strong> Structure and styling fundamentals</li>
-        <li><strong>JavaScript:</strong> Programming logic and interactivity</li>
-        <li><strong>React/Vue/Angular:</strong> Modern frontend frameworks</li>
-        <li><strong>Backend Development:</strong> Server-side programming</li>
-        <li><strong>Database Integration:</strong> Full-stack applications</li>
-      </ol>
-
-      <h2>Resources and Practice</h2>
-      <p>Use our platform to access web development tutorials, code samples, and project ideas. Build your portfolio and gain practical experience.</p>
-    `,
-    published: true
+    title: "CS403 Database Management System",
+    slug: "cs403-database-management-system",
+    description: `<h2>CS403: Database Management System</h2><p><strong>CS403 Database Management System (DBMS)</strong> is an essential course that introduces the concepts and technologies for storing, managing, and retrieving large volumes of data efficiently and securely. In today's world, data is a critical asset for any organization, and a DBMS is the core software that enables its effective use. This course provides a comprehensive overview of database design, implementation, and application development.</p><p>You will start by learning how to model data using conceptual models like the <strong>Entity-Relationship (ER) diagram</strong>. The course then transitions to the <em>relational model</em>, the most widely used data model in the industry. You will master <strong>Structured Query Language (SQL)</strong>, the standard language for defining, querying, and manipulating data in relational databases. Beyond just SQL, the course covers the theoretical foundations of database design, such as normalization, which ensures data integrity and reduces redundancy.</p><h3>Key Topics Covered:</h3><ul><li><strong>Database Concepts:</strong> Understanding the purpose of a DBMS, its advantages over file systems, and the roles of database users and administrators.</li><li><strong>Data Modeling:</strong> Designing conceptual database schemas using Entity-Relationship (ER) modeling, including entities, attributes, and relationships.</li><li><strong>Relational Model:</strong> Understanding relational algebra, converting ER diagrams to relational tables, and enforcing integrity constraints (primary keys, foreign keys).</li><li><strong>Structured Query Language (SQL):</strong> Hands-on practice with Data Definition Language (DDL) to create and modify tables, and Data Manipulation Language (DML) to insert, update, delete, and retrieve data. This includes complex queries using joins, subqueries, and aggregation.</li><li><strong>Database Design:</strong> The theory of <em>normalization</em> (1NF, 2NF, 3NF, BCNF) to design databases that are free from anomalies and redundancy.</li><li><strong>Transaction Management:</strong> Exploring the <strong>ACID</strong> (Atomicity, Consistency, Isolation, Durability) properties that guarantee reliable data processing.</li><li><strong>Concurrency Control:</strong> Understanding the problems of concurrent access (e.g., lost updates, dirty reads) and the techniques used to solve them, such as locking.</li></ul><h3>Course Objectives:</h3><ol><li>Understand the fundamental concepts of database management systems.</li><li>Design robust and efficient database schemas using ER modeling and normalization.</li><li>Master the SQL language to query and manage data effectively.</li><li>Grasp the principles of transaction management and concurrency control.</li><li>Develop a foundational understanding of how to build database-driven applications.</li></ol><p>This course provides the practical skills and theoretical knowledge necessary for any student who will interact with data, which includes roles in software development, data analysis, business intelligence, and IT administration. It is a prerequisite for advanced topics like distributed databases and data warehousing.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1t8Qw-OpzPkPfs5UmPKaIbnjJlLeT3q9i/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["database", "DBMS", "SQL", "ER diagram", "normalization", "ACID"]
   },
   {
-    title: "Data Structures and Algorithms: Complete Guide",
-    slug: "data-structures-algorithms-complete-guide",
-    excerpt: "Master the essential data structures and algorithms that form the foundation of efficient programming.",
-    coverImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop",
-    content: `
-      <h2>Why DSA Matters</h2>
-      <p>Data structures and algorithms are the building blocks of efficient software. Understanding DSA is crucial for technical interviews and real-world applications.</p>
-
-      <h2>Essential Data Structures</h2>
-      <ul>
-        <li><strong>Arrays and Strings:</strong> Basic data manipulation</li>
-        <li><strong>Linked Lists:</strong> Dynamic data storage</li>
-        <li><strong>Stacks and Queues:</strong> LIFO and FIFO operations</li>
-        <li><strong>Trees and Graphs:</strong> Hierarchical and network data</li>
-        <li><strong>Hash Tables:</strong> Fast data retrieval</li>
-      </ul>
-
-      <h2>Algorithm Categories</h2>
-      <p>Study sorting, searching, dynamic programming, and graph algorithms. Practice regularly with coding challenges and our quiz section.</p>
-    `,
-    published: true
+    title: "CS610 COMPUTER NETWORKS",
+    slug: "cs610-computer-networks",
+    description: `<h2>CS610: Computer Networks</h2><p><strong>CS610 Computer Networks</strong> builds upon the foundations of data communication to provide a comprehensive overview of network architectures, protocols, and technologies, with a strong focus on the <strong>Internet</strong>. This course covers the principles and practices of designing, implementing, and managing computer networks, exploring the entire protocol stack from the physical layer up to the application layer.</p><p>You will learn how data is broken into packets, addressed, and routed across a complex web of interconnected devices to reach its destination anywhere in the world. The course emphasizes the <em>TCP/IP protocol suite</em>, the set of rules that governs the Internet. You will gain a deep understanding of how protocols at different layers work together to provide reliable and efficient communication services for applications like the web, email, and streaming video.</p><h3>Key Topics Covered:</h3><ul><li><strong>Network Layers and Models:</strong> A deep dive into the <strong>OSI</strong> and <strong>TCP/IP</strong> layered models, understanding the function and responsibilities of each layer.</li><li><strong>Physical & Data Link Layers:</strong> A review of data communication concepts, including Ethernet, MAC addressing, and switching.</li><li><strong>Network Layer:</strong> The core of the Internet. This includes <strong>IP addressing</strong> (IPv4 and IPv6), subnetting, routing algorithms (like Link State and Distance Vector), and routing protocols (like OSPF and BGP). You will also learn about packet forwarding and the Internet Control Message Protocol (ICMP).</li><li><strong>Transport Layer:</strong> The bridge between the network and applications. This topic focuses on the two primary protocols: <strong>TCP</strong> (Transmission Control Protocol) for reliable, connection-oriented service (including flow control and congestion control) and <strong>UDP</strong> (User Datagram Protocol) for fast, connectionless service.</li><li><strong>Application Layer:</strong> Understanding the protocols that power the services we use daily, such as <strong>HTTP</strong> (Web), <strong>SMTP</strong> (Email), <strong>FTP</strong> (File Transfer), and <strong>DNS</strong> (Domain Name System).</li><li><strong>Network Security:</strong> An introduction to fundamental security concepts, including firewalls, encryption, and network address translation (NAT).</li></ul><h3>Course Objectives:</h3><ol><li>Understand the layered architecture of computer networks (OSI and TCP/IP).</li><li>Explain the principles of IP addressing, subnetting, and routing in the network layer.</li><li>Differentiate between the services of TCP and UDP and understand their mechanisms (e.g., congestion control).</li><li>Describe the operation of key application layer protocols like HTTP and DNS.</li><li>Analyze and design simple network topologies and addressing schemes.</li></ol><p>CS610 is an essential course for any computer scientist, providing the knowledge needed to build, manage, and secure the networked systems that power our modern world. It is a prerequisite for advanced topics in network security, distributed systems, and cloud computing.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/11mriRsDgv107QsfmiEKyJex6QRtQQYLa/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["networking", "TCP/IP", "routing", "IP addressing", "TCP", "UDP", "HTTP", "DNS"]
   },
   {
-    title: "Mobile App Development: iOS and Android Guide",
-    slug: "mobile-app-development-ios-android-guide",
-    excerpt: "Learn to build mobile applications for both iOS and Android platforms with cross-platform development strategies.",
-    coverImage: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=400&fit=crop",
-    content: `
-      <h2>Mobile Development Landscape</h2>
-      <p>Mobile app development offers exciting opportunities in a growing market. Choose the right platform and tools for your projects.</p>
-
-      <h2>Development Approaches</h2>
-      <ul>
-        <li><strong>Native Development:</strong> Swift for iOS, Kotlin for Android</li>
-        <li><strong>Cross-Platform:</strong> React Native, Flutter</li>
-        <li><strong>Hybrid Apps:</strong> Cordova, Ionic frameworks</li>
-        <li><strong>Progressive Web Apps:</strong> Web technologies for mobile</li>
-      </ul>
-
-      <h2>Getting Started</h2>
-      <p>Begin with one platform, master the fundamentals, then expand to cross-platform development. Our resources include tutorials and sample projects.</p>
-    `,
-    published: true
+    title: "CS301 Data Structures",
+    slug: "cs301-data-structures",
+    description: `<h2>CS301: Data Structures</h2><p><strong>CS301 Data Structures</strong> is a critical, hands-on programming course that teaches you how to store, organize, and manage data efficiently. While a simple variable can hold a single piece of data, most real-world applications require handling large and complex collections of data. This course introduces a variety of fundamental data structures and explores the trade-offs—in terms of time and space—associated with each.</p><p>This course is the practical counterpart to the theoretical <em>Design and Analysis of Algorithms</em>. You will not only learn the concepts behind data structures like lists, stacks, queues, trees, and graphs, but you will also implement them from scratch. This process builds a deep understanding of how they work under the hood. You will learn how the choice of data structure can dramatically impact an application's performance.</p><h3>Key Topics Covered:</h3><ul><li><strong>Abstract Data Types (ADTs):</strong> Understanding the concept of an ADT as a theoretical model, separate from its implementation.</li><li><strong>Linear Data Structures:</strong>
+    <ul><li><strong>Arrays:</strong> Their static nature, advantages (fast access), and disadvantages (fixed size).</li><li><strong>Linked Lists:</strong> Singly, doubly, and circular linked lists. Understanding dynamic memory allocation, insertion, and deletion.</li><li><strong>Stacks:</strong> A Last-In, First-Out (LIFO) structure. Used in function calls, expression evaluation, etc.</li><li><strong>Queues:</strong> A First-In, First-Out (FIFO) structure. Used in simulations, scheduling, and breadth-first search.</li></ul></li><li><strong>Non-Linear Data Structures:</strong>
+    <ul><li><strong>Trees:</strong> Hierarchical structures, including binary trees, binary search trees (BSTs), and their operations (insertion, deletion, traversal—in-order, pre-order, post-order).</li><li><strong>Heaps:</strong> A specialized tree-based structure (Min-Heap, Max-Heap) used for implementing priority queues.</li><li><strong>Graphs:</strong> Representing relationships between objects. Learning graph representations (adjacency matrix, adjacency list) and basic traversal algorithms (Breadth-First Search, Depth-First Search).</li></ul></li><li><strong>Sorting and Searching:</strong>
+    <ul><li><strong>Searching:</strong> Linear search and the much faster binary search (which requires sorted data).</li><li><strong>Sorting:</strong> Simple sorting algorithms (Bubble Sort, Insertion Sort) and more efficient, recursive algorithms (Merge Sort, Quick Sort).</li></ul></li><li><strong>Hash Tables:</strong> A powerful structure that provides average-case O(1) time for insertion, deletion, and search. Understanding hash functions and collision handling techniques.</li></ul><h3>Course Objectives:</h3><ol><li>Implement fundamental linear and non-linear data structures from scratch.</li><li>Analyze the time and space complexity of different data structures and their operations.</li><li>Select the most appropriate data structure to solve a given programming problem.</li><li>Gain proficiency in using pointers, dynamic memory, and recursion.</li><li>Build a strong foundation for advanced courses in algorithms, databases, and operating systems.</li></col><p>Mastering data structures is arguably one of the most important skills for a software engineer. This course provides the essential toolkit for building efficient, scalable, and robust software.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1Cvm5ioVIJaVOK8dJMhjSOtl4fN7RGIyW/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["data structures", "algorithms", "linked lists", "stacks", "queues", "trees", "graphs", "sorting"]
   },
   {
-    title: "Cybersecurity Fundamentals for Developers",
-    slug: "cybersecurity-fundamentals-developers",
-    excerpt: "Learn essential security practices to protect your applications and user data from common threats and vulnerabilities.",
-    coverImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop",
-    content: `
-      <h2>Security in Development</h2>
-      <p>Security should be integrated into every stage of the development process, not added as an afterthought.</p>
-
-      <h2>Key Security Concepts</h2>
-      <ul>
-        <li><strong>Authentication & Authorization:</strong> User verification and permissions</li>
-        <li><strong>Data Encryption:</strong> Protecting sensitive information</li>
-        <li><strong>Input Validation:</strong> Preventing injection attacks</li>
-        <li><strong>Secure Coding:</strong> Best practices and common pitfalls</li>
-      </ul>
-
-      <h2>Practical Security</h2>
-      <p>Learn to implement security measures in your applications. Study real-world vulnerabilities and how to prevent them.</p>
-    `,
-    published: true
+    title: "CS606 Compiler Construction",
+    slug: "cs606-compiler-construction",
+    description: `<h2>CS606: Compiler Construction</h2><p><strong>CS606 Compiler Construction</strong> unveils the "magic" behind how high-level programming languages, like C++, Java, or Python, are translated into the low-level machine code that a computer's processor can actually execute. A compiler is a fundamental piece of software in the computer science ecosystem, and this course takes you through the entire process of building one, from source code to executable.</p><p>The course is structured around the classical phases of a modern compiler. You will learn how the compiler 'reads' your code (lexical analysis), 'understands' its grammatical structure (syntax analysis), 'interprets' its meaning (semantic analysis), improves its efficiency (optimization), and finally 'generates' the target machine code. This course is a capstone for many computer science concepts, bringing together theory of computation, data structures, and computer architecture.</p><h3>Key Topics Covered:</h3><ul><li><strong>Phase 1: Lexical Analysis (Scanning):</strong> The first phase, where the source code is read as a stream of characters and grouped into meaningful "tokens" (like keywords, identifiers, and operators). This phase is often implemented using <em>regular expressions</em> and <em>finite automata</em>.</li><li><strong>Phase 2: Syntax Analysis (Parsing):</strong> The parser takes the stream of tokens and builds a data structure, typically an <strong>Abstract Syntax Tree (AST)</strong>, that represents the grammatical structure of the program. This involves <em>context-free grammars (CFGs)</em> and parsing techniques like <em>LR parsing</em> (e.g., YACC) or <em>LL parsing</em> (e.g., recursive descent).</li><li><strong>Phase 3: Semantic Analysis:</strong> This phase checks the parsed code for meaning and logical consistency. It performs tasks like <em>type checking</em> (e.g., ensuring you don't add a string to an integer) and builds a <em>symbol table</em> to track variables and functions.</li><li><strong>Phase 4: Intermediate Code Generation:</strong> Before optimization, the AST is often translated into a lower-level, machine-independent representation (e.g., three-address code).</li><li><strong>Phase 5: Code Optimization:</strong> A crucial phase where the compiler attempts to improve the intermediate code to make it run faster or use less memory. Techniques include constant folding, loop optimizations, and dead code elimination.</li><li><strong>Phase 6: Code Generation:</strong> The final phase, where the optimized intermediate code is translated into the target machine's assembly language or machine code. This involves <em>register allocation</em> and instruction selection.</li></ul><h3>Course Objectives:</h3><ol><li>Understand the complete pipeline of a modern compiler.</li><li>Use formal language theory (regular expressions, CFGs) to specify and process programming languages.</li><li>Implement a lexical analyzer (scanner) and a syntax analyzer (parser) using standard tools (like Lex/Flex and Yacc/Bison) or by hand.</li><li>Perform semantic analysis, including type checking and symbol table management.</li><li>Appreciate the techniques for code optimization and target code generation.</li></ol><p>By building a compiler, you gain an unparalleled, in-depth understanding of how programming languages work. This course is challenging but incredibly rewarding, providing insights that are valuable for any serious software developer.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1o71oLaFpWChPQrN-mqDJ7T9g-_PBUJjx/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["compiler", "parsing", "lexical analysis", "syntax tree", "optimization", "code generation"]
   },
   {
-    title: "Cloud Computing and DevOps Essentials",
-    slug: "cloud-computing-devops-essentials",
-    excerpt: "Master cloud platforms, containerization, and DevOps practices for modern software deployment and scaling.",
-    coverImage: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop",
-    content: `
-      <h2>Cloud Computing Revolution</h2>
-      <p>Cloud computing has transformed how we build, deploy, and scale applications. Understanding cloud platforms is essential for modern developers.</p>
-
-      <h2>Cloud Services</h2>
-      <ul>
-        <li><strong>IaaS:</strong> Infrastructure as a Service (AWS, Azure, GCP)</li>
-        <li><strong>PaaS:</strong> Platform as a Service for rapid development</li>
-        <li><strong>SaaS:</strong> Software as a Service applications</li>
-        <li><strong>Serverless:</strong> Function-as-a-Service computing</li>
-      </ul>
-
-      <h2>DevOps Practices</h2>
-      <p>Learn CI/CD pipelines, containerization with Docker, and infrastructure as code. Master the tools that power modern software delivery.</p>
-    `,
-    published: true
+    title: "CS605 Software Engineering-II",
+    slug: "cs605-software-engineering-ii",
+    description: `<h2>CS605: Software Engineering-II</h2><p><strong>CS605 Software Engineering-II</strong> builds upon the foundational principles of software development (covered in Software Engineering-I) to explore the <em>management</em> and <em>process</em> aspects of building large-scale, industrial-strength software. While the first course focused on the technical 'how' of building software (analysis, design, coding, testing), this course focuses on the 'how-to-manage' building software, especially in a team environment.</p><p>This course delves into the activities related to managing the software development lifecycle. You will learn about software process models, project management, quality assurance, and the professional responsibilities of a software engineer. The focus shifts from individual programming to the coordination of teams, resources, and schedules to deliver a high-quality product on time and within budget.</p><h3>Key Topics Covered:</h3><ul><li><strong>Software Process Models:</strong> A deeper look at various development lifecycles beyond the traditional Waterfall model. This includes iterative models (like the Spiral model), agile methodologies (like Scrum and XP), and the V-Model.</li><li><strong>Project Management:</strong> Key activities for managing a software project, including <em>project planning</em>, <em>cost and effort estimation</em> (e.g., COCOMO), <em>scheduling</em> (Gantt charts, PERT charts), and <em>risk management</em>.</li><li><strong>Software Quality Assurance (SQA):</strong> Understanding the difference between quality assurance (process-oriented) and quality control (product-oriented). This includes formal technical reviews, standards (like ISO 9000), and process improvement models (like CMMI).</li><li><strong>Software Configuration Management (SCM):</strong> The discipline of managing the evolution of a software system. This includes <em>version control</em> (using tools like Git), <em>change control</em>, and build management.</li><li><strong>Software Testing Strategies:</strong> Moving beyond unit testing to explore integration testing, system testing, and acceptance testing. We will also discuss test case design, black-box vs. white-box testing, and debugging strategies.</li><li><strong>Software Maintenance:</strong> Understanding the different types of maintenance (corrective, adaptive, perfective) and the challenges of managing software after its initial release.</li></ul><h3>Course Objectives:</h3><ol><li>Understand and compare different software development process models, including agile methodologies.</li><li>Apply key project management techniques for planning, estimation, and scheduling.</li><li>Grasp the principles of Software Quality Assurance and process improvement.</li><li>Implement Software Configuration Management practices, including version control.</li><li>Develop comprehensive testing strategies for large-a_scale systems.</li></ol><p>CS605 provides the essential non-technical skills that are critical for success in a professional software engineering career. It prepares students for leadership roles such as project manager, team lead, and quality assurance engineer, bridging the gap between being a programmer and being an engineer.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1_7fpFlaSJwtRgGrqOh5MpWA2fVviCmvn/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["software engineering", "project management", "agile", "scrum", "SQA", "CMMI", "testing"]
   },
   {
-    title: "Machine Learning for Beginners: Getting Started",
-    slug: "machine-learning-beginners-getting-started",
-    excerpt: "Introduction to machine learning concepts, algorithms, and practical applications for aspiring data scientists.",
-    coverImage: "https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&h=400&fit=crop",
-    content: `
-      <h2>ML Fundamentals</h2>
-      <p>Machine learning is transforming industries and creating new opportunities. Start your journey with the core concepts and algorithms.</p>
-
-      <h2>Learning Path</h2>
-      <ol>
-        <li><strong>Mathematics:</strong> Linear algebra, calculus, statistics</li>
-        <li><strong>Programming:</strong> Python, NumPy, Pandas</li>
-        <li><strong>Algorithms:</strong> Supervised and unsupervised learning</li>
-        <li><strong>Deep Learning:</strong> Neural networks and frameworks</li>
-      </ol>
-
-      <h2>Practical Projects</h2>
-      <p>Build real ML projects and apply algorithms to solve practical problems. Access our collection of ML tutorials and datasets.</p>
-    `,
-    published: true
+    title: "CS604 Operating Systems",
+    slug: "cs604-operating-systems",
+    description: `<h2>CS604: Operating Systems</h2><p><strong>CS604 Operating Systems</strong> is a fundamental course that explores the design and implementation of the most important piece of software on any computer. The operating system (OS) acts as the intermediary between the computer hardware and the applications you run, managing all system resources and providing a stable, abstract environment for programs.</p><p>This course goes "under the hood" of computing to answer critical questions: How can a computer run multiple programs at once (concurrency)? How does the OS keep programs from interfering with each other (isolation)? How is memory allocated and protected? How are files stored and retrieved from a disk? You will gain a deep understanding of the core components of an OS, using systems like <strong>Linux</strong> and <strong>Windows</strong> as practical examples.</p><h3>Key Topics Covered:</h3><ul><li><strong>OS Introduction & Structure:</strong> What is an OS? We explore its components, services, and the various architectures (e.g., monolithic, microkernel).</li><li><strong>Process Management:</strong> The concept of a <strong>process</strong> (a program in execution) and a <strong>thread</strong> (a lightweight unit of execution). This includes process creation, termination, and inter-process communication (IPC).</li><li><strong>CPU Scheduling:</strong> The algorithms the OS uses to decide which process to run on the CPU at any given time (e.g., FCFS, SJF, Priority, Round Robin).</li><li><strong>Process Synchronization:</strong> The core problem of concurrency. We study the "critical section problem" and the mechanisms to solve it, such as <em>semaphores</em>, <em>mutexes</em>, and <em>monitors</em>.</li><li><strong>Deadlocks:</strong> The "deadly embrace" scenario where two or more processes are blocked forever, waiting for each other. We will learn about deadlock characterization, prevention, avoidance (e.g., Banker's Algorithm), and detection.</li><li><strong>Memory Management:</strong> How the OS allocates main memory (RAM) to processes. This includes techniques like <em>paging</em> (the foundation of virtual memory) and <em>segmentation</em>.</li><li><strong>Virtual Memory:</strong> A key technique that allows processes to use more memory than is physically available, using <em>demand paging</em> and <em>page replacement algorithms</em> (e.g., FIFO, LRU).</li><li><strong>File Systems:</strong> How the OS manages long-term storage. This covers file concepts, directory structures, disk allocation methods (e.g., contiguous, linked, indexed), and disk scheduling.</li></ul><h3>Course Objectives:</h3><ol><li>Understand the core functions and components of a modern operating system.</li><li>Analyze and compare different CPU scheduling and page replacement algorithms.</li><li>Implement solutions to classic process synchronization problems using semaphores or mutexes.</li><li>Grasp the mechanisms of memory management, including paging and virtual memory.</li><li>Explain the structure of file systems and disk management techniques.</li></ol><p>CS604 is an essential course that provides a foundational understanding of how computers work at a low level. The concepts learned here are critical for systems programming, high-performance computing, and diagnosing complex software problems.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1_rjwzvm182mmSlv7Mx7SVvy0tO-DjQ3g/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["operating systems", "processes", "threads", "scheduling", "synchronization", "deadlocks", "memory"]
   },
   {
-    title: "Software Engineering Best Practices",
-    slug: "software-engineering-best-practices",
-    excerpt: "Learn professional software development practices including version control, testing, documentation, and team collaboration.",
-    coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
-    content: `
-      <h2>Professional Development</h2>
-      <p>Software engineering is about more than just writing code. Learn the practices that make you a professional developer.</p>
-
-      <h2>Essential Practices</h2>
-      <ul>
-        <li><strong>Version Control:</strong> Git workflows and collaboration</li>
-        <li><strong>Testing:</strong> Unit tests, integration tests, TDD</li>
-        <li><strong>Code Quality:</strong> Reviews, linting, formatting</li>
-        <li><strong>Documentation:</strong> Code comments and project docs</li>
-      </ul>
-
-      <h2>Team Collaboration</h2>
-      <p>Learn to work effectively in teams, communicate clearly, and contribute to open-source projects. Build your professional network.</p>
-    `,
-    published: true
+    title: "CS101 Introduction to Computing",
+    slug: "cs101-introduction-to-computing",
+    description: `<h2>CS101: Introduction to Computing</h2><p><strong>CS101 Introduction to Computing</strong> is the gateway to the world of computer science, designed for beginners with little or no prior programming experience. This course provides a broad overview of the fundamental concepts that form the basis of all computing. It aims to build digital literacy and provide a solid foundation for all future studies in the field. You will learn what a computer is, how it works at a basic level, and how to instruct it to solve simple problems.</p><p>The course is typically split into two main parts: <strong>computer literacy</strong> and <strong>introductory programming</strong>. The literacy portion covers the hardware, software, and networking components that make up a computer system. The programming portion introduces the art and science of problem-solving using a programming language (often C++ or Python), focusing on fundamental control structures and data types.</p><h3>Key Topics Covered:</h3><ul><li><strong>History and Basics of Computing:</strong> A brief overview of the evolution of computers. Understanding the core components: the CPU (Central Processing Unit), Memory (RAM), and Storage (HDD/SSD).</li><li><strong>Data Representation:</strong> How computers store all information (numbers, text, images, sound) using the binary system (bits and bytes). This includes number systems (binary, hexadecimal).</li><li><strong>Software Concepts:</strong> The difference between system software (like the Operating System) and application software (like a web browser or word processor).</li><li><strong>The Internet and Web:</strong> A high-level overview of how the Internet works, including the World Wide Web, HTML, and web browsers.</li><li><strong>Problem Solving and Algorithms:</strong> The most crucial skill in CS. Learning to break down a problem into a sequence of logical steps (an algorithm) before writing any code.</li><li><strong>Fundamental Programming Concepts:</strong><ul><li><strong>Variables and Data Types:</strong> Storing information (e.g., integers, strings, booleans).</li><li><strong>Control Structures:</strong> Making decisions (<code>if</code>/<code>else</code> statements) and performing repetition (<code>for</code>/<code>while</code> loops).</li><li><strong>Functions:</strong> Writing reusable blocks of code to perform specific tasks.</li><li><strong>Arrays/Lists:</strong> Storing collections of data.</li></ul></li><li><strong>PC Productivity Software:</strong> Basic familiarity with essential tools like word processors, spreadsheets, and presentation software.</li></ul><h3>Course Objectives:</h3><ol><li>Gain a fundamental understanding of computer hardware, software, and networking.</li><li>Understand how data is represented in a digital computer.</li><li>Develop basic problem-solving skills and learn to design simple algorithms.</li><li>Master the fundamental syntax and logic of an introductory programming language (variables, loops, conditions, functions).</li><li>Build and run simple computer programs to solve well-defined problems.</li></ol><p>CS101 is the essential starting point for the Computer Science curriculum. It builds the confidence and core skills necessary to tackle more advanced and specialized topics, from data structures and object-oriented programming to artificial intelligence and cybersecurity.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/16adujT_2ue8OYhB8c6N7ittJVIDDAvNy/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["intro", "basics", "programming", "hardware", "software", "algorithms", "binary"]
+  },
+  {
+    title: "CS302 Digital Logic Design",
+    slug: "cs302-digital-logic-design",
+    description: `<h2>CS302: Digital Logic Design</h2><p><strong>CS302 Digital Logic Design (DLD)</strong> is a foundational course that explores the design and implementation of the hardware circuits that are the building blocks of all digital computers. This course bridges the gap between the abstract world of computer science (like programming) and the physical world of electrical engineering. You will learn how to build complex computational systems, like a calculator or a simple processor, from the ground up using basic logic gates.</p><p>The course begins with the fundamentals of binary numbers and <strong>Boolean algebra</strong>, the mathematical system for manipulating 1s and 0s. You will then learn about basic <em>logic gates</em> (AND, OR, NOT) and how to combine them to create <strong>combinational circuits</strong>—circuits whose output is purely a function of their current inputs. Later, the course introduces the concept of <em>state</em> and <em>memory</em>, leading to the design of <strong>sequential circuits</strong>—circuits whose output depends on both current inputs and past history.</p><h3>Key Topics Covered:</h3><ul><li><strong>Number Systems and Boolean Algebra:</strong> Mastering binary, octal, and hexadecimal number systems. Using the laws and theorems of Boolean algebra to simplify logical expressions.</li><li><strong>Logic Gates:</strong> Understanding the function of basic gates (AND, OR, NOT, XOR, NAND, NOR) and their truth tables.</li><li><strong>Combinational Logic Design:</strong> Designing circuits that perform a specific function without memory. This includes:<ul><li><strong>Karnaugh Maps (K-Maps):</strong> A graphical technique for simplifying Boolean expressions.</li><li><strong>Standard Components:</strong> Designing and using common circuits like <em>adders</em>, <em>subtractors</em>, <em>comparators</em>, <em>decoders</em>, <em>encoders</em>, and <em>multiplexers (MUX)</em>.</li></ul></li><li><strong>Sequential Logic Design:</strong> Designing circuits that have memory and store a "state". This includes:<ul><li><strong>Latches and Flip-Flops:</strong> The fundamental building blocks of memory (e.g., SR Latch, D Flip-Flop, JK Flip-Flop).</li><li><strong>Counters:</strong> Circuits that count in a predetermined sequence (e.g., synchronous and asynchronous counters).</li><li><strong>Shift Registers:</strong> Circuits used for storing and shifting data.</li></ul></li><li><strong>State Machines:</strong> Designing <em>Finite State Machines (FSMs)</em> to control the behavior of complex sequential systems.</li><li><strong>Memory Architecture:</strong> A basic understanding of how memory components like RAM and ROM are constructed.</li></ul><h3>Course Objectives:</h3><ol><li>Understand and apply the principles of Boolean algebra and number systems.</li><li>Design and analyze combinational logic circuits using logic gates and K-Maps.</li><li>Design and analyze sequential logic circuits using flip-flops, counters, and registers.</li><li>Develop finite state machines to model and implement complex digital behavior.</li><li>Gain hands-on experience in designing and simulating digital circuits.</li></ol><p>CS302 provides the essential hardware foundation for understanding computer architecture, microprocessors, and embedded systems. It is a critical course for anyone interested in how computers *physically* work.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/18EeN70OX4N7EJ5vxVTNLVbj6r82GVJnx/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["DLD", "digital logic", "boolean algebra", "k-map", "combinational", "sequential", "logic gates"]
+  },
+  {
+    title: "CS607 Artificial Intelligence",
+    slug: "cs607-artificial-intelligence",
+    description: `<h2>CS607: Artificial Intelligence</h2><p><strong>CS607 Artificial Intelligence (AI)</strong> provides a broad introduction to the exciting and rapidly evolving field of building machines that can think and act intelligently. This course explores the foundational concepts, techniques, and algorithms that enable computers to mimic human cognitive functions like problem-solving, learning, reasoning, and perception.</p><p>The course is structured around the concept of an "intelligent agent"—an entity that perceives its environment and takes actions to maximize its chances of success. You will study a wide array of methods that agents use to solve complex problems, from searching for solutions in vast state spaces to reasoning under uncertainty. This course provides a comprehensive overview of "classic AI" as well as an introduction to modern machine learning.</p><h3>Key Topics Covered:</h3><ul><li><strong>Foundations and Agents:</strong> The history of AI, the different types of AI (narrow vs. general), and the concept of rational intelligent agents (PEAS framework).</li><li><strong>Problem Solving and Search:</strong> How to frame problems for an AI. This includes <em>uninformed search algorithms</em> (like Breadth-First Search and Depth-First Search) and, more importantly, <em>informed (heuristic) search algorithms</em> (like <strong>A* Search</strong> and Greedy Best-First Search).</li><li><strong>Adversarial Search:</strong> The techniques used to build AIs for two-player games (like chess or tic-tac-toe), including the <strong>Minimax algorithm</strong> and Alpha-Beta Pruning.</li><li><strong>Knowledge Representation and Reasoning:</strong> How to represent 'what an AI knows' in a formal way. This includes <em>propositional logic</em>, <em>first-order logic</em>, and inference mechanisms like <em>forward and backward chaining</em>. This is the core of <strong>Expert Systems</strong>.</li><li><strong>Handling Uncertainty:</strong> Introduction to probability, Bayesian networks, and fuzzy logic to allow agents to reason in environments that are not fully predictable.</li><li><strong>Machine Learning:</strong> An introduction to the field of AI where systems learn from data. This includes:<ul><li><strong>Supervised Learning:</strong> Learning from labeled data (e.g., decision trees, linear regression).</li><li><strong>Unsupervised Learning:</strong> Finding patterns in unlabeled data (e.g., clustering with k-means).</li></ul></li><li><strong>Advanced Topics:</strong> A brief look at emerging fields like Natural Language Processing (NLP), Computer Vision, and Robotics.</li></ul><h3>Course Objectives:</h3><ol><li>Understand the fundamental concepts and challenges of Artificial Intelligence.</li><li>Apply and implement various search algorithms (uninformed, informed, adversarial) to solve well-defined problems.</li><li>Use logic-based systems for knowledge representation and reasoning.</li><li>Grasp the basic principles of machine learning, including supervised and unsupervised learning.</li><li>Appreciate the breadth of AI applications and their impact on society.</li></ol><p>CS607 is a gateway to one of the most dynamic areas of computer science. It provides the necessary foundation for advanced courses in machine learning, data science, robotics, and natural language processing.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1BtoIr4AUvJ2Wr-2G2KxGA5qdYXR7vJfW/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["AI", "search algorithms", "A*", "minimax", "machine learning", "expert systems", "logic"]
+  },
+  {
+    title: "CS602 Computer Graphics",
+    slug: "cs602-computer-graphics",
+    description: `<h2>CS602: Computer Graphics</h2><p><strong>CS602 Computer Graphics</strong> is a fascinating course that explores the algorithms and techniques used to generate and manipulate visual images by computer. This field is the driving force behind video games, animated films (like Pixar's), scientific visualization, and the graphical user interfaces (GUIs) we use every day. This course delves into the mathematics and computer science behind creating realistic and interactive 2D and 3D worlds.</p><p>The course starts with the fundamentals of 2D graphics, learning how to draw simple geometric shapes, and then builds up to the complexities of 3D modeling, rendering, and animation. You will learn about the "graphics pipeline," the series of steps a computer (specifically, the Graphics Processing Unit or GPU) takes to turn a 3D model into a 2D image on your screen.</p><h3>Key Topics Covered:</h3><ul><li><strong>Graphics Pipeline and Hardware:</strong> An overview of the components of a graphics system, including display devices (raster-scan vs. random-scan) and the GPU.</li><li><strong>2D Graphics Algorithms:</strong> The mathematical algorithms for drawing fundamental shapes, such as <em>line-drawing algorithms</em> (Bresenham's) and <em>circle-drawing algorithms</em>. We will also cover <em>polygon filling</em> and <em>clipping</em>.</li><li><strong>Geometric Transformations (2D and 3D):</strong> Using matrix mathematics to manipulate objects. This includes <strong>translation</strong> (moving), <strong>rotation</strong>, and <strong>scaling</strong> of objects in both 2D and 3D space using <em>homogeneous coordinates</em>.</li><li><strong>3D Viewing and Projection:</strong> The core of 3D graphics. This involves defining a "camera" in a 3D world and projecting the 3D scene onto a 2D view plane. This covers <em>orthographic</em> and <em>perspective projection</em>, which gives 3D objects their sense of depth.</li><li><strong>3D Modeling:</strong> Techniques for representing 3D objects in a computer, such as <em>polygonal meshes</em>, <em>splines</em>, and <em>Bezier curves</em>.</li><li><strong>Rendering Techniques:</strong><ul><li><strong>Lighting and Shading:</strong> Simulating the interaction of light with surfaces to create realism. This includes <em>shading models</em> like <strong>Phong</strong> and <strong>Gouraud</strong>.</li><li><strong>Visibility/Hidden Surface Removal:</strong> Algorithms (like the <em>Z-buffer</em>) to determine which objects are in front of others.</li><li><strong>Texturing:</strong> Applying 2D images (textures) to 3D models to add detail.</li></ul></li><li><strong>Introduction to Animation:</strong> Basic principles of computer-based animation, such as keyframing.</li></ul><h3>Course Objectives:</h3><ol><li>Understand the complete 2D and 3D graphics pipeline.</li><li>Implement fundamental graphics algorithms for drawing and transforming shapes.</li><li>Master the matrix mathematics behind 2D/3D transformations and projections.</li><li>Design and implement basic lighting, shading, and texturing models.</li><li>Gain hands-on experience by building a simple graphics renderer or application using a library like OpenGL.</li></ol><p>CS602 is a challenging but visually rewarding course that combines mathematics, algorithms, and programming. It provides the foundational skills for careers in game development, virtual reality, special effects, and scientific visualization.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1T7tFn4S0oMChssvi-CWwsOART2ITXJTQ/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["computer graphics", "3D", "2D", "rendering", "OpenGL", "transformations", "shading"]
+  },
+  {
+    title: "CS711 Software Design",
+    slug: "cs711-software-design",
+    description: `<h2>CS711: Software Design</h2><p><strong>CS711 Software Design</strong> is an advanced course that focuses on the critical, non-coding phase of software development: creating the high-level architecture and low-level design for a software system. While earlier courses teach you how to code, this course teaches you <em>what</em> to code. It's about making the crucial structural decisions that determine a system's quality, maintainability, performance, and long-term success. A good design makes a system easy to build, test, and evolve; a bad design leads to a "big ball of mud" that is costly and difficult to maintain.</p><p>This course moves beyond the implementation of individual algorithms and data structures to focus on the large-scale organization of software. You will learn how to break down a complex problem into manageable components (modules, classes, services) and define the relationships and interfaces between them. The course heavily emphasizes <strong>Design Patterns</strong> and <strong>architectural styles</strong>.</p><h3>Key Topics Covered:</h3><ul><li><strong>Software Design Principles:</strong> Deepening the understanding of core principles like <em>abstraction</em>, <em>encapsulation</em>, <em>modularity</em>, and <em>information hiding</em>. Introduction to <strong>SOLID</strong> principles (Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion).</li><li><strong>Design Patterns:</strong> A major focus of the course. You will study the "Gang of Four" (GoF) design patterns, which are reusable, proven solutions to common software design problems.<ul><li><strong>Creational Patterns:</strong> (e.g., Singleton, Factory, Builder) - Concerned with object creation mechanisms.</li><li><strong>Structural Patterns:</strong> (e.g., Adapter, Decorator, Facade) - Concerned with object composition and relationships.</li><li><strong>Behavioral Patterns:</strong> (e.g., Observer, Strategy, Command) - Concerned with communication and responsibility between objects.</li></ul></li><li><strong>Software Architecture:</strong> Exploring high-level structural choices. This includes common <em>architectural patterns</em> like <strong>Layered Architecture</strong>, <strong>Model-View-Controller (MVC)</strong>, <strong>Client-Server</strong>, and <strong>Microservices</strong>.</li><li><strong>Design Modeling:</strong> Using the <strong>Unified Modeling Language (UML)</strong> to visualize, specify, and document software designs. This includes Class Diagrams, Sequence Diagrams, and Use Case Diagrams.</li><li><strong>Software Quality Attributes:</strong> Designing for non-functional requirements, such as <em>maintainability</em>, <em>performance</em>, <em>scalability</em>, <em>reliability</em>, and <em>security</em>.</li></ul><h3>Course Objectives:</h3><ol><li>Understand and apply core software design principles (SOLID) to create clean, maintainable code.</li><li>Identify and implement appropriate "Gang of Four" design patterns to solve common problems.</li><li>Analyze and compare different software architectural styles (e.g., MVC, Microservices).</li><li>Create clear and detailed software design documentation using UML diagrams.</li><li>Make informed design decisions that trade off between various quality attributes.</li></ol><p>CS711 is a capstone course for aspiring software architects and senior developers. It provides the essential knowledge to lead the technical design of complex, robust, and scalable software systems.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1_-1oP4nBt0QOgTjJPw02CUHrGfPONL8d/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["software design", "design patterns", "GoF", "architecture", "UML", "SOLID", "MVC"]
+  },
+  {
+    title: "CS506 Web Design and Development",
+    slug: "cs506-web-design-and-development",
+    description: `<h2>CS506: Web Design and Development</h2><p><strong>CS506 Web Design and Development</strong> is a comprehensive, hands-on course that covers the A-to-Z of building modern, dynamic websites. This course is your entry point into becoming a full-stack developer. You will learn the three core languages of the front-end (HTML, CSS, JavaScript) as well as the server-side technologies required to build a complete, database-driven web application.</p><p>The course is typically divided into two major parts: <strong>front-end</strong> and <strong>back-end</strong> development. The front-end is what the user sees and interacts with in their browser. The back-end is the server, database, and application logic that powers the site from behind the scenes. You will learn how these two parts communicate using the <em>client-server model</em> and protocols like HTTP.</p><h3>Key Topics Covered:</h3><ul><li><strong>Front-End Development (Client-Side):</strong><ul><li><strong>HTML (HyperText Markup Language):</strong> The fundamental structure and content of all web pages. You will learn semantic HTML5 tags.</li><li><strong>CSS (Cascading Style Sheets):</strong> The language for styling and designing web pages, responsible for layout, colors, fonts, and responsiveness (making a site look good on both desktop and mobile).</li><li><strong>JavaScript (JS):</strong> The programming language of the browser. You will learn to make web pages interactive, validate forms, manipulate the DOM (Document Object Model), and fetch data from servers (using <strong>AJAX/Fetch API</strong>).</li></ul></li><li><strong>Back-End Development (Server-Side):</strong><ul><li><strong>Server-Side Language:</strong> An introduction to a language used to run on the server, such as <strong>PHP</strong>. This includes handling variables, control structures, and processing incoming requests.</li><li><strong>Database Interaction:</strong> Learning how to connect your server-side code to a database, typically <strong>MySQL</strong>. You will write SQL queries to create, read, update, and delete data (CRUD operations) in response to user actions.</li><li><strong>Form Handling:</strong> The complete process of capturing user input from an HTML form, sending it to the server, validating it, processing it (e.g., storing it in the database), and sending a response back to the user.</li></ul></li><li><strong>Core Web Concepts:</strong><ul><li><strong>Client-Server Model & HTTP:</strong> Understanding the request-response cycle that powers the web.</li><li><strong>Sessions and Cookies:</strong> Techniques for maintaining state and remembering users across multiple page visits (e.g., for login systems).</li></ul></li></ul><h3>Course Objectives:</h3><ol><li>Build standards-compliant, semantic, and accessible web pages using HTML5.</li><li>Design beautiful and responsive layouts for multiple devices using CSS3.</li><li>Create dynamic and interactive user experiences using client-side JavaScript.</li><li>Develop a complete, database-driven web application using a server-side language (like PHP) and a database (like MySQL).</li><li>Understand the full client-server architecture and the request-response lifecycle.</li></ol><p>By the end of CS506, you will have the practical skills to design, develop, and deploy a functional, dynamic website from scratch. This is one of the most in-demand skill sets in the technology industry, opening doors to careers in front-end, back-end, or full-stack development.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/13uwX5mp4fT2SC1UFPmg2iuKXfLq81qCa/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["web", "HTML", "CSS", "JavaScript", "PHP", "MySQL", "full-stack"]
+  },
+  {
+    title: "CS712 Distributed Database Management Systems",
+    slug: "cs712-distributed-database-management-systems",
+    description: `<h2>CS712: Distributed Database Management Systems</h2><p><strong>CS712 Distributed Database Management Systems (DDBMS)</strong> is an advanced database course that addresses the challenges and solutions for managing data that is not stored on a single, centralized server. Instead, it explores systems where data is <em>distributed</em> across multiple computers (called nodes), connected by a network. This approach is essential for modern large-scale applications (like Google, Amazon, and Facebook) that need high availability, scalability, and fault tolerance.</p><p>This course builds on the foundation of a traditional DBMS (like CS403) and introduces a new set of complex problems. How do you execute a query that needs data from multiple sites? How do you ensure data remains consistent (e.g., <strong>ACID</strong> properties) when an update requires changing data on two different machines, and one of them might fail? How do you handle network partitions? The course covers the principles, architectures, and algorithms that make DDBMS possible.</p><h3>Key Topics Covered:</h3><ul><li><strong>DDBMS Architecture:</strong> Understanding different architectures, such as shared-nothing, shared-memory, and shared-disk. This includes concepts of <em>data fragmentation</em> (splitting tables), <em>replication</em> (copying data for availability), and <em>allocation</em> (deciding where to store fragments/replicas).</li><li><strong>Distributed Query Processing:</strong> The complex process of optimizing and executing queries that span multiple nodes. This involves minimizing data transfer over the network, which is often the main bottleneck.</li><li><strong>Distributed Transaction Management:</strong> This is a core challenge. We will study how to maintain ACID properties in a distributed environment.<ul><li><strong>Concurrency Control:</strong> Extending locking protocols (like 2PL) to a distributed setting.</li><li><strong>Commit Protocols:</strong> The famous <strong>Two-Phase Commit (2PC)</strong> protocol, which is used to ensure that a transaction is either committed on <em>all</em> participating nodes or aborted on <em>all</em> of them (atomicity).</li></ul></li><li><strong>Data Replication and Consistency:</strong> Exploring the trade-offs between consistency, availability, and partition tolerance (the <strong>CAP Theorem</strong>). This includes primary-copy replication, multi-master replication, and the concept of <em>eventual consistency</em>.</li><li><strong>Modern Distributed Data Stores:</strong> An introduction to <strong>NoSQL</strong> databases (e.g., key-value stores, document stores) and "NewSQL" systems that are designed for web-scale distributed workloads and often relax traditional ACID guarantees for better performance and availability.</li></ul><h3>Course Objectives:</h3><ol><li>Understand the core principles and architectures of distributed database systems.</li><li>Design schemas for distributed databases, making decisions about fragmentation and replication.</li><li>Analyze the algorithms for distributed query processing and optimization.</li><li>Master the concepts of distributed transaction management, especially the Two-Phase Commit protocol.</li><li>Appreciate the challenges of consistency and availability (CAP Theorem) in modern data stores.</li></ol><p>CS712 is a critical course for students interested in large-scale systems, cloud computing, data engineering, and backend development. It provides the foundational knowledge for building the robust, highly-available data systems that power the modern internet.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1zPn4628FBQ24edzu7llM7tc20-LR6XxV/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["distributed database", "DDBMS", "2PC", "CAP theorem", "replication", "fragmentation", "NoSQL"]
+  },
+  {
+    title: "CS702 Machine Learning / Advanced Algorithms Analysis and Design",
+    slug: "cs702-machine-learning-advanced-algorithms-analysis-and-design",
+    description: `<h2>CS702: Machine Learning / Advanced Algorithms</h2><p><strong>CS702</strong> is a graduate-level course that delves deep into the foundational models of <strong>Machine Learning (ML)</strong> and the advanced algorithmic techniques required to implement them efficiently. This course builds upon the foundations of introductory AI (CS607) and algorithms (CS502), providing both the theoretical understanding and practical application of how computer systems can <em>learn</em> from data to make predictions and decisions.</p><p>The course is broadly split into the major paradigms of machine learning. You will explore <strong>supervised learning</strong>, where the algorithm learns from labeled data; <strong>unsupervised learning</strong>, where the algorithm finds hidden patterns in unlabeled data; and <strong>reinforcement learning</strong>, where an agent learns by interacting with its environment. This course is mathematically intensive, relying on concepts from probability, statistics, and linear algebra, but is firmly rooted in practical application.</p><h3>Key Topics Covered:</h3><ul><li><strong>Supervised Learning:</strong><ul><li><strong>Regression:</strong> Predicting a continuous value (e.g., house price). Includes <em>Linear Regression</em> and <em>Polynomial Regression</em>.</li><li><strong>Classification:</strong> Predicting a discrete label (e.g., spam/not spam). Includes <em>Logistic Regression</em>, <em>k-Nearest Neighbors (k-NN)</em>, <em>Support Vector Machines (SVMs)</em>, <em>Decision Trees</em>, and <em>Random Forests</em>.</li></ul></li><li><strong>Unsupervised Learning:</strong><ul><li><strong>Clustering:</strong> Grouping similar data points together (e.g., <em>K-Means Clustering</em>, <em>Hierarchical Clustering</em>).</li><li><strong>Dimensionality Reduction:</strong> Compressing data by finding its most important features (e.g., <em>Principal Component Analysis (PCA)</em>).</li></ul></li><li><strong>Model Evaluation and Validation:</strong> The "science" of ML. How to properly test your model and avoid <em>overfitting</em>. This includes train/test splits, <em>cross-validation</em>, and metrics (e.g., accuracy, precision, recall, F1-score, confusion matrix).</li><li><strong>Introduction to Neural Networks:</strong> The building blocks of <em>Deep Learning</em>. Understanding the <em>perceptron</em>, <em>multi-layer perceptrons (MLPs)</em>, and the <em>backpropagation</em> algorithm.</li><li><strong>Advanced Algorithm Analysis:</strong> A deeper dive into algorithm design, potentially covering randomized algorithms, approximation algorithms, and more complex data structures used to optimize ML models.</li></ul><h3>Course Objectives:</h3><ol><li>Gain a deep theoretical and practical understanding of the major machine learning models.</li><li>Implement and apply supervised and unsupervised learning algorithms to real-world datasets.</li><li>Master the techniques for training, validating, and evaluating machine learning models to prevent overfitting.</li><li>Understand the mathematical foundations of ML, including key concepts from statistics and linear algebra.</li><li>Build a foundation for advanced study in deep learning, natural language processing, and computer vision.</li></ol><p>CS702 is an essential course for anyone aspiring to be a Data Scientist, Machine Learning Engineer, or AI Researcher. It provides the core toolkit for one of the most transformative technologies in computer science today.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1cmJladz5jPHke-K7O0f-oH6aT6j8_knH/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["machine learning", "supervised", "unsupervised", "neural networks", "SVM", "decision trees", "PCA"]
+  },
+  {
+    title: "CS614 DATA WAREHOUSING",
+    slug: "cs614-data-warehousing",
+    description: `<h2>CS614: Data Warehousing</h2><p><strong>CS614 Data Warehousing</strong> is a specialized course that focuses on the design, implementation, and use of <em>Data Warehouses</em>—large, centralized repositories of data that are designed specifically for <strong>reporting</strong> and <strong>data analysis</strong>. Unlike a standard operational database (OLTP) which is optimized for fast transactions (like placing an order), a data warehouse (OLAP) is optimized for complex queries that analyze historical data (like "What were the total sales of our top 10 products, by region, for each of the last 12 quarters ? ").</p><p>This course is a cornerstone of <strong>Business Intelligence (BI)</strong>. You will learn the entire process of taking raw data from various, heterogeneous sources (e.g., sales, marketing, HR databases), cleaning and transforming it, and loading it into a unified "single source of truth" for decision-making. This process is known as <strong>ETL (Extract, Transform, Load)</strong>.</p><h3>Key Topics Covered:</h3><ul><li><strong>Data Warehouse vs. OLTP:</strong> A deep dive into the fundamental differences in purpose, design, workload, and users between operational databases (Online Transaction Processing) and analytical databases (Online Analytical Processing).</li><li><strong>Data Warehouse Architecture:</strong> Exploring the components of a BI solution, including data sources, the staging area, the data warehouse itself, and data marts (smaller, department-focused subsets of the warehouse).</li><li><strong>Dimensional Modeling:</strong> The core design technique for data warehouses. Unlike normalization (3NF) in OLTP, dimensional modeling uses <strong>star schemas</strong> and <strong>snowflake schemas</strong>. You will learn to design <em>fact tables</em> (containing metrics, e.g., 'sales_amount') and <em>dimension tables</em> (containing context, e.g., 'time', 'product', 'location').</li><li><strong>The ETL Process:</strong><ul><li><strong>Extract:</strong> Getting data from various source systems.</li><li><strong>Transform:</strong> The most complex step. This involves <em>cleaning</em> data (fixing errors), <em>integrating</em> data (matching 'John Smith' with 'J. Smith'), and <em>transforming</em> it to fit the dimensional model.</li><li><strong>Load:</strong> Efficiently loading the processed data into the warehouse.</li></ul></li><li><strong>OLAP Operations:</strong> Understanding the types of analysis a data warehouse enables, such as <strong>slicing</strong>, <strong>dicing</strong>, <strong>drill-down</strong>, <strong>roll-up</strong>, and <strong>pivot</strong>.</li><li><strong>Introduction to Data Mining:</strong> A brief overview of how data warehouses serve as the foundation for data mining and discovering hidden patterns in business data.</li></ul><h3>Course Objectives:</h3><ol><li>Clearly differentiate between OLTP and OLAP systems.</li><li>Design and implement robust data warehouse schemas using dimensional modeling (star and snowflake schemas).</li><li>Understand and design the complete ETL (Extract, Transform, Load) pipeline.</li><li>Explain the business rationale and benefits of data warehousing for decision support.</li><li>Gain familiarity with OLAP operations and the role of the data warehouse in business intelligence.</li></ol><p>CS614 is essential for students interested in careers in data engineering, data analysis, business intelligence, and data science. It provides the skills to build the data foundations that all modern analytics rely on.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1iFbc3dgv23QsGwAaNhrnw57rMAdP1Gx5/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["data warehouse", "ETL", "OLAP", "OLTP", "dimensional modeling", "star schema", "business intelligence"]
+  },
+  {
+    title: "CS615 Project Management?",
+    slug: "cs615-project-management",
+    description: `<h2>CS615: Project Management</h2><p><strong>CS615 Project Management</strong> provides a comprehensive, structured approach to managing projects, with a special emphasis on the unique challenges of <em>software and IT projects</em>. This course is not just for aspiring project managers; it is essential for any technical professional who will be part of a project team. You will learn the formal processes, tools, and techniques for ensuring a project is completed <strong>on time</strong>, <strong>within budget</strong>, and <strong>to the required quality standards</strong>.</p><p>The course is structured around the five major process groups of project management: <strong>Initiating, Planning, Executing, Monitoring & Controlling, and Closing</strong>. It provides a full-lifecycle view of a project, from the initial business case to the final delivery and lessons learned. You will learn to manage the "triple constraint" of scope, time, and cost, as well as other critical areas like risk, quality, and communication.</p><h3>Key Topics Covered:</h3><ul><li><strong>Project Management Framework:</strong> Understanding the project lifecycle, stakeholders, and the core knowledge areas (e.g., scope, time, cost, risk, quality).</li><li><strong>Project Planning:</strong> This is the most critical phase.<ul><li><strong>Scope Management:</strong> Defining what the project will and will not deliver, using a <em>Work Breakdown Structure (WBS)</em>.</li><li><strong>Time Management:</strong> Creating a realistic schedule by estimating activity durations and using tools like <em>Gantt charts</em> and the <em>Critical Path Method (CPM)</em>.</li><li><strong>Cost Management:</strong> Developing a budget and tracking project expenses.</li></ul></li><li><strong>Risk Management:</strong> The process of identifying, analyzing, and planning responses to potential "unknowns" that could threaten the project.</li><li><strong>Quality Management:</strong> Planning and implementing processes to ensure the final product meets the customer's requirements and is fit for use.</li><li><strong>Agile Project Management:</strong> An increasingly important topic. We explore alternatives to traditional (Waterfall) project management, such as <strong>Scrum</strong> and <strong>Kanban</strong>, which are highly iterative and flexible.</li><li><strong>Team and Stakeholder Management:</strong> The "soft skills" of project management, including leadership, communication, and conflict resolution.</li></ul><h3>Course Objectives:</h3><ol><li>Understand and apply the standard processes and knowledge areas of project management.</li><li>Develop a comprehensive project plan, including a WBS, schedule, and budget.</li><li>Identify and manage project risks, scope creep, and quality issues.</li><li>Compare and contrast traditional (Waterfall) and Agile (Scrum) project management methodologies.</li><li>Master the use of common project management tools and documentation (e.g., Gantt charts, risk registers).</li></ol><p>By completing CS615, students will be equipped with a valuable and highly transferable skill set that is critical for leading and contributing to successful technical projects in any industry.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1iLQktn8des27Cfsj_HKbX_ikeqief7OP/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["project management", "agile", "scrum", "gantt chart", "WBS", "risk management", "PMP"]
+  },
+  {
+    title: "CS508 Modern Programming Languages",
+    slug: "cs508-modern-programming-languages",
+    description: `<h2>CS508: Modern Programming Languages</h2><p><strong>CS508 Modern Programming Languages</strong> is a theoretical course that explores the fundamental concepts, design principles, and implementation trade-offs of the various programming languages we use. Instead of just learning <em>how</em> to program in one specific language, this course teaches you <em>why</em> languages are designed the way they are. You will gain a deeper appreciation for the tools you use every day and develop the ability to learn new languages more quickly.</p><p>The course takes a comparative approach, examining different <strong>programming paradigms</strong>—the major "styles" of programming. We will dissect languages to understand their <em>syntax</em> (the rules of grammar) and <em>semantics</em> (the meaning). This course helps you think about programming at a more abstract level, evaluating languages based on criteria like readability, writability, and reliability.</p><h3>Key Topics Covered:</h3><ul><li><strong>Programming Paradigms:</strong> A deep dive into the four major paradigms:<ul><li><strong>Imperative:</strong> The 'how-to' approach using statements that change program state (e.t., C, Pascal).</li><li><strong>Object-Oriented:</strong> A sub-paradigm of imperative, organizing code around objects (e.g., Java, C++, Python).</li><li><strong>Functional:</strong> A 'what-to-do' approach based on mathematical functions, avoiding state and mutable data (e.g., Haskell, Lisp, modern JavaScript features).</li><li><strong>Logic:</strong> A declarative approach based on formal logic (e.g., Prolog).</li></ul></li><li><strong>Language Evaluation Criteria:</strong> The "metrics" for judging a language: readability, writability, reliability, and cost.</li><li><strong>Core Language Concepts (Comparative):</strong><ul><li><strong>Data Types:</strong> Static vs. dynamic typing, strong vs. weak typing, and type inference.</li><li><strong>Names, Bindings, and Scopes:</strong> How variables are bound to memory and where they are visible (lexical vs. dynamic scoping).</li><li><strong>Control Structures:</strong> A look at different loop and conditional constructs.</li><li><strong>Subprograms:</strong> Parameter passing mechanisms (pass-by-value, pass-by-reference), and function closures.</li></ul></li><li><strong>Implementation Concepts:</strong> A high-level overview of how languages are implemented, including compilation vs. interpretation and runtime environments.</li></ul><h3>Course Objectives:</h3><ol><li>Understand and differentiate between the major programming paradigms (imperative, functional, logic, OOP).</li><li>Analyze and compare programming languages based on their design, syntax, and semantics.</li><li>Master core language concepts like typing systems, scoping rules, and parameter passing.</li><li>Gain a theoretical foundation that accelerates the learning of new programming languages.</li><li>Appreciate the historical evolution and design trade-offs that have shaped modern languages.</li></ol><p>CS508 is an "eye - opening" course for many programmers. It changes the way you think about code, moving you from being a user of a language to being a knowledgeable critic and engineer who understands the deep principles of language design.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1sUYH7dmgXjUzB6Ff60UJZHlaK0zOQTLD/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["programming languages", "paradigms", "functional", "OOP", "compilers", "typing", "syntax"]
+  },
+  {
+    title: "CS507 Information Security",
+    slug: "cs507-information-security",
+    description: `<h2>CS507: Information Security</h2><p><strong>CS507 Information Security</strong> provides a comprehensive overview of the principles, technologies, and practices required to protect digital information and systems. In an increasingly connected world, this field is of critical importance. This course introduces the foundational "CIA Triad" (<strong>Confidentiality, Integrity, Availability</strong>) and explores the various threats, vulnerabilities, and countermeasures that define the cybersecurity landscape.</p><p>This course is not just about technical "hacking"; it's a broad survey that covers the technical, administrative, and physical aspects of security. You will learn how to identify assets, assess risks, and implement a "defense -in -depth" strategy to protect an organization. Topics range from the mathematics of cryptography to the psychology of social engineering, providing a complete picture of the challenges involved.</p><h3>Key Topics Covered:</h3><ul><li><strong>Foundations of Security:</strong> The <strong>CIA Triad</strong> (Confidentiality, Integrity, Availability), plus non-repudiation and authentication. Understanding threats, vulnerabilities, and risks.</li><li><strong>Cryptography:</strong> The core technology for ensuring confidentiality and integrity.<ul><li><strong>Symmetric Encryption:</strong> Using a single shared key (e.g., DES, <strong>AES</strong>).</li><li><strong>Asymmetric (Public-Key) Encryption:</strong> Using a pair of public and private keys (e.g., <strong>RSA</strong>).</li><li><strong>Hashing and Digital Signatures:</strong> Verifying data integrity (e.g., MD5, SHA-256) and authenticating the sender.</li></ul></li><li><strong>Access Control:</strong> Mechanisms for determining "who is allowed to do what." This includes authentication (passwords, biometrics, 2FA) and authorization (Access Control Lists, Role-Based Access Control).</li><li><strong>Network Security:</strong> Securing data in transit. This includes <em>firewalls</em>, <em>Intrusion Detection Systems (IDS)</em>, <em>Virtual Private Networks (VPNs)</em>, and secure protocols (e.g., <strong>SSL/TLS</strong>, which powers HTTPS).</li><li><strong>Software and Web Security:</strong> Common vulnerabilities in applications, such as <em>SQL Injection</em>, <em>Cross-Site Scripting (XSS)</em>, and <em>Buffer Overflows</em>.</li><li><strong>Risk Management:</strong> The business-oriented process of identifying, assessing, and mitigating risks to an organization's assets.</li><li><strong>Operational Security:</strong> The human side of security, including policies, procedures, business continuity planning, and awareness of threats like <em>phishing</em> and <em>social engineering</em>.</li></ul><h3>Course Objectives:</h3><ol><li>Understand the fundamental principles of information security (the CIA Triad) and risk management.</li><li>Explain the core concepts of modern cryptography, including symmetric, asymmetric, and hashing.</li><li>Identify common network and application-level vulnerabilities (e.g., SQLi, XSS).</li><li>Describe the mechanisms for access control, authentication, and authorization.</li><li>Appreciate the importance of security policies and the human element in cybersecurity.</li></ol><p>CS507 provides the essential, broad foundation for any student interested in a cybersecurity career. It prepares you for advanced, specialized topics in network security, ethical hacking, digital forensics, and security management.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/14T50TDqPBADnjgV8wGwFJOAglNbgZ19f/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["security", "cybersecurity", "cryptography", "AES", "RSA", "networking", "risk"]
+  },
+  {
+    title: "CS504 Software Engineering – I",
+    slug: "cs504-software-engineering-i",
+    description: `<h2>CS504: Software Engineering – I</h2><p><strong>CS504 Software Engineering – I</strong> is the foundational course that introduces the principles, practices, and methodologies for developing high-quality software in a systematic and disciplined way. This course addresses the "software crisis"—the fact that building software is inherently difficult, error-prone, and often over budget and late. It teaches you to move from "programming" (a solo, creative activity) to "software engineering" (a team-based, disciplined, engineering-process).</p><p>This course focuses on the first half of the software development lifecycle, primarily <strong>requirements</strong>, <strong>analysis</strong>, and <strong>design</strong>. You will learn how to properly understand a customer's problem and translate it into a detailed specification and design plan *before* writing any code. The course also introduces various process models that provide a roadmap for development.</p><h3>Key Topics Covered:</h3><ul><li><strong>Introduction to Software Engineering:</strong> Understanding the challenges of software development, the role of an engineer, and the importance of a defined process.</li><li><strong>Software Process Models:</strong> A survey of different lifecycles for building software.<ul><li><strong>Waterfall Model:</strong> The classic, sequential, and linear approach.</li><li><strong>Prototyping Model:</strong> Building a "throwaway" version to clarify requirements.</li><li><strong>Iterative/Incremental Models:</strong> Building and delivering the software in pieces.</li><li><strong>Introduction to Agile:</strong> A brief mention of the philosophy that will be covered in SE-II.</li></ul></li><li><strong>Requirements Engineering:</strong> The most critical phase. This includes:<ul><li><strong>Requirements Elicitation:</strong> How to get information from the client (interviews, surveys).</li><li><strong>Requirements Analysis:</strong> Modeling the problem. This is where <strong>Object-Oriented Analysis (OOA)</strong> is introduced, using <strong>UML (Unified Modeling Language)</strong> diagrams like <em>Use Case Diagrams</em>.</li><li><strong>Requirements Specification:</strong> Writing a clear, unambiguous <em>Software Requirements Specification (SRS)</em> document.</li></ul></li><li><strong>Software Design:</strong> The 'how-to' blueprint.<ul><li><strong>Object-Oriented Design (OOD):</strong> Translating analysis models into design models. This includes creating <strong>UML Class Diagrams</strong> and <strong>Sequence Diagrams</strong> to show the static structure and dynamic behavior of the system.</li><li><strong>Design Principles:</strong> Introduction to core concepts like <em>cohesion</em> (good) and <em>coupling</em> (bad).</li></ul></li><li><strong>Good Programming Practices:</strong> Introduction to coding standards, commenting, and the importance of clear, modular code.</li></ul><h3>Course Objectives:</h3><ol><li>Understand the principles and importance of a disciplined software engineering process.</li><li>Elicit, analyze, and document software requirements using modern techniques (e.g., Use Cases).</li><li>Create object-oriented analysis and design models using UML diagrams (Class, Sequence, Use Case).</li><li>Compare and contrast various software development lifecycle models (e.g., Waterfall, Prototyping).</li><li>Appreciate the challenges of building large-scale, maintainable software systems.</li></col><p>CS504 provides the essential "blueprint" for building software correctly. It lays the groundwork for CS605 (Software Engineering II), which typically covers the second half of the lifecycle: project management, testing, and maintenance.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1KGgBsYnJr7zVzcBr5op4sZsFl4tJykGs/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["software engineering", "UML", "requirements", "waterfall", "OOD", "OOA", "SRS"]
+  },
+  {
+    title: "CS501 Advanced Computer Architecture",
+    slug: "cs501-advanced-computer-architecture",
+    description: `<h2>CS501: Advanced Computer Architecture</h2><p>This course provides a deep dive into the principles and design of modern high-performance computer systems. Moving beyond basic computer organization, <strong>CS501 Advanced Computer Architecture</strong> explores the sophisticated techniques used to achieve greater processing speed and efficiency. Students will investigate the underlying structures that power everything from mobile devices to large-scale supercomputers.</p><p>The curriculum is built around understanding the complex trade-offs in processor and system design. You will learn how instructions are processed in parallel, how memory systems are organized to minimize latency, and how multiple processors work together to solve complex problems. This course is essential for students who wish to specialize in system design, hardware engineering, or high-performance computing.</p><h3>Key Topics Covered:</h3><ul><li><strong>Instruction-Level Parallelism (ILP):</strong> Exploration of pipelining, superscalar processors, VLIW (Very Long Instruction Word) architectures, and the challenges of data and control hazards.</li><li><strong>Processor Design:</strong> A comparative study of RISC (Reduced Instruction Set Computer) and CISC (Complex Instruction Set Computer) architectures, including their design philosophies and performance characteristics.</li><li><strong>Memory Hierarchy:</strong> In-depth analysis of cache memory principles (write policies, replacement algorithms, multilevel caches), virtual memory, and main memory organization.</li><li><strong>Multiprocessor Systems:</strong> Study of shared-memory and distributed-memory multiprocessors, interconnection networks, cache coherence protocols, and synchronization mechanisms.</li><li><strong>Advanced Topics:</strong> Introduction to vector processing, GPU architectures, and domain-specific accelerators, which are becoming increasingly important in modern computing workloads.</li></ul><h3>Course Objectives:</h3><ol><li>Understand the fundamental principles of advanced computer architecture.</li><li>Analyze the performance of different architectural designs and features.</li><li>Investigate the design of pipelined and multiprocessor systems.</li><li>Comprehend the intricacies of memory hierarchies and cache coherence.</li><li>Gain exposure to recent trends in computer architecture, including parallel and vector processing.</li></ol><p>By the end of this course, students will be equipped with the conceptual grounding and design principles necessary to understand, evaluate, and contribute to the development of next-generation computer architectures.</p>`,
+    type: "handout",
+    fileUrl: "https://drive.google.com/file/d/1u1e0maSWlMvOKntK1esiC9Ch41854iMM/view?usp=drivesdk",
+    subject: "Computer Science",
+    university: "Virtual University of Pakistan",
+    year: 2025,
+    tags: ["architecture", "pipelining", "memory hierarchy", "multiprocessor", "RISC", "CISC"]
   }
-];
-
-async function seedBlogs() {
-  try {
-    console.log('🌱 Connecting to MongoDB...');
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log('✅ Connected to MongoDB');
-
-    const { default: Blog } = await import('./src/models/Blog.js');
-    const { default: Author } = await import('./src/models/Author.js');
-
-    // Find or create a default author
-    let author = await Author.findOne({ name: 'VUEDU Team' });
-
-    if (!author) {
-      console.log('👤 Creating default author...');
-      author = new Author({
-        name: 'VUEDU Team',
-        slug: 'vuedu-team',
-        bio: 'Educational content creators and technology enthusiasts sharing knowledge with students worldwide.',
-        avatar: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=150&h=150&fit=crop&crop=face',
-        email: 'team@vuedu.dev',
-        website: 'https://vuedu.dev'
-      });
-      await author.save();
-      console.log('✅ Default author created');
-    }
-
-    console.log('📝 Checking existing blogs...');
-    const existingBlogs = await Blog.countDocuments();
-    console.log(`📊 Found ${existingBlogs} existing blogs`);
-
-    console.log('🚀 Seeding new blog posts...');
-    let createdCount = 0;
-
-    for (const blogData of blogPosts) {
-      // Check if blog already exists
-      const existingBlog = await Blog.findOne({ slug: blogData.slug });
-
-      if (!existingBlog) {
-        const blog = new Blog({
-          ...blogData,
-          author: author._id,
-          createdAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000), // Random date within last 30 days
-          updatedAt: new Date()
-        });
-
-        await blog.save();
-        createdCount++;
-        console.log(`✅ Created: "${blog.title}"`);
-      } else {
-        console.log(`⏭️  Skipped: "${blogData.title}" (already exists)`);
-      }
-    }
-
-    console.log(`\n🎉 Seeding complete!`);
-    console.log(`📈 Created ${createdCount} new blog posts`);
-    console.log(`📊 Total blogs in database: ${await Blog.countDocuments()}`);
-
-    // Show summary
-    console.log('\n📋 Blog Summary:');
-    const allBlogs = await Blog.find({ published: true })
-      .select('title slug createdAt')
-      .sort({ createdAt: -1 })
-      .limit(15)
-      .lean();
-
-    allBlogs.forEach((blog, index) => {
-      console.log(`${index + 1}. ${blog.title}`);
-      console.log(`   📅 ${blog.createdAt.toLocaleDateString()}`);
-      console.log(`   🔗 /blogs/${blog.slug}`);
-      console.log('');
-    });
-
-  } catch (error) {
-    console.error('❌ Error seeding blogs:', error);
-    process.exit(1);
-  } finally {
-    await mongoose.connection.close();
-    console.log('🔌 Database connection closed');
-    process.exit(0);
-  }
-}
-
-// Run the seeder
-seedBlogs();
+]
