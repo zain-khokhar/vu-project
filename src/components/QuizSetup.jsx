@@ -14,9 +14,7 @@ import {
   Sparkles,
   Target,
   Zap,
-  Calendar,
-  Tag,
-  Info,
+  Loader,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import QuizClient from "@/components/QuizClient";
