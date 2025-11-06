@@ -1,5 +1,6 @@
 import { getBlogs } from '@/actions/blogs';
 import { getDocuments } from '@/actions/documents';
+export const dynamic = 'force-dynamic';
 
 // Helper function to safely parse dates
 function safeDate(dateValue, fallback = new Date()) {
