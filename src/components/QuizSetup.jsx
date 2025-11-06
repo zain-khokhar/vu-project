@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   User,
   Clock,
@@ -30,7 +30,12 @@ export default function QuizSetup({ quizData }) {
     questionCount: Math.min(10, quizData.totalQuestions),
     timePerQuestion: 30,
   });
-
+  useEffect(() => {
+    const main = document.getElementById("main-content");
+    if (main) {
+      main.style.display = showQuiz ? "none" : "";
+    }
+  }, [showQuiz]);
   const handleStartQuiz = async (e) => {
     e.preventDefault();
     if (!settings.username.trim()) return;
@@ -87,7 +92,6 @@ export default function QuizSetup({ quizData }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Setup Card - Takes 2 columns on large screens */}
           <div className="lg:col-span-2">
