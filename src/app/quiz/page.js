@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { BookOpen, ArrowRight } from 'lucide-react';
-import { promises as fs } from 'fs';
-import path from 'path';
+import connectDB from '@/lib/mongodb';
+import Quiz from '@/models/Quiz';
 
 export const metadata = {
   title: 'Online Quiz System - VUEDU',
@@ -10,56 +10,26 @@ export const metadata = {
 
 async function getAvailableQuizzes() {
   try {
-    const dataDirectory = path.join(process.cwd(), 'data');
-    const files = await fs.readdir(dataDirectory);
-    const jsonFiles = files.filter(file => file.endsWith('.json'));
+    await connectDB();
+    
+    const quizzes = await Quiz.find({ isActive: true })
+      .select('title slug description category icon color totalQuestions')
+      .sort({ createdAt: -1 })
+      .lean();
 
-    const quizzes = await Promise.all(
-      jsonFiles.map(async (file) => {
-        const filePath = path.join(dataDirectory, file);
-        const fileContents = await fs.readFile(filePath, 'utf8');
-        const questions = JSON.parse(fileContents);
-
-        const name = file.replace('.json', '');
-        const displayName = name.charAt(0).toUpperCase() + name.slice(1);
-
-        return {
-          id: name,
-          name: displayName,
-          questionsCount: questions.length,
-          icon: getIconForCategory(name),
-          color: getColorForCategory(name),
-        };
-      })
-    );
-
-    return quizzes;
+    return quizzes.map(quiz => ({
+      id: quiz.slug,
+      name: quiz.title,
+      description: quiz.description,
+      category: quiz.category,
+      questionsCount: quiz.totalQuestions,
+      icon: quiz.icon,
+      color: quiz.color,
+    }));
   } catch (error) {
-    console.error('Error reading quiz files:', error);
+    console.error('Error fetching quizzes:', error);
     return [];
   }
-}
-
-function getIconForCategory(category) {
-  const icons = {
-    physics: '⚛️',
-    chemistry: '🧪',
-    mathematics: '📐',
-    biology: '🧬',
-    default: '📚'
-  };
-  return icons[category.toLowerCase()] || icons.default;
-}
-
-function getColorForCategory(category) {
-  const colors = {
-    physics: 'from-blue-500 to-cyan-500',
-    chemistry: 'from-green-500 to-emerald-500',
-    mathematics: 'from-purple-500 to-pink-500',
-    biology: 'from-orange-500 to-red-500',
-    default: 'from-gray-500 to-slate-500'
-  };
-  return colors[category.toLowerCase()] || colors.default;
 }
 
 export default async function QuizHomePage() {
@@ -128,6 +98,9 @@ export default async function QuizHomePage() {
                       </div>
                     </div>
                     <h3 className="text-2xl md:text-3xl font-light">{quiz.name}</h3>
+                    {quiz.category && (
+                      <p className="text-white/80 text-sm mt-2 font-light">{quiz.category}</p>
+                    )}
                   </div>
 
                   {/* Card Body */}

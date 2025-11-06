@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import connectDB from '@/lib/mongodb';
+import Document from '@/models/Document';
 import { getDocumentBySlug } from '@/actions/documents';
 import { getComments } from '@/actions/comments';
 import { documentTypes } from '@/lib/utils';
@@ -21,9 +23,23 @@ import CommentSection from '@/components/CommentSection';
  * Enables Static Site Generation (SSG)
  */
 export async function generateStaticParams() {
-  // This will be populated by your documents
-  // For now, return empty array for ISR (Incremental Static Regeneration)
-  return [];
+  try {
+    await connectDB();
+
+    // Fetch all documents, selecting only the slug field for performance
+    const documents = await Document.find({})
+      .select('slug')
+      .lean();
+
+    // Return array of slug parameters for static generation
+    return documents.map((document) => ({
+      slug: document.slug,
+    }));
+  } catch (error) {
+    console.error('Error generating static params for documents:', error);
+    // Return empty array on error to prevent build failures
+    return [];
+  }
 }
 
 /**
