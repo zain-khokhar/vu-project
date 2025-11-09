@@ -12,6 +12,7 @@ import {
   generateWebsiteStructuredData,
   generateFAQStructuredData,
 } from '@/lib/seo-utils';
+import Image from 'next/image';
 
 export const metadata = generateDocumentMetadata({
   title: "VUEDU - Free Educational Documents & Study Resources in Pakistan",
@@ -168,7 +169,6 @@ export default async function Home() {
                   <span className="relative text-xs font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent tracking-wide">🇵🇰 #1 LEARNING PLATFORM</span>
                 </div>
               </div>
-
               {/* Liquid Headline */}
               <div className="space-y-3">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 leading-tight tracking-tight">

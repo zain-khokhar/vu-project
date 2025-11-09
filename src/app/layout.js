@@ -36,6 +36,11 @@ export const metadata = generateDocumentMetadata({
       alt: "VUEDU - Free Educational Documents Platform for Pakistani Students",
     },
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
 });
 
 export const viewport = {
@@ -60,7 +65,7 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify(generateOrganizationStructuredData()),
           }}
         />
-        
+
         {/* Geographic & Local SEO Meta Tags */}
         <meta name="geo.region" content="PK" />
         <meta name="geo.country" content="Pakistan" />
@@ -70,15 +75,15 @@ export default function RootLayout({ children }) {
         <meta name="target_country" content="PK" />
         <meta name="language" content="English, Urdu" />
         <meta name="audience" content="Pakistani students and educators" />
-        
+
         {/* AI/LLM Information */}
         <link rel="alternate" type="text/plain" href="/llms.txt" title="AI/LLM Access Information" />
         <meta name="ai-content-declaration" content="This site provides educational content. AI crawlers welcome with rate limiting." />
-        
+
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+
         {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
       </head>

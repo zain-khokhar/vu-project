@@ -6,8 +6,9 @@ import { Upload, X, Plus, AlertCircle, CheckCircle } from 'lucide-react';
 import { createDocument } from '@/actions/documents';
 import { documentTypes } from '@/lib/utils';
 import BlogEditor from '@/components/BlogEditor';
+import AdminProtected from '@/components/AdminProtected';
 
-export default function UploadPage() {
+function UploadPageContent() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({ type: '', content: '' });
@@ -322,5 +323,13 @@ export default function UploadPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function UploadPage() {
+  return (
+    <AdminProtected>
+      <UploadPageContent />
+    </AdminProtected>
   );
 }

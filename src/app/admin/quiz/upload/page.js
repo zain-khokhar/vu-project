@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { Upload, CheckCircle, XCircle, Loader } from 'lucide-react';
+import AdminProtected from '@/components/AdminProtected';
 
-export default function QuizUploadPage() {
+function QuizUploadPageContent() {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -317,5 +318,13 @@ export default function QuizUploadPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+export default function QuizUploadPage() {
+  return (
+    <AdminProtected>
+      <QuizUploadPageContent />
+    </AdminProtected>
   );
 }

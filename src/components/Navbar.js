@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { BookOpen, Menu, X } from "lucide-react";
+import Image from "next/image";
 
 // A lightweight theme hook that toggles a 'dark' class on <html>
 function useLocalTheme(defaultTheme = "light") {
@@ -41,10 +42,11 @@ export default function Header({ defaultTheme = "light" }) {
         <div className="max-w-7xl mx-auto px-6 max-sm:px-2 lg:px-2">
           <div className="flex h-20 items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center shadow-lg">
-                <BookOpen className="h-5 w-5 text-white" />
-              </div>
-              <Link href="/" className="text-xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent hover:opacity-80 transition-opacity">VUEDU</Link>
+              {/* <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center shadow-lg"> */}
+                {/* <BookOpen className="h-5 w-5 text-white" /> */}
+                <Image src={"/favicon.svg"} height={48} width={64} alt="website logo"/>
+              {/* </div> */}
+              <Link href="/" className="text-xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent hover:opacity-80 transition-opacity">EDU</Link>
             </div>
 
             {/* Desktop Navigation */}
