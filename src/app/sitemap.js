@@ -119,13 +119,13 @@ export default async function sitemap() {
   }
 
   // Quiz categories
-  const quizCategories = ['CS101', 'CS201', 'CS301', 'CS401', 'CS501'];
-  const quizRoutes = quizCategories.map((category) => ({
-    url: `${baseUrl}/quiz/${category}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.6,
-  }));
+  // const quizCategories = ['CS101', 'CS201', 'CS301', 'CS401', 'CS501'];
+  // const quizRoutes = quizCategories.map((category) => ({
+  //   url: `${baseUrl}/quiz/${category}`,
+  //   lastModified: new Date(),
+  //   changeFrequency: 'weekly',
+  //   priority: 0.6,
+  // }));
 
-  return [...staticRoutes, ...blogRoutes, ...documentRoutes, ...quizRoutes];
+  return [...staticRoutes, ...blogRoutes, ...documentRoutes];
 }

@@ -1,13 +1,14 @@
 import { notFound } from 'next/navigation';
 import QuizSetup from '@/components/QuizSetup';
-import connectDB from '@/lib/mongodb';
-import Quiz from '@/models/Quiz';
+import { getQuizBySlug } from '@/actions/quizzes';
 import {
   generateQuizMetadata,
   generateAllQuizStructuredData
 } from '@/utils/quiz-seo';
 import { User, Clock, Hash, Play, ArrowLeft, CheckCircle2, AlertCircle, Loader2, Brain, Sparkles, Target, Zap, Calendar, Tag, Info } from "lucide-react";
 import Link from 'next/link';
+import connectDB from '@/lib/mongodb';
+import Quiz from '@/models/Quiz';
 
 // Generate static params for all active quizzes
 export async function generateStaticParams() {
@@ -57,43 +58,15 @@ export async function generateMetadata({ params }) {
   }
 }
 
-// Fetch quiz data
-async function getQuizData(slug) {
-  try {
-    await connectDB();
-
-    const quiz = await Quiz.findOne({ slug, isActive: true })
-      .select('title description slug totalQuestions category icon color createdAt updatedAt')
-      .lean();
-
-    if (!quiz) {
-      return null;
-    }
-
-    return {
-      slug: quiz.slug,
-      title: quiz.title,
-      description: quiz.description,
-      totalQuestions: quiz.totalQuestions,
-      category: quiz.category,
-      icon: quiz.icon,
-      color: quiz.color,
-      createdAt: quiz.createdAt?.toISOString(),
-      updatedAt: quiz.updatedAt?.toISOString(),
-    };
-  } catch (error) {
-    console.error('Error reading quiz data:', error);
-    return null;
-  }
-}
-
 export default async function QuizCategoryPage({ params }) {
   const { category } = await params;
-  const quizData = await getQuizData(category);
+  const result = await getQuizBySlug(category);
 
-  if (!quizData) {
+  if (!result.success) {
     notFound();
   }
+
+  const quizData = result.quiz;
 
   // Generate structured data for SEO
   const structuredData = generateAllQuizStructuredData(quizData);

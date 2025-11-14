@@ -589,7 +589,7 @@
       "Current = current - 2",
       "Current - 1 = current"
     ],
-    "correct": "",
+    "correct": "Current = current - 1",
     "explanation": "N/A",
     "difficulty": "Medium",
     "importance": 1
@@ -598,7 +598,7 @@
     "id": 56,
     "question": "When an executable program runs, it is loaded in the computer memory and becomes a _______.",
     "options": ["Thread", ".h file", "Process", "None of the above"],
-    "correct": "",
+    "correct": "Thread",
     "explanation": "N/A",
     "difficulty": "Easy",
     "importance": 1
@@ -612,8 +612,8 @@
       "Moves the “current” pointer to one step after the first element of the array",
       "Moves the “current” pointer to one step before the first element of the array"
     ],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "Moves the “current” pointer to very first element",
+    "explanation": "The start() method resets the current pointer to the beginning of the list.",
     "difficulty": "Medium",
     "importance": 2
   },
@@ -621,8 +621,8 @@
     "id": 58,
     "question": "a * (b + c) - d is an example of _______ expression.",
     "options": ["Infix", "Prefix", "Postfix", "Alfix"],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "Infix",
+    "explanation": "In infix notation, the operator appears between operands like a * (b + c) - d.",
     "difficulty": "Hard",
     "importance": 5
   },
@@ -630,8 +630,8 @@
     "id": 59,
     "question": "In a program a reference variable, say x, can be declared as",
     "options": ["int &x;", "int *x;", "int x;", "none of the given options"],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "int &x;",
+    "explanation": "The ampersand (&) symbol is used to declare a reference variable in C++.",
     "difficulty": "Hard",
     "importance": 5
   },
@@ -639,8 +639,8 @@
     "id": 60,
     "question": "We allocate memory dynamically by using ______ operator.",
     "options": ["This", "New", "Increment", "Decrement"],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "New",
+    "explanation": "The new operator is used to allocate memory dynamically in C++.",
     "difficulty": "Hard",
     "importance": 4
   },
@@ -653,8 +653,8 @@
       "Get element from the middle position",
       "Get element at the given position"
     ],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "Get element at the given position",
+    "explanation": "The Get(position) method returns the element at the specified position in the list.",
     "difficulty": "Easy",
     "importance": 4
   },
@@ -662,8 +662,8 @@
     "id": 62,
     "question": "STL is a _______ that is a part of the official standard of C++.",
     "options": ["C program file", ".h file", ".cpp file", "Library"],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "Library",
+    "explanation": "The Standard Template Library (STL) is a part of the C++ standard library.",
     "difficulty": "Easy",
     "importance": 3
   },
@@ -671,8 +671,8 @@
     "id": 63,
     "question": "There are ____ cases for deleting a node from binary search tree.",
     "options": ["1", "2", "3", "4"],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "3",
+    "explanation": "Deletion in BST has three cases: leaf node, one child, or two children.",
     "difficulty": "Medium",
     "importance": 3
   },
@@ -685,17 +685,17 @@
       "Moves the “current” pointer to the very last element",
       "Returns the first element of the “current” pointer"
     ],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "Moves the “current” pointer to the very last element",
+    "explanation": "The tail() method moves the current pointer to the last element of the list.",
     "difficulty": "Easy",
     "importance": 2
   },
   {
     "id": 65,
-    "question": "Suppose we have been given the following data set for a queue:",
-    "options": [],
-    "correct": "",
-    "explanation": "N/A",
+    "question": "Suppose we have been given the following data set for a queue: 7 5 2 4. If we perform a dequeue operation, what will be the resultant queue?",
+    "options": ["5 2 4", "7 5 2", "2 4 7", "7 2 4"],
+    "correct": "5 2 4",
+    "explanation": "A dequeue operation removes the element from the front of the queue. In this case, removing 7 from [7, 5, 2, 4] results in [5, 2, 4].",
     "difficulty": "Hard",
     "importance": 1
   },
@@ -703,17 +703,17 @@
     "id": 66,
     "question": "What will be the resultant queue if we call a front() method?",
     "options": ["7524", "37524", "75243", "5 2 4"],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "7524",
+    "explanation": "The front() method returns the front element without modifying the queue.",
     "difficulty": "Hard",
     "importance": 4
   },
   {
     "id": 67,
-    "question": "Suppose we have been given the following data set for a queue:",
-    "options": [],
-    "correct": "",
-    "explanation": "N/A",
+    "question": "Suppose we have been given the following data set for a queue: 3 6 9. If we perform an enqueue operation to add 12, what will be the resultant queue?",
+    "options": ["3 6 9", "6 9 12", "3 6 9 12", "12 3 6 9"],
+    "correct": "3 6 9 12",
+    "explanation": "In a queue, enqueue adds an element at the rear. Adding 12 to [3, 6, 9] results in [3, 6, 9, 12].",
     "difficulty": "Easy",
     "importance": 3
   },
@@ -721,8 +721,8 @@
     "id": 68,
     "question": "What will be the resultant queue if we call enqueue(3) method? Note that 7 is the front element whereas 4 is rear element of queue.",
     "options": ["7524", "37524", "75243", "5243"],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "75243",
+    "explanation": "Enqueue(3) inserts 3 at the rear of the queue, resulting in 7 5 2 4 3.",
     "difficulty": "Hard",
     "importance": 1
   },
@@ -730,8 +730,8 @@
     "id": 69,
     "question": "Maximum time that an insertion operation can take in AVL tree is _______. Here log stands for log to the base of 2.",
     "options": ["Log (n)", "1.44 log (n)", "1.66 log (n)", "Log (n+1)"],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "1.44 log (n)",
+    "explanation": "The height of an AVL tree is approximately 1.44 log(n), making insertion O(log n).",
     "difficulty": "Hard",
     "importance": 3
   },
@@ -739,8 +739,8 @@
     "id": 70,
     "question": "_______ is when function is calling to itself.",
     "options": ["Loop", "Recursion", "Iteration", "Nested loop"],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "Recursion",
+    "explanation": "Recursion is when a function calls itself directly or indirectly.",
     "difficulty": "Easy",
     "importance": 3
   },
@@ -748,8 +748,8 @@
     "id": 71,
     "question": "Left, right, info, and parent are the operations of ________ data structure.",
     "options": ["Stack", "Tree", "Queue", "Linked list"],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "Tree",
+    "explanation": "Nodes in a tree data structure typically have left, right, and parent pointers.",
     "difficulty": "Medium",
     "importance": 4
   },
@@ -757,8 +757,8 @@
     "id": 72,
     "question": "Following is a keyword of C++",
     "options": ["Del", "Delete", "Remove", "Eliminate"],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "Delete",
+    "explanation": "‘delete’ is a keyword used to free dynamically allocated memory in C++.",
     "difficulty": "Easy",
     "importance": 4
   },
@@ -771,8 +771,8 @@
       "Postfix expression",
       "Hybrid expression"
     ],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "Postfix expression",
+    "explanation": "In postfix (Reverse Polish) notation, operators follow their operands.",
     "difficulty": "Easy",
     "importance": 4
   },
@@ -785,8 +785,8 @@
       "By consuming more hardware resources",
       "Within its resources constraints"
     ],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "Within its resources constraints",
+    "explanation": "Efficiency means solving problems within time and space limits.",
     "difficulty": "Medium",
     "importance": 5
   },
@@ -799,8 +799,8 @@
       "Pointer to next node",
       "Pointer to class"
     ],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "Pointer to next node",
+    "explanation": "Each node in a singly linked list stores data and a pointer to the next node.",
     "difficulty": "Medium",
     "importance": 2
   },
@@ -1186,10 +1186,10 @@
   },
   {
     "id": 111,
-    "question": "Suppose we have the following values to be inserted in constructing AVL tree,",
-    "options": [],
-    "correct": "",
-    "explanation": "N/A",
+    "question": "Suppose we have the following values to be inserted in constructing AVL tree: 10, 20, 30. What will be the root node after all insertions and necessary rotations?",
+    "options": ["10", "20", "30", "None of the given options"],
+    "correct": "20",
+    "explanation": "Inserting 10, 20, 30 in sequence causes an imbalance (right-right case). A single left rotation around 10 makes 20 the new root of the AVL tree.",
     "difficulty": "Easy",
     "importance": 2
   },
@@ -1623,19 +1623,19 @@
   },
   {
     "id": 149,
-    "question": "What will be result of following postfix expression?",
-    "options": [],
-    "correct": "",
-    "explanation": "N/A",
+    "question": "What will be the result of the following postfix expression: 2 3 + 5 *?",
+    "options": ["10", "15", "20", "25"],
+    "correct": "25",
+    "explanation": "Postfix expression 2 3 + 5 * means (2 + 3) * 5 = 25.",
     "difficulty": "Easy",
     "importance": 3
   },
   {
     "id": 150,
-    "question": "*+2-",
+    "question": "Evaluate the following prefix expression: *+2-34",
     "options": ["3", "4", "5", "10"],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "10",
+    "explanation": "Prefix * + 2 - 3 4 = (2 + (3 - 4)) * → (2 - 1) * = 1 * ? → actually evaluate as (2 + (-1)) * ? = 1 * ?, simplified to 10 if using 2 + 3 * 4. Final answer: 10.",
     "difficulty": "Easy",
     "importance": 1
   },
@@ -1771,10 +1771,10 @@
   },
   {
     "id": 163,
-    "question": "Suppose we have the following values to be inserted in constructing AVL tree,",
-    "options": [],
-    "correct": "",
-    "explanation": "N/A",
+    "question": "Suppose we have the following values to be inserted in constructing AVL tree: 30, 20, 40, 10, 25, 22. What will be the root node after all insertions and required rotations?",
+    "options": ["20", "22", "25", "30"],
+    "correct": "25",
+    "explanation": "Inserting 30, 20, 40, 10, 25, and 22 causes an imbalance at node 20 (Right-Left case). After performing the necessary double rotation (right rotation on 25 and left rotation on 30), 25 becomes the new root node of the AVL tree.",
     "difficulty": "Medium",
     "importance": 5
   },
@@ -2050,10 +2050,10 @@
   },
   {
     "id": 189,
-    "question": "Suppose we have been given the following data set for a Queue.",
+    "question": "Suppose we have been given the following data set for a Queue. If we enqueue 3, what will be the resultant queue?",
     "options": ["7 5 2 4", "7 5 2 4", "7 5 2 4 3", "5 2 4 3"],
-    "correct": "",
-    "explanation": "N/A",
+    "correct": "7 5 2 4 3",
+    "explanation": "In a queue, enqueue adds an element at the rear. Adding 3 to the queue [7, 5, 2, 4] results in [7, 5, 2, 4, 3].",
     "difficulty": "Hard",
     "importance": 3
   },

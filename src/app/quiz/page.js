@@ -1,39 +1,32 @@
 import Link from 'next/link';
 import { BookOpen, ArrowRight } from 'lucide-react';
-import connectDB from '@/lib/mongodb';
-import Quiz from '@/models/Quiz';
+import Pagination from '@/components/Pagination';
+import SearchFilters from '@/components/SearchFilters';
+import { getQuizzes, getQuizFilterOptions } from '@/actions/quizzes';
 
 export const metadata = {
   title: 'Online Quiz System - VUEDU',
   description: 'Test your knowledge with our interactive quiz system',
 };
 
-async function getAvailableQuizzes() {
-  try {
-    await connectDB();
-    
-    const quizzes = await Quiz.find({ isActive: true })
-      .select('title slug description category icon color totalQuestions')
-      .sort({ createdAt: -1 })
-      .lean();
+export default async function QuizHomePage({ searchParams }) {
+  const params = await searchParams;
+  const page = parseInt(params?.page) || 1;
+  const search = params?.search || '';
+  const category = params?.category || '';
+  
+  const [quizzesResult, filterOptionsResult] = await Promise.all([
+    getQuizzes({ page, limit: 6, search, category }),
+    getQuizFilterOptions()
+  ]);
 
-    return quizzes.map(quiz => ({
-      id: quiz.slug,
-      name: quiz.title,
-      description: quiz.description,
-      category: quiz.category,
-      questionsCount: quiz.totalQuestions,
-      icon: quiz.icon,
-      color: quiz.color,
-    }));
-  } catch (error) {
-    console.error('Error fetching quizzes:', error);
-    return [];
-  }
-}
+  const { quizzes, pagination } = quizzesResult.success
+    ? quizzesResult
+    : { quizzes: [], pagination: null };
 
-export default async function QuizHomePage() {
-  const quizzes = await getAvailableQuizzes();
+  const { categories } = filterOptionsResult.success
+    ? filterOptionsResult
+    : { categories: [] };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative">
@@ -62,6 +55,26 @@ export default async function QuizHomePage() {
           <p className="text-lg text-gray-700 max-w-2xl mx-auto font-light leading-relaxed lg:-mt-16">
             Test your knowledge with our interactive quizzes. Choose a category and challenge yourself with engaging questions!
           </p>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="mb-12">
+          <SearchFilters
+            filterOptions={{
+              categories: categories,
+              subjects: [], // Not used for quizzes
+              universities: [], // Not used for quizzes
+              years: [], // Not used for quizzes
+              types: [] // Not used for quizzes
+            }}
+            searchPlaceholder="Search quizzes by title, description, or category..."
+            showTypeFilter={false}
+            showSubjectFilter={false}
+            showUniversityFilter={false}
+            showYearFilter={false}
+            categoryLabel="Category"
+            baseUrl="/quiz"
+          />
         </div>
 
         {/* Quiz Cards */}
@@ -132,6 +145,16 @@ export default async function QuizHomePage() {
               </Link>
             ))}
           </div>
+
+            {/* Pagination */}
+            {pagination && pagination.totalPages > 1 && (
+              <div className="mt-8">
+                <Pagination 
+                  pagination={pagination} 
+                  baseUrl="/quiz"
+                />
+              </div>
+            )}
           </>
         ) : (
           <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center max-w-md mx-auto mb-16">

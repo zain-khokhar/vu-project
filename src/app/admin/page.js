@@ -46,7 +46,7 @@ export default function AdminDashboard() {
       title: 'Write Blog',
       description: 'Create and publish new blog posts',
       icon: PenTool,
-      href: '/blog/write',
+      href: '/admin/write',
       color: 'from-green-500 to-emerald-600',
       bgColor: 'from-green-50 to-emerald-50'
     },
