@@ -12,6 +12,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
+import FeedbackForm from "./FeedbackForm";
 
 export default function ResultPage({
   username,
@@ -233,8 +234,9 @@ export default function ResultPage({
           </div>
 
           {/* Right Column - Question Review (1/3 width on xl screens) */}
-          <div className="xl:col-span-1 max-h-screen overflow-y-auto">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 h-full flex flex-col">
+          <div className="xl:col-span-1 space-y-8">
+            {/* Question Review Section */}
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 max-h-screen flex flex-col">
               {/* Review Header */}
               <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-6 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900">
@@ -246,8 +248,8 @@ export default function ResultPage({
               </div>
 
               {/* Review Content */}
-              <div className="flex-1 p-6 overflow-hidden ">
-                <div className="space-y-4 h-full overflow-y-auto">
+              <div className="flex-1 p-6 overflow-hidden">
+                <div className="space-y-4 h-full overflow-y-auto" style={{ maxHeight: '60vh' }}>
                   {userAnswers.map((answer, index) => (
                     <div
                       key={index}
@@ -345,6 +347,9 @@ export default function ResultPage({
                 </div>
               </div>
             </div>
+            
+            {/* Feedback Form */}
+            <FeedbackForm />
           </div>
         </div>
       </div>

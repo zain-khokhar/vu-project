@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, MessageSquare, Clock, Sparkles } from 'lucide-react';
+import FeedbackForm from '@/components/FeedbackForm';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -439,6 +440,9 @@ export default function ContactPage() {
                 <span className="ml-2 group-hover/link:translate-x-1 transition-transform duration-300">→</span>
               </Link>
             </div>
+
+            {/* Feedback Form */}
+            {/* <FeedbackForm /> */}
           </div>
         </div>
       </div>

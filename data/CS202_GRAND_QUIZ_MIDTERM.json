@@ -1644,7 +1644,7 @@
       "<! -- comments here -->",
       "// comments here"
     ],
-    "correct": "",
+    "correct": "<! -- comments here -->",
     "explanation": "N/A",
     "difficulty": "Medium",
     "importance": 1

@@ -14,12 +14,15 @@ import {
   BarChart3,
   Users,
   FileText,
-  Zap
+  Zap,
+  MessageCircle
 } from 'lucide-react';
+import FeedbackManagement from '@/components/FeedbackManagement';
 
 export default function AdminDashboard() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('dashboard');
 
   useEffect(() => {
     if (!requireAdminAuth()) {
@@ -123,6 +126,26 @@ export default function AdminDashboard() {
               </div>
 
               <div className="flex items-center space-x-4">
+                <button
+                  onClick={() => setActiveTab('dashboard')}
+                  className={`px-4 py-2 rounded-lg transition-colors ${
+                    activeTab === 'dashboard' 
+                      ? 'bg-indigo-100 text-indigo-700' 
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  Dashboard
+                </button>
+                <button
+                  onClick={() => setActiveTab('feedback')}
+                  className={`px-4 py-2 rounded-lg transition-colors ${
+                    activeTab === 'feedback' 
+                      ? 'bg-indigo-100 text-indigo-700' 
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  Feedback
+                </button>
                 <Link
                   href="/"
                   className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -142,79 +165,85 @@ export default function AdminDashboard() {
         </header>
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Welcome Section */}
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back!</h2>
-            <p className="text-gray-600">Manage your educational platform content and settings</p>
-          </div>
-
-          {/* Stats Overview */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            {statsCards.map((stat, index) => (
-              <div key={index} className="backdrop-blur-xl bg-white/80 border border-gray-200/60 rounded-2xl p-6 hover:shadow-lg transition-all duration-300">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                    <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                  </div>
-                  <div className={`p-3 rounded-xl ${stat.bgColor}`}>
-                    <stat.icon className={`w-6 h-6 ${stat.color}`} />
-                  </div>
-                </div>
+          {activeTab === 'dashboard' ? (
+            <>
+              {/* Welcome Section */}
+              <div className="mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back!</h2>
+                <p className="text-gray-600">Manage your educational platform content and settings</p>
               </div>
-            ))}
-          </div>
 
-          {/* Main Actions */}
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Quick Actions</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {adminActions.map((action, index) => (
-                <Link key={index} href={action.href}>
-                  <div className={`group backdrop-blur-xl bg-gradient-to-br ${action.bgColor} border border-white/60 rounded-3xl p-8 hover:shadow-2xl hover:scale-105 transition-all duration-500 cursor-pointer`}>
-                    {/* Glossy overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
-                    
-                    <div className="relative">
-                      <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${action.color} rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                        <action.icon className="w-8 h-8 text-white" />
+              {/* Stats Overview */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                {statsCards.map((stat, index) => (
+                  <div key={index} className="backdrop-blur-xl bg-white/80 border border-gray-200/60 rounded-2xl p-6 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-gray-600">{stat.title}</p>
+                        <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
                       </div>
-                      
-                      <h4 className="text-xl font-bold text-gray-900 mb-2">{action.title}</h4>
-                      <p className="text-gray-600 mb-4">{action.description}</p>
-                      
-                      <div className="flex items-center text-sm font-medium text-gray-500 group-hover:text-gray-700 transition-colors">
-                        <span>Get Started</span>
-                        <Zap className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                      <div className={`p-3 rounded-xl ${stat.bgColor}`}>
+                        <stat.icon className={`w-6 h-6 ${stat.color}`} />
                       </div>
                     </div>
                   </div>
-                </Link>
-              ))}
-            </div>
-          </div>
+                ))}
+              </div>
 
-          {/* Recent Activity Section */}
-          <div className="backdrop-blur-xl bg-white/80 border border-gray-200/60 rounded-3xl p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Recent Activity</h3>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-4 p-4 bg-gray-50/80 rounded-xl">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <p className="text-gray-700">New blog post published: "Advanced React Patterns"</p>
-                <span className="text-sm text-gray-500 ml-auto">2 hours ago</span>
+              {/* Main Actions */}
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Quick Actions</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {adminActions.map((action, index) => (
+                    <Link key={index} href={action.href}>
+                      <div className={`group backdrop-blur-xl bg-gradient-to-br ${action.bgColor} border border-white/60 rounded-3xl p-8 hover:shadow-2xl hover:scale-105 transition-all duration-500 cursor-pointer`}>
+                        {/* Glossy overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
+                        
+                        <div className="relative">
+                          <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${action.color} rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                            <action.icon className="w-8 h-8 text-white" />
+                          </div>
+                          
+                          <h4 className="text-xl font-bold text-gray-900 mb-2">{action.title}</h4>
+                          <p className="text-gray-600 mb-4">{action.description}</p>
+                          
+                          <div className="flex items-center text-sm font-medium text-gray-500 group-hover:text-gray-700 transition-colors">
+                            <span>Get Started</span>
+                            <Zap className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
               </div>
-              <div className="flex items-center space-x-4 p-4 bg-gray-50/80 rounded-xl">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <p className="text-gray-700">Document uploaded: "CS301 Midterm Study Guide"</p>
-                <span className="text-sm text-gray-500 ml-auto">1 day ago</span>
+
+              {/* Recent Activity Section */}
+              <div className="backdrop-blur-xl bg-white/80 border border-gray-200/60 rounded-3xl p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Recent Activity</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4 p-4 bg-gray-50/80 rounded-xl">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <p className="text-gray-700">New blog post published: "Advanced React Patterns"</p>
+                    <span className="text-sm text-gray-500 ml-auto">2 hours ago</span>
+                  </div>
+                  <div className="flex items-center space-x-4 p-4 bg-gray-50/80 rounded-xl">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <p className="text-gray-700">Document uploaded: "CS301 Midterm Study Guide"</p>
+                    <span className="text-sm text-gray-500 ml-auto">1 day ago</span>
+                  </div>
+                  <div className="flex items-center space-x-4 p-4 bg-gray-50/80 rounded-xl">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <p className="text-gray-700">Quiz created: "JavaScript Fundamentals"</p>
+                    <span className="text-sm text-gray-500 ml-auto">3 days ago</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center space-x-4 p-4 bg-gray-50/80 rounded-xl">
-                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                <p className="text-gray-700">Quiz created: "JavaScript Fundamentals"</p>
-                <span className="text-sm text-gray-500 ml-auto">3 days ago</span>
-              </div>
-            </div>
-          </div>
+            </>
+          ) : (
+            <FeedbackManagement />
+          )}
         </main>
       </div>
     </div>
