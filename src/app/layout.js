@@ -46,6 +46,7 @@ export const metadata = generateDocumentMetadata({
   },
 });
 
+
 export const viewport = {
   width: "device-width",
   initialScale: 1,

@@ -1,7 +1,7 @@
 export default function manifest() {
   return {
-    name: 'VUEDU - Educational Documents Platform',
-    short_name: 'VUEDU',
+    name: 'Vuedu - Educational Documents Platform',
+    short_name: 'Vuedu',
     description: 'Access thousands of free educational documents, notes, books, and study materials',
     start_url: '/',
     display: 'standalone',
