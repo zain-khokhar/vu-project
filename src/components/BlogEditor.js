@@ -4,6 +4,7 @@ import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
 import Link from '@tiptap/extension-link';
+import Image from '@tiptap/extension-image';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import { common, createLowlight } from 'lowlight';
 import {
@@ -22,19 +23,26 @@ import {
   Code2,
   Link as LinkIcon,
   Unlink,
-  ExternalLink
+  ExternalLink,
+  Image as ImageIcon,
+  Upload
 } from 'lucide-react';
 import { useEffect, useState, useCallback } from 'react';
+import { uploadToCloudinary } from '@/lib/cloudinary';
 
 const lowlight = createLowlight(common);
 
 const MenuBar = ({ editor }) => {
   const [showLinkDialog, setShowLinkDialog] = useState(false);
   const [showCustomLinkDialog, setShowCustomLinkDialog] = useState(false);
+  const [showImageDialog, setShowImageDialog] = useState(false);
   const [linkUrl, setLinkUrl] = useState('');
   const [linkText, setLinkText] = useState('');
   const [linkFollow, setLinkFollow] = useState(false);
   const [linkStyle, setLinkStyle] = useState('default');
+  const [imageUrl, setImageUrl] = useState('');
+  const [imageAlt, setImageAlt] = useState('');
+  const [isImageUploading, setIsImageUploading] = useState(false);
 
   const linkStyles = {
     default: '!text-inherit no-underline hover:!text-blue-600',
@@ -50,6 +58,64 @@ const MenuBar = ({ editor }) => {
     if (!editor) return;
     setShowCustomLinkDialog(true);
   }, [editor]);
+
+  const addImage = useCallback(() => {
+    if (!editor) return;
+    setShowImageDialog(true);
+  }, [editor]);
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      alert('Please select a valid image file');
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Image size must be less than 5MB');
+      return;
+    }
+
+    setIsImageUploading(true);
+
+    try {
+      const result = await uploadToCloudinary(file, 'blog-images');
+      
+      if (!result.success) {
+        alert(result.error || 'Failed to upload image. Please try again.');
+        return;
+      }
+
+      setImageUrl(result.url);
+    } catch (err) {
+      alert('Failed to upload image. Please try again.');
+      console.error('Upload error:', err);
+    } finally {
+      setIsImageUploading(false);
+    }
+  };
+
+  const insertImage = useCallback(() => {
+    if (!editor || !imageUrl || !imageAlt) return;
+
+    editor
+      .chain()
+      .focus()
+      .setImage({
+        src: imageUrl,
+        alt: imageAlt,
+      })
+      .run();
+
+    // Reset form
+    setShowImageDialog(false);
+    setImageUrl('');
+    setImageAlt('');
+  }, [editor, imageUrl, imageAlt]);
 
   const insertCustomLink = useCallback(() => {
     if (!editor || !linkUrl || !linkText) return;
@@ -259,6 +325,16 @@ const MenuBar = ({ editor }) => {
         <Unlink className="h-4 w-4" />
       </Button>
 
+      <div className="w-px h-6 bg-gray-300 mx-1" />
+
+      {/* Image Upload */}
+      <Button
+        onClick={addImage}
+        title="Insert Image"
+      >
+        <ImageIcon className="h-4 w-4" />
+      </Button>
+
       {/* Link Follow Toggle */}
       <div className="flex items-center space-x-1 px-2 py-1 bg-gray-100 rounded text-xs">
         <input
@@ -457,6 +533,171 @@ const MenuBar = ({ editor }) => {
           </div>
         </div>
       )}
+
+      {/* Image Upload Dialog */}
+      {showImageDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
+          <div className="bg-white rounded-2xl max-w-lg w-full shadow-2xl transform transition-all animate-slideUp">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4 rounded-t-2xl">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="bg-white/20 p-2 rounded-lg backdrop-blur-sm">
+                    <ImageIcon className="h-5 w-5 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">Insert Image</h3>
+                </div>
+                <button
+                  onClick={() => {
+                    setShowImageDialog(false);
+                    setImageUrl('');
+                    setImageAlt('');
+                  }}
+                  className="text-white/80 hover:text-white hover:bg-white/20 p-1.5 rounded-lg transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Body */}
+            <div className="p-6 space-y-5 max-h-[70vh] overflow-y-auto">
+              {/* Upload Method Tabs */}
+              <div className="flex space-x-1 bg-gray-100 p-1 rounded-xl">
+                <button className="flex-1 py-2 px-3 rounded-lg bg-white text-gray-900 font-medium shadow-sm">
+                  Upload File
+                </button>
+                <button className="flex-1 py-2 px-3 rounded-lg text-gray-600 hover:text-gray-900 transition-colors">
+                  Image URL
+                </button>
+              </div>
+
+              {/* File Upload Section */}
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <label className="flex items-center text-sm font-semibold text-gray-700">
+                    <span className="bg-green-100 text-green-700 w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                    Choose Image
+                    <span className="text-red-500 ml-1">*</span>
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      disabled={isImageUploading}
+                      className="hidden"
+                      id="image-upload"
+                    />
+                    <label
+                      htmlFor="image-upload"
+                      className="flex items-center justify-center w-full p-6 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-green-500 hover:bg-green-50 transition-all group"
+                    >
+                      <div className="text-center">
+                        {isImageUploading ? (
+                          <div className="flex items-center space-x-2">
+                            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-green-600"></div>
+                            <span className="text-green-600 font-medium">Uploading...</span>
+                          </div>
+                        ) : (
+                          <>
+                            <Upload className="h-8 w-8 text-gray-400 group-hover:text-green-500 mx-auto mb-2" />
+                            <p className="text-sm text-gray-600 group-hover:text-green-600">
+                              <span className="font-medium">Click to upload</span> or drag and drop
+                            </p>
+                            <p className="text-xs text-gray-400 mt-1">PNG, JPG, GIF up to 5MB</p>
+                          </>
+                        )}
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                {/* URL Input (Alternative) */}
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-300" />
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-white text-gray-500">or enter URL</span>
+                  </div>
+                </div>
+
+                <input
+                  type="url"
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  placeholder="https://example.com/image.jpg"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none text-gray-900 placeholder-gray-400"
+                />
+              </div>
+
+              {/* Alt Text Input */}
+              <div className="space-y-2">
+                <label className="flex items-center text-sm font-semibold text-gray-700">
+                  <span className="bg-green-100 text-green-700 w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                  Alt Text (Accessibility)
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={imageAlt}
+                  onChange={(e) => setImageAlt(e.target.value)}
+                  placeholder="Describe the image for screen readers"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none text-gray-900 placeholder-gray-400"
+                />
+                <p className="text-xs text-gray-500">
+                  Alt text helps screen readers describe the image to visually impaired users.
+                </p>
+              </div>
+
+              {/* Preview */}
+              {imageUrl && (
+                <div className="space-y-2">
+                  <label className="flex items-center text-sm font-semibold text-gray-700">
+                    <span className="bg-green-100 text-green-700 w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">3</span>
+                    Preview
+                  </label>
+                  <div className="border-2 border-gray-200 rounded-xl p-4">
+                    <img
+                      src={imageUrl}
+                      alt={imageAlt || 'Preview'}
+                      className="max-w-full h-auto rounded-lg shadow-sm"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="px-6 py-4 bg-gray-50 rounded-b-2xl border-t border-gray-200 flex justify-end space-x-3">
+              <button
+                onClick={() => {
+                  setShowImageDialog(false);
+                  setImageUrl('');
+                  setImageAlt('');
+                }}
+                className="px-5 py-2.5 text-gray-700 bg-white border-2 border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={insertImage}
+                disabled={!imageUrl || !imageAlt || isImageUploading}
+                className="px-5 py-2.5 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all font-medium shadow-lg shadow-green-500/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none flex items-center space-x-2"
+              >
+                <span>Insert Image</span>
+                <ImageIcon className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -466,10 +707,15 @@ export default function BlogEditor({ content, onChange, placeholder = "Start wri
     extensions: [
       StarterKit,
       Underline,
+      Image.configure({
+        HTMLAttributes: {
+          class: 'max-w-full h-auto rounded-lg shadow-md my-4',
+        },
+      }),
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
-          class: 'text-blue-600 underline hover:text-blue-800',
+          class: '',
         },
       }),
       CodeBlockLowlight.configure({
@@ -496,10 +742,10 @@ export default function BlogEditor({ content, onChange, placeholder = "Start wri
   return (
     <div className="border border-gray-300 rounded-lg overflow-hidden bg-white">
       <MenuBar editor={editor} />
-      <div className="prose prose-sm max-w-none">
+      <div className="prose prose-sm max-w-none blog-content">
         <EditorContent
           editor={editor}
-          className="min-h-[300px] p-4 focus-within:outline-none"
+          className="min-h-[300px] p-4 focus-within:outline-none blog-content"
           placeholder={placeholder}
         />
       </div>

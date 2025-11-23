@@ -15,6 +15,10 @@ import {
   Target,
   Zap,
   Loader,
+  CheckCircle,
+  X,
+  Eye,
+  EyeOff
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import QuizClient from "@/components/QuizClient";
@@ -25,10 +29,12 @@ export default function QuizSetup({ quizData }) {
   const [loadingQuestions, setLoadingQuestions] = useState(false);
   const [fetchedQuestions, setFetchedQuestions] = useState(null);
   const [error, setError] = useState(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [settings, setSettings] = useState({
     username: "",
     questionCount: Math.min(10, quizData.totalQuestions),
     timePerQuestion: 30,
+    quizMode: "instant", // "instant" for one-by-one, "end" for see answers at end
   });
   useEffect(() => {
     const main = document.getElementById("main-content");
@@ -40,6 +46,11 @@ export default function QuizSetup({ quizData }) {
     e.preventDefault();
     if (!settings.username.trim()) return;
 
+    setShowConfirmModal(true);
+  };
+
+  const confirmStartQuiz = async () => {
+    setShowConfirmModal(false);
     setLoadingQuestions(true);
     setError(null);
 
@@ -181,6 +192,67 @@ export default function QuizSetup({ quizData }) {
                   </div>
                 </div>
 
+                {/* Quiz Mode Selection */}
+                <div className="space-y-3">
+                  <label className="flex items-center text-sm font-medium text-gray-700">
+                    <Eye className="h-5 w-5 mr-2 text-indigo-600" />
+                    Answer Review Mode
+                  </label>
+                  <div className="grid grid-cols-1 gap-3">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setSettings({ ...settings, quizMode: "instant" })
+                      }
+                      className={`py-4 px-6 rounded-2xl font-medium transition-all duration-500 hover:scale-105 text-left ${
+                        settings.quizMode === "instant"
+                          ? "backdrop-blur-xl bg-gradient-to-r from-green-500 via-emerald-600 to-teal-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
+                          : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-green-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-green-300"
+                      }`}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <CheckCircle className="h-5 w-5 flex-shrink-0" />
+                        <div>
+                          <div className="font-semibold text-sm">
+                            Instant Feedback
+                          </div>
+                          <div className={`text-xs mt-1 ${
+                            settings.quizMode === "instant" ? "text-green-100" : "text-gray-500"
+                          }`}>
+                            See if your answer is correct immediately after each question
+                          </div>
+                        </div>
+                      </div>
+                    </button>
+                    
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setSettings({ ...settings, quizMode: "end" })
+                      }
+                      className={`py-4 px-6 rounded-2xl font-medium transition-all duration-500 hover:scale-105 text-left ${
+                        settings.quizMode === "end"
+                          ? "backdrop-blur-xl bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
+                          : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-blue-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-blue-300"
+                      }`}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <EyeOff className="h-5 w-5 flex-shrink-0" />
+                        <div>
+                          <div className="font-semibold text-sm">
+                            Review at End
+                          </div>
+                          <div className={`text-xs mt-1 ${
+                            settings.quizMode === "end" ? "text-blue-100" : "text-gray-500"
+                          }`}>
+                            Complete all questions first, then see results and explanations
+                          </div>
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
                 {/* Quiz Info */}
                 <div className="backdrop-blur-xl bg-gradient-to-r from-indigo-50/50 via-purple-50/30 to-blue-50/50 border border-indigo-100/50 rounded-2xl p-6 space-y-4">
                   <h3 className="font-medium text-indigo-900 flex items-center">
@@ -218,9 +290,9 @@ export default function QuizSetup({ quizData }) {
                     </div>
                     <div className="flex items-center text-gray-700">
                       <Brain className="h-4 w-4 mr-2 text-indigo-500" />
-                      <span className="font-medium">Format:</span>
+                      <span className="font-medium">Mode:</span>
                       <span className="ml-2 text-indigo-600 font-semibold">
-                        MCQs
+                        {settings.quizMode === "instant" ? "Instant" : "End Review"}
                       </span>
                     </div>
                   </div>
@@ -434,6 +506,111 @@ export default function QuizSetup({ quizData }) {
           </div>
         </div>
       </div>
+
+      {/* Confirmation Modal */}
+      {showConfirmModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="backdrop-blur-2xl bg-gradient-to-br from-white/90 via-white/80 to-white/70 border border-white/90 rounded-3xl shadow-2xl max-w-md w-full transform transition-all">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-indigo-500 to-purple-600 px-6 py-4 rounded-t-3xl">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="bg-white/20 p-2 rounded-lg backdrop-blur-sm">
+                    <AlertCircle className="h-5 w-5 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">Confirm Quiz Start</h3>
+                </div>
+                <button
+                  onClick={() => setShowConfirmModal(false)}
+                  className="text-white/80 hover:text-white hover:bg-white/20 p-1.5 rounded-lg transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Body */}
+            <div className="p-6">
+              <div className="space-y-4">
+                <p className="text-gray-700 leading-relaxed">
+                  Are you ready to start your quiz with the following settings?
+                </p>
+                
+                <div className="backdrop-blur-xl bg-gradient-to-r from-indigo-50/50 via-purple-50/30 to-blue-50/50 border border-indigo-100/50 rounded-2xl p-4">
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Name:</span>
+                      <span className="font-semibold text-gray-900">{settings.username}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Questions:</span>
+                      <span className="font-semibold text-indigo-600">{settings.questionCount}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Time per Question:</span>
+                      <span className="font-semibold text-indigo-600">{settings.timePerQuestion}s</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Review Mode:</span>
+                      <span className="font-semibold text-indigo-600">
+                        {settings.quizMode === "instant" ? "Instant Feedback" : "Review at End"}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Total Time:</span>
+                      <span className="font-semibold text-indigo-600">
+                        {Math.floor((settings.questionCount * settings.timePerQuestion) / 60)}m{" "}
+                        {(settings.questionCount * settings.timePerQuestion) % 60}s
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {settings.quizMode === "instant" && (
+                  <div className="backdrop-blur-xl bg-gradient-to-r from-green-50/50 via-emerald-50/30 to-green-50/50 border border-green-100/50 rounded-xl p-4">
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-green-800 font-medium text-sm">Instant Feedback Mode</p>
+                        <p className="text-green-700 text-xs mt-1">
+                          You'll see if your answer is correct immediately after each question.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="px-6 py-4 bg-gray-50/50 rounded-b-3xl border-t border-white/50 flex justify-end space-x-3">
+              <button
+                onClick={() => setShowConfirmModal(false)}
+                className="px-5 py-2.5 text-gray-700 bg-white/70 border-2 border-gray-300 rounded-xl hover:bg-white hover:border-gray-400 transition-all font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmStartQuiz}
+                disabled={loadingQuestions}
+                className="px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all font-medium shadow-lg shadow-indigo-500/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+              >
+                {loadingQuestions ? (
+                  <>
+                    <Loader className="h-4 w-4 animate-spin" />
+                    <span>Loading...</span>
+                  </>
+                ) : (
+                  <>
+                    <Play className="h-4 w-4" />
+                    <span>Start Quiz</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

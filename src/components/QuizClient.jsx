@@ -13,6 +13,10 @@ export default function QuizClient({ quizData, settings }) {
   );
   const [showResults, setShowResults] = useState(false);
   const [quizStartTime] = useState(Date.now());
+  const [questionStates, setQuestionStates] = useState({}); // Track if question has been checked
+  const [feedbackShown, setFeedbackShown] = useState({});
+  
+  const isInstantMode = settings.quizMode === "instant";
 
   // Initialize random questions
   useEffect(() => {
@@ -44,6 +48,36 @@ export default function QuizClient({ quizData, settings }) {
       ...prev,
       [currentQuestionIndex]: option,
     }));
+    
+    // Reset feedback state when answer changes
+    if (isInstantMode) {
+      setFeedbackShown((prev) => ({
+        ...prev,
+        [currentQuestionIndex]: false,
+      }));
+    }
+  };
+
+  const handleSaveAndCheck = () => {
+    if (!userAnswers[currentQuestionIndex]) return;
+    
+    setQuestionStates((prev) => ({
+      ...prev,
+      [currentQuestionIndex]: 'checked',
+    }));
+    
+    setFeedbackShown((prev) => ({
+      ...prev,
+      [currentQuestionIndex]: true,
+    }));
+  };
+
+  const handleNextAfterCheck = () => {
+    if (currentQuestionIndex < selectedQuestions.length - 1) {
+      setCurrentQuestionIndex((prev) => prev + 1);
+    } else {
+      finishQuiz();
+    }
   };
 
   const goToQuestion = (index) => {
@@ -51,6 +85,11 @@ export default function QuizClient({ quizData, settings }) {
   };
 
   const handleNextQuestion = () => {
+    if (isInstantMode && !questionStates[currentQuestionIndex]) {
+      // In instant mode, must check answer first
+      return;
+    }
+    
     if (currentQuestionIndex < selectedQuestions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
@@ -207,6 +246,39 @@ export default function QuizClient({ quizData, settings }) {
                 ))}
               </div>
 
+              {/* Instant Feedback */}
+              {isInstantMode && feedbackShown[currentQuestionIndex] && (
+                <div className="px-8 pb-4">
+                  <div className={`p-4 rounded-lg border-2 ${userAnswers[currentQuestionIndex] === currentQuestion.correct
+                    ? 'bg-green-50 border-green-500 text-green-700'
+                    : 'bg-red-50 border-red-500 text-red-700'
+                  }`}>
+                    <div className="flex items-center space-x-2">
+                      {userAnswers[currentQuestionIndex] === currentQuestion.correct ? (
+                        <CheckCircle className="h-5 w-5 text-green-600" />
+                      ) : (
+                        <Circle className="h-5 w-5 text-red-600" />
+                      )}
+                      <span className="font-semibold">
+                        {userAnswers[currentQuestionIndex] === currentQuestion.correct
+                          ? 'Correct!'
+                          : 'Incorrect'}
+                      </span>
+                    </div>
+                    {userAnswers[currentQuestionIndex] !== currentQuestion.correct && (
+                      <p className="mt-2 text-sm">
+                        Correct answer: <strong>{currentQuestion.correct}</strong>
+                      </p>
+                    )}
+                    {currentQuestion.explanation && (
+                      <p className="mt-2 text-sm">
+                        <strong>Explanation:</strong> {currentQuestion.explanation}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+
               {/* Navigation Buttons */}
               <div className="p-8 flex gap-4">
                 <button
@@ -216,20 +288,51 @@ export default function QuizClient({ quizData, settings }) {
                 >
                   Previous
                 </button>
-                {currentQuestionIndex < selectedQuestions.length - 1 ? (
-                  <button
-                    onClick={handleNextQuestion}
-                    className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 hover:shadow-xl"
-                  >
-                    Next Question
-                  </button>
+                
+                {isInstantMode ? (
+                  // Instant feedback mode buttons
+                  !feedbackShown[currentQuestionIndex] ? (
+                    <button
+                      onClick={handleSaveAndCheck}
+                      disabled={!userAnswers[currentQuestionIndex]}
+                      className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-xl"
+                    >
+                      Save & Check
+                    </button>
+                  ) : (
+                    currentQuestionIndex < selectedQuestions.length - 1 ? (
+                      <button
+                        onClick={handleNextAfterCheck}
+                        className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 hover:shadow-xl"
+                      >
+                        Next Question
+                      </button>
+                    ) : (
+                      <button
+                        onClick={finishQuiz}
+                        className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-xl"
+                      >
+                        Submit Quiz
+                      </button>
+                    )
+                  )
                 ) : (
-                  <button
-                    onClick={finishQuiz}
-                    className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-xl"
-                  >
-                    Submit Quiz
-                  </button>
+                  // Normal mode buttons
+                  currentQuestionIndex < selectedQuestions.length - 1 ? (
+                    <button
+                      onClick={handleNextQuestion}
+                      className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 hover:shadow-xl"
+                    >
+                      Next Question
+                    </button>
+                  ) : (
+                    <button
+                      onClick={finishQuiz}
+                      className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-xl"
+                    >
+                      Submit Quiz
+                    </button>
+                  )
                 )}
               </div>
             </div>
@@ -274,6 +377,8 @@ export default function QuizClient({ quizData, settings }) {
                   {selectedQuestions.map((_, index) => {
                     const isAnswered = userAnswers[index] !== undefined;
                     const isCurrent = index === currentQuestionIndex;
+                    const isChecked = questionStates[index] === 'checked';
+                    const isCorrect = isChecked && userAnswers[index] === selectedQuestions[index].correct;
 
                     return (
                       <button
@@ -282,12 +387,16 @@ export default function QuizClient({ quizData, settings }) {
                         className={`aspect-square rounded-full h-12 w-12 font-semibold text-sm flex items-center justify-center border-2 transition-all ${
                           isCurrent
                             ? "bg-gradient-to-br from-indigo-600 to-purple-600 text-white border-indigo-500 ring-2 ring-indigo-300"
+                            : isInstantMode && isChecked
+                            ? isCorrect
+                              ? "bg-green-500 text-white hover:bg-green-600 border-green-600"
+                              : "bg-red-500 text-white hover:bg-red-600 border-red-600"
                             : isAnswered
-                            ? "bg-green-500 text-white hover:bg-green-600 border-green-600"
+                            ? "bg-blue-500 text-white hover:bg-blue-600 border-blue-600"
                             : "bg-gray-100 text-gray-600 hover:bg-gray-200 border-gray-400"
                         }`}
                       >
-                        {isAnswered && !isCurrent ? (
+                        {(isAnswered && !isCurrent) || isChecked ? (
                           <CheckCircle className="h-5 w-5" />
                         ) : (
                           index + 1
@@ -300,22 +409,57 @@ export default function QuizClient({ quizData, settings }) {
                 {/* Legend */}
                 <div className="mt-4 pt-4 border-t border-gray-200 flex-shrink-0">
                   <div className="flex flex-wrap items-center justify-between text-xs gap-2">
-                    <div className="flex items-center gap-1">
-                      <div className="w-4 h-4 rounded bg-green-500 border-2 border-green-600"></div>
-                      <span className="text-gray-600 font-medium">
-                        Answered
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <div className="w-4 h-4 rounded bg-gray-100 border-2 border-gray-400"></div>
-                      <span className="text-gray-600 font-medium">
-                        Unanswered
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <div className="w-4 h-4 rounded bg-gradient-to-br from-indigo-600 to-purple-600 border-2 border-indigo-500"></div>
-                      <span className="text-gray-600 font-medium">Current</span>
-                    </div>
+                    {isInstantMode ? (
+                      <>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-green-500 border-2 border-green-600"></div>
+                          <span className="text-gray-600 font-medium">
+                            Correct
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-red-500 border-2 border-red-600"></div>
+                          <span className="text-gray-600 font-medium">
+                            Incorrect
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-blue-500 border-2 border-blue-600"></div>
+                          <span className="text-gray-600 font-medium">
+                            Selected
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-gray-100 border-2 border-gray-400"></div>
+                          <span className="text-gray-600 font-medium">
+                            Unanswered
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-gradient-to-br from-indigo-600 to-purple-600 border-2 border-indigo-500"></div>
+                          <span className="text-gray-600 font-medium">Current</span>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-green-500 border-2 border-green-600"></div>
+                          <span className="text-gray-600 font-medium">
+                            Answered
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-gray-100 border-2 border-gray-400"></div>
+                          <span className="text-gray-600 font-medium">
+                            Unanswered
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-gradient-to-br from-indigo-600 to-purple-600 border-2 border-indigo-500"></div>
+                          <span className="text-gray-600 font-medium">Current</span>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

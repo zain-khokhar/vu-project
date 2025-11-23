@@ -98,7 +98,11 @@ export default async function BlogPostPage({ params }) {
 
           {/* Cover Image */}
           <figure
-            className="relative h-96 md:h-96 w-full glass rounded-2xl overflow-hidden mb-12 shadow-2xl"
+            className="relative w-full glass rounded-2xl overflow-hidden mb-12 shadow-2xl"
+            style={{ 
+              aspectRatio: `${coverImageData.width} / ${coverImageData.height}`,
+              maxHeight: '500px'
+            }}
             role="img"
             aria-label={coverImageData.alt}
           >
