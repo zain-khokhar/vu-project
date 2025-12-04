@@ -151,11 +151,10 @@ export default function QuizSetup({ quizData }) {
                         onClick={() =>
                           setSettings({ ...settings, questionCount: count })
                         }
-                        className={`py-4 px-4 rounded-2xl font-medium transition-all duration-500 hover:scale-105 ${
-                          settings.questionCount === count
+                        className={`py-4 px-4 rounded-2xl font-medium transition-all duration-500 hover:scale-105 ${settings.questionCount === count
                             ? "backdrop-blur-xl bg-gradient-to-r from-indigo-500 via-purple-600 to-blue-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
                             : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-indigo-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-indigo-300"
-                        }`}
+                          }`}
                       >
                         {count}
                       </button>
@@ -180,11 +179,10 @@ export default function QuizSetup({ quizData }) {
                             timePerQuestion: option.value,
                           })
                         }
-                        className={`py-4 px-4 rounded-2xl font-medium transition-all duration-500 hover:scale-105 ${
-                          settings.timePerQuestion === option.value
+                        className={`py-4 px-4 rounded-2xl font-medium transition-all duration-500 hover:scale-105 ${settings.timePerQuestion === option.value
                             ? "backdrop-blur-xl bg-gradient-to-r from-indigo-500 via-purple-600 to-blue-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
                             : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-indigo-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-indigo-300"
-                        }`}
+                          }`}
                       >
                         {option.label}
                       </button>
@@ -204,11 +202,10 @@ export default function QuizSetup({ quizData }) {
                       onClick={() =>
                         setSettings({ ...settings, quizMode: "instant" })
                       }
-                      className={`py-4 px-6 rounded-2xl font-medium transition-all duration-500 hover:scale-105 text-left ${
-                        settings.quizMode === "instant"
+                      className={`py-4 px-6 rounded-2xl font-medium transition-all duration-500 hover:scale-105 text-left ${settings.quizMode === "instant"
                           ? "backdrop-blur-xl bg-gradient-to-r from-green-500 via-emerald-600 to-teal-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
                           : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-green-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-green-300"
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="h-5 w-5 flex-shrink-0" />
@@ -216,25 +213,23 @@ export default function QuizSetup({ quizData }) {
                           <div className="font-semibold text-sm">
                             Instant Feedback
                           </div>
-                          <div className={`text-xs mt-1 ${
-                            settings.quizMode === "instant" ? "text-green-100" : "text-gray-500"
-                          }`}>
+                          <div className={`text-xs mt-1 ${settings.quizMode === "instant" ? "text-green-100" : "text-gray-500"
+                            }`}>
                             See if your answer is correct immediately after each question
                           </div>
                         </div>
                       </div>
                     </button>
-                    
+
                     <button
                       type="button"
                       onClick={() =>
                         setSettings({ ...settings, quizMode: "end" })
                       }
-                      className={`py-4 px-6 rounded-2xl font-medium transition-all duration-500 hover:scale-105 text-left ${
-                        settings.quizMode === "end"
+                      className={`py-4 px-6 rounded-2xl font-medium transition-all duration-500 hover:scale-105 text-left ${settings.quizMode === "end"
                           ? "backdrop-blur-xl bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
                           : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-blue-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-blue-300"
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center space-x-3">
                         <EyeOff className="h-5 w-5 flex-shrink-0" />
@@ -242,9 +237,8 @@ export default function QuizSetup({ quizData }) {
                           <div className="font-semibold text-sm">
                             Review at End
                           </div>
-                          <div className={`text-xs mt-1 ${
-                            settings.quizMode === "end" ? "text-blue-100" : "text-gray-500"
-                          }`}>
+                          <div className={`text-xs mt-1 ${settings.quizMode === "end" ? "text-blue-100" : "text-gray-500"
+                            }`}>
                             Complete all questions first, then see results and explanations
                           </div>
                         </div>
@@ -280,7 +274,7 @@ export default function QuizSetup({ quizData }) {
                       <span className="ml-2 text-indigo-600 font-semibold">
                         {Math.floor(
                           (settings.questionCount * settings.timePerQuestion) /
-                            60
+                          60
                         )}
                         m{" "}
                         {(settings.questionCount * settings.timePerQuestion) %
@@ -535,7 +529,7 @@ export default function QuizSetup({ quizData }) {
                 <p className="text-gray-700 leading-relaxed">
                   Are you ready to start your quiz with the following settings?
                 </p>
-                
+
                 <div className="backdrop-blur-xl bg-gradient-to-r from-indigo-50/50 via-purple-50/30 to-blue-50/50 border border-indigo-100/50 rounded-2xl p-4">
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">

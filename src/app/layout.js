@@ -38,11 +38,11 @@ export const metadata = generateDocumentMetadata({
   ],
   icons: {
     icon: [
-      { url: "/favicon.svg?v=2", type: "image/svg+xml" },
-      { url: "/favicon.svg?v=2", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.svg", sizes: "any" },
     ],
-    shortcut: "/favicon.svg?v=2",
-    apple: "/favicon.svg?v=2",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
   },
 });
 
