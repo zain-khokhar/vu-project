@@ -18,6 +18,11 @@ const commentSchema = new mongoose.Schema({
     trim: true,
     maxlength: [2000, 'Comment cannot be more than 2000 characters']
   },
+  status: {
+    type: String,
+    enum: ['visible', 'deleted'],
+    default: 'visible'
+  },
   createdAt: {
     type: Date,
     default: Date.now
@@ -28,6 +33,7 @@ const commentSchema = new mongoose.Schema({
 
 // Create indexes for better query performance
 commentSchema.index({ documentId: 1, createdAt: -1 });
+commentSchema.index({ status: 1 });
 
 const Comment = mongoose.models.Comment || mongoose.model('Comment', commentSchema);
 

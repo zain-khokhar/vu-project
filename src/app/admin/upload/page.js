@@ -1,15 +1,19 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Upload, X, Plus, AlertCircle, CheckCircle } from 'lucide-react';
-import { createDocument } from '@/actions/documents';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Upload, X, Plus, AlertCircle, CheckCircle, Loader } from 'lucide-react';
+import { createDocument, getDocumentById, updateDocument } from '@/actions/documents';
 import { documentTypes } from '@/lib/utils';
 import BlogEditor from '@/components/BlogEditor';
 import AdminProtected from '@/components/AdminProtected';
 
 function UploadPageContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const editId = searchParams.get('edit');
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [isLoadingData, setIsLoadingData] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({ type: '', content: '' });
   const [tags, setTags] = useState([]);
@@ -24,6 +28,41 @@ function UploadPageContent() {
     university: '',
     year: new Date().getFullYear(),
   });
+
+  // Load document data when in edit mode
+  useEffect(() => {
+    if (editId) {
+      setIsEditMode(true);
+      loadDocumentData(editId);
+    }
+  }, [editId]);
+
+  const loadDocumentData = async (id) => {
+    setIsLoadingData(true);
+    try {
+      const result = await getDocumentById(id);
+      if (result.success) {
+        const doc = result.document;
+        setFormData({
+          title: doc.title,
+          description: doc.description,
+          type: doc.type,
+          fileUrl: doc.fileUrl,
+          subject: doc.subject,
+          university: doc.university,
+          year: doc.year,
+        });
+        setTags(doc.tags || []);
+        setMessage({ type: 'success', content: 'Document loaded successfully' });
+      } else {
+        setMessage({ type: 'error', content: result.error || 'Failed to load document' });
+      }
+    } catch (error) {
+      setMessage({ type: 'error', content: 'Error loading document data' });
+    } finally {
+      setIsLoadingData(false);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -56,41 +95,33 @@ function UploadPageContent() {
         tags: tags
       };
 
-      const result = await createDocument(documentData);
+      let result;
+      if (isEditMode) {
+        result = await updateDocument(editId, documentData);
+      } else {
+        result = await createDocument(documentData);
+      }
 
       if (result.success) {
-        setMessage({ 
-          type: 'success', 
-          content: 'Document uploaded successfully!' 
+        setMessage({
+          type: 'success',
+          content: isEditMode ? 'Document updated successfully!' : 'Document uploaded successfully!'
         });
-        
-        // Reset form
-        setFormData({
-          title: '',
-          description: '',
-          type: 'note',
-          coverImage: '',
-          fileUrl: '',
-          subject: '',
-          university: '',
-          year: new Date().getFullYear(),
-        });
-        setTags([]);
-        
-        // Redirect to the new document after a delay
+
+        // Redirect after a delay
         setTimeout(() => {
-          router.push(`/documents/${result.document.slug}`);
+          router.push('/admin');
         }, 2000);
       } else {
-        setMessage({ 
-          type: 'error', 
-          content: result.error || 'Failed to upload document' 
+        setMessage({
+          type: 'error',
+          content: result.error || `Failed to ${isEditMode ? 'update' : 'upload'} document`
         });
       }
     } catch (error) {
-      setMessage({ 
-        type: 'error', 
-        content: 'An unexpected error occurred' 
+      setMessage({
+        type: 'error',
+        content: 'An unexpected error occurred'
       });
     } finally {
       setIsLoading(false);
@@ -102,19 +133,26 @@ function UploadPageContent() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Upload Document</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">{isEditMode ? 'Edit Document' : 'Upload Document'}</h1>
           <p className="text-gray-600">
-            Share educational materials with the community. All uploads are free and accessible to everyone.
+            {isEditMode ? 'Update document information and content.' : 'Share educational materials with the community. All uploads are free and accessible to everyone.'}
           </p>
         </div>
 
+        {/* Loading Data Indicator */}
+        {isLoadingData && (
+          <div className="mb-6 p-4 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-3">
+            <Loader className="h-5 w-5 animate-spin" />
+            <span className="font-medium">Loading document data...</span>
+          </div>
+        )}
+
         {/* Message */}
         {message.content && (
-          <div className={`mb-6 p-4 rounded-lg flex items-center space-x-2 ${
-            message.type === 'success' 
-              ? 'bg-green-50 text-green-800 border border-green-200' 
+          <div className={`mb-6 p-4 rounded-lg flex items-center space-x-2 ${message.type === 'success'
+              ? 'bg-green-50 text-green-800 border border-green-200'
               : 'bg-red-50 text-red-800 border border-red-200'
-          }`}>
+            }`}>
             {message.type === 'success' ? (
               <CheckCircle className="h-5 w-5" />
             ) : (
@@ -229,7 +267,6 @@ function UploadPageContent() {
 
             {/* File URLs */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
               <div>
                 <label htmlFor="fileUrl" className="block text-sm font-medium text-gray-700 mb-2">
                   Document File URL *
@@ -300,11 +337,20 @@ function UploadPageContent() {
             <div className="flex justify-end">
               <button
                 type="submit"
-                disabled={isLoading}
+                disabled={isLoading || isLoadingData}
                 className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-2"
               >
-                <Upload className="h-5 w-5" />
-                <span>{isLoading ? 'Uploading...' : 'Upload Document'}</span>
+                {isLoading ? (
+                  <>
+                    <Loader className="h-5 w-5 animate-spin" />
+                    <span>{isEditMode ? 'Updating...' : 'Uploading...'}</span>
+                  </>
+                ) : (
+                  <>
+                    <Upload className="h-5 w-5" />
+                    <span>{isEditMode ? 'Update Document' : 'Upload Document'}</span>
+                  </>
+                )}
               </button>
             </div>
           </form>

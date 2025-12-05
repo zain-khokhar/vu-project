@@ -1,14 +1,19 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Upload, Loader2, Save, User, Image as ImageIcon, X } from 'lucide-react';
 import BlogEditor from '@/components/BlogEditor';
-import { createBlog } from '@/actions/blogs';
+import { createBlog, getBlogForEdit, updateBlog } from '@/actions/blogs';
 import { getAuthors } from '@/actions/authors';
 import { uploadToCloudinary } from '@/lib/cloudinary';
 
 export default function BlogWriteForm() {
+  const searchParams = useSearchParams();
+  const editSlug = searchParams.get('edit');
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [isLoadingData, setIsLoadingData] = useState(false);
+
   const [title, setTitle] = useState('');
   const [excerpt, setExcerpt] = useState('');
   const [coverImage, setCoverImage] = useState({
@@ -27,20 +32,50 @@ export default function BlogWriteForm() {
 
   const router = useRouter();
 
+  // Load blog data when in edit mode
+  useEffect(() => {
+    if (editSlug) {
+      setIsEditMode(true);
+      loadBlogData(editSlug);
+    }
+  }, [editSlug]);
+
+  const loadBlogData = async (slug) => {
+    setIsLoadingData(true);
+    try {
+      const result = await getBlogForEdit(slug);
+      if (result.success) {
+        const blog = result.blog;
+        setTitle(blog.title);
+        setExcerpt(blog.excerpt);
+        setContent(blog.content);
+        setCoverImage(blog.coverImage);
+        setSelectedAuthor(blog.author._id);
+        setError('');
+      } else {
+        setError(result.error || 'Failed to load blog');
+      }
+    } catch (error) {
+      setError('Error loading blog data');
+    } finally {
+      setIsLoadingData(false);
+    }
+  };
+
   // Fetch authors on component mount
   useEffect(() => {
     const fetchAuthors = async () => {
       const result = await getAuthors();
       if (result.success) {
         setAuthors(result.authors);
-        // Auto-select first author if available
-        if (result.authors.length > 0) {
+        // Auto-select first author if available and not in edit mode
+        if (result.authors.length > 0 && !editSlug) {
           setSelectedAuthor(result.authors[0]._id);
         }
       }
     };
     fetchAuthors();
-  }, []);
+  }, [editSlug]);
 
   const handleImageUpload = async (e) => {
     const file = e.target.files?.[0];
@@ -63,7 +98,7 @@ export default function BlogWriteForm() {
 
     try {
       const result = await uploadToCloudinary(file, 'blog-covers');
-      
+
       if (!result.success) {
         setError(result.error || 'Failed to upload image. Please try again.');
         return;
@@ -71,7 +106,7 @@ export default function BlogWriteForm() {
 
       setCoverImage({
         url: result.url,
-        alt: '', // Will be filled by user
+        alt: coverImage.alt || '', // Preserve existing alt text if any
         publicId: result.publicId,
         width: result.width,
         height: result.height,
@@ -114,23 +149,30 @@ export default function BlogWriteForm() {
     }
 
     try {
-      const result = await createBlog({
+      const blogData = {
         title: title.trim(),
         excerpt: excerpt.trim(),
         content,
         coverImage,
         author: selectedAuthor,
-      });
+      };
+
+      let result;
+      if (isEditMode) {
+        result = await updateBlog(editSlug, blogData);
+      } else {
+        result = await createBlog(blogData);
+      }
 
       if (result.success && result.blog && result.blog.slug) {
-        router.push(`/blogs/${result.blog.slug}`);
+        router.push('/admin');
       } else {
-        console.error('Blog creation result:', result);
-        setError(result.error || 'Failed to create blog post');
+        console.error('Blog operation result:', result);
+        setError(result.error || `Failed to ${isEditMode ? 'update' : 'create'} blog post`);
       }
     } catch (err) {
       setError('An unexpected error occurred');
-      console.error('Blog creation error:', err);
+      console.error('Blog operation error:', err);
     } finally {
       setIsSubmitting(false);
     }
@@ -138,6 +180,13 @@ export default function BlogWriteForm() {
 
   return (
     <div className="max-w-4xl mx-auto">
+      {isLoadingData && (
+        <div className="mb-6 p-4 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-3">
+          <Loader2 className="h-5 w-5 animate-spin" />
+          <span className="font-medium">Loading blog data...</span>
+        </div>
+      )}
+
       <form onSubmit={handleSubmit} className="space-y-8">
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
@@ -235,11 +284,10 @@ export default function BlogWriteForm() {
           <div className="space-y-4">
             {/* Upload Button */}
             <div className="flex items-center space-x-4">
-              <label className={`flex items-center space-x-2 px-4 py-2 rounded-lg cursor-pointer transition-colors ${
-                isUploading 
-                  ? 'bg-gray-100 cursor-not-allowed' 
+              <label className={`flex items-center space-x-2 px-4 py-2 rounded-lg cursor-pointer transition-colors ${isUploading
+                  ? 'bg-gray-100 cursor-not-allowed'
                   : 'bg-blue-100 hover:bg-blue-200 text-blue-700'
-              }`}>
+                }`}>
                 {isUploading ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -248,7 +296,7 @@ export default function BlogWriteForm() {
                 ) : (
                   <>
                     <ImageIcon className="h-4 w-4" />
-                    <span>Upload Image</span>
+                    <span>{coverImage.url ? 'Change Image' : 'Upload Image'}</span>
                   </>
                 )}
                 <input
@@ -328,18 +376,18 @@ export default function BlogWriteForm() {
         <div className="flex justify-end">
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || isLoadingData}
             className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors inline-flex items-center space-x-2"
           >
             {isSubmitting ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                <span>Publishing...</span>
+                <span>{isEditMode ? 'Updating...' : 'Publishing...'}</span>
               </>
             ) : (
               <>
                 <Save className="h-4 w-4" />
-                <span>Publish Blog</span>
+                <span>{isEditMode ? 'Update Blog' : 'Publish Blog'}</span>
               </>
             )}
           </button>

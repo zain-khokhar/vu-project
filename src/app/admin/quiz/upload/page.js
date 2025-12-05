@@ -1,10 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Upload, CheckCircle, XCircle, Loader } from 'lucide-react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import AdminProtected from '@/components/AdminProtected';
+import { getQuizForEdit, updateQuiz } from '@/actions/quizzes';
 
 function QuizUploadPageContent() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const editSlug = searchParams.get('edit');
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [isLoadingData, setIsLoadingData] = useState(false);
+
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -17,6 +25,40 @@ function QuizUploadPageContent() {
   const [parsedQuestions, setParsedQuestions] = useState([]);
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isLoading, setIsLoading] = useState(false);
+
+  // Load quiz data when in edit mode
+  useEffect(() => {
+    if (editSlug) {
+      setIsEditMode(true);
+      loadQuizData(editSlug);
+    }
+  }, [editSlug]);
+
+  const loadQuizData = async (slug) => {
+    setIsLoadingData(true);
+    try {
+      const result = await getQuizForEdit(slug);
+      if (result.success) {
+        const quiz = result.quiz;
+        setFormData({
+          title: quiz.title,
+          description: quiz.description,
+          category: quiz.category,
+          icon: quiz.icon || '📚',
+          color: quiz.color || 'from-gray-500 to-slate-500',
+          questionsJson: JSON.stringify(quiz.questions, null, 2)
+        });
+        setParsedQuestions(quiz.questions);
+        setStatus({ type: 'success', message: `Loaded quiz with ${quiz.questions.length} questions` });
+      } else {
+        setStatus({ type: 'error', message: result.error || 'Failed to load quiz' });
+      }
+    } catch (error) {
+      setStatus({ type: 'error', message: 'Error loading quiz data' });
+    } finally {
+      setIsLoadingData(false);
+    }
+  };
 
   // Available icons and colors
   const icons = [
@@ -88,45 +130,46 @@ function QuizUploadPageContent() {
         return;
       }
 
-      // Submit to API
-      const response = await fetch('/api/quiz', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          title: formData.title,
-          description: formData.description,
-          category: formData.category,
-          icon: formData.icon,
-          color: formData.color,
-          questions: parsedQuestions,
-        }),
-      });
+      const quizData = {
+        title: formData.title,
+        description: formData.description,
+        category: formData.category,
+        icon: formData.icon,
+        color: formData.color,
+        questions: parsedQuestions,
+      };
 
-      const data = await response.json();
-
-      if (response.ok) {
-        setStatus({ 
-          type: 'success', 
-          message: `✓ Quiz "${data.quiz.title}" created successfully with ${data.quiz.totalQuestions} questions!` 
-        });
-        
-        // Reset form
-        setFormData({
-          title: '',
-          description: '',
-          category: '',
-          icon: '📚',
-          color: 'from-gray-500 to-slate-500',
-          questionsJson: '',
-        });
-        setParsedQuestions([]);
+      let result;
+      if (isEditMode) {
+        // Update existing quiz
+        result = await updateQuiz(editSlug, quizData);
       } else {
-        setStatus({ type: 'error', message: data.error || 'Failed to create quiz' });
+        // Create new quiz via API
+        const response = await fetch('/api/quiz', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(quizData),
+        });
+        result = await response.json();
+      }
+
+      if (result.success || result.quiz) {
+        setStatus({
+          type: 'success',
+          message: isEditMode
+            ? `✓ Quiz "${formData.title}" updated successfully!`
+            : `✓ Quiz "${formData.title}" created successfully with ${parsedQuestions.length} questions!`
+        });
+
+        // Redirect to admin after 2 seconds
+        setTimeout(() => {
+          router.push('/admin');
+        }, 2000);
+      } else {
+        setStatus({ type: 'error', message: result.error || 'Failed to save quiz' });
       }
     } catch (error) {
-      setStatus({ type: 'error', message: 'An error occurred while uploading the quiz' });
+      setStatus({ type: 'error', message: 'An error occurred while saving the quiz' });
     } finally {
       setIsLoading(false);
     }
@@ -146,23 +189,30 @@ function QuizUploadPageContent() {
           </div>
           <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-4">
             <span className="bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
-              Upload New Quiz
+              {isEditMode ? 'Edit Quiz' : 'Upload New Quiz'}
             </span>
           </h1>
           <p className="text-gray-600 font-light">
-            Create a new quiz by providing details and questions in JSON format
+            {isEditMode ? 'Update quiz details and questions' : 'Create a new quiz by providing details and questions in JSON format'}
           </p>
         </div>
+
+        {/* Loading Data Indicator */}
+        {isLoadingData && (
+          <div className="mb-6 p-4 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-3">
+            <Loader className="h-5 w-5 animate-spin" />
+            <span className="font-medium">Loading quiz data...</span>
+          </div>
+        )}
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl p-8">
           {/* Status Message */}
           {status.message && (
-            <div className={`mb-6 p-4 rounded-xl flex items-center gap-3 ${
-              status.type === 'success' 
-                ? 'bg-green-50 text-green-700 border border-green-200' 
+            <div className={`mb-6 p-4 rounded-xl flex items-center gap-3 ${status.type === 'success'
+                ? 'bg-green-50 text-green-700 border border-green-200'
                 : 'bg-red-50 text-red-700 border border-red-200'
-            }`}>
+              }`}>
               {status.type === 'success' ? (
                 <CheckCircle className="h-5 w-5" />
               ) : (
@@ -236,11 +286,10 @@ function QuizUploadPageContent() {
                     key={emoji}
                     type="button"
                     onClick={() => setFormData(prev => ({ ...prev, icon: emoji }))}
-                    className={`p-3 rounded-xl border-2 transition-all hover:scale-110 ${
-                      formData.icon === emoji
+                    className={`p-3 rounded-xl border-2 transition-all hover:scale-110 ${formData.icon === emoji
                         ? 'border-indigo-500 bg-indigo-50 shadow-lg'
                         : 'border-gray-200 hover:border-indigo-300'
-                    }`}
+                      }`}
                     title={label}
                   >
                     <span className="text-2xl">{emoji}</span>
@@ -260,11 +309,10 @@ function QuizUploadPageContent() {
                     key={value}
                     type="button"
                     onClick={() => setFormData(prev => ({ ...prev, color: value }))}
-                    className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 transition-all ${
-                      formData.color === value
+                    className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 transition-all ${formData.color === value
                         ? 'border-indigo-500 bg-indigo-50'
                         : 'border-gray-200 hover:border-indigo-300'
-                    }`}
+                      }`}
                   >
                     <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${value}`}></div>
                     <span className="text-sm font-medium">{label}</span>
@@ -300,18 +348,18 @@ function QuizUploadPageContent() {
           {/* Submit Button */}
           <button
             type="submit"
-            disabled={isLoading || parsedQuestions.length === 0}
+            disabled={isLoading || isLoadingData || parsedQuestions.length === 0}
             className="w-full py-4 px-6 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-xl hover:shadow-xl hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
           >
             {isLoading ? (
               <>
                 <Loader className="h-5 w-5 animate-spin" />
-                <span>Uploading...</span>
+                <span>{isEditMode ? 'Updating...' : 'Uploading...'}</span>
               </>
             ) : (
               <>
                 <Upload className="h-5 w-5" />
-                <span>Upload Quiz</span>
+                <span>{isEditMode ? 'Update Quiz' : 'Upload Quiz'}</span>
               </>
             )}
           </button>

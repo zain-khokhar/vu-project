@@ -15,7 +15,8 @@ export default function QuizClient({ quizData, settings }) {
   const [quizStartTime] = useState(Date.now());
   const [questionStates, setQuestionStates] = useState({}); // Track if question has been checked
   const [feedbackShown, setFeedbackShown] = useState({});
-  
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+
   const isInstantMode = settings.quizMode === "instant";
 
   // Initialize random questions
@@ -48,7 +49,7 @@ export default function QuizClient({ quizData, settings }) {
       ...prev,
       [currentQuestionIndex]: option,
     }));
-    
+
     // Reset feedback state when answer changes
     if (isInstantMode) {
       setFeedbackShown((prev) => ({
@@ -60,12 +61,12 @@ export default function QuizClient({ quizData, settings }) {
 
   const handleSaveAndCheck = () => {
     if (!userAnswers[currentQuestionIndex]) return;
-    
+
     setQuestionStates((prev) => ({
       ...prev,
       [currentQuestionIndex]: 'checked',
     }));
-    
+
     setFeedbackShown((prev) => ({
       ...prev,
       [currentQuestionIndex]: true,
@@ -89,7 +90,7 @@ export default function QuizClient({ quizData, settings }) {
       // In instant mode, must check answer first
       return;
     }
-    
+
     if (currentQuestionIndex < selectedQuestions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
@@ -101,6 +102,19 @@ export default function QuizClient({ quizData, settings }) {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex((prev) => prev - 1);
     }
+  };
+
+  const handleSubmitClick = () => {
+    setShowConfirmDialog(true);
+  };
+
+  const handleConfirmSubmit = () => {
+    setShowConfirmDialog(false);
+    finishQuiz();
+  };
+
+  const handleCancelSubmit = () => {
+    setShowConfirmDialog(false);
   };
 
   const finishQuiz = useCallback(() => {
@@ -210,19 +224,17 @@ export default function QuizClient({ quizData, settings }) {
                   <button
                     key={index}
                     onClick={() => handleAnswerSelect(option)}
-                    className={`w-full text-left p-4 rounded border-2 transition-all duration-200 ${
-                      selectedOption === option
-                        ? "border-indigo-600 bg-indigo-50 shadow-md"
-                        : "border-gray-300 hover:border-indigo-400 hover:bg-gray-50"
-                    }`}
+                    className={`w-full text-left p-4 rounded border-2 transition-all duration-200 ${selectedOption === option
+                      ? "border-indigo-600 bg-indigo-50 shadow-md"
+                      : "border-gray-300 hover:border-indigo-400 hover:bg-gray-50"
+                      }`}
                   >
                     <div className="flex items-center">
                       <div
-                        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center mr-4 flex-shrink-0 ${
-                          selectedOption === option
-                            ? "border-indigo-600 bg-indigo-600"
-                            : "border-gray-400"
-                        }`}
+                        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center mr-4 flex-shrink-0 ${selectedOption === option
+                          ? "border-indigo-600 bg-indigo-600"
+                          : "border-gray-400"
+                          }`}
                       >
                         {selectedOption === option && (
                           <svg
@@ -252,7 +264,7 @@ export default function QuizClient({ quizData, settings }) {
                   <div className={`p-4 rounded-lg border-2 ${userAnswers[currentQuestionIndex] === currentQuestion.correct
                     ? 'bg-green-50 border-green-500 text-green-700'
                     : 'bg-red-50 border-red-500 text-red-700'
-                  }`}>
+                    }`}>
                     <div className="flex items-center space-x-2">
                       {userAnswers[currentQuestionIndex] === currentQuestion.correct ? (
                         <CheckCircle className="h-5 w-5 text-green-600" />
@@ -288,7 +300,7 @@ export default function QuizClient({ quizData, settings }) {
                 >
                   Previous
                 </button>
-                
+
                 {isInstantMode ? (
                   // Instant feedback mode buttons
                   !feedbackShown[currentQuestionIndex] ? (
@@ -309,7 +321,7 @@ export default function QuizClient({ quizData, settings }) {
                       </button>
                     ) : (
                       <button
-                        onClick={finishQuiz}
+                        onClick={handleSubmitClick}
                         className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-xl"
                       >
                         Submit Quiz
@@ -327,7 +339,7 @@ export default function QuizClient({ quizData, settings }) {
                     </button>
                   ) : (
                     <button
-                      onClick={finishQuiz}
+                      onClick={handleSubmitClick}
                       className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-xl"
                     >
                       Submit Quiz
@@ -351,11 +363,10 @@ export default function QuizClient({ quizData, settings }) {
                 </div>
                 <div className="text-center">
                   <p
-                    className={`text-4xl font-bold ${
-                      totalTimer <= 30
-                        ? "text-red-600  "
-                        : "text-gray-900"
-                    }`}
+                    className={`text-4xl font-bold ${totalTimer <= 30
+                      ? "text-red-600  "
+                      : "text-gray-900"
+                      }`}
                   >
                     {formatTime(totalTimer)}
                   </p>
@@ -373,7 +384,7 @@ export default function QuizClient({ quizData, settings }) {
                 </div>
 
                 {/* Scrollable Grid */}
-<div className="grid grid-cols-6 gap-2 pb-4 overflow-y-auto bg-gray-200 rounded p-2 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent flex-grow shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)]">
+                <div className="grid grid-cols-6 gap-2 pb-4 overflow-y-auto bg-gray-200 rounded p-2 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent flex-grow shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)]">
                   {selectedQuestions.map((_, index) => {
                     const isAnswered = userAnswers[index] !== undefined;
                     const isCurrent = index === currentQuestionIndex;
@@ -384,17 +395,16 @@ export default function QuizClient({ quizData, settings }) {
                       <button
                         key={index}
                         onClick={() => goToQuestion(index)}
-                        className={`aspect-square rounded-full h-12 w-12 font-semibold text-sm flex items-center justify-center border-2 transition-all ${
-                          isCurrent
-                            ? "bg-gradient-to-br from-indigo-600 to-purple-600 text-white border-indigo-500 ring-2 ring-indigo-300"
-                            : isInstantMode && isChecked
+                        className={`aspect-square rounded-full h-12 w-12 font-semibold text-sm flex items-center justify-center border-2 transition-all ${isCurrent
+                          ? "bg-gradient-to-br from-indigo-600 to-purple-600 text-white border-indigo-500 ring-2 ring-indigo-300"
+                          : isInstantMode && isChecked
                             ? isCorrect
                               ? "bg-green-500 text-white hover:bg-green-600 border-green-600"
                               : "bg-red-500 text-white hover:bg-red-600 border-red-600"
                             : isAnswered
-                            ? "bg-blue-500 text-white hover:bg-blue-600 border-blue-600"
-                            : "bg-gray-100 text-gray-600 hover:bg-gray-200 border-gray-400"
-                        }`}
+                              ? "bg-blue-500 text-white hover:bg-blue-600 border-blue-600"
+                              : "bg-gray-100 text-gray-600 hover:bg-gray-200 border-gray-400"
+                          }`}
                       >
                         {(isAnswered && !isCurrent) || isChecked ? (
                           <CheckCircle className="h-5 w-5" />
@@ -481,10 +491,9 @@ export default function QuizClient({ quizData, settings }) {
                       <div
                         className="bg-gradient-to-r from-indigo-600 to-purple-600 h-3 rounded-full transition-all duration-300"
                         style={{
-                          width: `${
-                            (getAnsweredCount() / selectedQuestions.length) *
+                          width: `${(getAnsweredCount() / selectedQuestions.length) *
                             100
-                          }%`,
+                            }%`,
                         }}
                       />
                     </div>
@@ -495,7 +504,7 @@ export default function QuizClient({ quizData, settings }) {
               {/* Submit Button */}
               <div>
                 <button
-                  onClick={finishQuiz}
+                  onClick={handleSubmitClick}
                   className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-bold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center space-x-2"
                 >
                   <span>Submit Quiz</span>
@@ -518,6 +527,76 @@ export default function QuizClient({ quizData, settings }) {
           </div>
         </div>
       </div>
+
+      {/* Confirmation Dialog */}
+      {showConfirmDialog && (
+        <div className="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 transform transition-all">
+            <div className="text-center">
+              {/* Icon */}
+              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-yellow-100 mb-4">
+                <svg
+                  className="h-10 w-10 text-yellow-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                  />
+                </svg>
+              </div>
+
+              {/* Title */}
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                Submit Quiz?
+              </h3>
+
+              {/* Message */}
+              <div className="mb-6 space-y-3">
+                <p className="text-gray-600 text-base">
+                  Are you sure you want to submit your quiz?
+                </p>
+                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div className="flex items-center justify-between text-sm mb-2">
+                    <span className="text-gray-600">Questions Answered:</span>
+                    <span className="font-semibold text-gray-900">
+                      {getAnsweredCount()} / {selectedQuestions.length}
+                    </span>
+                  </div>
+                  {getAnsweredCount() < selectedQuestions.length && (
+                    <p className="text-yellow-600 text-sm font-medium mt-2">
+                      ⚠️ You have {selectedQuestions.length - getAnsweredCount()} unanswered question(s)
+                    </p>
+                  )}
+                </div>
+                <p className="text-gray-500 text-sm">
+                  Once submitted, you cannot change your answers.
+                </p>
+              </div>
+
+              {/* Buttons */}
+              <div className="flex gap-3">
+                <button
+                  onClick={handleCancelSubmit}
+                  className="flex-1 bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-all duration-200"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleConfirmSubmit}
+                  className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-4 rounded-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-200 shadow-lg"
+                >
+                  Confirm Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

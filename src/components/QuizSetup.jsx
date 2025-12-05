@@ -152,8 +152,8 @@ export default function QuizSetup({ quizData }) {
                           setSettings({ ...settings, questionCount: count })
                         }
                         className={`py-4 px-4 rounded-2xl font-medium transition-all duration-500 hover:scale-105 ${settings.questionCount === count
-                            ? "backdrop-blur-xl bg-gradient-to-r from-indigo-500 via-purple-600 to-blue-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
-                            : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-indigo-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-indigo-300"
+                          ? "backdrop-blur-xl bg-gradient-to-r from-indigo-500 via-purple-600 to-blue-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
+                          : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-indigo-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-indigo-300"
                           }`}
                       >
                         {count}
@@ -180,8 +180,8 @@ export default function QuizSetup({ quizData }) {
                           })
                         }
                         className={`py-4 px-4 rounded-2xl font-medium transition-all duration-500 hover:scale-105 ${settings.timePerQuestion === option.value
-                            ? "backdrop-blur-xl bg-gradient-to-r from-indigo-500 via-purple-600 to-blue-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
-                            : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-indigo-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-indigo-300"
+                          ? "backdrop-blur-xl bg-gradient-to-r from-indigo-500 via-purple-600 to-blue-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
+                          : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-indigo-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-indigo-300"
                           }`}
                       >
                         {option.label}
@@ -203,8 +203,8 @@ export default function QuizSetup({ quizData }) {
                         setSettings({ ...settings, quizMode: "instant" })
                       }
                       className={`py-4 px-6 rounded-2xl font-medium transition-all duration-500 hover:scale-105 text-left ${settings.quizMode === "instant"
-                          ? "backdrop-blur-xl bg-gradient-to-r from-green-500 via-emerald-600 to-teal-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
-                          : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-green-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-green-300"
+                        ? "backdrop-blur-xl bg-gradient-to-r from-green-500 via-emerald-600 to-teal-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
+                        : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-green-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-green-300"
                         }`}
                     >
                       <div className="flex items-center space-x-3">
@@ -227,8 +227,8 @@ export default function QuizSetup({ quizData }) {
                         setSettings({ ...settings, quizMode: "end" })
                       }
                       className={`py-4 px-6 rounded-2xl font-medium transition-all duration-500 hover:scale-105 text-left ${settings.quizMode === "end"
-                          ? "backdrop-blur-xl bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
-                          : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-blue-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-blue-300"
+                        ? "backdrop-blur-xl bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 text-white shadow-2xl hover:shadow-3xl border border-white/40"
+                        : "backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 text-gray-700 hover:text-blue-600 border border-white/80 shadow-lg hover:shadow-xl hover:border-blue-300"
                         }`}
                     >
                       <div className="flex items-center space-x-3">
@@ -503,7 +503,7 @@ export default function QuizSetup({ quizData }) {
 
       {/* Confirmation Modal */}
       {showConfirmModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 /60 bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="backdrop-blur-2xl bg-gradient-to-br from-white/90 via-white/80 to-white/70 border border-white/90 rounded-3xl shadow-2xl max-w-md w-full transform transition-all">
             {/* Header */}
             <div className="bg-gradient-to-r from-indigo-500 to-purple-600 px-6 py-4 rounded-t-3xl">

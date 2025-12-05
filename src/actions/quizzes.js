@@ -2,6 +2,7 @@
 
 import connectDB from '@/lib/mongodb';
 import Quiz from '@/models/Quiz';
+import { revalidatePath } from 'next/cache';
 
 // Get all quizzes with filtering and pagination
 export async function getQuizzes({
@@ -12,12 +13,12 @@ export async function getQuizzes({
 } = {}) {
   try {
     await connectDB();
-    
+
     const skip = (page - 1) * limit;
-    
+
     // Build search query
     const query = { isActive: true };
-    
+
     if (search) {
       query.$or = [
         { title: { $regex: search, $options: 'i' } },
@@ -25,11 +26,11 @@ export async function getQuizzes({
         { category: { $regex: search, $options: 'i' } }
       ];
     }
-    
+
     if (category) {
       query.category = { $regex: category, $options: 'i' };
     }
-    
+
     const [quizzes, totalCount] = await Promise.all([
       Quiz.find(query)
         .select('title slug description category icon color totalQuestions')
@@ -83,9 +84,9 @@ export async function getQuizzes({
 export async function getQuizFilterOptions() {
   try {
     await connectDB();
-    
+
     const categories = await Quiz.distinct('category', { isActive: true });
-    
+
     return {
       success: true,
       categories: categories.filter(cat => cat && cat.trim() !== '')
@@ -100,19 +101,19 @@ export async function getQuizFilterOptions() {
   }
 }
 
-// Get quiz by slug
+// Get quiz by slug (without questions for display)
 export async function getQuizBySlug(slug) {
   try {
     await connectDB();
-    
+
     const quiz = await Quiz.findOne({ slug, isActive: true })
       .select('title description slug totalQuestions category icon color createdAt updatedAt')
       .lean();
-    
+
     if (!quiz) {
       return { success: false, error: 'Quiz not found' };
     }
-    
+
     return {
       success: true,
       quiz: {
@@ -133,17 +134,38 @@ export async function getQuizBySlug(slug) {
   }
 }
 
+// Get quiz for editing (includes questions)
+export async function getQuizForEdit(slug) {
+  try {
+    await connectDB();
+
+    const quiz = await Quiz.findOne({ slug }).lean();
+
+    if (!quiz) {
+      return { success: false, error: 'Quiz not found' };
+    }
+
+    return {
+      success: true,
+      quiz: JSON.parse(JSON.stringify(quiz))
+    };
+  } catch (error) {
+    console.error('Error fetching quiz for edit:', error);
+    return { success: false, error: 'Failed to fetch quiz' };
+  }
+}
+
 // Get latest quizzes for homepage
 export async function getLatestQuizzes(limit = 3) {
   try {
     await connectDB();
-    
+
     const quizzes = await Quiz.find({ isActive: true })
       .select('title slug description category icon color totalQuestions')
       .sort({ createdAt: -1 })
       .limit(limit)
       .lean();
-    
+
     return {
       success: true,
       quizzes: quizzes.map(quiz => ({
@@ -167,10 +189,13 @@ export async function getLatestQuizzes(limit = 3) {
 export async function createQuiz(quizData) {
   try {
     await connectDB();
-    
+
     const quiz = new Quiz(quizData);
     await quiz.save();
-    
+
+    revalidatePath('/quiz');
+    revalidatePath('/');
+
     return { success: true, quiz: quiz.toObject() };
   } catch (error) {
     console.error('Error creating quiz:', error);
@@ -182,17 +207,22 @@ export async function createQuiz(quizData) {
 export async function updateQuiz(slug, updateData) {
   try {
     await connectDB();
-    
+
     const quiz = await Quiz.findOneAndUpdate(
       { slug },
       updateData,
       { new: true, runValidators: true }
     );
-    
+
     if (!quiz) {
       return { success: false, error: 'Quiz not found' };
     }
-    
+
+    revalidatePath('/quiz');
+    revalidatePath(`/quiz/${quiz.slug}`);
+    revalidatePath('/');
+    revalidatePath('/admin');
+
     return { success: true, quiz: quiz.toObject() };
   } catch (error) {
     console.error('Error updating quiz:', error);
@@ -204,17 +234,20 @@ export async function updateQuiz(slug, updateData) {
 export async function deleteQuiz(slug) {
   try {
     await connectDB();
-    
+
     const quiz = await Quiz.findOneAndUpdate(
       { slug },
       { isActive: false },
       { new: true }
     );
-    
+
     if (!quiz) {
       return { success: false, error: 'Quiz not found' };
     }
-    
+
+    revalidatePath('/quiz');
+    revalidatePath('/');
+
     return { success: true, message: 'Quiz deleted successfully' };
   } catch (error) {
     console.error('Error deleting quiz:', error);

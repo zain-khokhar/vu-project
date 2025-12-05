@@ -105,7 +105,7 @@ export async function getBlogs(page = 1, limit = 12) {
         .lean(),
       Blog.countDocuments({ published: true })
     ]);
-    
+
 
     const totalPages = Math.ceil(totalCount / limit);
     const hasMore = page < totalPages;
@@ -149,6 +149,29 @@ export async function getBlogBySlug(slug) {
   }
 }
 
+// Get a blog for editing (includes unpublished)
+export async function getBlogForEdit(slug) {
+  try {
+    await connectDB();
+
+    const blog = await Blog.findOne({ slug })
+      .populate('author', '_id name slug')
+      .lean();
+
+    if (!blog) {
+      return { success: false, error: 'Blog not found' };
+    }
+
+    return {
+      success: true,
+      blog: JSON.parse(JSON.stringify(blog))
+    };
+  } catch (error) {
+    console.error('Error fetching blog for edit:', error);
+    return { success: false, error: 'Failed to fetch blog' };
+  }
+}
+
 // Get latest blogs for homepage
 export async function getLatestBlogs(limit = 6) {
   try {
@@ -178,7 +201,7 @@ export async function getAllBlogs() {
     const blogs = await Blog.find({ published: true })
       .select('slug')
       .lean();
-    
+
     return {
       success: true,
       blogs: JSON.parse(JSON.stringify(blogs))
@@ -190,12 +213,12 @@ export async function getAllBlogs() {
 }
 
 // Update a blog (for future admin functionality)
-export async function updateBlog(id, updateData) {
+export async function updateBlog(slug, updateData) {
   try {
     await connectDB();
 
-    const blog = await Blog.findByIdAndUpdate(
-      id,
+    const blog = await Blog.findOneAndUpdate(
+      { slug },
       { ...updateData, updatedAt: new Date() },
       { new: true, runValidators: true }
     );
@@ -206,6 +229,8 @@ export async function updateBlog(id, updateData) {
 
     revalidatePath('/blogs');
     revalidatePath(`/blogs/${blog.slug}`);
+    revalidatePath('/');
+    revalidatePath('/admin');
 
     return {
       success: true,
