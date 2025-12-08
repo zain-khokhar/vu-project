@@ -36,14 +36,7 @@ export const metadata = generateDocumentMetadata({
       alt: "VUEDU - Free Educational Documents Platform for Pakistani Students",
     },
   ],
-  icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.svg", sizes: "any" },
-    ],
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
-  },
+  // Leave icons out of metadata - explicit <link> tags in <head> will be used instead
 });
 
 
@@ -102,19 +95,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+        {/* Favicon: explicit PNG link (cache-busted) */}
+        <link rel="icon" href="/favicon.png?v=2" type="image/png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png?v=2" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png?v=2" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/icons/icon-48x48.png?v=2" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/icons/icon-96x96.png?v=2" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png?v=2" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512x512.png?v=2" />
+        <link rel="shortcut icon" href="/favicon.png?v=2" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png?v=2" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#6b46ff" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-TileColor" content="#6b46ff" />
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-gray-50">
         {/* Google Tag Manager (noscript) */}
         <noscript>
-          <iframe 
+          <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-MFDXN6QK"
-            height="0" 
-            width="0" 
-            style={{display:"none", visibility:"hidden"}}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}
-        
+
         <LayoutContent>
           {children}
         </LayoutContent>

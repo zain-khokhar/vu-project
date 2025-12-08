@@ -227,9 +227,7 @@ export async function updateBlog(slug, updateData) {
       return { success: false, error: 'Blog not found' };
     }
 
-    revalidatePath('/blogs');
     revalidatePath(`/blogs/${blog.slug}`);
-    revalidatePath('/');
     revalidatePath('/admin');
 
     return {

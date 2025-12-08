@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 import { ArrowLeft, PenTool } from 'lucide-react';
 import BlogWriteForm from '@/components/BlogWriteForm';
 
@@ -36,7 +37,9 @@ export default function BlogWritePage() {
 
         {/* Form */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-          <BlogWriteForm />
+          <Suspense fallback={<div className="p-8">Loading form...</div>}>
+            <BlogWriteForm />
+          </Suspense>
         </div>
       </div>
     </div>

@@ -6,7 +6,18 @@ import Underline from '@tiptap/extension-underline';
 import Link from '@tiptap/extension-link';
 import Image from '@tiptap/extension-image';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
+import { Table } from '@tiptap/extension-table';
+import { TableRow } from '@tiptap/extension-table-row';
+import { TableHeader } from '@tiptap/extension-table-header';
+import { TableCell } from '@tiptap/extension-table-cell';
+import TextAlign from '@tiptap/extension-text-align';
+import Highlight from '@tiptap/extension-highlight';
+import Typography from '@tiptap/extension-typography';
+import HorizontalRule from '@tiptap/extension-horizontal-rule';
+import Subscript from '@tiptap/extension-subscript';
+import Superscript from '@tiptap/extension-superscript';
 import { common, createLowlight } from 'lowlight';
+import { Node } from '@tiptap/core';
 import {
   Bold,
   Italic,
@@ -25,17 +36,101 @@ import {
   Unlink,
   ExternalLink,
   Image as ImageIcon,
-  Upload
+  Upload,
+  Table as TableIcon,
+  Plus,
+  Minus,
+  Trash2,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  AlignJustify,
+  Highlighter,
+  MinusIcon,
+  Subscript as SubscriptIcon,
+  Superscript as SuperscriptIcon,
+  ChevronDown,
+  FileCode
 } from 'lucide-react';
 import { useEffect, useState, useCallback } from 'react';
 import { uploadToCloudinary } from '@/lib/cloudinary';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 const lowlight = createLowlight(common);
+
+// Custom HTML Block Extension
+const HtmlBlock = Node.create({
+  name: 'htmlBlock',
+  group: 'block',
+  atom: true,
+
+  addAttributes() {
+    return {
+      htmlContent: {
+        default: '',
+      },
+      dataLevel: {
+        default: null,
+      },
+    };
+  },
+
+  parseHTML() {
+    return [
+      {
+        tag: 'div[data-html-block]',
+        getAttrs: (dom) => ({
+          htmlContent: dom.innerHTML,
+          dataLevel: dom.getAttribute('data-level'),
+        }),
+      },
+    ];
+  },
+
+  renderHTML({ node }) {
+    return [
+      'div',
+      {
+        'data-html-block': '',
+        'data-level': node.attrs.dataLevel,
+        class: 'html-block-content my-4',
+      },
+    ];
+  },
+
+  addNodeView() {
+    return ({ node }) => {
+      const dom = document.createElement('div');
+      dom.className = 'html-block-content my-4';
+      dom.setAttribute('data-html-block', '');
+      dom.setAttribute('data-level', node.attrs.dataLevel || '1');
+      dom.innerHTML = node.attrs.htmlContent;
+
+      return {
+        dom,
+      };
+    };
+  },
+
+  addCommands() {
+    return {
+      setHtmlBlock:
+        (attributes) =>
+          ({ commands }) => {
+            return commands.insertContent({
+              type: this.name,
+              attrs: attributes,
+            });
+          },
+    };
+  },
+});
 
 const MenuBar = ({ editor }) => {
   const [showLinkDialog, setShowLinkDialog] = useState(false);
   const [showCustomLinkDialog, setShowCustomLinkDialog] = useState(false);
   const [showImageDialog, setShowImageDialog] = useState(false);
+  const [showHtmlDialog, setShowHtmlDialog] = useState(false);
   const [linkUrl, setLinkUrl] = useState('');
   const [linkText, setLinkText] = useState('');
   const [linkFollow, setLinkFollow] = useState(false);
@@ -43,6 +138,9 @@ const MenuBar = ({ editor }) => {
   const [imageUrl, setImageUrl] = useState('');
   const [imageAlt, setImageAlt] = useState('');
   const [isImageUploading, setIsImageUploading] = useState(false);
+  const [htmlContent, setHtmlContent] = useState('');
+  const [isInTable, setIsInTable] = useState(false);
+  const [highlightColor, setHighlightColor] = useState('#fef08a');
 
   const linkStyles = {
     default: '!text-inherit no-underline hover:!text-blue-600',
@@ -53,6 +151,22 @@ const MenuBar = ({ editor }) => {
     badge: 'inline-block !bg-gray-100 !text-gray-800 px-3 py-1 rounded-full text-sm font-medium hover:!bg-gray-200 no-underline',
   };
 
+  // Track table state
+  useEffect(() => {
+    if (!editor) return;
+
+    const updateTableState = () => {
+      setIsInTable(editor.isActive('table'));
+    };
+
+    editor.on('selectionUpdate', updateTableState);
+    editor.on('transaction', updateTableState);
+
+    return () => {
+      editor.off('selectionUpdate', updateTableState);
+      editor.off('transaction', updateTableState);
+    };
+  }, [editor]);
 
   const addCustomLink = useCallback(() => {
     if (!editor) return;
@@ -64,17 +178,20 @@ const MenuBar = ({ editor }) => {
     setShowImageDialog(true);
   }, [editor]);
 
+  const addHtmlBlock = useCallback(() => {
+    if (!editor) return;
+    setShowHtmlDialog(true);
+  }, [editor]);
+
   const handleImageUpload = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate file type
     if (!file.type.startsWith('image/')) {
       alert('Please select a valid image file');
       return;
     }
 
-    // Validate file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
       alert('Image size must be less than 5MB');
       return;
@@ -84,7 +201,7 @@ const MenuBar = ({ editor }) => {
 
     try {
       const result = await uploadToCloudinary(file, 'blog-images');
-      
+
       if (!result.success) {
         alert(result.error || 'Failed to upload image. Please try again.');
         return;
@@ -111,11 +228,26 @@ const MenuBar = ({ editor }) => {
       })
       .run();
 
-    // Reset form
     setShowImageDialog(false);
     setImageUrl('');
     setImageAlt('');
   }, [editor, imageUrl, imageAlt]);
+
+  const insertHtmlBlock = useCallback(() => {
+    if (!editor || !htmlContent) return;
+
+    editor
+      .chain()
+      .focus()
+      .setHtmlBlock({
+        htmlContent: htmlContent,
+        dataLevel: 1,
+      })
+      .run();
+
+    setShowHtmlDialog(false);
+    setHtmlContent('');
+  }, [editor, htmlContent]);
 
   const insertCustomLink = useCallback(() => {
     if (!editor || !linkUrl || !linkText) return;
@@ -142,34 +274,11 @@ const MenuBar = ({ editor }) => {
       })
       .run();
 
-    // Reset form
     setShowCustomLinkDialog(false);
     setLinkUrl('');
     setLinkText('');
     setLinkStyle('default');
   }, [editor, linkUrl, linkText, linkFollow, linkStyle, linkStyles]);
-
-  const setLink = useCallback(() => {
-    if (!editor) return;
-
-    const previousUrl = editor.getAttributes('link').href
-    const url = window.prompt('URL', previousUrl)
-
-    // cancelled
-    if (url === null) {
-      return
-    }
-
-    // empty
-    if (url === '') {
-      editor.chain().focus().extendMarkRange('link').unsetLink().run()
-      return
-    }
-
-    // update link
-    const rel = linkFollow ? '' : 'nofollow';
-    editor.chain().focus().extendMarkRange('link').setLink({ href: url, rel }).run()
-  }, [editor, linkFollow]);
 
   const addLink = useCallback(() => {
     if (!editor) return;
@@ -275,6 +384,41 @@ const MenuBar = ({ editor }) => {
 
       <div className="w-px h-6 bg-gray-300 mx-1" />
 
+      {/* Text Alignment */}
+      <Button
+        onClick={() => editor.chain().focus().setTextAlign('left').run()}
+        isActive={editor.isActive({ textAlign: 'left' })}
+        title="Align Left"
+      >
+        <AlignLeft className="h-4 w-4" />
+      </Button>
+
+      <Button
+        onClick={() => editor.chain().focus().setTextAlign('center').run()}
+        isActive={editor.isActive({ textAlign: 'center' })}
+        title="Align Center"
+      >
+        <AlignCenter className="h-4 w-4" />
+      </Button>
+
+      <Button
+        onClick={() => editor.chain().focus().setTextAlign('right').run()}
+        isActive={editor.isActive({ textAlign: 'right' })}
+        title="Align Right"
+      >
+        <AlignRight className="h-4 w-4" />
+      </Button>
+
+      <Button
+        onClick={() => editor.chain().focus().setTextAlign('justify').run()}
+        isActive={editor.isActive({ textAlign: 'justify' })}
+        title="Justify"
+      >
+        <AlignJustify className="h-4 w-4" />
+      </Button>
+
+      <div className="w-px h-6 bg-gray-300 mx-1" />
+
       <Button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         isActive={editor.isActive('bulletList')}
@@ -298,6 +442,141 @@ const MenuBar = ({ editor }) => {
       >
         <Quote className="h-4 w-4" />
       </Button>
+
+      <div className="w-px h-6 bg-gray-300 mx-1" />
+
+      {/* Highlight with color picker */}
+      <div className="relative inline-flex items-center">
+        <Button
+          onClick={() => editor.chain().focus().toggleHighlight({ color: highlightColor }).run()}
+          isActive={editor.isActive('highlight')}
+          title="Highlight"
+        >
+          <Highlighter className="h-4 w-4" />
+        </Button>
+        <input
+          type="color"
+          value={highlightColor}
+          onChange={(e) => setHighlightColor(e.target.value)}
+          className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border border-gray-300 cursor-pointer"
+          title="Highlight Color"
+        />
+      </div>
+
+      <Button
+        onClick={() => editor.chain().focus().toggleSubscript().run()}
+        isActive={editor.isActive('subscript')}
+        title="Subscript"
+      >
+        <SubscriptIcon className="h-4 w-4" />
+      </Button>
+
+      <Button
+        onClick={() => editor.chain().focus().toggleSuperscript().run()}
+        isActive={editor.isActive('superscript')}
+        title="Superscript"
+      >
+        <SuperscriptIcon className="h-4 w-4" />
+      </Button>
+
+      <Button
+        onClick={() => editor.chain().focus().setHorizontalRule().run()}
+        title="Horizontal Rule"
+      >
+        <MinusIcon className="h-4 w-4" />
+      </Button>
+
+      <div className="w-px h-6 bg-gray-300 mx-1" />
+
+      {/* Table Controls with Dropdown */}
+      <Button
+        onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
+        title="Insert Table (3x3)"
+      >
+        <TableIcon className="h-4 w-4" />
+      </Button>
+
+      {isInTable && (
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger asChild>
+            <button
+              type="button"
+              className="p-2 rounded hover:bg-gray-200 transition-colors text-gray-600 flex items-center gap-1"
+              title="Table Options"
+            >
+              <span className="text-xs font-medium">Table</span>
+              <ChevronDown className="h-3 w-3" />
+            </button>
+          </DropdownMenu.Trigger>
+
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content
+              className="min-w-[220px] bg-white rounded-lg shadow-lg border border-gray-200 p-1 z-50"
+              sideOffset={5}
+            >
+              <DropdownMenu.Item
+                className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-100 cursor-pointer outline-none"
+                onSelect={() => editor.chain().focus().addRowBefore().run()}
+              >
+                <Plus className="h-4 w-4" />
+                Add Row Before
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Item
+                className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-100 cursor-pointer outline-none"
+                onSelect={() => editor.chain().focus().addRowAfter().run()}
+              >
+                <Plus className="h-4 w-4" />
+                Add Row After
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Item
+                className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 rounded hover:bg-red-50 cursor-pointer outline-none"
+                onSelect={() => editor.chain().focus().deleteRow().run()}
+              >
+                <Minus className="h-4 w-4" />
+                Delete Row
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Separator className="h-px bg-gray-200 my-1" />
+
+              <DropdownMenu.Item
+                className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-100 cursor-pointer outline-none"
+                onSelect={() => editor.chain().focus().addColumnBefore().run()}
+              >
+                <Plus className="h-4 w-4" />
+                Add Column Before
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Item
+                className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-100 cursor-pointer outline-none"
+                onSelect={() => editor.chain().focus().addColumnAfter().run()}
+              >
+                <Plus className="h-4 w-4" />
+                Add Column After
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Item
+                className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 rounded hover:bg-red-50 cursor-pointer outline-none"
+                onSelect={() => editor.chain().focus().deleteColumn().run()}
+              >
+                <Minus className="h-4 w-4" />
+                Delete Column
+              </DropdownMenu.Item>
+
+              <DropdownMenu.Separator className="h-px bg-gray-200 my-1" />
+
+              <DropdownMenu.Item
+                className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 rounded hover:bg-red-50 cursor-pointer outline-none"
+                onSelect={() => editor.chain().focus().deleteTable().run()}
+              >
+                <Trash2 className="h-4 w-4" />
+                Delete Table
+              </DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
+      )}
 
       <div className="w-px h-6 bg-gray-300 mx-1" />
 
@@ -333,6 +612,14 @@ const MenuBar = ({ editor }) => {
         title="Insert Image"
       >
         <ImageIcon className="h-4 w-4" />
+      </Button>
+
+      {/* HTML Block */}
+      <Button
+        onClick={addHtmlBlock}
+        title="Insert HTML Block"
+      >
+        <FileCode className="h-4 w-4" />
       </Button>
 
       {/* Link Follow Toggle */}
@@ -564,16 +851,6 @@ const MenuBar = ({ editor }) => {
 
             {/* Body */}
             <div className="p-6 space-y-5 max-h-[70vh] overflow-y-auto">
-              {/* Upload Method Tabs */}
-              <div className="flex space-x-1 bg-gray-100 p-1 rounded-xl">
-                <button className="flex-1 py-2 px-3 rounded-lg bg-white text-gray-900 font-medium shadow-sm">
-                  Upload File
-                </button>
-                <button className="flex-1 py-2 px-3 rounded-lg text-gray-600 hover:text-gray-900 transition-colors">
-                  Image URL
-                </button>
-              </div>
-
               {/* File Upload Section */}
               <div className="space-y-4">
                 <div className="space-y-2">
@@ -698,6 +975,91 @@ const MenuBar = ({ editor }) => {
           </div>
         </div>
       )}
+
+      {/* HTML Block Dialog */}
+      {showHtmlDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
+          <div className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl transform transition-all animate-slideUp">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-4 rounded-t-2xl">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="bg-white/20 p-2 rounded-lg backdrop-blur-sm">
+                    <FileCode className="h-5 w-5 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">Insert HTML Block</h3>
+                </div>
+                <button
+                  onClick={() => {
+                    setShowHtmlDialog(false);
+                    setHtmlContent('');
+                  }}
+                  className="text-white/80 hover:text-white hover:bg-white/20 p-1.5 rounded-lg transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Body */}
+            <div className="p-6 space-y-5">
+              <div className="space-y-2">
+                <label className="flex items-center text-sm font-semibold text-gray-700">
+                  <span className="bg-purple-100 text-purple-700 w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                  HTML Content
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <textarea
+                  value={htmlContent}
+                  onChange={(e) => setHtmlContent(e.target.value)}
+                  placeholder="<div>Your HTML content here...</div>"
+                  rows={10}
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all outline-none text-gray-900 placeholder-gray-400 font-mono text-sm"
+                />
+                <p className="text-xs text-gray-500">
+                  Paste your HTML code here. It will be rendered directly in the editor.
+                </p>
+              </div>
+
+              {/* Preview */}
+              {htmlContent && (
+                <div className="space-y-2">
+                  <label className="flex items-center text-sm font-semibold text-gray-700">
+                    <span className="bg-purple-100 text-purple-700 w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                    Preview
+                  </label>
+                  <div className="border-2 border-purple-300 rounded-xl p-4 bg-purple-50">
+                    <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="px-6 py-4 bg-gray-50 rounded-b-2xl border-t border-gray-200 flex justify-end space-x-3">
+              <button
+                onClick={() => {
+                  setShowHtmlDialog(false);
+                  setHtmlContent('');
+                }}
+                className="px-5 py-2.5 text-gray-700 bg-white border-2 border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={insertHtmlBlock}
+                disabled={!htmlContent}
+                className="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all font-medium shadow-lg shadow-purple-500/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none flex items-center space-x-2"
+              >
+                <span>Insert HTML</span>
+                <FileCode className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -707,6 +1069,17 @@ export default function BlogEditor({ content, onChange, placeholder = "Start wri
     extensions: [
       StarterKit,
       Underline,
+      Typography,
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
+        alignments: ['left', 'center', 'right', 'justify'],
+      }),
+      Highlight.configure({
+        multicolor: true,
+      }),
+      Subscript,
+      Superscript,
+      HorizontalRule,
       Image.configure({
         HTMLAttributes: {
           class: 'max-w-full h-auto rounded-lg shadow-md my-4',
@@ -721,9 +1094,27 @@ export default function BlogEditor({ content, onChange, placeholder = "Start wri
       CodeBlockLowlight.configure({
         lowlight,
         HTMLAttributes: {
-          class: 'bg-gray-100 rounded p-4 font-mono text-sm border',
+          class: 'bg-gray-900 text-gray-100 rounded-lg p-4 font-mono text-sm border border-gray-700 my-4 overflow-x-auto',
         },
       }),
+      Table.configure({
+        resizable: true,
+        HTMLAttributes: {
+          class: 'border-collapse table-auto w-full my-4',
+        },
+      }),
+      TableRow,
+      TableHeader.configure({
+        HTMLAttributes: {
+          class: 'border border-gray-300 px-4 py-2 bg-gray-100 font-bold text-left',
+        },
+      }),
+      TableCell.configure({
+        HTMLAttributes: {
+          class: 'border border-gray-300 px-4 py-2',
+        },
+      }),
+      HtmlBlock,
     ],
     content: content || '',
     onUpdate: ({ editor }) => {
@@ -749,6 +1140,106 @@ export default function BlogEditor({ content, onChange, placeholder = "Start wri
           placeholder={placeholder}
         />
       </div>
+      <style jsx global>{`
+        .ProseMirror .tableWrapper {
+          overflow-x: auto;
+        }
+        
+        .ProseMirror table {
+          border-collapse: collapse;
+          table-layout: fixed;
+          width: 100%;
+          margin: 1rem 0;
+          overflow: hidden;
+        }
+
+        .ProseMirror td,
+        .ProseMirror th {
+          min-width: 1em;
+          border: 1px solid #d1d5db;
+          padding: 0.5rem 1rem;
+          vertical-align: top;
+          box-sizing: border-box;
+          position: relative;
+        }
+
+        .ProseMirror th {
+          font-weight: bold;
+          text-align: left;
+          background-color: #f3f4f6;
+        }
+
+        .ProseMirror .selectedCell:after {
+          z-index: 2;
+          position: absolute;
+          content: "";
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          background: rgba(59, 130, 246, 0.1);
+          pointer-events: none;
+        }
+
+        .ProseMirror .column-resize-handle {
+          position: absolute;
+          right: -2px;
+          top: 0;
+          bottom: -2px;
+          width: 4px;
+          background-color: #3b82f6;
+          cursor: col-resize;
+          pointer-events: none;
+        }
+
+        .ProseMirror.resize-cursor {
+          cursor: col-resize;
+        }
+
+        .ProseMirror td:hover .column-resize-handle,
+        .ProseMirror th:hover .column-resize-handle {
+          background-color: #2563eb;
+        }
+
+        .html-block-content {
+          /* HTML content renders naturally without wrapper styling */
+        }
+
+        .ProseMirror pre {
+          background: #1f2937;
+          color: #f3f4f6;
+          font-family: 'JetBrainsMono', 'Courier New', Courier, monospace;
+          padding: 1rem;
+          border-radius: 0.5rem;
+        }
+
+        .ProseMirror code {
+          background: #f3f4f6;
+          color: #1f2937;
+          padding: 0.2em 0.4em;
+          border-radius: 0.25rem;
+          font-size: 0.9em;
+        }
+
+        .ProseMirror pre code {
+          background: none;
+          color: inherit;
+          font-size: 0.875rem;
+          padding: 0;
+        }
+
+        .ProseMirror mark {
+          background-color: #fef08a;
+          padding: 0.125em 0;
+          border-radius: 0.125em;
+        }
+
+        .ProseMirror hr {
+          border: none;
+          border-top: 2px solid #e5e7eb;
+          margin: 2rem 0;
+        }
+      `}</style>
     </div>
   );
 }
