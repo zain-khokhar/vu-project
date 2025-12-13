@@ -3,7 +3,7 @@ import { updateCommentStatus, deleteCommentAdmin } from '@/actions/comments';
 
 export async function PATCH(request, { params }) {
     try {
-        const { id } = params;
+        const { id } = await params;
         const body = await request.json();
         const { status } = body;
 
@@ -32,7 +32,7 @@ export async function PATCH(request, { params }) {
 
 export async function DELETE(request, { params }) {
     try {
-        const { id } = params;
+        const { id } = await params;
 
         const result = await deleteCommentAdmin(id);
 

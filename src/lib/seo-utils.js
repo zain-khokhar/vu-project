@@ -241,7 +241,7 @@ export function generateOrganizationStructuredData() {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Service',
-      email: 'support@vuedu.dev',
+      email: 'team@vuedu.dev',
       availableLanguage: 'English',
     },
     sameAs: [

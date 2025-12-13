@@ -107,7 +107,7 @@ export default async function Home() {
               contactPoint: {
                 '@type': 'ContactPoint',
                 contactType: 'Customer Service',
-                email: 'support@vuedu.dev',
+                email: 'team@vuedu.dev',
                 areaServed: 'PK',
                 availableLanguage: ['English', 'Urdu'],
               },

@@ -12,7 +12,7 @@ export default function CookiePage() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
-        <Link 
+        <Link
           href="/"
           className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors"
         >
@@ -34,7 +34,7 @@ export default function CookiePage() {
         {/* Content */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 md:p-12">
           <div className="prose prose-lg max-w-none">
-            
+
             {/* Introduction */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">What Are Cookies?</h2>
@@ -125,7 +125,7 @@ export default function CookiePage() {
               <p className="text-gray-600 leading-relaxed mb-4">
                 Some cookies on our site are set by third-party services we use to enhance functionality:
               </p>
-              
+
               <div className="space-y-4">
                 <div className="border border-gray-200 rounded-lg p-4">
                   <h4 className="font-semibold text-gray-900 mb-2">Google Analytics</h4>
@@ -162,7 +162,7 @@ export default function CookiePage() {
             {/* Cookie Management */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Managing Your Cookie Preferences</h2>
-              
+
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Browser Settings</h3>
               <p className="text-gray-600 leading-relaxed mb-4">
                 You can control cookies through your browser settings. Most browsers allow you to:
@@ -263,7 +263,7 @@ export default function CookiePage() {
                 If you have questions about our use of cookies or this policy, please contact us:
               </p>
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-gray-600"><strong>Email:</strong> privacy@vuedu.dev</p>
+                <p className="text-gray-600"><strong>Email:</strong> team@vuedu.dev</p>
                 <p className="text-gray-600"><strong>Subject:</strong> Cookie Policy Inquiry</p>
                 <p className="text-gray-600"><strong>Address:</strong> VUEDU Privacy Team</p>
                 <p className="text-gray-600">123 Education Street, Learning City, LC 12345</p>

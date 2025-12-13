@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { ArrowLeft, Shield, Eye, Database, UserCheck } from 'lucide-react';
+import { ArrowLeft, Shield, Eye, Database, UserCheck, Cookie } from 'lucide-react';
 
 export const metadata = {
   title: 'Privacy Policy - VUEDU',
-  description: 'Learn how VUEDU collects, uses, and protects your personal information and data.',
-  keywords: 'privacy policy, data protection, user rights, cookies, analytics'
+  description: 'Learn how VUEDU protects your privacy. We collect minimal data - only Google Analytics for website improvement.',
+  keywords: 'privacy policy, data protection, Google Analytics, minimal data collection'
 };
 
 export default function PrivacyPolicyPage() {
@@ -12,7 +12,7 @@ export default function PrivacyPolicyPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
-        <Link 
+        <Link
           href="/"
           className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors"
         >
@@ -27,14 +27,14 @@ export default function PrivacyPolicyPage() {
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
           <p className="text-xl text-gray-600">
-            Your privacy is important to us. Learn how we collect, use, and protect your information.
+            Your privacy matters. We collect minimal data to provide you with the best educational experience.
           </p>
         </div>
 
         {/* Content */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 md:p-12">
           <div className="prose prose-lg max-w-none">
-            
+
             {/* Introduction */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
@@ -42,11 +42,24 @@ export default function PrivacyPolicyPage() {
                 Introduction
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                VUEDU ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.
+                VUEDU ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains our minimal data collection practices when you visit our website and use our educational resources.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                By accessing or using our services, you agree to the terms of this Privacy Policy. If you do not agree with our policies and practices, do not use our services.
+                By accessing or using our services, you agree to the terms of this Privacy Policy. If you do not agree with our policies, please do not use our services.
               </p>
+            </section>
+
+            {/* No Account System */}
+            <section className="mb-12">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                <h2 className="text-2xl font-bold text-green-900 mb-3 flex items-center">
+                  <UserCheck className="h-6 w-6 text-green-600 mr-2" />
+                  No User Accounts Required
+                </h2>
+                <p className="text-green-700 leading-relaxed">
+                  <strong>VUEDU does not require user registration or authentication.</strong> We do not collect emails, passwords, or any personal account information. You can access all our educational resources without creating an account.
+                </p>
+              </div>
             </section>
 
             {/* Information We Collect */}
@@ -55,56 +68,83 @@ export default function PrivacyPolicyPage() {
                 <Database className="h-6 w-6 text-blue-600 mr-2" />
                 Information We Collect
               </h2>
-              
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Personal Information</h3>
-              <ul className="list-disc list-inside text-gray-600 mb-6 space-y-2">
-                <li>Name and email address when you create an account or contact us</li>
-                <li>Profile information including bio and avatar when creating blog posts</li>
-                <li>Communication data when you contact our support team</li>
-                <li>Feedback and survey responses</li>
-              </ul>
 
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Automatically Collected Information</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">1. Analytics Data (Google Analytics Only)</h3>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                We use Google Analytics to understand how visitors use our website. This helps us improve our content and user experience. Google Analytics automatically collects:
+              </p>
               <ul className="list-disc list-inside text-gray-600 mb-6 space-y-2">
-                <li>IP address, browser type, and operating system</li>
-                <li>Pages visited, time spent on pages, and navigation patterns</li>
-                <li>Device information and screen resolution</li>
-                <li>Referral sources and search terms used</li>
+                <li>Anonymous usage statistics (pages visited, time on site, navigation patterns)</li>
+                <li>Device information (browser type, operating system, screen resolution)</li>
+                <li>Geographic location (country/city level only, not precise location)</li>
+                <li>Referral sources (how you found our website)</li>
               </ul>
+              <p className="text-gray-600 leading-relaxed mb-6">
+                <strong>Important:</strong> Google Analytics data is anonymized and aggregated. We cannot identify individual users from this data.
+              </p>
 
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Cookies and Tracking Technologies</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">2. Feedback and Comments</h3>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                When you submit feedback or post comments on our platform, we collect:
+              </p>
+              <ul className="list-disc list-inside text-gray-600 mb-6 space-y-2">
+                <li><strong>Name:</strong> Optional display name you provide</li>
+                <li><strong>Comment/Feedback Content:</strong> The text you submit</li>
+                <li><strong>Timestamp:</strong> When the feedback/comment was submitted</li>
+              </ul>
+              <p className="text-gray-600 leading-relaxed mb-6">
+                <strong>Note:</strong> You are not required to provide real personal information. You may use a pseudonym or nickname.
+              </p>
+
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">3. Cookies</h3>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                We use minimal cookies for:
+              </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>Essential cookies for website functionality</li>
-                <li>Analytics cookies (Google Analytics) for usage statistics</li>
-                <li>Preference cookies to remember your settings</li>
-                <li>Third-party cookies from embedded content</li>
+                <li><strong>Google Analytics:</strong> To track anonymous usage statistics</li>
+                <li><strong>Essential Functionality:</strong> To remember your preferences (theme, language, etc.)</li>
               </ul>
+              <p className="text-gray-600 leading-relaxed mt-4">
+                For more details, see our <Link href="/cookie-policy" className="text-blue-600 hover:underline">Cookie Policy</Link>.
+              </p>
+            </section>
+
+            {/* What We DON'T Collect */}
+            <section className="mb-12">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                <h2 className="text-2xl font-bold text-blue-900 mb-3">What We DON'T Collect</h2>
+                <ul className="list-disc list-inside text-blue-700 space-y-2">
+                  <li>Email addresses or passwords (no user accounts)</li>
+                  <li>Payment or financial information</li>
+                  <li>Social security numbers or government IDs</li>
+                  <li>Precise geolocation data</li>
+                  <li>Personal health information</li>
+                  <li>Biometric data</li>
+                </ul>
+              </div>
             </section>
 
             {/* How We Use Information */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">How We Use Your Information</h2>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>To provide, maintain, and improve our services</li>
-                <li>To personalize your experience and content recommendations</li>
-                <li>To communicate with you about updates, announcements, and support</li>
-                <li>To analyze usage patterns and optimize website performance</li>
-                <li>To detect, prevent, and address technical issues and security threats</li>
-                <li>To comply with legal obligations and enforce our terms</li>
+                <li><strong>Analytics:</strong> To understand website usage and improve our content</li>
+                <li><strong>Feedback/Comments:</strong> To display your contributions and improve our services</li>
+                <li><strong>Technical Operations:</strong> To maintain website functionality and security</li>
+                <li><strong>Legal Compliance:</strong> To comply with applicable laws and regulations</li>
               </ul>
             </section>
 
             {/* Information Sharing */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Information Sharing and Disclosure</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Information Sharing</h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                We do not sell, trade, or rent your personal information to third parties. We may share your information in the following circumstances:
+                <strong>We do not sell, trade, or rent your information to third parties.</strong> We may share information only in these limited circumstances:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li><strong>Service Providers:</strong> With trusted third-party services that help us operate our website (hosting, analytics, email services)</li>
+                <li><strong>Google Analytics:</strong> Anonymous usage data is processed by Google under their privacy policy</li>
                 <li><strong>Legal Requirements:</strong> When required by law or to protect our rights and safety</li>
-                <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of assets</li>
-                <li><strong>Consent:</strong> With your explicit consent for specific purposes</li>
+                <li><strong>Public Comments:</strong> Comments you post are publicly visible on our website</li>
               </ul>
             </section>
 
@@ -115,13 +155,13 @@ export default function PrivacyPolicyPage() {
                 Our website uses the following third-party services:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li><strong>Google Analytics:</strong> For website traffic analysis and user behavior insights</li>
+                <li><strong>Google Analytics:</strong> For anonymous website traffic analysis (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Privacy Policy</a>)</li>
                 <li><strong>Cloudinary:</strong> For image hosting and optimization</li>
-                <li><strong>MongoDB Atlas:</strong> For secure data storage</li>
-                <li><strong>Vercel/Netlify:</strong> For website hosting and content delivery</li>
+                <li><strong>MongoDB Atlas:</strong> For secure data storage (feedback and comments)</li>
+                <li><strong>Vercel:</strong> For website hosting and content delivery</li>
               </ul>
               <p className="text-gray-600 leading-relaxed mt-4">
-                These services have their own privacy policies. We encourage you to review their policies when using our services.
+                These services have their own privacy policies. We encourage you to review them.
               </p>
             </section>
 
@@ -129,21 +169,19 @@ export default function PrivacyPolicyPage() {
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                 <UserCheck className="h-6 w-6 text-blue-600 mr-2" />
-                Your Rights and Choices
+                Your Rights
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                You have the following rights regarding your personal information:
+                You have the following rights:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li><strong>Access:</strong> Request a copy of the personal information we hold about you</li>
-                <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information</li>
-                <li><strong>Deletion:</strong> Request deletion of your personal information (subject to legal requirements)</li>
-                <li><strong>Portability:</strong> Request transfer of your data to another service</li>
-                <li><strong>Objection:</strong> Object to processing of your information for direct marketing</li>
-                <li><strong>Withdraw Consent:</strong> Withdraw consent for data processing where applicable</li>
+                <li><strong>Opt-Out of Analytics:</strong> Use browser settings or extensions to block Google Analytics</li>
+                <li><strong>Delete Comments/Feedback:</strong> Contact us to request deletion of your comments or feedback</li>
+                <li><strong>Access Data:</strong> Request information about what data we have (if any)</li>
+                <li><strong>Cookie Control:</strong> Manage cookies through your browser settings</li>
               </ul>
               <p className="text-gray-600 leading-relaxed mt-4">
-                To exercise these rights, please contact us at <a href="mailto:privacy@vuedu.dev" className="text-blue-600 hover:underline">privacy@vuedu.dev</a>.
+                To exercise these rights, please contact us at <a href="mailto:team@vuedu.dev" className="text-blue-600 hover:underline">team@vuedu.dev</a>.
               </p>
             </section>
 
@@ -151,30 +189,31 @@ export default function PrivacyPolicyPage() {
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Data Security</h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction:
+                We implement appropriate security measures to protect the minimal data we collect:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>SSL/TLS encryption for data transmission</li>
+                <li>HTTPS/SSL encryption for all data transmission</li>
                 <li>Secure database hosting with access controls</li>
-                <li>Regular security audits and updates</li>
-                <li>Employee training on data protection</li>
-                <li>Incident response procedures</li>
+                <li>Regular security updates and monitoring</li>
+                <li>Limited data collection minimizes risk</li>
               </ul>
             </section>
 
             {/* Data Retention */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Data Retention</h2>
-              <p className="text-gray-600 leading-relaxed">
-                We retain your personal information for as long as necessary to provide our services and fulfill the purposes outlined in this policy. We may retain information longer if required by law or for legitimate business purposes such as fraud prevention.
-              </p>
+              <ul className="list-disc list-inside text-gray-600 space-y-2">
+                <li><strong>Analytics Data:</strong> Retained by Google Analytics according to their retention policies (typically 26 months)</li>
+                <li><strong>Comments/Feedback:</strong> Retained indefinitely unless you request deletion</li>
+                <li><strong>Cookies:</strong> Expire according to their individual settings (see Cookie Policy)</li>
+              </ul>
             </section>
 
             {/* Children's Privacy */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Children's Privacy</h2>
               <p className="text-gray-600 leading-relaxed">
-                Our services are not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you become aware that a child has provided us with personal information, please contact us and we will delete such information.
+                Our services are educational and appropriate for all ages. Since we don't collect personal information (no accounts, no emails), we comply with children's privacy regulations. Parents/guardians should supervise children's use of our feedback and comment features.
               </p>
             </section>
 
@@ -182,7 +221,7 @@ export default function PrivacyPolicyPage() {
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Changes to This Privacy Policy</h2>
               <p className="text-gray-600 leading-relaxed">
-                We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. We encourage you to review this Privacy Policy periodically.
+                We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. Continued use of our services after changes constitutes acceptance of the updated policy.
               </p>
             </section>
 
@@ -193,16 +232,16 @@ export default function PrivacyPolicyPage() {
                 If you have any questions about this Privacy Policy, please contact us:
               </p>
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-gray-600"><strong>Email:</strong> privacy@vuedu.dev</p>
-                <p className="text-gray-600"><strong>Address:</strong> VUEDU Privacy Team</p>
-                <p className="text-gray-600">123 Education Street, Learning City, LC 12345</p>
+                <p className="text-gray-600"><strong>Email:</strong> team@vuedu.dev</p>
+                <p className="text-gray-600"><strong>Subject:</strong> Privacy Policy Inquiry</p>
+                <p className="text-gray-600"><strong>Address:</strong> Punjab, Lahore, Pakistan</p>
               </div>
             </section>
 
             {/* Last Updated */}
             <div className="border-t border-gray-200 pt-8">
               <p className="text-sm text-gray-500 text-center">
-                Last Updated: September 30, 2025
+                Last Updated: December 13, 2025
               </p>
             </div>
 

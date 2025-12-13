@@ -2,7 +2,7 @@ import { updateFeedbackStatus, deleteFeedback } from '@/actions/feedback';
 
 export async function PATCH(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const { status } = await request.json();
 
     if (!['pending', 'reviewed', 'resolved'].includes(status)) {
@@ -10,7 +10,7 @@ export async function PATCH(request, { params }) {
     }
 
     const result = await updateFeedbackStatus(id, status);
-    
+
     if (result.success) {
       return Response.json(result);
     } else {
@@ -25,10 +25,10 @@ export async function PATCH(request, { params }) {
 
 export async function DELETE(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     const result = await deleteFeedback(id);
-    
+
     if (result.success) {
       return Response.json(result);
     } else {

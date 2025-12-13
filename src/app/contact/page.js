@@ -12,7 +12,7 @@ export default function ContactPage() {
     subject: '',
     message: ''
   });
-  
+
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
@@ -80,7 +80,7 @@ export default function ContactPage() {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validate form
     const newErrors = validateForm();
     setErrors(newErrors);
@@ -175,7 +175,7 @@ export default function ContactPage() {
                 <Sparkles className="h-6 w-6 mr-3 text-indigo-600" />
                 Send us a Message
               </h2>
-              
+
               {/* Success Message */}
               {submitStatus === 'success' && (
                 <div className="mb-6 backdrop-blur-xl bg-gradient-to-r from-green-50/70 via-emerald-50/60 to-green-50/50 border border-green-200/80 rounded-2xl p-4 flex items-center space-x-3 shadow-lg">
@@ -210,11 +210,10 @@ export default function ContactPage() {
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-4 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl text-gray-900 placeholder-gray-500 ${
-                      errors.fullName 
-                        ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50' 
+                    className={`w-full px-4 py-4 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl text-gray-900 placeholder-gray-500 ${errors.fullName
+                        ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50'
                         : 'border-white/80'
-                    }`}
+                      }`}
                     placeholder="Enter your full name"
                     disabled={isSubmitting}
                   />
@@ -237,11 +236,10 @@ export default function ContactPage() {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-4 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl text-gray-900 placeholder-gray-500 ${
-                      errors.email 
-                        ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50' 
+                    className={`w-full px-4 py-4 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl text-gray-900 placeholder-gray-500 ${errors.email
+                        ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50'
                         : 'border-white/80'
-                    }`}
+                      }`}
                     placeholder="Enter your email address"
                     disabled={isSubmitting}
                   />
@@ -264,11 +262,10 @@ export default function ContactPage() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-4 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl text-gray-900 placeholder-gray-500 ${
-                      errors.subject 
-                        ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50' 
+                    className={`w-full px-4 py-4 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl text-gray-900 placeholder-gray-500 ${errors.subject
+                        ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50'
                         : 'border-white/80'
-                    }`}
+                      }`}
                     placeholder="What is this about?"
                     disabled={isSubmitting}
                   />
@@ -291,11 +288,10 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={6}
-                    className={`w-full px-4 py-4 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl text-gray-900 placeholder-gray-500 resize-vertical ${
-                      errors.message 
-                        ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50' 
+                    className={`w-full px-4 py-4 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl text-gray-900 placeholder-gray-500 resize-vertical ${errors.message
+                        ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50'
                         : 'border-white/80'
-                    }`}
+                      }`}
                     placeholder="Please describe your question or concern in detail..."
                     disabled={isSubmitting}
                   />
@@ -314,11 +310,10 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full py-5 px-6 rounded-2xl font-medium text-white transition-all duration-500 flex items-center justify-center space-x-2 group/btn relative overflow-hidden shadow-2xl hover:shadow-3xl ${
-                    isSubmitting
+                  className={`w-full py-5 px-6 rounded-2xl font-medium text-white transition-all duration-500 flex items-center justify-center space-x-2 group/btn relative overflow-hidden shadow-2xl hover:shadow-3xl ${isSubmitting
                       ? 'bg-gradient-to-r from-gray-400 to-gray-500 cursor-not-allowed'
                       : 'bg-gradient-to-r from-indigo-500/80 via-purple-600/70 to-blue-600/80 hover:scale-105 active:scale-95'
-                  }`}
+                    }`}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/15 via-transparent to-white/15 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 -skew-x-12 group-hover/btn:skew-x-0"></div>
                   <div className="relative flex items-center justify-center space-x-2">
@@ -339,7 +334,7 @@ export default function ContactPage() {
 
               <div className="mt-8 backdrop-blur-xl bg-gradient-to-r from-indigo-50/50 via-purple-50/30 to-blue-50/50 border border-indigo-200/50 rounded-2xl p-4">
                 <p className="text-indigo-700 text-sm font-light">
-                  <strong>Response Time:</strong> We typically respond within 24 hours during business days. 
+                  <strong>Response Time:</strong> We typically respond within 24 hours during business days.
                   For urgent matters, please call us directly.
                 </p>
               </div>
@@ -351,9 +346,9 @@ export default function ContactPage() {
             {/* Contact Details */}
             <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl p-6 hover:shadow-3xl transition-all duration-500 group">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
-              
+
               <h3 className="text-2xl font-light text-gray-900 mb-6 relative">Contact Information</h3>
-              
+
               <div className="relative space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="p-3 bg-gradient-to-br from-indigo-100/50 via-purple-100/30 to-blue-100/50 rounded-2xl group-hover:scale-110 transition-transform duration-500">
@@ -361,7 +356,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Email</p>
-                    <p className="text-indigo-600 font-light">support@vuedu.dev</p>
+                    <p className="text-indigo-600 font-light">team@vuedu.dev</p>
                     <p className="text-sm text-gray-600 font-light">General inquiries & support</p>
                   </div>
                 </div>
@@ -393,12 +388,12 @@ export default function ContactPage() {
             {/* Support Hours */}
             <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl p-6 hover:shadow-3xl transition-all duration-500 group">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
-              
+
               <h3 className="text-2xl font-light text-gray-900 mb-6 relative flex items-center">
                 <Clock className="h-5 w-5 mr-2 text-indigo-600" />
                 Support Hours
               </h3>
-              
+
               <div className="relative space-y-3 text-sm mb-6">
                 <div className="flex justify-between backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-xl p-3">
                   <span className="text-gray-600 font-light">Monday - Friday</span>
@@ -413,7 +408,7 @@ export default function ContactPage() {
                   <span className="text-gray-500 font-light">Closed</span>
                 </div>
               </div>
-              
+
               <div className="backdrop-blur-xl bg-gradient-to-r from-yellow-50/70 via-orange-50/60 to-yellow-50/50 border border-yellow-200/50 rounded-2xl p-3 relative">
                 <p className="text-yellow-700 text-sm font-light">
                   <strong>Note:</strong> All times are in Eastern Standard Time (EST)
@@ -424,7 +419,7 @@ export default function ContactPage() {
             {/* FAQ Link */}
             <div className="backdrop-blur-2xl bg-gradient-to-br from-indigo-50/70 via-purple-50/60 to-blue-50/50 border border-indigo-200/50 rounded-3xl shadow-2xl p-6 hover:shadow-3xl transition-all duration-500 group">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
-              
+
               <h3 className="text-xl font-light text-gray-900 mb-3 relative flex items-center">
                 <Sparkles className="h-5 w-5 mr-2 text-indigo-600" />
                 Quick Help

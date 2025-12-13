@@ -4,9 +4,9 @@ import PDFViewerWrapper from '@/components/PDFViewerWrapper';
 import Link from 'next/link';
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const result = await getDocumentBySlug(slug);
-  
+
   if (!result.success) {
     return {
       title: 'Document Not Found - VUEDU'
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
   }
 
   const { document } = result;
-  
+
   return {
     title: `Preview: ${document.title} - VUEDU`,
     description: `Preview ${document.title} online`,
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function PreviewPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const result = await getDocumentBySlug(slug);
 
   if (!result.success) {

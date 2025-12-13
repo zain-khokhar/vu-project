@@ -3,7 +3,7 @@ import { deleteQuizAdmin } from '@/actions/admin';
 
 export async function DELETE(request, { params }) {
     try {
-        const { slug } = params;
+        const { slug } = await params;
 
         const result = await deleteQuizAdmin(slug);
 

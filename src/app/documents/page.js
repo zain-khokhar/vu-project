@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
-import { BookOpen, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { BookOpen } from 'lucide-react';
 import DocumentCard from '@/components/DocumentCard';
+import DocumentRequestForm from '@/components/DocumentRequestForm';
 import SearchFilters from '@/components/SearchFilters';
 import Pagination from '@/components/Pagination';
 import { getDocuments, getFilterOptions } from '@/actions/documents';
@@ -16,7 +16,7 @@ function DocumentsLoading() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {Array.from({ length: 6 }).map((_, i) => (
-        <div key={i} className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 rounded-3xl shadow-2xl border border-white/90 overflow-hidden">
+        <div key={i} className="bg-gradient-to-br from-white/70 via-white/60 to-white/50 rounded-3xl shadow-2xl border border-white/90 overflow-hidden">
           <div className="h-48 bg-gradient-to-br from-white/40 to-white/20"></div>
           <div className="p-4 space-y-3">
             <div className="h-4 bg-gradient-to-r from-white/40 to-white/20 rounded w-3/4"></div>
@@ -54,7 +54,7 @@ async function DocumentsContent({ searchParams }) {
     : { subjects: [], universities: [], years: [] };
 
   return (
-    <div className="bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative min-h-screen">
+    <div className="overflow-hidden relative min-h-screen">
       {/* JSON-LD Structured Data */}
       <script
         type="application/ld+json"
@@ -97,7 +97,7 @@ async function DocumentsContent({ searchParams }) {
           <div className="mb-12">
             {/* Premium Badge */}
             <div className="mb-6">
-              <div className="relative backdrop-blur-3xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden inline-block group">
+              <div className="relative bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden inline-block group">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <span className="relative text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent tracking-wide">PREMIUM CONTENT</span>
               </div>
@@ -140,7 +140,7 @@ async function DocumentsContent({ searchParams }) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               {documents.map((document) => (
-                <div key={document._id} className="group backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 hover:border-white/100 hover:bg-white/80 overflow-hidden">
+                <div key={document._id} className="group bg-gradient-to-br from-white/70 via-white/60 to-white/50  rounded-3xl shadow-2xl transition-all duration-500 hover:scale-105 overflow-hidden">
                   <div className="relative">
                     <DocumentCard document={document} />
                   </div>
@@ -150,9 +150,14 @@ async function DocumentsContent({ searchParams }) {
 
             {/* Pagination */}
             {pagination && <Pagination pagination={pagination} />}
+
+            {/* Document Request Form */}
+            <div className="mt-12">
+              <DocumentRequestForm />
+            </div>
           </>
         ) : (
-          <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center">
+          <div className=" bg-gradient-to-br from-white/70 via-white/60 to-white/50 rounded-3xl p-12 shadow-2xl text-center">
             <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
             <h3 className="text-xl font-light text-gray-900 mb-2">No documents found</h3>
             <p className="text-gray-700 mb-6 font-light">
@@ -161,15 +166,6 @@ async function DocumentsContent({ searchParams }) {
                 : "No documents have been uploaded yet"
               }
             </p>
-            {(!search && !type && !subject && !university && !year) && (
-              <Link
-                href="/admin/upload"
-                className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500/80 via-blue-600/70 to-purple-600/80 text-white font-medium rounded-xl hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 hover:scale-105"
-              >
-                <BookOpen className="h-4 w-4" />
-                <span>Upload Document</span>
-              </Link>
-            )}
           </div>
         )}
       </div>
@@ -271,5 +267,5 @@ export async function generateMetadata({ searchParams }) {
   });
 }
 
-export const dynamic = 'force-dynamic'; // Enable dynamic rendering for search/filter
-export const revalidate = 0; // Disable caching for real-time search results
+// export const dynamic = 'force-dynamic'; // Enable dynamic rendering for search/filter
+// export const revalidate = 0; // Disable caching for real-time search results
