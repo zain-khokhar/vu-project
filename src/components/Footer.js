@@ -28,7 +28,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group">
+          <div className="bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
             <h3 className="font-medium text-gray-900 mb-4 relative">Quick Links</h3>
             <ul className="space-y-3 text-gray-700">
@@ -66,7 +66,7 @@ export default function Footer() {
           </div>
 
           {/* Resources */}
-          <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group">
+          <div className=" bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
             <h3 className="font-medium text-gray-900 mb-4 relative">Resources</h3>
             <ul className="space-y-3 text-gray-700">
@@ -74,6 +74,13 @@ export default function Footer() {
                 <Link href="/blogs" className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
                   <span className="inline-block w-1 h-1 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 group-hover/link:scale-150 transition-transform"></span>
                   <span className="font-light group-hover/link:translate-x-1 transition-transform">Blog</span>
+                </Link>
+
+              </li>
+              <li>
+                <Link href="/quiz" className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
+                  <span className="inline-block w-1 h-1 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 group-hover/link:scale-150 transition-transform"></span>
+                  <span className="font-light group-hover/link:translate-x-1 transition-transform">Quiz</span>
                 </Link>
               </li>
               <li>

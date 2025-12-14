@@ -2,10 +2,10 @@
 const nextConfig = {
   // Trailing slash configuration - ensures consistent URLs
   trailingSlash: false, // URLs without trailing slashes (e.g., /about instead of /about/)
-  
+
   // Skip trailing slash redirect for specific paths if needed
   skipTrailingSlashRedirect: false,
-  
+
   // Experimental features for performance
   experimental: {
     scrollRestoration: true,
@@ -49,7 +49,7 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
-       {
+      {
         protocol: 'https',
         hostname: 'techolyze.com',
         port: '',
@@ -62,6 +62,8 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
+    // Configure allowed quality values for images
+    qualities: [75, 85],
     // Disable image optimization for external images to prevent 500 errors
     unoptimized: true,
   },

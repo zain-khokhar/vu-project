@@ -211,8 +211,8 @@ export default function ContactPage() {
                     value={formData.fullName}
                     onChange={handleInputChange}
                     className={`w-full px-4 py-4 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl text-gray-900 placeholder-gray-500 ${errors.fullName
-                        ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50'
-                        : 'border-white/80'
+                      ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50'
+                      : 'border-white/80'
                       }`}
                     placeholder="Enter your full name"
                     disabled={isSubmitting}
@@ -237,8 +237,8 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     className={`w-full px-4 py-4 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl text-gray-900 placeholder-gray-500 ${errors.email
-                        ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50'
-                        : 'border-white/80'
+                      ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50'
+                      : 'border-white/80'
                       }`}
                     placeholder="Enter your email address"
                     disabled={isSubmitting}
@@ -263,8 +263,8 @@ export default function ContactPage() {
                     value={formData.subject}
                     onChange={handleInputChange}
                     className={`w-full px-4 py-4 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl text-gray-900 placeholder-gray-500 ${errors.subject
-                        ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50'
-                        : 'border-white/80'
+                      ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50'
+                      : 'border-white/80'
                       }`}
                     placeholder="What is this about?"
                     disabled={isSubmitting}
@@ -289,8 +289,8 @@ export default function ContactPage() {
                     onChange={handleInputChange}
                     rows={6}
                     className={`w-full px-4 py-4 backdrop-blur-xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-400 transition-all duration-300 shadow-lg hover:shadow-xl text-gray-900 placeholder-gray-500 resize-vertical ${errors.message
-                        ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50'
-                        : 'border-white/80'
+                      ? 'border-red-400/50 bg-gradient-to-r from-red-50/70 via-red-50/60 to-red-50/50'
+                      : 'border-white/80'
                       }`}
                     placeholder="Please describe your question or concern in detail..."
                     disabled={isSubmitting}
@@ -311,8 +311,8 @@ export default function ContactPage() {
                   type="submit"
                   disabled={isSubmitting}
                   className={`w-full py-5 px-6 rounded-2xl font-medium text-white transition-all duration-500 flex items-center justify-center space-x-2 group/btn relative overflow-hidden shadow-2xl hover:shadow-3xl ${isSubmitting
-                      ? 'bg-gradient-to-r from-gray-400 to-gray-500 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-indigo-500/80 via-purple-600/70 to-blue-600/80 hover:scale-105 active:scale-95'
+                    ? 'bg-gradient-to-r from-gray-400 to-gray-500 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-indigo-500/80 via-purple-600/70 to-blue-600/80 hover:scale-105 active:scale-95'
                     }`}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/15 via-transparent to-white/15 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 -skew-x-12 group-hover/btn:skew-x-0"></div>
@@ -367,7 +367,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Phone</p>
-                    <p className="text-indigo-600 font-light">+1 (555) 123-4567</p>
+                    <p className="text-indigo-600 font-light">+93298129517</p>
                     <p className="text-sm text-gray-600 font-light">Mon-Fri, 9AM-6PM EST</p>
                   </div>
                 </div>
@@ -378,8 +378,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Address</p>
-                    <p className="text-gray-700 font-light">123 Education Street</p>
-                    <p className="text-gray-700 font-light">Learning City, LC 12345</p>
+                    <p className="text-gray-700 font-light">Lahore</p>
+                    <p className="text-gray-700 font-light">Punjab, Pakistan</p>
                   </div>
                 </div>
               </div>
@@ -417,7 +417,7 @@ export default function ContactPage() {
             </div>
 
             {/* FAQ Link */}
-            <div className="backdrop-blur-2xl bg-gradient-to-br from-indigo-50/70 via-purple-50/60 to-blue-50/50 border border-indigo-200/50 rounded-3xl shadow-2xl p-6 hover:shadow-3xl transition-all duration-500 group">
+            {/* <div className="backdrop-blur-2xl bg-gradient-to-br from-indigo-50/70 via-purple-50/60 to-blue-50/50 border border-indigo-200/50 rounded-3xl shadow-2xl p-6 hover:shadow-3xl transition-all duration-500 group">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
 
               <h3 className="text-xl font-light text-gray-900 mb-3 relative flex items-center">
@@ -434,7 +434,7 @@ export default function ContactPage() {
                 <span>Visit FAQ Page</span>
                 <span className="ml-2 group-hover/link:translate-x-1 transition-transform duration-300">→</span>
               </Link>
-            </div>
+            </div> */}
 
             {/* Feedback Form */}
             {/* <FeedbackForm /> */}

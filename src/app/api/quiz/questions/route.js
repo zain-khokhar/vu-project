@@ -31,7 +31,7 @@ export async function GET(request) {
     // Get random questions
     const totalQuestions = quiz.questions.length;
     const questionsToReturn = Math.min(count, totalQuestions);
-    
+
     // Shuffle and select questions
     const shuffledQuestions = [...quiz.questions]
       .sort(() => Math.random() - 0.5)

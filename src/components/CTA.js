@@ -58,7 +58,7 @@ export function CTA() {
         <div className="relative">
 
           {/* Main CTA card */}
-          <div className="relative bg-white/40 backdrop-blur rounded-[3rem] p-12 lg:p-16 text-center overflow-hidden shadow-2xl">
+          <div className="relative bg-white/40 rounded-[3rem] p-12 lg:p-16 text-center overflow-hidden shadow-2xl">
 
             <div className="max-w-3xl mx-auto flex flex-col gap-6 relative z-10">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 w-fit shadow-lg mx-auto">

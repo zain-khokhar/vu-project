@@ -5,7 +5,19 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Search, Filter, X } from 'lucide-react';
 import { documentTypes } from '@/lib/utils';
 
-export default function SearchFilters({ filterOptions }) {
+export default function SearchFilters({
+  filterOptions,
+  baseUrl = '/documents',
+  searchPlaceholder = 'Search documents...',
+  searchLabel = 'Search documents by title or keywords',
+  showTypeFilter = true,
+  showSubjectFilter = true,
+  showUniversityFilter = true,
+  showYearFilter = true,
+  showCategoryFilter = false,
+  categoryLabel = 'Category',
+  searchHelpText = null
+}) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
@@ -17,7 +29,8 @@ export default function SearchFilters({ filterOptions }) {
     type: searchParams.get('type') || '',
     subject: searchParams.get('subject') || '',
     university: searchParams.get('university') || '',
-    year: searchParams.get('year') || ''
+    year: searchParams.get('year') || '',
+    category: searchParams.get('category') || ''
   };
 
   const handleSearch = (e) => {
@@ -42,14 +55,14 @@ export default function SearchFilters({ filterOptions }) {
 
     const queryString = params.toString();
     startTransition(() => {
-      router.push(`/documents${queryString ? `?${queryString}` : ''}`);
+      router.push(`${baseUrl}${queryString ? `?${queryString}` : ''}`);
     });
   };
 
   const clearAllFilters = () => {
     setSearchTerm('');
     startTransition(() => {
-      router.push('/documents');
+      router.push(baseUrl);
     });
   };
 
@@ -67,13 +80,13 @@ export default function SearchFilters({ filterOptions }) {
             />
             <input
               type="search"
-              id="document-search"
+              id="search-input"
               name="search"
-              placeholder="Search documents..."
+              placeholder={searchPlaceholder}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-12 pr-4 py-3 bg-white/90 border-2 border-gray-200/80 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 shadow-sm hover:shadow-md hover:border-gray-300/80"
-              aria-label="Search documents by title or keywords"
+              aria-label={searchLabel}
               autoComplete="off"
             />
           </div>
@@ -82,7 +95,7 @@ export default function SearchFilters({ filterOptions }) {
               type="submit"
               disabled={isPending}
               className="flex-1 sm:flex-none group relative px-6 sm:px-7 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-purple-600 text-white font-semibold text-sm rounded-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/40 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed"
-              aria-label="Search documents"
+              aria-label="Search"
             >
               <div className="relative flex items-center justify-center gap-2">
                 <Search className="h-4 w-4 sm:hidden" aria-hidden="true" />
@@ -106,6 +119,13 @@ export default function SearchFilters({ filterOptions }) {
             </button>
           </div>
         </form>
+
+        {/* Search Help Text */}
+        {searchHelpText && (
+          <div className="mb-4 px-4 py-2 bg-blue-50 border border-blue-200 rounded-lg">
+            <p className="text-sm text-blue-800">{searchHelpText}</p>
+          </div>
+        )}
 
         {/* Active Filters */}
         {hasActiveFilters && (
@@ -173,105 +193,142 @@ export default function SearchFilters({ filterOptions }) {
         {showFilters && (
           <div
             id="filter-panel"
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-6 bg-white/90 border-2 border-purple-200/50 rounded-2xl shadow-xl shadow-purple-500/10"
+            className={`grid grid-cols-1 ${[showTypeFilter, showSubjectFilter, showUniversityFilter, showYearFilter, showCategoryFilter].filter(Boolean).length > 2
+                ? 'sm:grid-cols-2 lg:grid-cols-4'
+                : 'sm:grid-cols-2'
+              } gap-4 p-6 bg-white/90 border-2 border-purple-200/50 rounded-2xl shadow-xl shadow-purple-500/10`}
             role="region"
             aria-label="Filter options"
           >
             {/* Type Filter */}
-            <div>
-              <label
-                htmlFor="filter-type"
-                className="block text-sm font-bold text-gray-900 mb-2.5"
-              >
-                Type
-              </label>
-              <select
-                id="filter-type"
-                value={currentFilters.type}
-                onChange={(e) => updateURL({ type: e.target.value })}
-                className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
-                aria-label="Filter by document type"
-              >
-                <option value="">All Types</option>
-                {Object.entries(documentTypes).map(([value, config]) => (
-                  <option key={value} value={value}>
-                    {config.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+            {showTypeFilter && (
+              <div>
+                <label
+                  htmlFor="filter-type"
+                  className="block text-sm font-bold text-gray-900 mb-2.5"
+                >
+                  Type
+                </label>
+                <select
+                  id="filter-type"
+                  value={currentFilters.type}
+                  onChange={(e) => updateURL({ type: e.target.value })}
+                  className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
+                  aria-label="Filter by document type"
+                >
+                  <option value="">All Types</option>
+                  {Object.entries(documentTypes).map(([value, config]) => (
+                    <option key={value} value={value}>
+                      {config.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
 
             {/* Subject Filter */}
-            <div>
-              <label
-                htmlFor="filter-subject"
-                className="block text-sm font-bold text-gray-900 mb-2.5"
-              >
-                Subject
-              </label>
-              <select
-                id="filter-subject"
-                value={currentFilters.subject}
-                onChange={(e) => updateURL({ subject: e.target.value })}
-                className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
-                aria-label="Filter by subject"
-              >
-                <option value="">All Subjects</option>
-                {filterOptions.subjects?.map((subject) => (
-                  <option key={subject} value={subject}>
-                    {subject}
-                  </option>
-                ))}
-              </select>
-            </div>
+            {showSubjectFilter && (
+              <div>
+                <label
+                  htmlFor="filter-subject"
+                  className="block text-sm font-bold text-gray-900 mb-2.5"
+                >
+                  Subject
+                </label>
+                <select
+                  id="filter-subject"
+                  value={currentFilters.subject}
+                  onChange={(e) => updateURL({ subject: e.target.value })}
+                  className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
+                  aria-label="Filter by subject"
+                >
+                  <option value="">All Subjects</option>
+                  {filterOptions.subjects?.map((subject) => (
+                    <option key={subject} value={subject}>
+                      {subject}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
 
             {/* University Filter */}
-            <div>
-              <label
-                htmlFor="filter-university"
-                className="block text-sm font-bold text-gray-900 mb-2.5"
-              >
-                University
-              </label>
-              <select
-                id="filter-university"
-                value={currentFilters.university}
-                onChange={(e) => updateURL({ university: e.target.value })}
-                className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
-                aria-label="Filter by university"
-              >
-                <option value="">All Universities</option>
-                {filterOptions.universities?.map((university) => (
-                  <option key={university} value={university}>
-                    {university}
-                  </option>
-                ))}
-              </select>
-            </div>
+            {showUniversityFilter && (
+              <div>
+                <label
+                  htmlFor="filter-university"
+                  className="block text-sm font-bold text-gray-900 mb-2.5"
+                >
+                  University
+                </label>
+                <select
+                  id="filter-university"
+                  value={currentFilters.university}
+                  onChange={(e) => updateURL({ university: e.target.value })}
+                  className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
+                  aria-label="Filter by university"
+                >
+                  <option value="">All Universities</option>
+                  {filterOptions.universities?.map((university) => (
+                    <option key={university} value={university}>
+                      {university}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
 
             {/* Year Filter */}
-            <div>
-              <label
-                htmlFor="filter-year"
-                className="block text-sm font-bold text-gray-900 mb-2.5"
-              >
-                Year
-              </label>
-              <select
-                id="filter-year"
-                value={currentFilters.year}
-                onChange={(e) => updateURL({ year: e.target.value })}
-                className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
-                aria-label="Filter by year"
-              >
-                <option value="">All Years</option>
-                {filterOptions.years?.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-            </div>
+            {showYearFilter && (
+              <div>
+                <label
+                  htmlFor="filter-year"
+                  className="block text-sm font-bold text-gray-900 mb-2.5"
+                >
+                  Year
+                </label>
+                <select
+                  id="filter-year"
+                  value={currentFilters.year}
+                  onChange={(e) => updateURL({ year: e.target.value })}
+                  className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
+                  aria-label="Filter by year"
+                >
+                  <option value="">All Years</option>
+                  {filterOptions.years?.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {/* Category Filter */}
+            {showCategoryFilter && (
+              <div>
+                <label
+                  htmlFor="filter-category"
+                  className="block text-sm font-bold text-gray-900 mb-2.5"
+                >
+                  {categoryLabel}
+                </label>
+                <select
+                  id="filter-category"
+                  value={currentFilters.category}
+                  onChange={(e) => updateURL({ category: e.target.value })}
+                  className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
+                  aria-label={`Filter by ${categoryLabel.toLowerCase()}`}
+                >
+                  <option value="">All Categories</option>
+                  {filterOptions.categories?.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
         )}
       </div>

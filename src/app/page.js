@@ -232,7 +232,6 @@ export default async function Home() {
             <div className="relative h-[500px] hidden lg:block">
               {/* Card 1 - Modern Liquid Document Card - Top Left */}
               <div className="absolute top-0 left-0 w-[48%] h-[45%] group">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/30 via-cyan-400/25 to-transparent rounded-3xl blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125"></div>
                 <div className="relative h-full backdrop-blur-3xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-700 hover:scale-105 hover:border-white/100 group-hover:shadow-blue-500/20">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-cyan-50/30 to-transparent pointer-events-none"></div>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-700"></div>
@@ -358,12 +357,6 @@ export default async function Home() {
       <Features />
       {/* Latest Documents - Glossy Liquid Design */}
       <section className="relative py-20 overflow-hidden">
-        {/* Liquid Background Orbs */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full blur-3xl  "></div>
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full blur-3xl  " style={{ animationDelay: '2s' }}></div>
-        </div>
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header with Liquid Badge */}
           <div className="flex items-center justify-between mb-12">
@@ -388,9 +381,7 @@ export default async function Home() {
           {documents && documents.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {documents.map((document) => (
-                <div key={document._id} className="group backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 hover:border-white/100 hover:bg-white/80 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-white/20 to-transparent pointer-events-none"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500"></div>
+                <div key={document._id} className="group  border border-white/90 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 hover:border-white/100 hover:bg-white/80 overflow-hidden">
                   <div className="relative">
                     <DocumentCard document={document} />
                   </div>

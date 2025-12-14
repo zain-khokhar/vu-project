@@ -42,7 +42,7 @@ export default function DocumentCard({ document }) {
     <Link href={`/documents/${document.slug}`} className="block h-full">
 
       {/* Card */}
-      <div className="relative h-full rounded-3xl bg-white border border-gray-200 overflow-hidden shadow-sm group-hover:shadow-xl transition-all duration-300">
+      <div className="relative h-full rounded-3xl bg-white/80 border border-gray-200 overflow-hidden shadow-sm group-hover:shadow-xl transition-all duration-300">
         {/* Top Bar */}
         <div className="p-5 pb-4">
           <div className="flex items-center justify-between mb-4">
@@ -93,7 +93,7 @@ export default function DocumentCard({ document }) {
         </div>
 
         {/* Action */}
-        <div className="mt-auto p-4 border-t bg-gray-50">
+        <div className="mt-auto p-4 border-t bg-gray-100">
           <div className="flex justify-end">
             <div
               className={`inline-flex items-center gap-3 px-4 py-3 rounded-xl text-white bg-gradient-to-r ${gradient} shadow-md group-hover:shadow-lg transition-all`}

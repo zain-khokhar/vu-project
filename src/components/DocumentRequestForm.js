@@ -55,11 +55,11 @@ export default function DocumentRequestForm() {
     };
 
     return (
-        <div className="w-full">
+        <div className="w-full py-12 sm:py-20">
             <div className="bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden">
                 <div className="grid grid-cols-1 lg:grid-cols-2">
                     {/* Left Side - Form */}
-                    <div className="p-12">
+                    <div className="p-6 sm:p-12">
                         {/* Header */}
                         <div className="mb-6">
                             <h2 className="text-4xl font-light bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-1">

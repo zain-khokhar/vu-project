@@ -5,17 +5,17 @@ import { Calendar, BookOpen } from 'lucide-react';
 
 export default function BlogCard({ blog }) {
   // Handle both old string format and new object format for backward compatibility
-  const coverImageUrl = typeof blog.coverImage === 'string' 
-    ? blog.coverImage 
+  const coverImageUrl = typeof blog.coverImage === 'string'
+    ? blog.coverImage
     : blog.coverImage?.url || '/default-blog-cover.jpg';
-  
+
   const coverImageAlt = typeof blog.coverImage === 'object' && blog.coverImage?.alt
     ? blog.coverImage.alt
     : blog.title;
 
   return (
     <Link href={`/blogs/${blog.slug}`}>
-      <div className="group h-full flex flex-col rounded-3xl overflow-hidden backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border-2 bg-clip-padding border-transparent cursor-pointer" style={{
+      <div className="group h-full flex flex-col rounded-3xl overflow-hidden  bg-white/80 border-2 bg-clip-padding border-transparent cursor-pointer" style={{
         // backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(236, 72, 153, 0.3), rgba(168, 85, 247, 0.2))',
         // backgroundOrigin: 'border-box',
         // backgroundClip: 'padding-box, border-box'
@@ -26,14 +26,14 @@ export default function BlogCard({ blog }) {
           {/* <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/30 via-blue-600/30 to-purple-600/30 rounded-3xl blur-2xl opacity-75  " aria-hidden /> */}
 
           {/* Glass frame */}
-          <div className="relative bg-gradient-to-r from-purple-600/30 via-blue-600/30 to-purple-600/30 backdrop-blur-sm rounded-3xl p-2 ">
+          <div className="relative bg-gradient-tor from-purple-600/30 via-blue-600/30 to-purple-600/30  rounded-3xl p-3 ">
             <div className="relative overflow-hidden rounded-2xl h-64">
-              <Image 
-                src={coverImageUrl} 
+              <Image
+                src={coverImageUrl}
                 width={400}
                 height={400}
-                alt={coverImageAlt} 
-                className="w-full h-full object-cover" 
+                alt={coverImageAlt}
+                className="w-full h-full object-cover"
               />
 
               {/* Glossy overlay */}
@@ -49,7 +49,7 @@ export default function BlogCard({ blog }) {
 
           <div className="relative">
             {/* Title */}
-            <h2 className="font-medium text-gray-900 text-xl md:text-xl leading-tight mb-3 line-clamp-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:via-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text transition-all duration-300">
+            <h2 className="font-medium text-gray-900 text-lg md:text-lg leading-tight mb-3 line-clamp-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:via-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text transition-all duration-300">
               {blog.title}
             </h2>
 

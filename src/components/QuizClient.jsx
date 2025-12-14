@@ -5,8 +5,17 @@ import { Clock, Hash, CheckCircle, Circle } from "lucide-react";
 import ResultPage from "@/components/ResultPage";
 
 export default function QuizClient({ quizData, settings }) {
+  // Initialize questions once on mount (shuffled)
+  const [selectedQuestions] = useState(() => {
+    if (quizData.questions && quizData.questions.length > 0) {
+      return [...quizData.questions]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, settings.questionCount);
+    }
+    return [];
+  });
+
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [userAnswers, setUserAnswers] = useState({});
   const [totalTimer, setTotalTimer] = useState(
     settings.questionCount * settings.timePerQuestion
@@ -19,13 +28,33 @@ export default function QuizClient({ quizData, settings }) {
 
   const isInstantMode = settings.quizMode === "instant";
 
-  // Initialize random questions
-  useEffect(() => {
-    const shuffled = [...quizData.questions]
-      .sort(() => Math.random() - 0.5)
-      .slice(0, settings.questionCount);
-    setSelectedQuestions(shuffled);
-  }, [quizData.questions, settings.questionCount]);
+  // Security: Disable right-click, copy, select, and keyboard shortcuts
+  // useEffect(() => {
+  //   const handleContextMenu = (e) => e.preventDefault();
+  //   const handleCopy = (e) => e.preventDefault();
+  //   const handleCut = (e) => e.preventDefault();
+  //   const handleKeyDown = (e) => {
+  //     // Prevent Ctrl+C, Ctrl+V, Ctrl+U, F12
+  //     if (
+  //       (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 'v' || e.key === 's')) ||
+  //       e.key === 'F12'
+  //     ) {
+  //       e.preventDefault();
+  //     }
+  //   };
+
+  //   document.addEventListener('contextmenu', handleContextMenu);
+  //   document.addEventListener('copy', handleCopy);
+  //   document.addEventListener('cut', handleCut);
+  //   document.addEventListener('keydown', handleKeyDown);
+
+  //   return () => {
+  //     document.removeEventListener('contextmenu', handleContextMenu);
+  //     document.removeEventListener('copy', handleCopy);
+  //     document.removeEventListener('cut', handleCut);
+  //     document.removeEventListener('keydown', handleKeyDown);
+  //   };
+  // }, []);
 
   // Total Timer only
   useEffect(() => {
@@ -194,47 +223,64 @@ export default function QuizClient({ quizData, settings }) {
     ((currentQuestionIndex + 1) / selectedQuestions.length) * 100;
 
   return (
-    <div className="max-h-screen">
+    <main
+      className=" select-none"
+      role="main"
+      aria-label="Quiz interface"
+      onContextMenu={(e) => e.preventDefault()}
+      onCopy={(e) => e.preventDefault()}
+      onCut={(e) => e.preventDefault()}
+      style={{ userSelect: 'none', WebkitUserSelect: 'none' }}
+    >
       <div className="max-w-8xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
           {/* LEFT SIDE - Question Card */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200 h-full flex flex-col">
+          <article className="lg:col-span-2" aria-labelledby="question-heading">
+            <section className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200 h-full flex flex-col">
               {/* Question Header */}
-              <div className="p-6 border-b-2 border-gray-200">
+              <header className="p-6 border-b-2 border-gray-200">
                 <div className="flex items-center justify-between mb-6">
-                  <span className="text-gray-700 text-base font-semibold">
-                    Question {currentQuestionIndex + 1} of{" "}
-                    {selectedQuestions.length}
+                  <span className="text-gray-700 text-base font-semibold" aria-live="polite">
+                    Question {currentQuestionIndex + 1} of {selectedQuestions.length}
                   </span>
                   {currentQuestion.difficulty && (
-                    <span className="px-3 py-1 bg-gray-200 rounded-full text-sm font-semibold text-gray-700">
+                    <span className="px-3 py-1 bg-gray-200 rounded-full text-sm font-semibold text-gray-700" aria-label={`Difficulty: ${currentQuestion.difficulty}`}>
                       {currentQuestion.difficulty}
                     </span>
                   )}
                 </div>
-                <h3 className="text-2xl md:text-3xl border border-gray-300 rounded p-3 text-gray-900 leading-relaxed min-h-[170px] max-h-[170px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+                <h2 id="question-heading" className="text-lg md:text-xl border border-gray-300 rounded p-3 text-gray-900 leading-relaxed min-h-[170px] max-h-[170px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
                   {currentQuestion.question}
-                </h3>
-              </div>
+                </h2>
+              </header>
 
               {/* Options */}
-              <div className="p-8 space-y-4 flex-grow min-h-[370px] border-b-2 border-gray-200">
+              <fieldset className="p-8 space-y-4 flex-grow min-h-[370px] border-b-2 border-gray-200" aria-labelledby="question-heading">
+                <legend className="sr-only">Select your answer</legend>
                 {currentQuestion.options.map((option, index) => (
-                  <button
+                  <label
                     key={index}
-                    onClick={() => handleAnswerSelect(option)}
-                    className={`w-full text-left p-4 rounded border-2 transition-all duration-200 ${selectedOption === option
+                    className={`w-full block text-left p-4 rounded border-2 transition-all duration-200 cursor-pointer ${selectedOption === option
                       ? "border-indigo-600 bg-indigo-50 shadow-md"
                       : "border-gray-300 hover:border-indigo-400 hover:bg-gray-50"
                       }`}
                   >
+                    <input
+                      type="radio"
+                      name={`question-${currentQuestionIndex}`}
+                      value={option}
+                      checked={selectedOption === option}
+                      onChange={() => handleAnswerSelect(option)}
+                      className="sr-only"
+                      aria-describedby={`option-${index}`}
+                    />
                     <div className="flex items-center">
                       <div
-                        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center mr-4 flex-shrink-0 ${selectedOption === option
+                        className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 flex-shrink-0 ${selectedOption === option
                           ? "border-indigo-600 bg-indigo-600"
                           : "border-gray-400"
                           }`}
+                        aria-hidden="true"
                       >
                         {selectedOption === option && (
                           <svg
@@ -250,26 +296,26 @@ export default function QuizClient({ quizData, settings }) {
                           </svg>
                         )}
                       </div>
-                      <span className="text-gray-900 font-light text-xl">
+                      <span id={`option-${index}`} className="text-gray-900 font-light text-md">
                         {option}
                       </span>
                     </div>
-                  </button>
+                  </label>
                 ))}
-              </div>
+              </fieldset>
 
               {/* Instant Feedback */}
               {isInstantMode && feedbackShown[currentQuestionIndex] && (
-                <div className="px-8 pb-4">
+                <aside className="px-8 pb-4" role="alert" aria-live="polite">
                   <div className={`p-4 rounded-lg border-2 ${userAnswers[currentQuestionIndex] === currentQuestion.correct
                     ? 'bg-green-50 border-green-500 text-green-700'
                     : 'bg-red-50 border-red-500 text-red-700'
                     }`}>
                     <div className="flex items-center space-x-2">
                       {userAnswers[currentQuestionIndex] === currentQuestion.correct ? (
-                        <CheckCircle className="h-5 w-5 text-green-600" />
+                        <CheckCircle className="h-5 w-5 text-green-600" aria-hidden="true" />
                       ) : (
-                        <Circle className="h-5 w-5 text-red-600" />
+                        <Circle className="h-5 w-5 text-red-600" aria-hidden="true" />
                       )}
                       <span className="font-semibold">
                         {userAnswers[currentQuestionIndex] === currentQuestion.correct
@@ -288,15 +334,16 @@ export default function QuizClient({ quizData, settings }) {
                       </p>
                     )}
                   </div>
-                </div>
+                </aside>
               )}
 
               {/* Navigation Buttons */}
-              <div className="p-8 flex gap-4">
+              <nav className="p-8 flex gap-4" aria-label="Question navigation">
                 <button
                   onClick={handlePreviousQuestion}
                   disabled={currentQuestionIndex === 0}
                   className="flex-1 bg-gray-100 text-gray-700 py-4 rounded font-semibold text-lg hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                  aria-label="Previous question"
                 >
                   Previous
                 </button>
@@ -308,6 +355,7 @@ export default function QuizClient({ quizData, settings }) {
                       onClick={handleSaveAndCheck}
                       disabled={!userAnswers[currentQuestionIndex]}
                       className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-xl"
+                      aria-label="Save and check your answer"
                     >
                       Save & Check
                     </button>
@@ -316,6 +364,7 @@ export default function QuizClient({ quizData, settings }) {
                       <button
                         onClick={handleNextAfterCheck}
                         className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 hover:shadow-xl"
+                        aria-label="Go to next question"
                       >
                         Next Question
                       </button>
@@ -323,6 +372,7 @@ export default function QuizClient({ quizData, settings }) {
                       <button
                         onClick={handleSubmitClick}
                         className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-xl"
+                        aria-label="Submit quiz"
                       >
                         Submit Quiz
                       </button>
@@ -334,6 +384,7 @@ export default function QuizClient({ quizData, settings }) {
                     <button
                       onClick={handleNextQuestion}
                       className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 hover:shadow-xl"
+                      aria-label="Go to next question"
                     >
                       Next Question
                     </button>
@@ -341,50 +392,52 @@ export default function QuizClient({ quizData, settings }) {
                     <button
                       onClick={handleSubmitClick}
                       className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-xl"
+                      aria-label="Submit quiz"
                     >
                       Submit Quiz
                     </button>
                   )
                 )}
-              </div>
-            </div>
-          </div>
+              </nav>
+            </section>
+          </article>
 
           {/* RIGHT SIDE - Stats & Navigation */}
-          <div className="lg:col-span-1 bg-white h-full border border-gray-200 rounded-2xl shadow-xl overflow-hidden">
+          <aside className="lg:col-span-1 bg-white h-full border border-gray-200 rounded-2xl shadow-xl overflow-hidden" aria-label="Quiz statistics and navigation">
             <div className="space-y-6 p-6">
               {/* Timer Card */}
-              <div className="pb-6 border-b-2 border-gray-200">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-gray-900 text-lg">
+              <section className="pb-6 border-b-2 border-gray-200" aria-labelledby="timer-heading">
+                <header className="flex items-center justify-between mb-4">
+                  <h3 id="timer-heading" className="font-semibold text-gray-900 text-lg">
                     Time Remaining
                   </h3>
-                  <Clock className="h-6 w-6 text-purple-600" />
-                </div>
-                <div className="text-center">
+                  <Clock className="h-6 w-6 text-purple-600" aria-hidden="true" />
+                </header>
+                <div className="text-center" role="timer" aria-live="polite" aria-atomic="true">
                   <p
                     className={`text-4xl font-bold ${totalTimer <= 30
-                      ? "text-red-600  "
+                      ? "text-red-600"
                       : "text-gray-900"
                       }`}
+                    aria-label={`${Math.floor(totalTimer / 60)} minutes and ${totalTimer % 60} seconds remaining`}
                   >
                     {formatTime(totalTimer)}
                   </p>
                 </div>
-              </div>
+              </section>
 
               {/* Question Bubble Menu */}
-              <div className="pb-6 border-b-2 border-gray-200 flex flex-col h-[350px]">
+              <nav className="pb-6 border-b-2 border-gray-200 flex flex-col h-[350px]" aria-label="Question navigation">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-4 flex-shrink-0">
+                <header className="flex items-center justify-between mb-4 flex-shrink-0">
                   <h3 className="font-semibold text-gray-900 text-lg flex items-center">
-                    <Hash className="h-5 w-5 mr-2 text-indigo-600" />
+                    <Hash className="h-5 w-5 mr-2 text-indigo-600" aria-hidden="true" />
                     All Questions
                   </h3>
-                </div>
+                </header>
 
                 {/* Scrollable Grid */}
-                <div className="grid grid-cols-6 gap-2 pb-4 overflow-y-auto bg-gray-200 rounded p-2 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent flex-grow shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)]">
+                <div className="grid grid-cols-6 gap-2 pb-4 overflow-y-auto bg-gray-200 rounded p-2 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent flex-grow shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)]" role="list" aria-label="Question list">
                   {selectedQuestions.map((_, index) => {
                     const isAnswered = userAnswers[index] !== undefined;
                     const isCurrent = index === currentQuestionIndex;
@@ -395,6 +448,9 @@ export default function QuizClient({ quizData, settings }) {
                       <button
                         key={index}
                         onClick={() => goToQuestion(index)}
+                        role="listitem"
+                        aria-label={`Question ${index + 1}${isAnswered ? ', answered' : ', not answered'}${isCurrent ? ', current' : ''}`}
+                        aria-current={isCurrent ? 'true' : undefined}
                         className={`aspect-square rounded-full h-12 w-12 font-semibold text-sm flex items-center justify-center border-2 transition-all ${isCurrent
                           ? "bg-gradient-to-br from-indigo-600 to-purple-600 text-white border-indigo-500 ring-2 ring-indigo-300"
                           : isInstantMode && isChecked
@@ -407,7 +463,7 @@ export default function QuizClient({ quizData, settings }) {
                           }`}
                       >
                         {(isAnswered && !isCurrent) || isChecked ? (
-                          <CheckCircle className="h-5 w-5" />
+                          <CheckCircle className="h-5 w-5" aria-hidden="true" />
                         ) : (
                           index + 1
                         )}
@@ -472,40 +528,46 @@ export default function QuizClient({ quizData, settings }) {
                     )}
                   </div>
                 </div>
-              </div>
+              </nav>
 
               {/* Progress Card */}
-              <div className="pb-6 border-b-2 border-gray-200">
-                <h3 className="font-semibold text-gray-900 text-lg mb-4">
+              <section className="pb-6 border-b-2 border-gray-200" aria-labelledby="progress-heading">
+                <h3 id="progress-heading" className="font-semibold text-gray-900 text-lg mb-4">
                   Progress
                 </h3>
                 <div className="space-y-4">
                   <div>
                     <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
                       <span className="font-medium">Questions Answered</span>
-                      <span className="font-bold text-gray-900 text-base">
+                      <span className="font-bold text-gray-900 text-base" aria-live="polite">
                         {getAnsweredCount()} / {selectedQuestions.length}
                       </span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden border border-gray-300">
+                    <div
+                      className="w-full bg-gray-200 rounded-full h-3 overflow-hidden border border-gray-300"
+                      role="progressbar"
+                      aria-valuenow={getAnsweredCount()}
+                      aria-valuemin={0}
+                      aria-valuemax={selectedQuestions.length}
+                      aria-label="Quiz progress"
+                    >
                       <div
                         className="bg-gradient-to-r from-indigo-600 to-purple-600 h-3 rounded-full transition-all duration-300"
                         style={{
-                          width: `${(getAnsweredCount() / selectedQuestions.length) *
-                            100
-                            }%`,
+                          width: `${(getAnsweredCount() / selectedQuestions.length) * 100}%`,
                         }}
                       />
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
 
               {/* Submit Button */}
               <div>
                 <button
                   onClick={handleSubmitClick}
                   className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-bold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center space-x-2"
+                  aria-label="Submit quiz now"
                 >
                   <span>Submit Quiz</span>
                   <svg
@@ -513,6 +575,7 @@ export default function QuizClient({ quizData, settings }) {
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
+                    aria-hidden="true"
                   >
                     <path
                       strokeLinecap="round"
@@ -524,14 +587,19 @@ export default function QuizClient({ quizData, settings }) {
                 </button>
               </div>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
 
       {/* Confirmation Dialog */}
       {showConfirmDialog && (
-        <div className="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 transform transition-all">
+        <div
+          className="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center z-50 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="confirm-dialog-title"
+        >
+          <article className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 transform transition-all" role="alertdialog">
             <div className="text-center">
               {/* Icon */}
               <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-yellow-100 mb-4">
@@ -551,9 +619,9 @@ export default function QuizClient({ quizData, settings }) {
               </div>
 
               {/* Title */}
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+              <h2 id="confirm-dialog-title" className="text-2xl font-bold text-gray-900 mb-3">
                 Submit Quiz?
-              </h3>
+              </h2>
 
               {/* Message */}
               <div className="mb-6 space-y-3">
@@ -594,9 +662,9 @@ export default function QuizClient({ quizData, settings }) {
                 </button>
               </div>
             </div>
-          </div>
+          </article>
         </div>
       )}
-    </div>
+    </main>
   );
 }
