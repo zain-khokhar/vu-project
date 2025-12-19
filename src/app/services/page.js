@@ -19,7 +19,7 @@ import {
 import CTA from '@/components/CTA';
 
 export const metadata = {
-  title: 'Our Services - VUEDU',
+  title: 'Our Services - Vuedu',
   description: 'Explore our professional academic and LMS support services designed to make your learning journey smooth and stress-free.',
   keywords: 'LMS handling, academic support, assignments, quizzes, final year project, FYP guidance'
 };
@@ -29,7 +29,7 @@ const ServiceCard = ({ icon: Icon, title, description, highlight = false }) => (
   <div className={`group backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden relative ${highlight ? 'ring-2 ring-indigo-200/50' : ''}`}>
     {/* Glossy overlay */}
     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-    
+
     <div className="relative flex items-start space-x-4">
       <div className={`flex-shrink-0 p-4 rounded-2xl transition-all duration-500 ${highlight ? 'bg-gradient-to-br from-indigo-400/30 via-purple-400/20 to-blue-400/30 group-hover:scale-110' : 'bg-gradient-to-br from-indigo-100/50 via-purple-100/30 to-blue-100/50 group-hover:scale-110'}`}>
         <Icon className={`h-6 w-6 transition-all duration-500 ${highlight ? 'text-indigo-600' : 'text-indigo-600'}`} />

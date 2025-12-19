@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { FileText, Edit, Trash2, Search, RefreshCw, Clock, BookOpen, GraduationCap, Calendar } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import AdminPagination from './AdminPagination';
+import { getAllDocumentsAdmin, deleteDocumentAdmin } from '@/actions/admin';
 
 export default function DocumentManagement() {
     const router = useRouter();
@@ -27,14 +28,7 @@ export default function DocumentManagement() {
     const fetchDocuments = async (page = 1, search = '') => {
         setLoading(true);
         try {
-            const params = new URLSearchParams({
-                page: page.toString(),
-                limit: limit.toString(),
-                ...(search && { search })
-            });
-
-            const response = await fetch(`/api/admin/documents?${params}`);
-            const data = await response.json();
+            const data = await getAllDocumentsAdmin(page, limit, search);
 
             if (data.success) {
                 setDocuments(data.documents || []);
@@ -46,7 +40,7 @@ export default function DocumentManagement() {
                 setDocuments([]);
             }
         } catch (err) {
-            setError('Network error while fetching documents');
+            setError('Error while fetching documents');
             setDocuments([]);
         } finally {
             setLoading(false);
@@ -54,18 +48,15 @@ export default function DocumentManagement() {
     };
 
     // Delete document
-    const deleteDocument = async (id) => {
+    const handleDeleteDocument = async (id) => {
         if (!confirm('Are you sure you want to delete this document? This action cannot be undone and will also delete all associated comments.')) {
             return;
         }
 
         setDeletingId(id);
         try {
-            const response = await fetch(`/api/admin/documents/${id}`, {
-                method: 'DELETE'
-            });
+            const data = await deleteDocumentAdmin(id);
 
-            const data = await response.json();
             if (data.success) {
                 // Refresh the list
                 fetchDocuments(currentPage, searchQuery);
@@ -73,7 +64,7 @@ export default function DocumentManagement() {
                 alert(data.error || 'Failed to delete document');
             }
         } catch (err) {
-            alert('Network error while deleting document');
+            alert('Error while deleting document');
         } finally {
             setDeletingId('');
         }
@@ -223,7 +214,7 @@ export default function DocumentManagement() {
 
                                         {/* Delete Button */}
                                         <button
-                                            onClick={() => deleteDocument(doc._id)}
+                                            onClick={() => handleDeleteDocument(doc._id)}
                                             disabled={deletingId === doc._id}
                                             className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                                             title="Delete Document"

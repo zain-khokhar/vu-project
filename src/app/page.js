@@ -15,7 +15,7 @@ import {
 import Image from 'next/image';
 
 export const metadata = generateDocumentMetadata({
-  title: "VUEDU - Free Educational Documents & Study Resources in Pakistan",
+  title: "Vuedu - Free Educational Documents & Study Resources in Pakistan",
   description: "Pakistan's leading educational platform. Access thousands of free educational documents, books, notes, handouts, past papers, and study materials for Pakistani universities and colleges. Join students from Karachi, Lahore, Islamabad, and across Pakistan.",
   keywords: [
     "educational documents pakistan",
@@ -47,19 +47,22 @@ export default async function Home() {
   const blogsResult = await getLatestBlogs(3);
   const { blogs } = blogsResult.success ? blogsResult : { blogs: [] };
 
+  // Ensure consistent URL for hydration
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev';
+
   // FAQ Structured Data
   const faqData = [
     {
-      question: "What is VUEDU?",
-      answer: "VUEDU is Pakistan's leading free educational platform where students and educators can access and share educational documents including books, notes, handouts, past papers, and study materials. We serve students from all major cities including Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad, and across Pakistan.",
+      question: "What is Vuedu?",
+      answer: "Vuedu is Pakistan's leading free educational platform where students and educators can access and share educational documents including books, notes, handouts, past papers, and study materials. We serve students from all major cities including Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad, and across Pakistan.",
     },
     {
-      question: "Is VUEDU available in Pakistan?",
-      answer: "Yes! VUEDU is specifically designed for Pakistani students and educators. We offer resources for all major Pakistani universities including Virtual University (VU), AIOU, NUST, LUMS, UET, Punjab University, Karachi University, and many more.",
+      question: "Is Vuedu available in Pakistan?",
+      answer: "Yes! Vuedu is specifically designed for Pakistani students and educators. We offer resources for all major Pakistani universities including Virtual University (VU), AIOU, NUST, LUMS, UET, Punjab University, Karachi University, and many more.",
     },
     {
-      question: "Is VUEDU really free?",
-      answer: "Yes! VUEDU is completely free to use. You can browse, download, and share documents without any charges or hidden fees. We believe education should be accessible to all Pakistani students.",
+      question: "Is Vuedu really free?",
+      answer: "Yes! Vuedu is completely free to use. You can browse, download, and share documents without any charges or hidden fees. We believe education should be accessible to all Pakistani students.",
     },
     {
       question: "What types of documents can I find?",
@@ -71,7 +74,7 @@ export default async function Home() {
     },
     {
       question: "Which Pakistani universities are covered?",
-      answer: "VUEDU covers all major Pakistani universities including Virtual University (VU), AIOU, NUST, LUMS, UET, FAST, COMSATS, Punjab University, Karachi University, Peshawar University, Quaid-e-Azam University, and many more institutions across Pakistan.",
+      answer: "Vuedu covers all major Pakistani universities including Virtual University (VU), AIOU, NUST, LUMS, UET, FAST, COMSATS, Punjab University, Karachi University, Peshawar University, Quaid-e-Azam University, and many more institutions across Pakistan.",
     },
   ];
 
@@ -87,9 +90,9 @@ export default async function Home() {
             {
               '@context': 'https://schema.org',
               '@type': 'EducationalOrganization',
-              name: 'VUEDU',
+              name: 'Vuedu',
               description: 'Pakistan\'s leading free educational platform for sharing documents and study materials',
-              url: process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev',
+              url: siteUrl,
               areaServed: {
                 '@type': 'Country',
                 name: 'Pakistan',
@@ -128,13 +131,13 @@ export default async function Home() {
             {
               '@context': 'https://schema.org',
               '@type': 'WebSite',
-              name: 'VUEDU',
-              url: process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev',
+              name: 'Vuedu',
+              url: siteUrl,
               potentialAction: {
                 '@type': 'SearchAction',
                 target: {
                   '@type': 'EntryPoint',
-                  urlTemplate: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev'}/documents?search={search_term_string}`,
+                  urlTemplate: `${siteUrl}/documents?search={search_term_string}`,
                 },
                 'query-input': 'required name=search_term_string',
               },
@@ -165,7 +168,7 @@ export default async function Home() {
             <div className="space-y-6 relative z-10">
               {/* Premium Badge with Liquid Effect */}
               <div className="inline-block group">
-                <div className="relative backdrop-blur-3xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden">
+                <div className="relative bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden">
                   <span className="relative text-xs font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent tracking-wide">🇵🇰 #1 LEARNING PLATFORM</span>
                 </div>
               </div>
@@ -233,8 +236,8 @@ export default async function Home() {
               {/* Card 1 - Modern Liquid Document Card - Top Left */}
               <div className="absolute top-0 left-0 w-[48%] h-[45%] group">
                 <div className="relative h-full backdrop-blur-3xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-700 hover:scale-105 hover:border-white/100 group-hover:shadow-blue-500/20">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-cyan-50/30 to-transparent pointer-events-none"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-700"></div>
+                  {/* <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-cyan-50/30 to-transparent pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-700"></div> */}
 
                   <div className="relative p-4 h-full flex flex-col justify-between">
                     <div className="flex items-start justify-between">
@@ -407,12 +410,6 @@ export default async function Home() {
 
       {/* Latest Blogs - Glossy Liquid Design */}
       <section className="relative py-20 overflow-hidden">
-        {/* Liquid Background Orbs */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 left-1/3 w-96 h-96 bg-gradient-to-br from-purple-400/15 via-pink-300/10 to-transparent rounded-full blur-3xl  "></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-indigo-400/15 via-blue-300/10 to-transparent rounded-full blur-3xl  " style={{ animationDelay: '2s' }}></div>
-        </div>
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header with Liquid Badge */}
           <div className="flex items-center justify-between mb-12">

@@ -15,18 +15,14 @@ export default function BlogCard({ blog }) {
 
   return (
     <Link href={`/blogs/${blog.slug}`}>
-      <div className="group h-full flex flex-col rounded-3xl overflow-hidden  bg-white/80 border-2 bg-clip-padding border-transparent cursor-pointer" style={{
-        // backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(236, 72, 153, 0.3), rgba(168, 85, 247, 0.2))',
-        // backgroundOrigin: 'border-box',
-        // backgroundClip: 'padding-box, border-box'
-      }}>
+      <div className="group h-full flex border border-gray-200 flex-col rounded-3xl overflow-hidden  bg-white/80 bg-clip-padding cursor-pointer">
 
         <div className={`relative `}>
           {/* Glow effects */}
           {/* <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/30 via-blue-600/30 to-purple-600/30 rounded-3xl blur-2xl opacity-75  " aria-hidden /> */}
 
           {/* Glass frame */}
-          <div className="relative bg-gradient-tor from-purple-600/30 via-blue-600/30 to-purple-600/30  rounded-3xl p-3 ">
+          <div className="relative rounded-3xl p-3 ">
             <div className="relative overflow-hidden rounded-2xl h-64">
               <Image
                 src={coverImageUrl}

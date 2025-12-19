@@ -2,53 +2,49 @@
 
 import { useState, useEffect } from 'react';
 import { MessageCircle, Eye, Check, X, Trash2, Search, Filter, RefreshCw, User, Clock, AlertCircle } from 'lucide-react';
+import { getFeedback, updateFeedbackStatus, deleteFeedback as deleteFeedbackAction, getFeedbackStats } from '@/actions/feedback';
 
 export default function FeedbackManagement() {
   const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [stats, setStats] = useState({ total: 0, pending: 0, reviewed: 0, resolved: 0 });
-  
+
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [limit, setLimit] = useState(10);
-  
+
   // Filters
   const [statusFilter, setStatusFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  
+
   // Loading states for actions
   const [updatingStatus, setUpdatingStatus] = useState('');
   const [deletingId, setDeletingId] = useState('');
 
   // Fetch feedback data
-  const fetchFeedback = async (page = 1, status = 'all', search = '') => {
+  const fetchFeedbackData = async (page = 1, status = 'all', search = '') => {
     setLoading(true);
     try {
-      const params = new URLSearchParams({
-        page: page.toString(),
-        limit: limit.toString(),
-        ...(status !== 'all' && { status }),
-        ...(search && { search })
+      const data = await getFeedback({
+        page,
+        limit,
+        status: status !== 'all' ? status : '',
+        search
       });
 
-      const response = await fetch(`/api/admin/feedback?${params}`);
-      const data = await response.json();
-
-      console.log('Feedback API Response:', data); // Debug log
-
       if (data.success) {
-        setFeedbacks(data.feedbacks || []);
-        setTotalPages(data.totalPages || 1);
-        setCurrentPage(data.currentPage || 1);
+        setFeedbacks(data.feedback || []);
+        setTotalPages(data.pagination?.totalPages || 1);
+        setCurrentPage(data.pagination?.currentPage || 1);
       } else {
         setError(data.error || 'Failed to fetch feedback');
-        setFeedbacks([]); // Reset to empty array on error
+        setFeedbacks([]);
       }
     } catch (err) {
-      setError('Network error while fetching feedback');
-      setFeedbacks([]); // Reset to empty array on network error
+      setError('Error while fetching feedback');
+      setFeedbacks([]);
     } finally {
       setLoading(false);
     }
@@ -57,9 +53,7 @@ export default function FeedbackManagement() {
   // Fetch stats
   const fetchStats = async () => {
     try {
-      const response = await fetch('/api/admin/feedback/stats');
-      const data = await response.json();
-      console.log('Stats API Response:', data); // Debug log
+      const data = await getFeedbackStats();
       if (data.success) {
         setStats(data.stats);
       }
@@ -69,20 +63,15 @@ export default function FeedbackManagement() {
   };
 
   // Update feedback status
-  const updateStatus = async (id, newStatus) => {
+  const handleUpdateStatus = async (id, newStatus) => {
     setUpdatingStatus(id);
     try {
-      const response = await fetch(`/api/admin/feedback/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus })
-      });
+      const data = await updateFeedbackStatus(id, newStatus);
 
-      const data = await response.json();
       if (data.success) {
         // Update local state
-        setFeedbacks(prev => 
-          (prev || []).map(feedback => 
+        setFeedbacks(prev =>
+          (prev || []).map(feedback =>
             (feedback._id || feedback.id) === id ? { ...feedback, status: newStatus } : feedback
           )
         );
@@ -91,40 +80,37 @@ export default function FeedbackManagement() {
         alert(data.error || 'Failed to update status');
       }
     } catch (err) {
-      alert('Network error while updating status');
+      alert('Error while updating status');
     } finally {
       setUpdatingStatus('');
     }
   };
 
   // Delete feedback
-  const deleteFeedback = async (id) => {
+  const handleDeleteFeedback = async (id) => {
     if (!confirm('Are you sure you want to delete this feedback? This action cannot be undone.')) {
       return;
     }
 
     setDeletingId(id);
     try {
-      const response = await fetch(`/api/admin/feedback/${id}`, {
-        method: 'DELETE'
-      });
+      const data = await deleteFeedbackAction(id);
 
-      const data = await response.json();
       if (data.success) {
         setFeedbacks(prev => (prev || []).filter(feedback => (feedback._id || feedback.id) !== id));
         fetchStats(); // Refresh stats
-        
+
         // If this was the last item on the page and there are previous pages, go back one page
         if (feedbacks && feedbacks.length === 1 && currentPage > 1) {
-          fetchFeedback(currentPage - 1, statusFilter, searchQuery);
+          fetchFeedbackData(currentPage - 1, statusFilter, searchQuery);
         } else {
-          fetchFeedback(currentPage, statusFilter, searchQuery);
+          fetchFeedbackData(currentPage, statusFilter, searchQuery);
         }
       } else {
         alert(data.error || 'Failed to delete feedback');
       }
     } catch (err) {
-      alert('Network error while deleting feedback');
+      alert('Error while deleting feedback');
     } finally {
       setDeletingId('');
     }
@@ -134,19 +120,19 @@ export default function FeedbackManagement() {
   const handleSearch = (e) => {
     e.preventDefault();
     setCurrentPage(1);
-    fetchFeedback(1, statusFilter, searchQuery);
+    fetchFeedbackData(1, statusFilter, searchQuery);
   };
 
   // Handle filter change
   const handleStatusFilter = (status) => {
     setStatusFilter(status);
     setCurrentPage(1);
-    fetchFeedback(1, status, searchQuery);
+    fetchFeedbackData(1, status, searchQuery);
   };
 
   // Initial load
   useEffect(() => {
-    fetchFeedback();
+    fetchFeedbackData();
     fetchStats();
   }, []);
 
@@ -166,7 +152,7 @@ export default function FeedbackManagement() {
       reviewed: 'bg-blue-100 text-blue-800 border-blue-200',
       resolved: 'bg-green-100 text-green-800 border-green-200'
     };
-    
+
     return (
       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${styles[status]}`}>
         {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -184,7 +170,7 @@ export default function FeedbackManagement() {
         </div>
         <button
           onClick={() => {
-            fetchFeedback(currentPage, statusFilter, searchQuery);
+            fetchFeedbackData(currentPage, statusFilter, searchQuery);
             fetchStats();
           }}
           className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
@@ -318,15 +304,15 @@ export default function FeedbackManagement() {
                       </div>
                       {getStatusBadge(feedback.status)}
                     </div>
-                    
+
                     <p className="text-gray-700 mb-3 leading-relaxed">{feedback.description}</p>
-                    
+
                     {feedback.contact && (
                       <p className="text-sm text-gray-600 mb-2">
                         <strong>Contact:</strong> {feedback.contact}
                       </p>
                     )}
-                    
+
                     <div className="flex items-center text-sm text-gray-500">
                       <Clock className="h-4 w-4 mr-1" />
                       {formatDate(feedback.createdAt)}
@@ -339,7 +325,7 @@ export default function FeedbackManagement() {
                     <div className="flex space-x-1">
                       {feedback.status !== 'reviewed' && (
                         <button
-                          onClick={() => updateStatus(feedback.id || feedback._id, 'reviewed')}
+                          onClick={() => handleUpdateStatus(feedback.id || feedback._id, 'reviewed')}
                           disabled={updatingStatus === (feedback.id || feedback._id)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                           title="Mark as Reviewed"
@@ -349,7 +335,7 @@ export default function FeedbackManagement() {
                       )}
                       {feedback.status !== 'resolved' && (
                         <button
-                          onClick={() => updateStatus(feedback.id || feedback._id, 'resolved')}
+                          onClick={() => handleUpdateStatus(feedback.id || feedback._id, 'resolved')}
                           disabled={updatingStatus === (feedback.id || feedback._id)}
                           className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
                           title="Mark as Resolved"
@@ -361,7 +347,7 @@ export default function FeedbackManagement() {
 
                     {/* Delete Button */}
                     <button
-                      onClick={() => deleteFeedback(feedback.id || feedback._id)}
+                      onClick={() => handleDeleteFeedback(feedback.id || feedback._id)}
                       disabled={deletingId === (feedback.id || feedback._id)}
                       className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                       title="Delete Feedback"
@@ -388,20 +374,20 @@ export default function FeedbackManagement() {
               Page {currentPage} of {totalPages}
             </span>
           </div>
-          
+
           <div className="flex items-center space-x-2">
             <button
               onClick={() => {
                 const newPage = currentPage - 1;
                 setCurrentPage(newPage);
-                fetchFeedback(newPage, statusFilter, searchQuery);
+                fetchFeedbackData(newPage, statusFilter, searchQuery);
               }}
               disabled={currentPage === 1}
               className="px-3 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
             >
               Previous
             </button>
-            
+
             {/* Page Numbers */}
             {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
               const page = Math.max(1, Math.min(totalPages - 4, currentPage - 2)) + i;
@@ -410,24 +396,23 @@ export default function FeedbackManagement() {
                   key={page}
                   onClick={() => {
                     setCurrentPage(page);
-                    fetchFeedback(page, statusFilter, searchQuery);
+                    fetchFeedbackData(page, statusFilter, searchQuery);
                   }}
-                  className={`px-3 py-2 border rounded-lg ${
-                    currentPage === page
-                      ? 'bg-indigo-600 text-white border-indigo-600'
-                      : 'border-gray-300 hover:bg-gray-50'
-                  }`}
+                  className={`px-3 py-2 border rounded-lg ${currentPage === page
+                    ? 'bg-indigo-600 text-white border-indigo-600'
+                    : 'border-gray-300 hover:bg-gray-50'
+                    }`}
                 >
                   {page}
                 </button>
               );
             })}
-            
+
             <button
               onClick={() => {
                 const newPage = currentPage + 1;
                 setCurrentPage(newPage);
-                fetchFeedback(newPage, statusFilter, searchQuery);
+                fetchFeedbackData(newPage, statusFilter, searchQuery);
               }}
               disabled={currentPage === totalPages}
               className="px-3 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"

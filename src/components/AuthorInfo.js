@@ -5,7 +5,7 @@ export default function AuthorInfo({ author, publishedDate }) {
   if (!author) return null;
 
   return (
-    <div className="bg-gray-50 rounded-lg p-6 my-8 shadow-2xl glass">
+    <div className="bg-gray-50 rounded-lg p-6 my-8">
       <div className="flex items-start space-x-4">
         {/* Author Avatar */}
         <img
@@ -13,13 +13,13 @@ export default function AuthorInfo({ author, publishedDate }) {
           alt={author.name}
           className="w-16 h-16 rounded-full object-cover flex-shrink-0"
         />
-        
+
         {/* Author Details */}
         <div className="flex-1">
           <div className="flex items-start justify-between mb-2">
             <div>
               <h4 className="text-lg font-semibold text-gray-900">{author.name}</h4>
-              <p className="text-gray-600 text-sm mb-3 leading-relaxed">{author.bio}</p>
+              <p className="text-gray-600 text-sm mb-3 leading-relaxed line-clamp-2">{author.bio}</p>
             </div>
           </div>
 

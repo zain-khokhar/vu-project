@@ -13,7 +13,7 @@ export default function Footer() {
               <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <BookOpen className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-light bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">VUEDU</span>
+              <span className="text-2xl font-light bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">Vuedu</span>
             </Link>
             <p className="text-gray-700 mb-6 max-w-md font-light leading-relaxed">
               A free document library platform where students can access and share
@@ -103,7 +103,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-white/30">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-sm text-gray-600 font-light">
-              © {new Date().getFullYear()} VUEDU. All rights reserved.
+              © {new Date().getFullYear()} Vuedu. All rights reserved.
             </div>
             <div className="flex flex-wrap justify-center gap-6">
               <Link

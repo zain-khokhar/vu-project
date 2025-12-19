@@ -1,5 +1,5 @@
 # URL Handling & Trailing Slash Configuration Guide
-# VUEDU Project - Next.js 15
+# Vuedu Project - Next.js 15
 
 ## Configuration Summary
 

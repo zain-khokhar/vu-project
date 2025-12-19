@@ -133,28 +133,6 @@ export async function getQuizBySlug(slug) {
     return { success: false, error: 'Failed to fetch quiz' };
   }
 }
-
-// Get quiz for editing (includes questions)
-export async function getQuizForEdit(slug) {
-  try {
-    await connectDB();
-
-    const quiz = await Quiz.findOne({ slug }).lean();
-
-    if (!quiz) {
-      return { success: false, error: 'Quiz not found' };
-    }
-
-    return {
-      success: true,
-      quiz: JSON.parse(JSON.stringify(quiz))
-    };
-  } catch (error) {
-    console.error('Error fetching quiz for edit:', error);
-    return { success: false, error: 'Failed to fetch quiz' };
-  }
-}
-
 // Get latest quizzes for homepage
 export async function getLatestQuizzes(limit = 3) {
   try {
@@ -184,22 +162,98 @@ export async function getLatestQuizzes(limit = 3) {
     return { success: false, error: 'Failed to fetch quizzes', quizzes: [] };
   }
 }
+// Get quiz for editing (includes questions)
+export async function getQuizForEdit(slug) {
+  try {
+    await connectDB();
+
+    const quiz = await Quiz.findOne({ slug }).lean();
+
+    if (!quiz) {
+      return { success: false, error: 'Quiz not found' };
+    }
+
+    return {
+      success: true,
+      quiz: JSON.parse(JSON.stringify(quiz))
+    };
+  } catch (error) {
+    console.error('Error fetching quiz for edit:', error);
+    return { success: false, error: 'Failed to fetch quiz' };
+  }
+}
+
+
 
 // Create new quiz
 export async function createQuiz(quizData) {
   try {
     await connectDB();
 
-    const quiz = new Quiz(quizData);
+    const { title, description, category, icon, color, questions } = quizData;
+
+    // 1️⃣ Validation (same as POST)
+    if (
+      !title ||
+      !description ||
+      !category ||
+      !questions ||
+      !Array.isArray(questions)
+    ) {
+      return {
+        success: false,
+        error: 'Missing required fields',
+        status: 400,
+      };
+    }
+
+    // 2️⃣ Slug generation (same logic)
+    const slug = title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+
+    // 3️⃣ Slug uniqueness check
+    const existingQuiz = await Quiz.findOne({ slug });
+    if (existingQuiz) {
+      return {
+        success: false,
+        error: 'A quiz with this title already exists',
+        status: 409,
+      };
+    }
+
+    // 4️⃣ Create quiz (controlled instance)
+    const quiz = new Quiz({
+      title,
+      description,
+      category,
+      slug,
+      icon: icon || '📚',
+      color: color || 'from-gray-500 to-slate-500',
+      questions,
+      totalQuestions: questions.length,
+    });
+
     await quiz.save();
 
+    // 5️⃣ Revalidate pages
     revalidatePath('/quiz');
     revalidatePath('/');
 
-    return { success: true, quiz: quiz.toObject() };
+    return {
+      success: true,
+      quiz: quiz.toObject(),
+      status: 201,
+    };
   } catch (error) {
     console.error('Error creating quiz:', error);
-    return { success: false, error: 'Failed to create quiz' };
+
+    return {
+      success: false,
+      error: error.message || 'Failed to create quiz',
+      status: 500,
+    };
   }
 }
 
@@ -207,6 +261,11 @@ export async function createQuiz(quizData) {
 export async function updateQuiz(slug, updateData) {
   try {
     await connectDB();
+
+    // ✅ Recalculate derived field
+    if (Array.isArray(updateData.questions)) {
+      updateData.totalQuestions = updateData.questions.length;
+    }
 
     const quiz = await Quiz.findOneAndUpdate(
       { slug },
@@ -229,7 +288,6 @@ export async function updateQuiz(slug, updateData) {
     return { success: false, error: 'Failed to update quiz' };
   }
 }
-
 // Delete quiz
 export async function deleteQuiz(slug) {
   try {

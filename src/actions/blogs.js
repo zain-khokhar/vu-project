@@ -212,6 +212,31 @@ export async function getAllBlogs() {
   }
 }
 
+// Get related/other blogs (excluding current one) for "Explore More" section
+export async function getRelatedBlogs(currentSlug, limit = 3) {
+  try {
+    await connectDB();
+
+    const blogs = await Blog.find({
+      published: true,
+      slug: { $ne: currentSlug } // Exclude current blog
+    })
+      .select('title slug excerpt coverImage createdAt author')
+      .populate('author', 'name slug avatar')
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .lean();
+
+    return {
+      success: true,
+      blogs: JSON.parse(JSON.stringify(blogs))
+    };
+  } catch (error) {
+    console.error('Error fetching related blogs:', error);
+    return { success: false, error: 'Failed to fetch related blogs' };
+  }
+}
+
 // Update a blog (for future admin functionality)
 export async function updateBlog(slug, updateData) {
   try {

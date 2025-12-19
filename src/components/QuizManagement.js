@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Brain, Edit, Trash2, Search, RefreshCw, Clock, Tag, Hash, CheckCircle, XCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import AdminPagination from './AdminPagination';
+import { getAllQuizzesAdmin, deleteQuizAdmin } from '@/actions/admin';
 
 export default function QuizManagement() {
     const router = useRouter();
@@ -27,14 +28,7 @@ export default function QuizManagement() {
     const fetchQuizzes = async (page = 1, search = '') => {
         setLoading(true);
         try {
-            const params = new URLSearchParams({
-                page: page.toString(),
-                limit: limit.toString(),
-                ...(search && { search })
-            });
-
-            const response = await fetch(`/api/admin/quizzes?${params}`);
-            const data = await response.json();
+            const data = await getAllQuizzesAdmin(page, limit, search);
 
             if (data.success) {
                 setQuizzes(data.quizzes || []);
@@ -46,7 +40,7 @@ export default function QuizManagement() {
                 setQuizzes([]);
             }
         } catch (err) {
-            setError('Network error while fetching quizzes');
+            setError('Error while fetching quizzes');
             setQuizzes([]);
         } finally {
             setLoading(false);
@@ -54,18 +48,15 @@ export default function QuizManagement() {
     };
 
     // Delete quiz
-    const deleteQuiz = async (slug) => {
+    const handleDeleteQuiz = async (slug) => {
         if (!confirm('Are you sure you want to delete this quiz? This action cannot be undone.')) {
             return;
         }
 
         setDeletingSlug(slug);
         try {
-            const response = await fetch(`/api/admin/quizzes/${slug}`, {
-                method: 'DELETE'
-            });
+            const data = await deleteQuizAdmin(slug);
 
-            const data = await response.json();
             if (data.success) {
                 // Refresh the list
                 fetchQuizzes(currentPage, searchQuery);
@@ -73,7 +64,7 @@ export default function QuizManagement() {
                 alert(data.error || 'Failed to delete quiz');
             }
         } catch (err) {
-            alert('Network error while deleting quiz');
+            alert('Error while deleting quiz');
         } finally {
             setDeletingSlug('');
         }
@@ -215,7 +206,7 @@ export default function QuizManagement() {
 
                                         {/* Delete Button */}
                                         <button
-                                            onClick={() => deleteQuiz(quiz.slug)}
+                                            onClick={() => handleDeleteQuiz(quiz.slug)}
                                             disabled={deletingSlug === quiz.slug}
                                             className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                                             title="Delete Quiz"

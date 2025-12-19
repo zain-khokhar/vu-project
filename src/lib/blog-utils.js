@@ -110,7 +110,7 @@ export function generateBlogMetadata(blog, slug) {
       url: blog.author.website || `${baseUrl}/authors/${blog.author._id}`
     }] : [],
     creator: blog.author?.name,
-    publisher: 'VUEDU',
+    publisher: 'Vuedu',
     formatDetection: {
       email: false,
       address: false,
@@ -125,7 +125,7 @@ export function generateBlogMetadata(blog, slug) {
       title: blog.title,
       description: excerpt,
       url: url,
-      siteName: 'VUEDU',
+      siteName: 'Vuedu',
       locale: 'en_US',
       images: [
         {
@@ -149,8 +149,8 @@ export function generateBlogMetadata(blog, slug) {
       title: blog.title,
       description: excerpt,
       images: [coverImageData.url],
-      creator: blog.author?.twitter || '@VUEDU',
-      site: '@VUEDU',
+      creator: blog.author?.twitter || '@Vuedu',
+      site: '@Vuedu',
     },
     robots: {
       index: true,
@@ -215,11 +215,11 @@ export function generateBlogStructuredData(blog, readingTime) {
             height: 150, // Assuming 150, adjust if known
           } : undefined,
           description: blog.author.bio,
-          sameAs: [
-            blog.author.social?.twitter,
-            blog.author.social?.linkedin,
-            blog.author.social?.website
-          ].filter(Boolean),
+          // sameAs: [
+          //   blog.author.social?.twitter,
+          //   blog.author.social?.linkedin,
+          //   blog.author.social?.website
+          // ].filter(Boolean),
         } : {
           '@type': 'Organization',
           '@id': `${baseUrl}#organization`
@@ -242,7 +242,7 @@ export function generateBlogStructuredData(blog, readingTime) {
           '@type': 'SpeakableSpecification',
           cssSelector: ['.blog-content']
         },
-        articleBody: plainTextContent.substring(0, 5000),
+        // articleBody: plainTextContent.substring(0, 5000),
       },
       // 2. The Breadcrumbs
       {
@@ -279,7 +279,7 @@ export function generateBlogStructuredData(blog, readingTime) {
       {
         '@type': 'Organization',
         '@id': `${baseUrl}#organization`,
-        name: 'VUEDU',
+        name: 'Vuedu',
         url: baseUrl,
         logo: {
           '@type': 'ImageObject',
@@ -298,7 +298,7 @@ export function generateBlogStructuredData(blog, readingTime) {
         '@type': 'WebSite',
         '@id': `${baseUrl}#website`,
         url: baseUrl,
-        name: 'VUEDU',
+        name: 'Vuedu',
         publisher: {
           '@id': `${baseUrl}#organization`
         },

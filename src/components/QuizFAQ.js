@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react';
 const faqs = [
     {
         question: "Are these quizzes free?",
-        answer: "Yes! All quizzes on VUEDU are completely free to access and use. You can take as many quizzes as you want without any cost."
+        answer: "Yes! All quizzes on Vuedu are completely free to access and use. You can take as many quizzes as you want without any cost."
     },
     {
         question: "What if I can't find my subject?",

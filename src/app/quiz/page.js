@@ -8,28 +8,28 @@ import QuizCTA from '@/components/QuizCTA';
 import { generateFAQSchema, generateBreadcrumbSchema, generateWebPageSchema } from '@/lib/quizSchemas';
 
 export const metadata = {
-  title: 'Online Quiz System - Test Your Knowledge | VUEDU',
+  title: 'Online Quiz System - Test Your Knowledge | Vuedu',
   description: 'Access interactive online quizzes across multiple categories. Test your knowledge with timed questions, instant feedback, and detailed explanations. Best place for Virtual University of Pakistan Students to prepare for their exams. Start learning today!',
   keywords: 'online quiz, interactive quiz, test knowledge, quiz system, educational quizzes, practice tests, free quizzes, custom quiz',
-  authors: [{ name: 'VUEDU' }],
+  authors: [{ name: 'Vuedu' }],
   openGraph: {
-    title: 'Online Quiz System - Test Your Knowledge | VUEDU',
+    title: 'Online Quiz System - Test Your Knowledge | Vuedu',
     description: 'Access interactive online quizzes with instant feedback and detailed explanations. Completely free!',
     type: 'website',
     url: 'https://vuedu.dev/quiz',
-    siteName: 'VUEDU',
+    siteName: 'Vuedu',
     images: [
       {
         url: 'https://vuedu.dev/og-quiz.jpg',
         width: 1200,
         height: 630,
-        alt: 'VUEDU Online Quiz System',
+        alt: 'Vuedu Online Quiz System',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Online Quiz System | VUEDU',
+    title: 'Online Quiz System | Vuedu',
     description: 'Test your knowledge with interactive quizzes - completely free!',
     images: ['https://vuedu.dev/og-quiz.jpg'],
   },

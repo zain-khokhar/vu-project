@@ -9,6 +9,20 @@ import Feedback from '@/models/Feedback';
 import Comment from '@/models/Comment';
 import { revalidatePath } from 'next/cache';
 import mongoose from 'mongoose';
+import { validateAdminCredentials } from '@/lib/auth';
+
+// Admin login
+export async function adminLogin(username, password) {
+    if (!username || !password) {
+        return { success: false, error: 'Username and password are required' };
+    }
+
+    if (validateAdminCredentials(username, password)) {
+        return { success: true, message: 'Authentication successful' };
+    }
+
+    return { success: false, error: 'Invalid credentials' };
+}
 
 // Get admin statistics
 export async function getAdminStats() {

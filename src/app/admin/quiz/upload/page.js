@@ -145,12 +145,7 @@ function QuizUploadPageContent() {
         result = await updateQuiz(editSlug, quizData);
       } else {
         // Create new quiz via API
-        const response = await fetch('/api/quiz', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(quizData),
-        });
-        result = await response.json();
+        result = await createQuiz(quizData);
       }
 
       if (result.success || result.quiz) {
@@ -210,8 +205,8 @@ function QuizUploadPageContent() {
           {/* Status Message */}
           {status.message && (
             <div className={`mb-6 p-4 rounded-xl flex items-center gap-3 ${status.type === 'success'
-                ? 'bg-green-50 text-green-700 border border-green-200'
-                : 'bg-red-50 text-red-700 border border-red-200'
+              ? 'bg-green-50 text-green-700 border border-green-200'
+              : 'bg-red-50 text-red-700 border border-red-200'
               }`}>
               {status.type === 'success' ? (
                 <CheckCircle className="h-5 w-5" />
@@ -287,8 +282,8 @@ function QuizUploadPageContent() {
                     type="button"
                     onClick={() => setFormData(prev => ({ ...prev, icon: emoji }))}
                     className={`p-3 rounded-xl border-2 transition-all hover:scale-110 ${formData.icon === emoji
-                        ? 'border-indigo-500 bg-indigo-50 shadow-lg'
-                        : 'border-gray-200 hover:border-indigo-300'
+                      ? 'border-indigo-500 bg-indigo-50 shadow-lg'
+                      : 'border-gray-200 hover:border-indigo-300'
                       }`}
                     title={label}
                   >
@@ -310,8 +305,8 @@ function QuizUploadPageContent() {
                     type="button"
                     onClick={() => setFormData(prev => ({ ...prev, color: value }))}
                     className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 transition-all ${formData.color === value
-                        ? 'border-indigo-500 bg-indigo-50'
-                        : 'border-gray-200 hover:border-indigo-300'
+                      ? 'border-indigo-500 bg-indigo-50'
+                      : 'border-gray-200 hover:border-indigo-300'
                       }`}
                   >
                     <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${value}`}></div>

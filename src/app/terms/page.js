@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { ArrowLeft, FileText, Shield, Users, BookOpen, AlertTriangle, Upload } from 'lucide-react';
 
 export const metadata = {
-  title: 'Terms of Service - VUEDU',
-  description: 'Terms and conditions for using VUEDU educational platform and resources.',
+  title: 'Terms of Service - Vuedu',
+  description: 'Terms and conditions for using Vuedu educational platform and resources.',
   keywords: 'terms of service, terms and conditions, user agreement, acceptable use'
 };
 
@@ -27,7 +27,7 @@ export default function TermsPage() {
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Terms of Service</h1>
           <p className="text-xl text-gray-600">
-            Please read these terms carefully before using VUEDU.
+            Please read these terms carefully before using Vuedu.
           </p>
         </div>
 
@@ -39,14 +39,14 @@ export default function TermsPage() {
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Agreement to Terms</h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Welcome to VUEDU! These Terms of Service ("Terms") govern your access to and use of our website, services, and educational resources (collectively, the "Services").
+                Welcome to Vuedu! These Terms of Service ("Terms") govern your access to and use of our website, services, and educational resources (collectively, the "Services").
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
                 By accessing or using our Services, you agree to be bound by these Terms. If you disagree with any part of these Terms, you may not access our Services.
               </p>
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
                 <p className="text-blue-700 text-sm">
-                  <strong>Important:</strong> VUEDU is a free educational platform. We do not require user accounts or registration to access our resources.
+                  <strong>Important:</strong> Vuedu is a free educational platform. We do not require user accounts or registration to access our resources.
                 </p>
               </div>
             </section>
@@ -55,10 +55,10 @@ export default function TermsPage() {
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                 <BookOpen className="h-6 w-6 text-blue-600 mr-2" />
-                About VUEDU
+                About Vuedu
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                VUEDU is an educational resource platform that provides:
+                Vuedu is an educational resource platform that provides:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
                 <li>Access to educational documents, notes, papers, and past exams</li>
@@ -76,7 +76,7 @@ export default function TermsPage() {
                   No User Accounts Required
                 </h2>
                 <p className="text-green-700 leading-relaxed mb-3">
-                  <strong>VUEDU does not require user registration.</strong> You can access all educational resources without creating an account, providing an email, or setting a password.
+                  <strong>Vuedu does not require user registration.</strong> You can access all educational resources without creating an account, providing an email, or setting a password.
                 </p>
                 <p className="text-green-700 leading-relaxed">
                   Users can provide feedback and post comments without authentication. However, only authorized administrators can upload or modify content.
@@ -119,7 +119,7 @@ export default function TermsPage() {
 
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Platform Content</h3>
               <p className="text-gray-600 leading-relaxed mb-4">
-                VUEDU hosts two types of content:
+                Vuedu hosts two types of content:
               </p>
 
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
@@ -130,16 +130,16 @@ export default function TermsPage() {
               </div>
 
               <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 mb-6">
-                <h4 className="font-semibold text-indigo-900 mb-2">2. VUEDU Proprietary Content</h4>
+                <h4 className="font-semibold text-indigo-900 mb-2">2. Vuedu Proprietary Content</h4>
                 <p className="text-indigo-700 text-sm leading-relaxed">
-                  Original content created by VUEDU, including but not limited to: custom quizzes, blog posts, tutorials, and educational materials. <strong>This content is proprietary and may not be uploaded to other platforms without our explicit written permission.</strong>
+                  Original content created by Vuedu, including but not limited to: custom quizzes, blog posts, tutorials, and educational materials. <strong>This content is proprietary and may not be uploaded to other platforms without our explicit written permission.</strong>
                 </p>
               </div>
 
               <h3 className="text-xl font-semibold text-gray-900 mb-3">User-Generated Content (Comments & Feedback)</h3>
               <ul className="list-disc list-inside text-gray-600 mb-4 space-y-2">
                 <li>You retain ownership of comments and feedback you submit</li>
-                <li>By posting, you grant VUEDU a non-exclusive license to display your content</li>
+                <li>By posting, you grant Vuedu a non-exclusive license to display your content</li>
                 <li>You are responsible for the content you post</li>
                 <li>We reserve the right to remove inappropriate or spam content</li>
               </ul>
@@ -160,7 +160,7 @@ export default function TermsPage() {
                   Content Upload Restrictions
                 </h2>
                 <p className="text-red-700 leading-relaxed mb-3">
-                  <strong>Only authorized VUEDU administrators can upload documents and educational materials.</strong>
+                  <strong>Only authorized Vuedu administrators can upload documents and educational materials.</strong>
                 </p>
                 <p className="text-red-700 leading-relaxed">
                   Regular users cannot upload files or create content beyond comments and feedback. Any attempt to bypass these restrictions may result in being blocked from our Services.
@@ -175,7 +175,7 @@ export default function TermsPage() {
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
                 <h3 className="text-lg font-semibold text-yellow-800 mb-3">Student Responsibility</h3>
                 <p className="text-yellow-700 leading-relaxed">
-                  <strong>Resources on VUEDU are for study and reference purposes only.</strong> Students are responsible for:
+                  <strong>Resources on Vuedu are for study and reference purposes only.</strong> Students are responsible for:
                 </p>
                 <ul className="list-disc list-inside text-yellow-700 mt-2 space-y-1">
                   <li>Using materials ethically and in accordance with their institution's academic integrity policies</li>
@@ -215,7 +215,7 @@ export default function TermsPage() {
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Limitation of Liability</h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                To the maximum extent permitted by law, VUEDU shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:
+                To the maximum extent permitted by law, Vuedu shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
                 <li>Loss of data or academic performance</li>
@@ -252,7 +252,7 @@ export default function TermsPage() {
               </p>
               <div className="bg-gray-50 rounded-lg p-4">
                 <p className="text-gray-600"><strong>Email:</strong> team@vuedu.dev</p>
-                <p className="text-gray-600"><strong>Address:</strong> VUEDU Legal Team</p>
+                <p className="text-gray-600"><strong>Address:</strong> Vuedu Legal Team</p>
                 <p className="text-gray-600">Punjab, Lahore, Pakistan</p>
               </div>
             </section>

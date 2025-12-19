@@ -2,7 +2,7 @@ export function generateFAQSchema() {
     const faqs = [
         {
             question: "Are these quizzes free?",
-            answer: "Yes! All quizzes on VUEDU are completely free to access and use. You can take as many quizzes as you want without any cost."
+            answer: "Yes! All quizzes on Vuedu are completely free to access and use. You can take as many quizzes as you want without any cost."
         },
         {
             question: "What if I can't find my subject?",
@@ -69,12 +69,12 @@ export function generateWebPageSchema() {
     return {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Online Quiz System - Test Your Knowledge | VUEDU",
+        "name": "Online Quiz System - Test Your Knowledge | Vuedu",
         "description": "Access interactive online quizzes across multiple categories. Test your knowledge with timed questions, instant feedback, and detailed explanations.",
         "url": "https://vuedu.dev/quiz",
         "publisher": {
             "@type": "Organization",
-            "name": "VUEDU",
+            "name": "Vuedu",
             "url": "https://vuedu.dev"
         }
     };

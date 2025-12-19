@@ -1,13 +1,13 @@
 /**
  * DocumentMetadata Component
- * Displays document metadata in a structured grid
- * Semantic HTML with proper accessibility attributes
+ * Clean card-style metadata display for document pages
+ * Responsive design with compact layout on mobile
  */
 
-import { BookOpen, University, Calendar, Upload } from 'lucide-react';
+import { BookOpen, University, Calendar, Upload, FileType } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 
-export default function DocumentMetadata({ document }) {
+export default function DocumentMetadata({ document, typeConfig }) {
   const metadata = [
     {
       icon: BookOpen,
@@ -29,42 +29,56 @@ export default function DocumentMetadata({ document }) {
     },
     {
       icon: Upload,
-      label: 'Upload Date',
+      label: 'Uploaded',
       value: formatDate(document.createdAt),
       id: 'uploaded',
     },
   ];
 
   return (
-    <section 
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 p-4 bg-gray-50 rounded-lg border border-gray-100"
+    <section
+      className="mt-6 sm:mt-8"
       aria-labelledby="metadata-heading"
     >
       <h2 id="metadata-heading" className="sr-only">
         Document Information
       </h2>
-      
-      <dl className="contents">
+
+      {/* Document Type Banner */}
+      <div className="flex items-center gap-2 sm:gap-3 mb-4 pb-3 sm:pb-4 border-b border-gray-100">
+        <div className={`p-1.5 sm:p-2 rounded-lg ${typeConfig?.color || 'bg-gray-100 text-gray-600'}`}>
+          <FileType className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
+        </div>
+        <div>
+          <span className="text-xs sm:text-sm text-gray-500 block">Document Type</span>
+          <span className="text-sm sm:text-base font-semibold text-gray-900" itemProp="credentialCategory">
+            {typeConfig?.label || 'Document'}
+          </span>
+        </div>
+      </div>
+
+      {/* Metadata Grid - Compact on mobile */}
+      <dl className="grid grid-cols-2 gap-2 sm:gap-3">
         {metadata.map(({ icon: Icon, label, value, id }) => (
-          <div 
+          <div
             key={id}
-            className="flex items-start space-x-3"
+            className="p-2.5 sm:p-3 bg-gray-50 rounded-lg sm:rounded-xl border border-gray-100"
           >
-            <Icon 
-              className="h-5 w-5 text-gray-400 flex-shrink-0 mt-0.5" 
-              aria-hidden="true"
-            />
-            <div className="flex-1 min-w-0">
-              <dt className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
+            <div className="flex items-center gap-1.5 mb-1">
+              <Icon
+                className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400"
+                aria-hidden="true"
+              />
+              <dt className="text-[10px] sm:text-xs font-medium text-gray-500 uppercase tracking-wide">
                 {label}
               </dt>
-              <dd 
-                className="text-sm text-gray-900 font-semibold truncate"
-                title={value}
-              >
-                {value}
-              </dd>
             </div>
+            <dd
+              className="text-xs sm:text-sm text-gray-900 font-semibold truncate"
+              title={value}
+            >
+              {value}
+            </dd>
           </div>
         ))}
       </dl>

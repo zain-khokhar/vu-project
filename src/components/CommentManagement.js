@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { MessageCircle, Eye, Trash2, Search, RefreshCw, User, Clock, FileText, AlertCircle, CheckCircle } from 'lucide-react';
+import { getAllCommentsAdmin, updateCommentStatus, deleteCommentAdmin, getCommentStatsAdmin } from '@/actions/comments';
 
 export default function CommentManagement() {
     const [comments, setComments] = useState([]);
@@ -26,15 +27,7 @@ export default function CommentManagement() {
     const fetchComments = async (page = 1, status = 'all', search = '') => {
         setLoading(true);
         try {
-            const params = new URLSearchParams({
-                page: page.toString(),
-                limit: limit.toString(),
-                ...(status !== 'all' && { status }),
-                ...(search && { search })
-            });
-
-            const response = await fetch(`/api/admin/comments?${params}`);
-            const data = await response.json();
+            const data = await getAllCommentsAdmin(page, limit, status, search);
 
             if (data.success) {
                 setComments(data.comments || []);
@@ -45,7 +38,7 @@ export default function CommentManagement() {
                 setComments([]);
             }
         } catch (err) {
-            setError('Network error while fetching comments');
+            setError('Error while fetching comments');
             setComments([]);
         } finally {
             setLoading(false);
@@ -55,8 +48,7 @@ export default function CommentManagement() {
     // Fetch stats
     const fetchStats = async () => {
         try {
-            const response = await fetch('/api/admin/comments/stats');
-            const data = await response.json();
+            const data = await getCommentStatsAdmin();
             if (data.success) {
                 setStats(data.stats);
             }
@@ -66,16 +58,11 @@ export default function CommentManagement() {
     };
 
     // Update comment status
-    const updateStatus = async (id, newStatus) => {
+    const handleUpdateStatus = async (id, newStatus) => {
         setUpdatingStatus(id);
         try {
-            const response = await fetch(`/api/admin/comments/${id}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ status: newStatus })
-            });
+            const data = await updateCommentStatus(id, newStatus);
 
-            const data = await response.json();
             if (data.success) {
                 // Update local state
                 setComments(prev =>
@@ -88,25 +75,22 @@ export default function CommentManagement() {
                 alert(data.error || 'Failed to update status');
             }
         } catch (err) {
-            alert('Network error while updating status');
+            alert('Error while updating status');
         } finally {
             setUpdatingStatus('');
         }
     };
 
     // Delete comment
-    const deleteComment = async (id) => {
+    const handleDeleteComment = async (id) => {
         if (!confirm('Are you sure you want to delete this comment? It will be hidden from the document page.')) {
             return;
         }
 
         setDeletingId(id);
         try {
-            const response = await fetch(`/api/admin/comments/${id}`, {
-                method: 'DELETE'
-            });
+            const data = await deleteCommentAdmin(id);
 
-            const data = await response.json();
             if (data.success) {
                 // Refresh the list
                 fetchComments(currentPage, statusFilter, searchQuery);
@@ -115,7 +99,7 @@ export default function CommentManagement() {
                 alert(data.error || 'Failed to delete comment');
             }
         } catch (err) {
-            alert('Network error while deleting comment');
+            alert('Error while deleting comment');
         } finally {
             setDeletingId('');
         }
@@ -325,7 +309,7 @@ export default function CommentManagement() {
                                         {/* Status Toggle */}
                                         {comment.status === 'visible' ? (
                                             <button
-                                                onClick={() => updateStatus(comment.id || comment._id, 'deleted')}
+                                                onClick={() => handleUpdateStatus(comment.id || comment._id, 'deleted')}
                                                 disabled={updatingStatus === (comment.id || comment._id)}
                                                 className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                                                 title="Hide Comment"
@@ -338,7 +322,7 @@ export default function CommentManagement() {
                                             </button>
                                         ) : (
                                             <button
-                                                onClick={() => updateStatus(comment.id || comment._id, 'visible')}
+                                                onClick={() => handleUpdateStatus(comment.id || comment._id, 'visible')}
                                                 disabled={updatingStatus === (comment.id || comment._id)}
                                                 className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
                                                 title="Show Comment"
@@ -353,7 +337,7 @@ export default function CommentManagement() {
 
                                         {/* Delete Button */}
                                         <button
-                                            onClick={() => deleteComment(comment.id || comment._id)}
+                                            onClick={() => handleDeleteComment(comment.id || comment._id)}
                                             disabled={deletingId === (comment.id || comment._id)}
                                             className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                                             title="Delete Comment"
@@ -405,8 +389,8 @@ export default function CommentManagement() {
                                         fetchComments(page, statusFilter, searchQuery);
                                     }}
                                     className={`px-3 py-2 border rounded-lg ${currentPage === page
-                                            ? 'bg-indigo-600 text-white border-indigo-600'
-                                            : 'border-gray-300 hover:bg-gray-50'
+                                        ? 'bg-indigo-600 text-white border-indigo-600'
+                                        : 'border-gray-300 hover:bg-gray-50'
                                         }`}
                                 >
                                     {page}

@@ -218,24 +218,24 @@ export async function generateMetadata({ searchParams }) {
   const keywords = ['educational documents', 'study materials', 'free documents', 'student resources'];
 
   if (search) {
-    title = `Search Results for "${search}" - VUEDU`;
+    title = `Search Results for "${search}" - Vuedu`;
     description = `Find educational documents matching "${search}". Browse books, notes, handouts, and more.`;
     keywords.push(search, `${search} documents`, `${search} study material`);
   } else if (type) {
     const typeLabel = type.charAt(0).toUpperCase() + type.slice(1).replace(/-/g, ' ');
-    title = `${typeLabel} - Educational Documents | VUEDU`;
+    title = `${typeLabel} - Educational Documents | Vuedu`;
     description = `Browse our collection of free ${typeLabel.toLowerCase()}. High-quality educational resources for students.`;
     keywords.push(type, `${type} documents`, `free ${type}`);
   }
 
   if (subject) {
-    title = `${subject} ${type ? type.charAt(0).toUpperCase() + type.slice(1) : 'Documents'} - VUEDU`;
+    title = `${subject} ${type ? type.charAt(0).toUpperCase() + type.slice(1) : 'Documents'} - Vuedu`;
     description = `Free ${subject} ${type || 'educational materials'}. Comprehensive study resources for ${subject}.`;
     keywords.push(subject, `${subject} documents`, `${subject} study material`);
   }
 
   if (university) {
-    title = `${university} ${subject || 'Documents'} - VUEDU`;
+    title = `${university} ${subject || 'Documents'} - Vuedu`;
     description = `Educational materials from ${university}. ${subject ? `${subject} resources` : 'Study materials'} shared by students.`;
     keywords.push(university, `${university} documents`);
   }
@@ -261,7 +261,7 @@ export async function generateMetadata({ searchParams }) {
         url: '/og-documents.jpg',
         width: 1200,
         height: 630,
-        alt: 'VUEDU - Educational Documents',
+        alt: 'Vuedu - Educational Documents',
       },
     ],
   });

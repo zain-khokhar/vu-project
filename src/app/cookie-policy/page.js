@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { ArrowLeft, Cookie, Settings, Eye, BarChart3, Shield } from 'lucide-react';
 
 export const metadata = {
-  title: 'Cookie Policy - VUEDU',
-  description: 'Information about how VUEDU uses cookies and similar technologies to enhance your experience.',
+  title: 'Cookie Policy - Vuedu',
+  description: 'Information about how Vuedu uses cookies and similar technologies to enhance your experience.',
   keywords: 'cookies, tracking, privacy, web storage, analytics'
 };
 
@@ -42,7 +42,7 @@ export default function CookiePage() {
                 Cookies are small text files that are stored on your device when you visit our website. They help us provide you with a better experience by remembering your preferences and enabling certain functionality.
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
-                This Cookie Policy explains how VUEDU ("we," "our," or "us") uses cookies and similar technologies when you visit our website at vuedu.dev (the "Service").
+                This Cookie Policy explains how Vuedu ("we," "our," or "us") uses cookies and similar technologies when you visit our website at vuedu.dev (the "Service").
               </p>
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <p className="text-blue-800 font-medium">
@@ -265,7 +265,7 @@ export default function CookiePage() {
               <div className="bg-gray-50 rounded-lg p-4">
                 <p className="text-gray-600"><strong>Email:</strong> team@vuedu.dev</p>
                 <p className="text-gray-600"><strong>Subject:</strong> Cookie Policy Inquiry</p>
-                <p className="text-gray-600"><strong>Address:</strong> VUEDU Privacy Team</p>
+                <p className="text-gray-600"><strong>Address:</strong> Vuedu Privacy Team</p>
                 <p className="text-gray-600">123 Education Street, Learning City, LC 12345</p>
               </div>
             </section>

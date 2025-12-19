@@ -1,6 +1,6 @@
 # Content Security Policy (CSP) Implementation
 
-This document explains the Content Security Policy implementation in the VUEDU project to protect against XSS attacks.
+This document explains the Content Security Policy implementation in the Vuedu project to protect against XSS attacks.
 
 ## Overview
 

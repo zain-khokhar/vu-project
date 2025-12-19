@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { FileText, Edit, Trash2, Search, RefreshCw, User, Clock, Eye, EyeOff } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import AdminPagination from './AdminPagination';
+import { getAllBlogsAdmin, deleteBlogAdmin } from '@/actions/admin';
 
 export default function BlogManagement() {
     const router = useRouter();
@@ -27,14 +28,7 @@ export default function BlogManagement() {
     const fetchBlogs = async (page = 1, search = '') => {
         setLoading(true);
         try {
-            const params = new URLSearchParams({
-                page: page.toString(),
-                limit: limit.toString(),
-                ...(search && { search })
-            });
-
-            const response = await fetch(`/api/admin/blogs?${params}`);
-            const data = await response.json();
+            const data = await getAllBlogsAdmin(page, limit, search);
 
             if (data.success) {
                 setBlogs(data.blogs || []);
@@ -46,7 +40,7 @@ export default function BlogManagement() {
                 setBlogs([]);
             }
         } catch (err) {
-            setError('Network error while fetching blogs');
+            setError('Error while fetching blogs');
             setBlogs([]);
         } finally {
             setLoading(false);
@@ -54,18 +48,15 @@ export default function BlogManagement() {
     };
 
     // Delete blog
-    const deleteBlog = async (id) => {
+    const handleDeleteBlog = async (id) => {
         if (!confirm('Are you sure you want to delete this blog? This action cannot be undone.')) {
             return;
         }
 
         setDeletingId(id);
         try {
-            const response = await fetch(`/api/admin/blogs/${id}`, {
-                method: 'DELETE'
-            });
+            const data = await deleteBlogAdmin(id);
 
-            const data = await response.json();
             if (data.success) {
                 // Refresh the list
                 fetchBlogs(currentPage, searchQuery);
@@ -73,7 +64,7 @@ export default function BlogManagement() {
                 alert(data.error || 'Failed to delete blog');
             }
         } catch (err) {
-            alert('Network error while deleting blog');
+            alert('Error while deleting blog');
         } finally {
             setDeletingId('');
         }
@@ -212,7 +203,7 @@ export default function BlogManagement() {
 
                                         {/* Delete Button */}
                                         <button
-                                            onClick={() => deleteBlog(blog._id)}
+                                            onClick={() => handleDeleteBlog(blog._id)}
                                             disabled={deletingId === blog._id}
                                             className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                                             title="Delete Blog"

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { setAdminSession } from '@/lib/auth';
+import { adminLogin } from '@/actions/admin';
 import { Lock, User, Eye, EyeOff, Shield, AlertCircle } from 'lucide-react';
 
 export default function AdminLogin() {
@@ -21,15 +22,7 @@ export default function AdminLogin() {
     setError('');
 
     try {
-      const response = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
+      const data = await adminLogin(formData.username, formData.password);
 
       if (data.success) {
         setAdminSession();
@@ -38,7 +31,7 @@ export default function AdminLogin() {
         setError(data.error || 'Login failed');
       }
     } catch (err) {
-      setError('Network error. Please try again.');
+      setError('An error occurred. Please try again.');
     } finally {
       setLoading(false);
     }

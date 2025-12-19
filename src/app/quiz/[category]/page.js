@@ -40,7 +40,7 @@ export async function generateMetadata({ params }) {
 
     if (!quiz) {
       return {
-        title: 'Quiz Not Found - VUEDU',
+        title: 'Quiz Not Found - Vuedu',
         description: 'The requested quiz could not be found',
         robots: {
           index: false,
@@ -53,7 +53,7 @@ export async function generateMetadata({ params }) {
   } catch (error) {
     console.error('Error generating metadata:', error);
     return {
-      title: 'Quiz - VUEDU',
+      title: 'Quiz - Vuedu',
       description: 'Test your knowledge with our interactive quiz',
     };
   }

@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { ArrowLeft, Shield, Eye, Database, UserCheck, Cookie } from 'lucide-react';
 
 export const metadata = {
-  title: 'Privacy Policy - VUEDU',
-  description: 'Learn how VUEDU protects your privacy. We collect minimal data - only Google Analytics for website improvement.',
+  title: 'Privacy Policy - Vuedu',
+  description: 'Learn how Vuedu protects your privacy. We collect minimal data - only Google Analytics for website improvement.',
   keywords: 'privacy policy, data protection, Google Analytics, minimal data collection'
 };
 
@@ -42,7 +42,7 @@ export default function PrivacyPolicyPage() {
                 Introduction
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                VUEDU ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains our minimal data collection practices when you visit our website and use our educational resources.
+                Vuedu ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains our minimal data collection practices when you visit our website and use our educational resources.
               </p>
               <p className="text-gray-600 leading-relaxed">
                 By accessing or using our services, you agree to the terms of this Privacy Policy. If you do not agree with our policies, please do not use our services.
@@ -57,7 +57,7 @@ export default function PrivacyPolicyPage() {
                   No User Accounts Required
                 </h2>
                 <p className="text-green-700 leading-relaxed">
-                  <strong>VUEDU does not require user registration or authentication.</strong> We do not collect emails, passwords, or any personal account information. You can access all our educational resources without creating an account.
+                  <strong>Vuedu does not require user registration or authentication.</strong> We do not collect emails, passwords, or any personal account information. You can access all our educational resources without creating an account.
                 </p>
               </div>
             </section>

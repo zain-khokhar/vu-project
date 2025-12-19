@@ -20,6 +20,7 @@ import CommentManagement from '@/components/CommentManagement';
 import BlogManagement from '@/components/BlogManagement';
 import DocumentManagement from '@/components/DocumentManagement';
 import QuizManagement from '@/components/QuizManagement';
+import { getAdminStats } from '@/actions/admin';
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -43,8 +44,7 @@ export default function AdminDashboard() {
 
   const fetchStats = async () => {
     try {
-      const response = await fetch('/api/admin/stats');
-      const data = await response.json();
+      const data = await getAdminStats();
       if (data.success) {
         setStats(data.stats);
       }
@@ -150,7 +150,7 @@ export default function AdminDashboard() {
                 </div>
                 <div>
                   <h1 className="text-xl font-bold text-gray-900">Admin Dashboard</h1>
-                  <p className="text-sm text-gray-500">VUEDU Management Panel</p>
+                  <p className="text-sm text-gray-500">Vuedu Management Panel</p>
                 </div>
               </div>
 
@@ -158,8 +158,8 @@ export default function AdminDashboard() {
                 <button
                   onClick={() => setActiveTab('dashboard')}
                   className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap text-sm ${activeTab === 'dashboard'
-                      ? 'bg-indigo-100 text-indigo-700'
-                      : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-500 hover:text-gray-700'
                     }`}
                 >
                   Dashboard
@@ -167,8 +167,8 @@ export default function AdminDashboard() {
                 <button
                   onClick={() => setActiveTab('blogs')}
                   className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap text-sm ${activeTab === 'blogs'
-                      ? 'bg-indigo-100 text-indigo-700'
-                      : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-500 hover:text-gray-700'
                     }`}
                 >
                   Blogs
@@ -176,8 +176,8 @@ export default function AdminDashboard() {
                 <button
                   onClick={() => setActiveTab('documents')}
                   className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap text-sm ${activeTab === 'documents'
-                      ? 'bg-indigo-100 text-indigo-700'
-                      : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-500 hover:text-gray-700'
                     }`}
                 >
                   Documents
@@ -185,8 +185,8 @@ export default function AdminDashboard() {
                 <button
                   onClick={() => setActiveTab('quizzes')}
                   className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap text-sm ${activeTab === 'quizzes'
-                      ? 'bg-indigo-100 text-indigo-700'
-                      : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-500 hover:text-gray-700'
                     }`}
                 >
                   Quizzes
@@ -194,8 +194,8 @@ export default function AdminDashboard() {
                 <button
                   onClick={() => setActiveTab('feedback')}
                   className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap text-sm ${activeTab === 'feedback'
-                      ? 'bg-indigo-100 text-indigo-700'
-                      : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-500 hover:text-gray-700'
                     }`}
                 >
                   Feedback
@@ -203,8 +203,8 @@ export default function AdminDashboard() {
                 <button
                   onClick={() => setActiveTab('comments')}
                   className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap text-sm ${activeTab === 'comments'
-                      ? 'bg-indigo-100 text-indigo-700'
-                      : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-500 hover:text-gray-700'
                     }`}
                 >
                   Comments
