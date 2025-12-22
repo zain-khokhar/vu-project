@@ -1,5 +1,8 @@
 import { getBlogs } from '@/actions/blogs';
 import { getDocuments } from '@/actions/documents';
+import connectDB from '@/lib/mongodb';
+import Quiz from '@/models/Quiz';
+
 export const dynamic = 'force-dynamic';
 
 // Helper function to safely parse dates
@@ -118,14 +121,28 @@ export default async function sitemap() {
     console.error('Error fetching documents for sitemap:', error);
   }
 
-  // Quiz categories
-  // const quizCategories = ['CS101', 'CS201', 'CS301', 'CS401', 'CS501'];
-  // const quizRoutes = quizCategories.map((category) => ({
-  //   url: `${baseUrl}/quiz/${category}`,
-  //   lastModified: new Date(),
-  //   changeFrequency: 'weekly',
-  //   priority: 0.6,
-  // }));
+  // Get all quizzes
+  let quizRoutes = [];
+  try {
+    await connectDB();
+    const quizzes = await Quiz.find({ isActive: true })
+      .select('slug updatedAt')
+      .sort({ updatedAt: -1 })
+      .lean();
 
-  return [...staticRoutes, ...blogRoutes, ...documentRoutes];
+    if (quizzes) {
+      quizRoutes = quizzes
+        .filter(quiz => quiz && quiz.slug) // Filter out invalid quizzes
+        .map((quiz) => ({
+          url: `${baseUrl}/quiz/${quiz.slug}`,
+          lastModified: safeDate(quiz.updatedAt),
+          changeFrequency: 'weekly',
+          priority: 0.8,
+        }));
+    }
+  } catch (error) {
+    console.error('Error fetching quizzes for sitemap:', error);
+  }
+
+  return [...staticRoutes, ...blogRoutes, ...documentRoutes, ...quizRoutes];
 }
