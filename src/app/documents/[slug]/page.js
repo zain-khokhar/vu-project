@@ -165,7 +165,12 @@ export default async function DocumentPage({ params }) {
                       <h2 className="text-base sm:text-lg font-semibold text-gray-900">About this Document</h2>
                     </div>
                     <div
-                      className="prose prose-sm sm:prose prose-gray max-w-none text-gray-600"
+                      className="prose prose-a:no-underline
+
+                    prose-a:text-purple-500 hover:prose-a:underline
+                    prose-quote:border-purple-500
+                    prose-ul:list-disc 
+                    max-w-none overflow-hidden"
                       itemProp="description"
                       dangerouslySetInnerHTML={{ __html: document.description }}
                       aria-label="Document description and details"

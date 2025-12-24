@@ -90,7 +90,8 @@ export async function generateMetadata({ params }) {
  * Google-style layout with title + metadata above cover image
  */
 export default async function BlogPostPage({ params }) {
-  const { slug } = await params;
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
   const result = await getBlogBySlug(slug);
 
   if (!result.success) {
@@ -129,15 +130,16 @@ export default async function BlogPostPage({ params }) {
         <div className="max-w-6xl mx-auto px-0 sm:px-6 lg:px-12 py-8">
 
           {/* Back Button */}
-          <Link
-            href="/blogs"
-            prefetch={false}
-            className="inline-flex items-center gap-2 px-2 max-sm:text-xs sm:px-4 py-2 sm:py-2 mb-2 cursor-pointer"
-            aria-label="Go back to all blog posts"
-          >
-            <ArrowLeft className="sm:h-4 sm:w-4 h-3 w-3" aria-hidden="true" />
-            <span>Back to Blog</span>
-          </Link>
+          <div className="mb-2">
+            <Link
+              href="/blogs"
+              className="inline-flex items-center gap-2 px-2 max-sm:text-xs sm:px-4 py-2 sm:py-2 cursor-pointer hover:text-purple-600 transition-colors"
+              aria-label="Go back to all blog posts"
+            >
+              <ArrowLeft className="sm:h-4 sm:w-4 h-3 w-3" aria-hidden="true" />
+              <span>Back to Blog</span>
+            </Link>
+          </div>
 
           {/* Google-Style Blog Header - Above Image */}
           <header className="mb-8 py-6" aria-label="Blog post header">
@@ -198,13 +200,16 @@ export default async function BlogPostPage({ params }) {
 
           {/* Article */}
           <article
-            className="overflow-hidden"
-            itemScope
+            className="prose sm:prose-lg
+                    prose-a:text-purple-500 prose-a:no-underline
+ hover:prose-a:underline
+                    prose-quote:border-purple-500
+                    prose-ul:list-disc 
+                    max-w-none overflow-hidden"            itemScope
             itemType="https://schema.org/BlogPosting"
           >
-            <div className="p-3 sm:p-6 md:p-18">
+            <div className="p-4 sm:p-6 md:p-16">
 
-              {/* Hidden structured data properties */}
               <meta itemProp="image" content={coverImageData.url} />
               <meta itemProp="author" content={blog.author?.name || 'Vuedu'} />
               <meta itemProp="publisher" content="Vuedu" />
@@ -212,15 +217,14 @@ export default async function BlogPostPage({ params }) {
                 <meta itemProp="dateModified" content={blog.updatedAt} />
               )}
 
-              {/* Blog Content - H1 removed to avoid duplication */}
               <section
-                className="blog-content prose prose-lg max-w-none"
                 itemProp="articleBody"
                 dangerouslySetInnerHTML={{ __html: cleanedContent }}
-                aria-label="Blog article content"
               />
+
             </div>
           </article>
+
 
           {/* Author Info - Full version at bottom */}
           <footer className="mt-12 px-3" aria-label="Author information">

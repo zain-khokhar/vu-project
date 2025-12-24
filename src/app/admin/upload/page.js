@@ -259,6 +259,11 @@ function UploadPageContent() {
                 Description *
               </label>
               <BlogEditor
+              className="prose sm:prose-lg
+                    prose-a:text-purple-500 hover:prose-a:underline
+                    prose-quote:border-purple-500
+                    prose-ul:list-disc 
+                    max-w-none overflow-hidden"
                 content={formData.description}
                 onChange={(html) => setFormData(prev => ({ ...prev, description: html }))}
                 placeholder="Provide a detailed description of the document content, topics covered, etc. Use the toolbar to format your text with headings, lists, and emphasis."

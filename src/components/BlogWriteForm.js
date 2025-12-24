@@ -285,8 +285,8 @@ export default function BlogWriteForm() {
             {/* Upload Button */}
             <div className="flex items-center space-x-4">
               <label className={`flex items-center space-x-2 px-4 py-2 rounded-lg cursor-pointer transition-colors ${isUploading
-                  ? 'bg-gray-100 cursor-not-allowed'
-                  : 'bg-blue-100 hover:bg-blue-200 text-blue-700'
+                ? 'bg-gray-100 cursor-not-allowed'
+                : 'bg-blue-100 hover:bg-blue-200 text-blue-700'
                 }`}>
                 {isUploading ? (
                   <>
@@ -366,6 +366,11 @@ export default function BlogWriteForm() {
             Content *
           </label>
           <BlogEditor
+            className="prose sm:prose-lg
+                    prose-a:text-purple-500 hover:prose-a:underline
+                    prose-quote:border-purple-500
+                    prose-ul:list-disc 
+                    max-w-none overflow-hidden"
             content={content}
             onChange={setContent}
             placeholder="Start writing your blog post..."
