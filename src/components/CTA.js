@@ -52,34 +52,33 @@ function Button({
 
 export function CTA() {
   return (
-    <section className="w-full py-20 relative overflow-hidden">
+    <section className="w-full py-12 sm:py-16 lg:py-20 relative overflow-hidden">
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="relative">
 
           {/* Main CTA card */}
-          <div className="relative bg-white/40 rounded-[3rem] p-12 lg:p-16 text-center overflow-hidden shadow-2xl">
+          <div className="relative bg-white/40 rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] p-6 sm:p-10 lg:p-16 text-center overflow-hidden shadow-2xl">
 
-            <div className="max-w-3xl mx-auto flex flex-col gap-6 relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 w-fit shadow-lg mx-auto">
-                <Sparkles className="h-4 w-4 text-purple-600  " />
-                <span className="text-sm bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">🇵🇰 Trusted by 100K+ Pakistani Students</span>
+            <div className="max-w-3xl mx-auto flex flex-col gap-4 sm:gap-6 relative z-10">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/30 w-fit shadow-lg mx-auto">
+                <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-purple-600" />
+                <span className="text-xs sm:text-sm bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">🇵🇰 Trusted by 1000+ Pakistani Students</span>
               </div>
 
-
-              <h2 className="text-4xl font-light lg:text-5xl max-sm:text-3xl bg-gradient-to-br from-[#1a1f36] to-[#667eea] bg-clip-text text-transparent">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light bg-gradient-to-br from-[#1a1f36] to-[#667eea] bg-clip-text text-transparent leading-tight">
                 Start Your Learning Journey Today
               </h2>
 
-              <p className="text-xl text-gray-700/70 font-light max-sm:text-lg">
+              <p className="text-base sm:text-lg lg:text-xl text-gray-700/70 font-light px-2 sm:px-0">
                 Join thousands of Pakistani students accessing free educational resources from VU, AIOU, NUST, and all major universities across Pakistan.
               </p>
 
-              <div className="flex sm:flex-row flex-wrap gap-4 justify-center pt-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-2 sm:pt-4">
                 <Button
                   size="lg"
                   asChild
-                  className="gap-2 bg-gradient-to-br from-[#6b46ff] to-[#764ba2] text-white border-0 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300"
+                  className="gap-2 bg-gradient-to-br from-[#6b46ff] to-[#764ba2] text-white border-0 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300 w-full sm:w-auto"
                 >
                   <Link href="/documents">
                     Browse Documents
@@ -90,7 +89,7 @@ export function CTA() {
                   size="lg"
                   variant="outline"
                   asChild
-                  className="gap-2 bg-white/30 border-white/50 hover:bg-white/40 transition-all shadow-xl duration-300 hover:scale-105"
+                  className="gap-2 bg-white/30 border-white/50 hover:bg-white/40 transition-all shadow-xl duration-300 hover:scale-105 w-full sm:w-auto"
                 >
                   <Link href="/blogs">
                     Explore Resources
@@ -98,20 +97,20 @@ export function CTA() {
                 </Button>
               </div>
 
-              <div className="flex items-center justify-center gap-6 pt-2">
-                <div className="flex items-center gap-2 text-sm text-gray-600/60">
-                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 pt-2 text-xs sm:text-sm">
+                <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600/60">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500"></div>
                   <span>100% Free Forever</span>
                 </div>
-                <div className="h-1 w-1 rounded-full bg-gray-400/30"></div>
-                <div className="flex items-center gap-2 text-sm text-gray-600/60">
-                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                <div className="hidden sm:block h-1 w-1 rounded-full bg-gray-400/30"></div>
+                <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600/60">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-blue-500"></div>
                   <span>Instant Access</span>
                 </div>
-                <div className="h-1 w-1 rounded-full bg-gray-400/30"></div>
-                <div className="flex items-center gap-2 text-sm text-gray-600/60">
-                  <div className="w-2 h-2 rounded-full bg-purple-500"></div>
-                  <span>No Registration Required</span>
+                <div className="hidden sm:block h-1 w-1 rounded-full bg-gray-400/30"></div>
+                <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600/60">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-purple-500"></div>
+                  <span>No Registration</span>
                 </div>
               </div>
             </div>
