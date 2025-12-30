@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { ArrowLeft, AlertTriangle, BookOpen, Users, Shield, Info } from 'lucide-react';
 
 export const metadata = {
-  title: 'Disclaimer - DocLibrary',
-  description: 'Important disclaimers about DocLibrary services, educational content, and limitations.',
+  title: 'Disclaimer - VUEDU',
+  description: 'Important disclaimers about VUEDU services, educational content, and limitations.',
   keywords: 'disclaimer, educational content, academic integrity, limitations, liability'
 };
 
@@ -44,12 +44,12 @@ export default function DisclaimerPage() {
                   IMPORTANT: READ CAREFULLY
                 </p>
                 <p className="text-red-700 leading-relaxed">
-                  The information and services provided by DocLibrary are for educational and informational purposes only. By using our website and services, you acknowledge and agree to the limitations and disclaimers outlined below.
+                  The information and services provided by VUEDU are for educational and informational purposes only. By using our website and services, you acknowledge and agree to the limitations and disclaimers outlined below.
                 </p>
               </div>
               
               <p className="text-gray-600 leading-relaxed mb-4">
-                DocLibrary ("we," "our," or "us") provides academic resources, document management tools, and educational support services. These services are designed to assist students and educators, but they come with important limitations that users must understand.
+                VUEDU ("we," "our," or "us") provides academic resources, document management tools, and educational support services. These services are designed to assist students and educators, but they come with important limitations that users must understand.
               </p>
             </section>
 
@@ -66,7 +66,7 @@ export default function DisclaimerPage() {
                 <li>We do not guarantee the accuracy, completeness, or reliability of any content</li>
                 <li>Information may become outdated or incorrect over time</li>
                 <li>Users should verify information from multiple authoritative sources</li>
-                <li>Content reflects the views of individual contributors, not necessarily DocLibrary</li>
+                <li>Content reflects the views of individual contributors, not necessarily VUEDU</li>
               </ul>
 
               <h3 className="text-xl font-semibold text-gray-900 mb-3">User-Generated Content</h3>
@@ -88,7 +88,7 @@ export default function DisclaimerPage() {
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
                 <h3 className="text-lg font-semibold text-yellow-800 mb-3">Student Responsibility</h3>
                 <p className="text-yellow-700 leading-relaxed">
-                  Students using DocLibrary services must comply with their institution's academic integrity policies, honor codes, and ethical guidelines. Our services are intended to support learning, not replace it.
+                  Students using VUEDU services must comply with their institution's academic integrity policies, honor codes, and ethical guidelines. Our services are intended to support learning, not replace it.
                 </p>
               </div>
 
@@ -116,7 +116,7 @@ export default function DisclaimerPage() {
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                 <p className="text-blue-800 font-semibold mb-3">Important Limitation:</p>
                 <p className="text-blue-700 leading-relaxed mb-4">
-                  DocLibrary does not provide professional academic advising, career counseling, or official educational guidance. Our services are informational only.
+                  VUEDU does not provide professional academic advising, career counseling, or official educational guidance. Our services are informational only.
                 </p>
                 <ul className="list-disc list-inside text-blue-700 space-y-2">
                   <li>We are not a substitute for qualified academic advisors or counselors</li>
@@ -185,7 +185,7 @@ export default function DisclaimerPage() {
               <div className="bg-red-50 border border-red-200 rounded-lg p-6">
                 <p className="text-red-800 font-semibold mb-3">LIMITATION NOTICE:</p>
                 <p className="text-red-700 leading-relaxed mb-4">
-                  To the maximum extent permitted by applicable law, DocLibrary disclaims all liability for:
+                  To the maximum extent permitted by applicable law, VUEDU disclaims all liability for:
                 </p>
                 <ul className="list-disc list-inside text-red-700 space-y-2">
                   <li>Academic consequences resulting from use of our services</li>
@@ -228,9 +228,9 @@ export default function DisclaimerPage() {
                 If you have questions about this disclaimer or need clarification about our services:
               </p>
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-gray-600"><strong>Email:</strong> support@doclibrary.com</p>
+                <p className="text-gray-600"><strong>Email:</strong> support@vuedu.dev</p>
                 <p className="text-gray-600"><strong>Subject:</strong> Disclaimer Inquiry</p>
-                <p className="text-gray-600"><strong>Address:</strong> DocLibrary Support Team</p>
+                <p className="text-gray-600"><strong>Address:</strong> VUEDU Support Team</p>
                 <p className="text-gray-600">123 Education Street, Learning City, LC 12345</p>
               </div>
             </section>

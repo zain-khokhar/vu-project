@@ -5,9 +5,10 @@ import { useRouter } from 'next/navigation';
 import { Upload, X, Plus, AlertCircle, CheckCircle } from 'lucide-react';
 import { createDocument } from '@/actions/documents';
 import { documentTypes } from '@/lib/utils';
-import RichTextEditor from '@/components/RichTextEditor';
+import BlogEditor from '@/components/BlogEditor';
+import AdminProtected from '@/components/AdminProtected';
 
-export default function UploadPage() {
+function UploadPageContent() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({ type: '', content: '' });
@@ -18,7 +19,6 @@ export default function UploadPage() {
     title: '',
     description: '',
     type: 'note',
-    coverImage: '',
     fileUrl: '',
     subject: '',
     university: '',
@@ -220,7 +220,7 @@ export default function UploadPage() {
               <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
                 Description *
               </label>
-              <RichTextEditor
+              <BlogEditor
                 content={formData.description}
                 onChange={(html) => setFormData(prev => ({ ...prev, description: html }))}
                 placeholder="Provide a detailed description of the document content, topics covered, etc. Use the toolbar to format your text with headings, lists, and emphasis."
@@ -229,24 +229,6 @@ export default function UploadPage() {
 
             {/* File URLs */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="coverImage" className="block text-sm font-medium text-gray-700 mb-2">
-                  Cover Image URL *
-                </label>
-                <input
-                  type="url"
-                  id="coverImage"
-                  name="coverImage"
-                  value={formData.coverImage}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="https://example.com/image.jpg"
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  Use a service like Cloudinary, Imgur, or any public image URL
-                </p>
-              </div>
 
               <div>
                 <label htmlFor="fileUrl" className="block text-sm font-medium text-gray-700 mb-2">
@@ -341,5 +323,13 @@ export default function UploadPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function UploadPage() {
+  return (
+    <AdminProtected>
+      <UploadPageContent />
+    </AdminProtected>
   );
 }

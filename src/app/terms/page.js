@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { ArrowLeft, FileText, AlertTriangle, Scale, Globe } from 'lucide-react';
 
 export const metadata = {
-  title: 'Terms & Conditions - DocLibrary',
-  description: 'Terms of service, acceptable use policy, and legal information for DocLibrary users.',
+  title: 'Terms & Conditions - VUEDU',
+  description: 'Terms of service, acceptable use policy, and legal information for VUEDU users.',
   keywords: 'terms of service, conditions, acceptable use, liability, legal'
 };
 
@@ -39,7 +39,7 @@ export default function TermsPage() {
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Agreement to Terms</h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                These Terms and Conditions ("Terms") govern your use of DocLibrary's website and services ("Service") operated by DocLibrary ("us," "we," or "our").
+                These Terms and Conditions ("Terms") govern your use of VUEDU's website and services ("Service") operated by VUEDU ("us," "we," or "our").
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
                 By accessing or using our Service, you agree to be bound by these Terms. If you disagree with any part of these terms, then you may not access the Service.
@@ -47,7 +47,7 @@ export default function TermsPage() {
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <p className="text-blue-800 font-medium">
                   <AlertTriangle className="h-5 w-5 inline mr-2" />
-                  These Terms constitute a legally binding agreement between you and DocLibrary.
+                  These Terms constitute a legally binding agreement between you and VUEDU.
                 </p>
               </div>
             </section>
@@ -105,7 +105,7 @@ export default function TermsPage() {
 
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Our Content</h3>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>DocLibrary's original content is protected by intellectual property laws</li>
+                <li>VUEDU's original content is protected by intellectual property laws</li>
                 <li>You may not copy, modify, or create derivative works without permission</li>
                 <li>Our trademarks and logos may not be used without written consent</li>
               </ul>
@@ -147,7 +147,7 @@ export default function TermsPage() {
                   <strong>IMPORTANT:</strong> To the maximum extent permitted by law:
                 </p>
                 <ul className="list-disc list-inside text-gray-600 space-y-2">
-                  <li>DocLibrary shall not be liable for any indirect, incidental, or consequential damages</li>
+                  <li>VUEDU shall not be liable for any indirect, incidental, or consequential damages</li>
                   <li>Our total liability shall not exceed the amount paid by you for our services</li>
                   <li>We are not responsible for losses due to service interruptions or technical issues</li>
                   <li>We disclaim all warranties, express or implied, including merchantability and fitness for purpose</li>
@@ -184,7 +184,7 @@ export default function TermsPage() {
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Indemnification</h2>
               <p className="text-gray-600 leading-relaxed">
-                You agree to indemnify and hold harmless DocLibrary, its officers, directors, employees, and agents from any claims, damages, losses, or expenses arising from your use of the service, violation of these terms, or infringement of any rights of another party.
+                You agree to indemnify and hold harmless VUEDU, its officers, directors, employees, and agents from any claims, damages, losses, or expenses arising from your use of the service, violation of these terms, or infringement of any rights of another party.
               </p>
             </section>
 
@@ -198,7 +198,7 @@ export default function TermsPage() {
                 <li>These Terms are governed by the laws of [Your Jurisdiction]</li>
                 <li>Any disputes shall be resolved in the courts of [Your Jurisdiction]</li>
                 <li>If any provision is found unenforceable, the remainder remains in effect</li>
-                <li>These Terms constitute the entire agreement between you and DocLibrary</li>
+                <li>These Terms constitute the entire agreement between you and VUEDU</li>
               </ul>
             </section>
 
@@ -217,8 +217,8 @@ export default function TermsPage() {
                 If you have questions about these Terms and Conditions, please contact us:
               </p>
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-gray-600"><strong>Email:</strong> legal@doclibrary.com</p>
-                <p className="text-gray-600"><strong>Address:</strong> DocLibrary Legal Team</p>
+                <p className="text-gray-600"><strong>Email:</strong> legal@vuedu.dev</p>
+                <p className="text-gray-600"><strong>Address:</strong> VUEDU Legal Team</p>
                 <p className="text-gray-600">123 Education Street, Learning City, LC 12345</p>
               </div>
             </section>

@@ -4,11 +4,12 @@ import { getBlogs } from '@/actions/blogs';
 import BlogCard from '@/components/BlogCard';
 import Pagination from '@/components/Pagination';
 import FeaturedPosts from '@/components/FeaturedPosts';
-
-export const metadata = {
-  title: 'Blogs - DocLibrary',
-  description: 'Read the latest blog posts and insights from the DocLibrary community',
-};
+import {
+  generateDocumentMetadata,
+  generateDocumentStructuredData,
+  generateWebsiteStructuredData,
+  formatSEODate
+} from '@/lib/seo-utils';
 
 export default async function BlogsPage({ searchParams }) {
   // Await searchParams as required by Next.js 15
@@ -35,6 +36,35 @@ export default async function BlogsPage({ searchParams }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            generateWebsiteStructuredData(),
+            generateDocumentStructuredData({
+              type: 'Blog',
+              name: 'VUEDU Blog',
+              description: 'Educational articles, tutorials, and insights for students and learners',
+              url: '/blogs',
+              breadcrumbs: [
+                { name: 'Home', url: '/' },
+                { name: 'Blogs', url: '/blogs' },
+              ],
+              items: enhancedBlogs.slice(0, 10).map(blog => ({
+                title: blog.title,
+                description: blog.excerpt || blog.description,
+                url: `/blogs/${blog.slug}`,
+                type: 'BlogPosting',
+                subject: blog.tags?.[0] || 'Education',
+              })),
+              totalItems: pagination?.totalCount || enhancedBlogs.length,
+              dateModified: enhancedBlogs[0]?.updatedAt || new Date().toISOString(),
+            }),
+          ]),
+        }}
+      />
+
       {/* Premium Liquid Background */}
       <div className="fixed inset-0 -z-10">
         {/* Base gradient */}
@@ -42,9 +72,9 @@ export default async function BlogsPage({ searchParams }) {
         <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-400/20 to-purple-400/20 opacity-40"></div>
 
         {/* Liquid orbs */}
-        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-purple-400/15 via-pink-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-blue-400/15 via-cyan-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/3 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/8 via-blue-300/8 to-purple-300/8 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transform -translate-x-1/2" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-purple-400/15 via-pink-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl  "></div>
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-blue-400/15 via-cyan-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl  " style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/3 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/8 via-blue-300/8 to-purple-300/8 rounded-full mix-blend-multiply filter blur-3xl   transform -translate-x-1/2" style={{ animationDelay: '4s' }}></div>
       </div>
 
       {/* Hero Section */}
@@ -67,11 +97,11 @@ export default async function BlogsPage({ searchParams }) {
                   <span className="block bg-gradient-to-r from-gray-900 via-purple-800 to-pink-800 bg-clip-text text-transparent">
                     Explore Our
                   </span>
-                  <span className="block bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent animate-pulse">
+                  <span className="block bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent  ">
                     Blog Collection
                   </span>
                 </h1>
-                <div className="w-24 h-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full animate-pulse"></div>
+                <div className="w-24 h-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full  "></div>
               </div>
 
               {/* Subheading */}
@@ -82,13 +112,13 @@ export default async function BlogsPage({ searchParams }) {
               {/* CTA Button */}
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <Link
-                  href="/blog/write"
+                  href="#first"
                   className="group relative px-6 py-3 bg-gradient-to-r from-purple-500/80 via-purple-600/70 to-pink-600/80 text-white font-medium text-sm rounded-xl overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/30 hover:scale-105 active:scale-95 w-fit"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/15 via-transparent to-white/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -skew-x-12 group-hover:skew-x-0"></div>
                   <div className="relative flex items-center justify-center space-x-2">
                     <FileText className="h-4 w-4 text-pink-200 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
-                    <span>Write a Blog Post</span>
+                    <span>Explore Blogs</span>
                   </div>
                 </Link>
               </div>
@@ -99,7 +129,7 @@ export default async function BlogsPage({ searchParams }) {
               {/* Floating Vector Elements */}
               <div className="absolute inset-0 pointer-events-none">
                 {/* Badge - Top Right */}
-                <div className="absolute top-0 right-0 w-40 h-14 backdrop-blur-xl bg-gradient-to-r from-purple-100/50 via-white/40 to-pink-100/50 border-2 border-white/70 rounded-full shadow-xl p-3 animate-pulse">
+                <div className="absolute top-0 right-0 w-40 h-14 backdrop-blur-xl bg-gradient-to-r from-purple-100/50 via-white/40 to-pink-100/50 border-2 border-white/70 rounded-full shadow-xl p-3  ">
                   <div className="flex items-center justify-between h-full">
                     <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400"></div>
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
@@ -132,7 +162,7 @@ export default async function BlogsPage({ searchParams }) {
                 </div>
 
                 {/* Vector Card 1 - Top Center */}
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-40 backdrop-blur-xl bg-gradient-to-br from-purple-100/40 via-white/30 to-purple-50/40 border-2 border-white/70 rounded-3xl shadow-xl p-4 hover:shadow-2xl transition-all duration-500 hover:scale-105 animate-pulse">
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-40 backdrop-blur-xl bg-gradient-to-br from-purple-100/40 via-white/30 to-purple-50/40 border-2 border-white/70 rounded-3xl shadow-xl p-4 hover:shadow-2xl transition-all duration-500 hover:scale-105  ">
                   <div className="space-y-2">
                     <div className="w-full h-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
                     <div className="w-4/5 h-2 bg-gradient-to-r from-blue-300 to-purple-300 rounded-full"></div>
@@ -197,7 +227,7 @@ export default async function BlogsPage({ searchParams }) {
                 </div>
 
                 {/* Small Half Badges Collection */}
-                <div className="absolute bottom-32 left-1/4 w-24 h-12 backdrop-blur-xl bg-gradient-to-r from-orange-100/50 to-amber-100/50 border-r-2 border-b-2 border-white/70 rounded-br-2xl shadow-lg animate-pulse" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute bottom-32 left-1/4 w-24 h-12 backdrop-blur-xl bg-gradient-to-r from-orange-100/50 to-amber-100/50 border-r-2 border-b-2 border-white/70 rounded-br-2xl shadow-lg  " style={{ animationDelay: '1s' }}></div>
 
                 <div className="absolute top-2/3 right-1/4 w-28 h-14 backdrop-blur-xl bg-gradient-to-b from-rose-100/50 via-white/40 to-rose-50/50 border-t-2 border-r-2 border-white/70 rounded-tr-2xl shadow-lg animate-bounce" style={{ animationDuration: '5s', animationDelay: '1.5s' }}></div>
               </div>
@@ -208,18 +238,13 @@ export default async function BlogsPage({ searchParams }) {
 
       {/* Featured Posts Section */}
       {enhancedBlogs.length > 0 && (
-        <section className="relative py-12 px-4 sm:px-6 lg:px-8">
+        <section className="relative py-12 px-4 sm:px-6 lg:px-8" id='first'>
           <FeaturedPosts blogs={enhancedBlogs} />
         </section>
       )}
 
       {/* Latest Posts Section */}
       <section className="relative py-20 overflow-hidden">
-        {/* Liquid Background Orbs */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 right-1/3 w-96 h-96 bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header with Liquid Badge */}
@@ -243,7 +268,7 @@ export default async function BlogsPage({ searchParams }) {
                 {blogs.map((blog) => (
                   <div key={blog._id} className="group  overflow-hidden">
                     {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-50/40 via-white/20 to-transparent pointer-events-none"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500"></div> */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500"></div> */}
                     <div className="relative">
                       <BlogCard blog={blog} />
                     </div>
@@ -278,3 +303,60 @@ export default async function BlogsPage({ searchParams }) {
     </div>
   );
 }
+
+// Generate static params for pagination
+export async function generateStaticParams() {
+  // Pre-generate first few pages statically
+  return [
+    {},
+    { page: '1' },
+    { page: '2' },
+    { page: '3' },
+  ];
+}
+
+// Generate dynamic metadata
+// export async function generateMetadata({ searchParams }) {
+//   const params = await searchParams;
+//   const page = parseInt(params?.page) || 1;
+
+//   let title = 'Educational Blogs & Articles - VUEDU';
+//   let description = 'Read the latest educational articles, tutorials, study tips, and insights from experts. Learn about programming, data structures, web development, and more.';
+//   const keywords = [
+//     'educational blogs',
+//     'programming tutorials',
+//     'study tips',
+//     'computer science articles',
+//     'web development',
+//     'data structures',
+//     'algorithms',
+//     'student resources',
+//     'learning materials',
+//     'tech education',
+//   ];
+
+//   if (page > 1) {
+//     title = `Educational Blogs & Articles - Page ${page} | VUEDU`;
+//     description = `Browse educational articles and tutorials - Page ${page}. Expert insights on programming, computer science, and study strategies.`;
+//   }
+
+//   return generateDocumentMetadata({
+//     title,
+//     description,
+//     keywords,
+//     url: '/blogs',
+//     canonical: page > 1 ? `/blogs?page=${page}` : '/blogs',
+//     type: 'website',
+//     images: [
+//       {
+//         url: '/og-blogs.jpg',
+//         width: 1200,
+//         height: 630,
+//         alt: 'VUEDU Blog - Educational Articles & Tutorials',
+//       },
+//     ],
+//   });
+// }
+
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every 30 minutes

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, MessageSquare, Clock, Sparkles } from 'lucide-react';
+import FeedbackForm from '@/components/FeedbackForm';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -137,11 +138,11 @@ export default function ContactPage() {
         <div className="absolute bottom-0 right-0 w-full h-1/2 bg-gradient-to-t from-blue-50/30 via-purple-50/20 to-transparent pointer-events-none"></div>
 
         {/* Liquid orbs with enhanced gradients - More visible and prominent */}
-        <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-gradient-to-br from-blue-400/25 via-cyan-300/15 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 left-1/4 w-[700px] h-[700px] bg-gradient-to-tl from-purple-400/25 via-pink-300/15 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/3 left-1/2 w-[600px] h-[600px] bg-gradient-to-r from-indigo-400/20 via-blue-300/15 to-purple-300/15 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transform -translate-x-1/2" style={{ animationDelay: '4s' }}></div>
-        <div className="absolute top-1/4 right-0 w-[700px] h-[700px] bg-gradient-to-l from-cyan-300/20 via-blue-300/15 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
-        <div className="absolute bottom-1/4 right-1/3 w-[600px] h-[600px] bg-gradient-to-br from-indigo-300/15 via-purple-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-gradient-to-br from-blue-400/25 via-cyan-300/15 to-transparent rounded-full mix-blend-multiply filter blur-3xl  "></div>
+        <div className="absolute bottom-0 left-1/4 w-[700px] h-[700px] bg-gradient-to-tl from-purple-400/25 via-pink-300/15 to-transparent rounded-full mix-blend-multiply filter blur-3xl  " style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/3 left-1/2 w-[600px] h-[600px] bg-gradient-to-r from-indigo-400/20 via-blue-300/15 to-purple-300/15 rounded-full mix-blend-multiply filter blur-3xl   transform -translate-x-1/2" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute top-1/4 right-0 w-[700px] h-[700px] bg-gradient-to-l from-cyan-300/20 via-blue-300/15 to-transparent rounded-full mix-blend-multiply filter blur-3xl  " style={{ animationDelay: '3s' }}></div>
+        <div className="absolute bottom-1/4 right-1/3 w-[600px] h-[600px] bg-gradient-to-br from-indigo-300/15 via-purple-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl  " style={{ animationDelay: '1s' }}></div>
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -360,7 +361,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Email</p>
-                    <p className="text-indigo-600 font-light">support@doclibrary.com</p>
+                    <p className="text-indigo-600 font-light">support@vuedu.dev</p>
                     <p className="text-sm text-gray-600 font-light">General inquiries & support</p>
                   </div>
                 </div>
@@ -439,6 +440,9 @@ export default function ContactPage() {
                 <span className="ml-2 group-hover/link:translate-x-1 transition-transform duration-300">→</span>
               </Link>
             </div>
+
+            {/* Feedback Form */}
+            {/* <FeedbackForm /> */}
           </div>
         </div>
       </div>

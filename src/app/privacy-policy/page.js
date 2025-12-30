@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { ArrowLeft, Shield, Eye, Database, UserCheck } from 'lucide-react';
 
 export const metadata = {
-  title: 'Privacy Policy - DocLibrary',
-  description: 'Learn how DocLibrary collects, uses, and protects your personal information and data.',
+  title: 'Privacy Policy - VUEDU',
+  description: 'Learn how VUEDU collects, uses, and protects your personal information and data.',
   keywords: 'privacy policy, data protection, user rights, cookies, analytics'
 };
 
@@ -42,7 +42,7 @@ export default function PrivacyPolicyPage() {
                 Introduction
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                DocLibrary ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.
+                VUEDU ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.
               </p>
               <p className="text-gray-600 leading-relaxed">
                 By accessing or using our services, you agree to the terms of this Privacy Policy. If you do not agree with our policies and practices, do not use our services.
@@ -143,7 +143,7 @@ export default function PrivacyPolicyPage() {
                 <li><strong>Withdraw Consent:</strong> Withdraw consent for data processing where applicable</li>
               </ul>
               <p className="text-gray-600 leading-relaxed mt-4">
-                To exercise these rights, please contact us at <a href="mailto:privacy@doclibrary.com" className="text-blue-600 hover:underline">privacy@doclibrary.com</a>.
+                To exercise these rights, please contact us at <a href="mailto:privacy@vuedu.dev" className="text-blue-600 hover:underline">privacy@vuedu.dev</a>.
               </p>
             </section>
 
@@ -193,8 +193,8 @@ export default function PrivacyPolicyPage() {
                 If you have any questions about this Privacy Policy, please contact us:
               </p>
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-gray-600"><strong>Email:</strong> privacy@doclibrary.com</p>
-                <p className="text-gray-600"><strong>Address:</strong> DocLibrary Privacy Team</p>
+                <p className="text-gray-600"><strong>Email:</strong> privacy@vuedu.dev</p>
+                <p className="text-gray-600"><strong>Address:</strong> VUEDU Privacy Team</p>
                 <p className="text-gray-600">123 Education Street, Learning City, LC 12345</p>
               </div>
             </section>

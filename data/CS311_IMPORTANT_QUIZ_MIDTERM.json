@@ -1,0 +1,1638 @@
+[
+  {
+    "id": 1,
+    "question": "If the node type is _______ it is an element node",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": "1",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 2,
+    "question": "The entity reference < represents ______ character.",
+    "options": [
+      "&lt;",
+      "&gt;",
+      "&amp;",
+      "&quot;"
+    ],
+    "correct": "&lt;",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 3,
+    "question": "XPATH is an expression which can be used in __________.",
+    "options": [
+      "Navigate",
+      "Select",
+      "Traverse",
+      "Parse"
+    ],
+    "correct": "Navigate",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 4,
+    "question": "In context of XML DOM, each node is a(n) ________",
+    "options": [
+      "Representing a part of the document",
+      "Element",
+      "Tree structure",
+      "Attribute"
+    ],
+    "correct": "Representing a part of the document",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 5,
+    "question": "When a node is removed, __________________________.",
+    "options": [
+      "Removed Child() is called",
+      "Its children are automatically adopted by the parent",
+      "Its children are automatically removed as well",
+      "The document becomes invalid"
+    ],
+    "correct": "Its children are automatically removed as well",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 6,
+    "question": "An XML document is called well-formed document if",
+    "options": [
+      "adheres to the syntax rules specified by the XML 1.0 specification in that it must satisfy both physical and logical structures",
+      "it has a DTD or an XML Schema",
+      "all elements have unique names",
+      "it can be viewed in a web browser"
+    ],
+    "correct": "adheres to the syntax rules specified by the XML 1.0 specification in that it must satisfy both physical and logical structures",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 7,
+    "question": "------ provides extra information about XML elements.",
+    "options": [
+      "Attributes",
+      "Elements",
+      "Comments",
+      "PCDATA"
+    ],
+    "correct": "Attributes",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 8,
+    "question": "_________ is used to transform an XML document into another XML or HTML document.",
+    "options": [
+      "XSLT",
+      "XQuery",
+      "XPath",
+      "XPointer"
+    ],
+    "correct": "XSLT",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 9,
+    "question": "Whenever we access the nodes in the node tree via the relationship between these nodes, is called_________.",
+    "options": [
+      "Navigating Nodes",
+      "Parsing",
+      "Traversing",
+      "Querying"
+    ],
+    "correct": "Navigating Nodes",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 10,
+    "question": "The _________ property of a node list is the number of nodes in the list.",
+    "options": [
+      "Length",
+      "Size",
+      "Count",
+      "Index"
+    ],
+    "correct": "Length",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 11,
+    "question": "which of the following is not the building block of xml documents?",
+    "options": [
+      "DTD",
+      "Element",
+      "Attribute",
+      "PCDATA"
+    ],
+    "correct": "DTD",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 12,
+    "question": "In XML the term PCDATA Stands for _________.",
+    "options": [
+      "Parsed Character Data",
+      "Private Character Data",
+      "Plain Character Data",
+      "Processing Character Data"
+    ],
+    "correct": "Parsed Character Data",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 13,
+    "question": "In a DTD, attributes are declared with an _________ declaration.",
+    "options": [
+      "ATTLIST",
+      "ELEMENT",
+      "ENTITY",
+      "DOCTYPE"
+    ],
+    "correct": "ATTLIST",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 14,
+    "question": "Which one is used to add unique label to an element?",
+    "options": [
+      "Attributes",
+      "Elements",
+      "Namespace",
+      "ID"
+    ],
+    "correct": "Attributes",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 15,
+    "question": "Which of the following is used to request data from a server?",
+    "options": [
+      "XML Http Request Object",
+      "XSLT",
+      "DOM",
+      "SAX"
+    ],
+    "correct": "XML Http Request Object",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 16,
+    "question": "CDATA Stands for _________.",
+    "options": [
+      "Character Data",
+      "Compressed Data",
+      "Client Data",
+      "Code Data"
+    ],
+    "correct": "Character Data",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 17,
+    "question": "The ? sign in the example above declares that the child element \"message\" can occur ____ or ____ time inside the \"note\" element.",
+    "options": [
+      "zero or one time",
+      "one or more times",
+      "zero or more times",
+      "exactly once"
+    ],
+    "correct": "zero or one time",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 18,
+    "question": "XPointer is the short name for the",
+    "options": [
+      "Base Pointer",
+      "XML Pointer",
+      "Extended Pointer",
+      "XPointer Expression"
+    ],
+    "correct": "XML Pointer",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 19,
+    "question": "Which property of XML document represents the root node?",
+    "options": [
+      "The document Element property",
+      "The root property",
+      "The firstChild property",
+      "The document.root property"
+    ],
+    "correct": "The document Element property",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 20,
+    "question": "Name conflicts in XML elements can easily be avoided using _",
+    "options": [
+      "Name prefix",
+      "DTD",
+      "XSLT",
+      "XPath"
+    ],
+    "correct": "Name prefix",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 21,
+    "question": "Use _________ keyword if you don't have an option for a default value ,but still want to force the attribute to be present.",
+    "options": [
+      "#REQUIRED",
+      "#IMPLIED",
+      "#FIXED",
+      "#DEFAULT"
+    ],
+    "correct": "#REQUIRED",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 22,
+    "question": "Which of the following specifies the type of node?",
+    "options": [
+      "Node type",
+      "Node Name",
+      "Node Value",
+      "Node Index"
+    ],
+    "correct": "Node type",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 23,
+    "question": "If the DTD is pointing to ____________ then it is called External Subset.",
+    "options": [
+      "External Subset",
+      "Internal Subset",
+      "Another XML document",
+      "A schema"
+    ],
+    "correct": "External Subset",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 24,
+    "question": "A servlet life cycle can be defined as the entire process from its creation till the ___________.",
+    "options": [
+      "Destruction",
+      "Initialization",
+      "Servicing",
+      "Deployment"
+    ],
+    "correct": "Destruction",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 25,
+    "question": "XML often contains new line, or _______ space characters, between nodes.",
+    "options": [
+      "White",
+      "Blank",
+      "Empty",
+      "Null"
+    ],
+    "correct": "White",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 26,
+    "question": "XML files can be stored on an Internet server exactly the same way as _files.",
+    "options": [
+      "HTML",
+      "DOC",
+      "PDF",
+      "TXT"
+    ],
+    "correct": "HTML",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 27,
+    "question": "How many types of cookies are in servlets?",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "1"
+    ],
+    "correct": "2",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 28,
+    "question": "For all XML documents, which of the following is true?",
+    "options": [
+      "All XML elements must have a closing tag.",
+      "All XML documents must have a DTD or an XML schema.",
+      "All XML elements must be lowercase.",
+      "All of the statements are true."
+    ],
+    "correct": "All XML elements must have a closing tag.",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 29,
+    "question": "What does XML stand for?",
+    "options": [
+      "X-Markup Language",
+      "eXtra Modern Link",
+      "Example Markup Language",
+      "eXtensible Markup Language"
+    ],
+    "correct": "eXtensible Markup Language",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 30,
+    "question": "XML’s goal is to replace HTML",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 31,
+    "question": "What does DTD stand for?",
+    "options": [
+      "Direct Type Definition",
+      "Document Type Definition",
+      "Document Type Declaration"
+    ],
+    "correct": "Document Type Definition",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 32,
+    "question": "Is this a correct XML document? StudentsTeacherReminderWe are at Software Park, Thailand",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correct": "No",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 33,
+    "question": "Which statement is true?",
+    "options": [
+      "All XML elements must have a closing tag",
+      "All XML documents must have a DTD or an XML schema",
+      "All XML elements must be lowercase",
+      "All of the statements are true"
+    ],
+    "correct": "All XML elements must have a closing tag",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 34,
+    "question": "Which statement is true?",
+    "options": [
+      "XML tags are case sensitive",
+      "XML elements must be properly nested",
+      "XML documents must have the root element",
+      "All the statements are true"
+    ],
+    "correct": "All the statements are true",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 35,
+    "question": "XML preserves white spaces",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 36,
+    "question": "Is this a correct XML document? StudentsTeacher",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "correct": "No",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 37,
+    "question": "XML elements cannot be empty",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 38,
+    "question": "Which is not a correct name for an XML element?",
+    "options": [
+      "<Name>",
+      "<first name>",
+      "<1dollar>",
+      "All 3 names are incorrect"
+    ],
+    "correct": "<1dollar>",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 39,
+    "question": "Which is not a correct name for an XML element?",
+    "options": [
+      "<note>",
+      "<_note>",
+      "<name-note>",
+      "All 3 names are incorrect"
+    ],
+    "correct": "All 3 names are incorrect",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 40,
+    "question": "Which is not a correct name for an XML element?",
+    "options": [
+      "<Name>",
+      "<_Name>",
+      "<name.note>"
+    ],
+    "correct": "<name.note>",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 41,
+    "question": "For the XML parser to ignore a certain section of your XML document, which syntax is correct?",
+    "options": [
+      "",
+      "<!CDATA[ Text to be ignored ]>",
+      "<?ignore Text to be ignored ?>",
+      "<![CDATA[ Text to be ignored ]]>"
+    ],
+    "correct": "<![CDATA[ Text to be ignored ]]>",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 42,
+    "question": "XML is a subset of SGML",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 43,
+    "question": "XML attributes must be in double quotes",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 44,
+    "question": "XML attributes must be assigned values",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 45,
+    "question": "The Document Type Definition must be stored in an external file",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 46,
+    "question": "What can XML do?",
+    "options": [
+      "The standard for automating data exchange between systems",
+      "The standard for displaying data on the Web",
+      "The standard for a cross-platform programming language"
+    ],
+    "correct": "The standard for automating data exchange between systems",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 47,
+    "question": "Which is false?",
+    "options": [
+      "XML is used to describe only structured data",
+      "XML is used to only on the Internet",
+      "XML is used to represent only simple data",
+      "All of the above"
+    ],
+    "correct": "All of the above",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 48,
+    "question": "Which of the following comments are not well formed?",
+    "options": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "correct": "",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 49,
+    "question": "Which method does SAX use for processing XML documents?",
+    "options": [
+      "Event Based",
+      "DocumentHandler",
+      "Document",
+      "Tree based"
+    ],
+    "correct": "Event Based",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 50,
+    "question": "Which method does DOM use for processing XML documents?",
+    "options": [
+      "Event Based",
+      "DocumentHandler",
+      "Document",
+      "Tree based"
+    ],
+    "correct": "Tree based",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 51,
+    "question": "Which interfaces are part of the SAX2 API?",
+    "options": [
+      "ContentHandler, ErrorHandler, DTDHandler, EntityResolver",
+      "DocumentHandler, ErrorHandler, DTDHandler, EntityHandler",
+      "DocumentHandler, Errorhandler, DTDHandler, SchemaHandler",
+      "DocumentHandler, Errorhandler, DTDHandler, EntityResolver"
+    ],
+    "correct": "ContentHandler, ErrorHandler, DTDHandler, EntityResolver",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 52,
+    "question": "Which is the best description of the “characters()” method?",
+    "options": [
+      "a method of DOM API to insert character data in the XML document",
+      "a method of the SAX ContentHandler interface to receive notification of the presence of character data",
+      "a method of the DOM interface to replace the entity reference with the character data",
+      "None of these."
+    ],
+    "correct": "a method of the SAX ContentHandler interface to receive notification of the presence of character data",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 53,
+    "question": "An XML document to be processed is very large. The application extracts a small portion of the information from the document. Memory and speed may be constraints. Which method or methods are most appropriate for this situation?",
+    "options": [
+      "Use SAX",
+      "Use DOM",
+      "Extract the necessary information and process using XSLT.",
+      "Use a schema-based approach."
+    ],
+    "correct": "Use SAX",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 54,
+    "question": "When you construct an XML using a DOM enabled Parser, the same parser should be used to process back the XML document when the process involves legacy applications, otherwise it is not necessary to do so.",
+    "options": [
+      "Not really",
+      "Yes, whenver the process is between legacy conectivity this is better.",
+      "You can use SAX enabled parser to fill this gap.",
+      "This statement is not a correct one, because DOM is constructed using IDL."
+    ],
+    "correct": "Not really",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 55,
+    "question": "When Processing Instructions are a part of your parsing process, DOM should be used, since SAX cannot be used to detect a Processing Instruction in a document.",
+    "options": [
+      "true",
+      "false"
+    ],
+    "correct": "false",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 56,
+    "question": "Consider a system which is memory & speed constraint. The application is to process XML documents, sort the contents and mail them to a higher configuration machine for transformation. Which is the best approach?",
+    "options": [
+      "Use platform native language to process the documents",
+      "Use DOM based approach.",
+      "Using SAX based approach is the best.",
+      "DOM and SAX must be used in this context."
+    ],
+    "correct": "Using SAX based approach is the best.",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 57,
+    "question": "When receiving documents from a non-trusted agent, the best way to process the documents is:",
+    "options": [
+      "Use SAX",
+      "Use DOM",
+      "Both can be used here.",
+      "Both can be used but validity is an issue here."
+    ],
+    "correct": "Both can be used but validity is an issue here.",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 58,
+    "question": "In DOM, the Document interface is the only interface that allows you to create other DOM document components.",
+    "options": [
+      "true",
+      "false"
+    ],
+    "correct": "true",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 59,
+    "question": "XSLT is essentially a tool for translating what kind of documents?",
+    "options": [
+      "XML",
+      "PDF",
+      "DOM",
+      "RTF"
+    ],
+    "correct": "XML",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 60,
+    "question": "Use of SAX based parser is most likely to be used in which of the following scenarios?",
+    "options": [
+      "You want to process the document in a sequential order only.",
+      "The documents is very large.",
+      "When there is no need to validate XML documents.",
+      "The parser implements only SAX based approach."
+    ],
+    "correct": "The documents is very large.",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 61,
+    "question": "DOM can be used to process HTML documents.",
+    "options": [
+      "true",
+      "false"
+    ],
+    "correct": "true",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 62,
+    "question": "What error types does the SAX2 ErrorHandler interface handle?",
+    "options": [
+      "informational, warning, fatal-error",
+      "warning, error, fatal-error",
+      "warning, error",
+      "informational, warning, error, fatal-error"
+    ],
+    "correct": "warning, error, fatal-error",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 63,
+    "question": "A DOM-based parser should be used for which of the following situations?",
+    "options": [
+      "Need to modify the XML document directly",
+      "Performance and/or memory is an issue",
+      "Need to have random access to the components of the XML document",
+      "Only need to process the XML document sequentially"
+    ],
+    "correct": "Need to modify the XML document directly",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 64,
+    "question": "What is the correct syntax of the declaration which defines the XML version?",
+    "options": [
+      "<?xml version=\"1.0\"?>",
+      "<?xml version=1.0?>",
+      "<xml version=\"1.0\">",
+      "<xml version=1.0>"
+    ],
+    "correct": "<?xml version=\"1.0\"?>",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 65,
+    "question": "There is a way of describing XML data, how?",
+    "options": [
+      "XML uses a DTD to describe the data",
+      "XML uses XSL to describe data",
+      "XML uses a description node to describe data",
+      "XSL uses a description node to describe data"
+    ],
+    "correct": "XML uses a DTD to describe the data",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 66,
+    "question": "XML's goal to replace HTML?",
+    "options": [
+      "False",
+      "True"
+    ],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 67,
+    "question": "There is a way of describing XML data, how?",
+    "options": [
+      "XML uses a DTD to describe the data",
+      "XML uses a XSL to describe the data",
+      "XML uses a description node to describe data",
+      "None of the above"
+    ],
+    "correct": "XML uses a DTD to describe the data",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 68,
+    "question": "XML's goal is to replace HTML",
+    "options": [
+      "False",
+      "True"
+    ],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 69,
+    "question": "What does DTD stand for?",
+    "options": [
+      "Document Type Definition",
+      "Dynamic Type Definition",
+      "Do The Dance",
+      "Direct Type Definition"
+    ],
+    "correct": "Document Type Definition",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 70,
+    "question": "Which statement is true?",
+    "options": [
+      "All XML elements must be properly closed",
+      "All XML documents must have a DTD",
+      "All XML elements must be lower case",
+      "All the statements are true"
+    ],
+    "correct": "All XML elements must be properly closed",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 71,
+    "question": "Is this a \"well formed\" XML document? <note><to>Tove</to><from>Jani</from><reminder></reminder>Don't forget me this weekend!</note>",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correct": "Yes",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 72,
+    "question": "Is this a \"well formed\" XML document? <note><to>Tove</to><from>Jani</from><reminder></reminder>Don't forget me this weekend!</note>",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correct": "Yes",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 73,
+    "question": "Which statement is true?",
+    "options": [
+      "All the statements are true",
+      "All XML elements must be properly closed",
+      "All XML documents must have a DTD",
+      "All XML elements must be lower case"
+    ],
+    "correct": "All XML elements must be properly closed",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 74,
+    "question": "Which statement is true?",
+    "options": [
+      "All the statements are true",
+      "XML documents must have a root tag",
+      "XML tags are case sensitive",
+      "XML elements must be properly nested"
+    ],
+    "correct": "All the statements are true",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 75,
+    "question": "XML preserves white spaces",
+    "options": [
+      "False",
+      "True"
+    ],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 76,
+    "question": "Is this a \"well formed\" XML document? <note><to>Tove</to><from>Jani</from></note>",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correct": "Yes",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 77,
+    "question": "Is this a \"well formed\" XML document? <note><to>Tove</to><from>Jani</from></note>",
+    "options": [
+      "No",
+      "Yes"
+    ],
+    "correct": "Yes",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 78,
+    "question": "Which is not a correct name for an XML element?",
+    "options": [
+      "All 3 names are incorrect",
+      "<note>",
+      "<first name>",
+      "<_note>"
+    ],
+    "correct": "<first name>",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 79,
+    "question": "Which is not a correct name for an XML element?",
+    "options": [
+      "All 3 names are incorrect",
+      "<note>",
+      "<7eleven>",
+      "<_note>"
+    ],
+    "correct": "<7eleven>",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 80,
+    "question": "XML attribute values must always be enclosed in quotes?",
+    "options": [
+      "False",
+      "True"
+    ],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 81,
+    "question": "What does XSL stand for?",
+    "options": [
+      "eXtra Style Language",
+      "eXtensible Stylesheet Language",
+      "eXtensible Style Listing",
+      "eXpandable Style Language"
+    ],
+    "correct": "eXtensible Stylesheet Language",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 82,
+    "question": "What is a correct way of referring to a stylesheet called \"mystyle.xsl\"?",
+    "options": [
+      "<?xml-stylesheet type=\"text/xsl\" href=\"mystyle.xsl\"?>",
+      "<?xml-stylesheet type=\"text/xml\" href=\"mystyle.xsl\"?>",
+      "<xsl-stylesheet type=\"text/xsl\" href=\"mystyle.xsl\"/>",
+      "<stylesheet type=\"text/xsl\" href=\"mystyle.xsl\"/>"
+    ],
+    "correct": "<?xml-stylesheet type=\"text/xsl\" href=\"mystyle.xsl\"?>",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 83,
+    "question": "XML elements cannot be empty",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 84,
+    "question": "Which is not a correct name for an XML element?",
+    "options": [
+      "<name-note>",
+      "<1dollar>",
+      "<_note>",
+      "All 3 names are incorrect"
+    ],
+    "correct": "<1dollar>",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 85,
+    "question": "In the DOM. The documents interface is the only way interface that allows you to create other DOM documents components?",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 86,
+    "question": "For the XML parser to ignore a certain section of your XML document, which syntax is correct?",
+    "options": [
+      "",
+      "<!CDATA[ Text to be ignored ]>",
+      "<?ignore Text to be ignored ?>",
+      "<![CDATA[ Text to be ignored ]]>"
+    ],
+    "correct": "<![CDATA[ Text to be ignored ]]>",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 4
+  },
+  {
+    "id": 87,
+    "question": "Which statement is true?",
+    "options": [
+      "Attributes must occur in defined order",
+      "None of the statements are true",
+      "Attributes must always be present",
+      "Both statements are true"
+    ],
+    "correct": "None of the statements are true",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 88,
+    "question": "For all XML documents, which of the following is true?",
+    "options": [
+      "All XML elements must have a closing tag.",
+      "All XML documents must have a DTD",
+      "All XML elements must be lowercase",
+      "All of statements are true"
+    ],
+    "correct": "All XML elements must have a closing tag.",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 89,
+    "question": "An element with no content is said to be___________?",
+    "options": [
+      "Empty element",
+      "Duplicate element",
+      "Original element",
+      "Spaced element"
+    ],
+    "correct": "Empty element",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 90,
+    "question": "XML is a subset of SGML?",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": "True",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 91,
+    "question": "Which of the following cannot be an XML Element?",
+    "options": [
+      "Attributes",
+      "Other elements",
+      "None of the above",
+      "text"
+    ],
+    "correct": "Attributes",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 92,
+    "question": "Consider a system which is memory and speed constraint. The application is to process XML documents. Sort the contents and mail them to a higher configuration machine for transformation. Which is the best approach?",
+    "options": [
+      "Use platform native language to process the documents",
+      "Use DOM based approach.",
+      "Using SAX based approach is the best",
+      "DOM and SAX must be used in this context."
+    ],
+    "correct": "Using SAX based approach is the best",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 93,
+    "question": "The element “<name></name>” have _________type of content?",
+    "options": [
+      "Attribute",
+      "Text",
+      "Mix",
+      "Category"
+    ],
+    "correct": "Text",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 94,
+    "question": "When receiving documents from a non-trusted agent. The best way to process the documents is_________.",
+    "options": [
+      "Use SAX",
+      "Use DOM",
+      "Both can be used but validity is an issue here",
+      "Both can be used here"
+    ],
+    "correct": "Both can be used but validity is an issue here",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 95,
+    "question": "Which of the following cannot be used while naming XML Elements?",
+    "options": [
+      "Digits",
+      "Letters",
+      "Spaces",
+      "Underscore"
+    ],
+    "correct": "Spaces",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 96,
+    "question": "What are XML entities used for?",
+    "options": [
+      "Entities define shortcuts to standard attributes",
+      "Entities define shortcuts to special characters",
+      "Entities define shortcuts to standard text",
+      "Entities define shortcuts to standard elements"
+    ],
+    "correct": "Entities define shortcuts to special characters",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 97,
+    "question": "XML attributes must be in double quotes?",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correct": "False",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 3
+  },
+  {
+    "id": 98,
+    "question": "how many type of cookies are in servlets?",
+    "options": [
+      "4",
+      "2",
+      "3",
+      "1"
+    ],
+    "correct": "2",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 99,
+    "question": "Which method does SAX use for processing XML documents?",
+    "options": [
+      "Events Based",
+      "DocumentHandler",
+      "Document",
+      "Tree based"
+    ],
+    "correct": "Events Based",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 1
+  },
+  {
+    "id": 100,
+    "question": "Which method does DOM use for processing XML documents?",
+    "options": [
+      "Events Based",
+      "Tree based.",
+      "DocumentHandler",
+      "Document"
+    ],
+    "correct": "Tree based.",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 101,
+    "question": "Which of the following statement is true about naming on XML element?",
+    "options": [
+      "Element names cannot contains underscore",
+      "Element names cannot contains digits",
+      "Element names cannot start with the letter XML",
+      "Element names can start with the letter XML"
+    ],
+    "correct": "Element names cannot start with the letter XML",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 102,
+    "question": "What is an XML instance?",
+    "options": [
+      "An XML element",
+      "An XML tag",
+      "An XML attribute",
+      "An XML document"
+    ],
+    "correct": "An XML document",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 103,
+    "question": "Which interface are part of the SAX2 API?",
+    "options": [
+      "ContentHandler, ErrorHandler, DTDHandler, EntityResolver",
+      "DocumntHandler, ErrorHandler, DTDHandler, EntityHandler",
+      "DocumntHandler, ErrorHandler, DTDHandler, ErrorResolver",
+      "DocumntHandler, ErrorHandler, DTDHandler, SchemaHandler"
+    ],
+    "correct": "ContentHandler, ErrorHandler, DTDHandler, EntityResolver",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 104,
+    "question": "Which one of the following statement is true about naming on XML element?",
+    "options": [
+      "Element names cannot contains underscore",
+      "Element names can contains scores",
+      "Element names are case-sensitive",
+      "Element names cannot contains digits"
+    ],
+    "correct": "Element names are case-sensitive",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 3
+  },
+  {
+    "id": 105,
+    "question": "Which XML DOM object represents a node in the node tree?",
+    "options": [
+      "The nodeList object",
+      "The node object",
+      "The document object",
+      "All of above"
+    ],
+    "correct": "The node object",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 1
+  },
+  {
+    "id": 106,
+    "question": "What does XML stand for?",
+    "options": [
+      "eXtensible Markup Language",
+      "eXtra Modern Link",
+      "Example Markup Language",
+      "X-Markup Language"
+    ],
+    "correct": "eXtensible Markup Language",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 3
+  },
+  {
+    "id": 107,
+    "question": "A DOM-based parser should be used for which of the following situations?",
+    "options": [
+      "Need to modify the XML document directly",
+      "Performance and/or memory is an issue",
+      "Need to have random access to the components of the XML document",
+      "Only need to process the XML document sequentially"
+    ],
+    "correct": "Need to modify the XML document directly",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 108,
+    "question": "What error types does the SAX2 ErrorHandler interface handle?",
+    "options": [
+      "informational, warning, fatal-error",
+      "warning, error, fatal-error",
+      "warning, error",
+      "informational, warning, error, fatal-error"
+    ],
+    "correct": "warning, error, fatal-error",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 109,
+    "question": "DOM can be used to process HTML documents.",
+    "options": [
+      "true",
+      "false"
+    ],
+    "correct": "true",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 2
+  },
+  {
+    "id": 110,
+    "question": "Use of SAX based parser is most likely to be used in which of the following scenarios?",
+    "options": [
+      "You want to process the document in a sequential order only.",
+      "The documents is very large.",
+      "When there is no need to validate XML documents.",
+      "The parser implements only SAX based approach."
+    ],
+    "correct": "The documents is very large.",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  },
+  {
+    "id": 111,
+    "question": "XSLT is essentially a tool for translating what kind of documents?",
+    "options": [
+      "XML",
+      "PDF",
+      "DOM",
+      "RTF"
+    ],
+    "correct": "XML",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 4
+  },
+  {
+    "id": 112,
+    "question": "In DOM, the Document interface is the only interface that allows you to create other DOM document components.",
+    "options": [
+      "true",
+      "false"
+    ],
+    "correct": "true",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 5
+  },
+  {
+    "id": 113,
+    "question": "When receiving documents from a non-trusted agent, the best way to process the documents is:",
+    "options": [
+      "Use SAX",
+      "Use DOM",
+      "Both can be used here.",
+      "Both can be used but validity is an issue here"
+    ],
+    "correct": "Both can be used but validity is an issue here",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 114,
+    "question": "Consider a system which is memory & speed constraint. The application is to process XML documents, sort the contents and mail them to a higher configuration machine for transformation. Which is the best approach?",
+    "options": [
+      "Use platform native language to process the documents",
+      "Use DOM based approach.",
+      "Using SAX based approach is the best.",
+      "DOM and SAX must be used in this context."
+    ],
+    "correct": "Using SAX based approach is the best.",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 115,
+    "question": "When Processing Instructions are a part of your parsing process, DOM should be used, since SAX cannot be used to detect a Processing Instruction in a document.",
+    "options": [
+      "true",
+      "false"
+    ],
+    "correct": "false",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 2
+  },
+  {
+    "id": 116,
+    "question": "When you construct an XML using a DOM enabled Parser, the same parser should be used to process back the XML document when the process involves legacy applications, otherwise it is not necessary to do so.",
+    "options": [
+      "Not really",
+      "Yes, whenever the process is between legacy connectivity this is better.",
+      "You can use SAX enabled parser to fill this gap.",
+      "This statement is not a correct one, because DOM is constructed using IDL."
+    ],
+    "correct": "Not really",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 5
+  },
+  {
+    "id": 117,
+    "question": "An XML document to be processed is very large. The application extracts a small portion of the information from the document. Memory and speed may be constraints. Which method or methods are most appropriate for this situation?",
+    "options": [
+      "Use SAX",
+      "Use DOM",
+      "Extract the necessary information and process using XSLT.",
+      "Use a schema-based approach."
+    ],
+    "correct": "Use SAX",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 118,
+    "question": "Which is the best description of the “characters()” method?",
+    "options": [
+      "a method of DOM API to insert character data in the XML document",
+      "a method of the SAX Content Handler interface to receive notification of the presence of character data",
+      "a method of the DOM interface to replace the entity reference with the character data",
+      "None of these."
+    ],
+    "correct": "a method of the SAX Content Handler interface to receive notification of the presence of character data",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 2
+  },
+  {
+    "id": 119,
+    "question": "Which interfaces are part of the SAX2 API?",
+    "options": [
+      "ContentHandler, ErrorHandler, DTDHandler, EntityResolver",
+      "DocumentHandler, ErrorHandler, DTDHandler, EntityHandler",
+      "DocumentHandler, Errorhandler, DTDHandler, SchemaHandler",
+      "DocumentHandler, Errorhandler, DTDHandler, EntityResolver"
+    ],
+    "correct": "ContentHandler, ErrorHandler, DTDHandler, EntityResolver",
+    "explanation": "N/A",
+    "difficulty": "Easy",
+    "importance": 4
+  },
+  {
+    "id": 120,
+    "question": "Which of the following comments are not well formed?",
+    "options": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "correct": "",
+    "explanation": "N/A",
+    "difficulty": "Medium",
+    "importance": 1
+  },
+  {
+    "id": 121,
+    "question": "What can XML do?",
+    "options": [
+      "The standard for automating data exchange between systems",
+      "The standard for displaying data on the Web",
+      "The standard for a cross-platform programming language"
+    ],
+    "correct": "The standard for automating data exchange between systems",
+    "explanation": "N/A",
+    "difficulty": "Hard",
+    "importance": 5
+  }
+]

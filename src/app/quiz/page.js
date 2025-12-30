@@ -1,12 +1,14 @@
 import Link from 'next/link';
-import { BookOpen, Brain, Flask, Calculator, ArrowRight } from 'lucide-react';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { BookOpen, ArrowRight } from 'lucide-react';
+import Pagination from '@/components/Pagination';
+import SearchFilters from '@/components/SearchFilters';
+import { getQuizzes, getQuizFilterOptions } from '@/actions/quizzes';
 
 export const metadata = {
-  title: 'Online Quiz System - DocLibrary',
+  title: 'Online Quiz System - VUEDU',
   description: 'Test your knowledge with our interactive quiz system',
 };
+
 
 async function getAvailableQuizzes() {
   try {
@@ -40,45 +42,28 @@ async function getAvailableQuizzes() {
   }
 }
 
-function getIconForCategory(category) {
-  const icons = {
-    physics: '⚛️',
-    chemistry: '🧪',
-    mathematics: '📐',
-    biology: '🧬',
-    default: '📚'
-  };
-  return icons[category.toLowerCase()] || icons.default;
-}
+export default async function QuizHomePage({ searchParams }) {
+  const params = await searchParams;
+  const page = parseInt(params?.page) || 1;
+  const search = params?.search || '';
+  const category = params?.category || '';
+  
+  const [quizzesResult, filterOptionsResult] = await Promise.all([
+    getQuizzes({ page, limit: 6, search, category }),
+    getQuizFilterOptions()
+  ]);
 
-function getColorForCategory(category) {
-  const colors = {
-    physics: 'from-blue-500 to-cyan-500',
-    chemistry: 'from-green-500 to-emerald-500',
-    mathematics: 'from-purple-500 to-pink-500',
-    biology: 'from-orange-500 to-red-500',
-    default: 'from-gray-500 to-slate-500'
-  };
-  return colors[category.toLowerCase()] || colors.default;
-}
 
-export default async function QuizHomePage() {
-  const quizzes = await getAvailableQuizzes();
+  const { quizzes, pagination } = quizzesResult.success
+    ? quizzesResult
+    : { quizzes: [], pagination: null };
+
+  const { categories } = filterOptionsResult.success
+    ? filterOptionsResult
+    : { categories: [] };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative">
-      {/* Premium Liquid Background */}
-      <div className="fixed inset-0 -z-10">
-        {/* Base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/20 to-purple-50/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-400/20 to-purple-400/20 opacity-40"></div>
-
-        {/* Liquid orbs */}
-        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/15 via-cyan-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/3 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/8 via-blue-300/8 to-purple-300/8 rounded-full mix-blend-multiply filter blur-3xl animate-pulse transform -translate-x-1/2" style={{ animationDelay: '4s' }}></div>
-      </div>
-
       <div className="relative z-10 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <div className="mb-16">
@@ -90,32 +75,56 @@ export default async function QuizHomePage() {
             </div>
           </div>
 
-          {/* Icon */}
-          {/* <div className="flex items-center justify-center mb-6 group">
-            <div className="p-4 bg-gradient-to-br from-indigo-500/70 via-purple-600/70 to-blue-600/70 backdrop-blur-xl rounded-3xl shadow-2xl group-hover:scale-110 transition-transform duration-500">
-              <Brain className="h-12 w-12 text-white drop-shadow-lg" />
-            </div>
-          </div> */}
-
           {/* Heading */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 leading-tight tracking-tight mb-4">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 leading-tight tracking-tight mb-6 lg:mb-4">
             <span className="block bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
               Online Quiz
             </span>
-            <span className="block bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent animate-pulse">
+            <span className="block xl:inline bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent  ">
               System
             </span>
           </h1>
 
           {/* Subheading */}
-          <p className="text-lg text-gray-700 max-w-2xl -mt-16 mx-auto font-light leading-relaxed">
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto font-light leading-relaxed lg:-mt-16">
             Test your knowledge with our interactive quizzes. Choose a category and challenge yourself with engaging questions!
           </p>
         </div>
 
+        {/* Search and Filters */}
+        <div className="mb-12">
+          <SearchFilters
+            filterOptions={{
+              categories: categories,
+              subjects: [], // Not used for quizzes
+              universities: [], // Not used for quizzes
+              years: [], // Not used for quizzes
+              types: [] // Not used for quizzes
+            }}
+            searchPlaceholder="Search quizzes by title, description, or category..."
+            showTypeFilter={false}
+            showSubjectFilter={false}
+            showUniversityFilter={false}
+            showYearFilter={false}
+            categoryLabel="Category"
+            baseUrl="/quiz"
+          />
+        </div>
+
         {/* Quiz Cards */}
         {quizzes.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <>
+            {/* Section Heading */}
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-light text-gray-900 bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent mb-2">
+                Available Quizzes
+              </h2>
+              <p className="text-gray-600 font-light">
+                Choose a subject to test your knowledge
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {quizzes.map((quiz) => (
               <Link
                 key={quiz.id}
@@ -124,7 +133,7 @@ export default async function QuizHomePage() {
               >
                 <div className="h-full backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 hover:border-white/100 overflow-hidden">
                   {/* Glossy overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 pointer-events-none"></div>
 
                   {/* Card Header with Gradient */}
                   <div className={`bg-gradient-to-br ${quiz.color} p-6 text-white relative overflow-hidden`}>
@@ -136,6 +145,9 @@ export default async function QuizHomePage() {
                       </div>
                     </div>
                     <h3 className="text-2xl md:text-3xl font-light">{quiz.name}</h3>
+                    {quiz.category && (
+                      <p className="text-white/80 text-sm mt-2 font-light">{quiz.category}</p>
+                    )}
                   </div>
 
                   {/* Card Body */}
@@ -167,6 +179,17 @@ export default async function QuizHomePage() {
               </Link>
             ))}
           </div>
+
+            {/* Pagination */}
+            {pagination && pagination.totalPages > 1 && (
+              <div className="mt-8">
+                <Pagination 
+                  pagination={pagination} 
+                  baseUrl="/quiz"
+                />
+              </div>
+            )}
+          </>
         ) : (
           <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center max-w-md mx-auto mb-16">
             <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
@@ -181,11 +204,6 @@ export default async function QuizHomePage() {
 
         {/* Features Section */}
         <section className="relative py-12 overflow-hidden">
-          {/* Background orbs */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-to-br from-indigo-400/10 via-blue-300/8 to-transparent rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-gradient-to-tl from-purple-400/10 via-pink-300/8 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-          </div>
 
           <div className="max-w-7xl mx-auto relative z-10">
             {/* Section Header */}
@@ -221,12 +239,12 @@ export default async function QuizHomePage() {
                   gradient: "from-purple-100/50 via-pink-100/30 to-purple-50/50"
                 }
               ].map((feature, index) => (
-                <div 
+                <div
                   key={index}
                   className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
-                  
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
+
                   <div className={`bg-gradient-to-br ${feature.gradient} w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500`}>
                     <span className="text-3xl drop-shadow-lg">{feature.icon}</span>
                   </div>

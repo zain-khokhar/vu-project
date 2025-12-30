@@ -13,6 +13,10 @@ export default function QuizClient({ quizData, settings }) {
   );
   const [showResults, setShowResults] = useState(false);
   const [quizStartTime] = useState(Date.now());
+  const [questionStates, setQuestionStates] = useState({}); // Track if question has been checked
+  const [feedbackShown, setFeedbackShown] = useState({});
+  
+  const isInstantMode = settings.quizMode === "instant";
 
   // Initialize random questions
   useEffect(() => {
@@ -44,6 +48,36 @@ export default function QuizClient({ quizData, settings }) {
       ...prev,
       [currentQuestionIndex]: option,
     }));
+    
+    // Reset feedback state when answer changes
+    if (isInstantMode) {
+      setFeedbackShown((prev) => ({
+        ...prev,
+        [currentQuestionIndex]: false,
+      }));
+    }
+  };
+
+  const handleSaveAndCheck = () => {
+    if (!userAnswers[currentQuestionIndex]) return;
+    
+    setQuestionStates((prev) => ({
+      ...prev,
+      [currentQuestionIndex]: 'checked',
+    }));
+    
+    setFeedbackShown((prev) => ({
+      ...prev,
+      [currentQuestionIndex]: true,
+    }));
+  };
+
+  const handleNextAfterCheck = () => {
+    if (currentQuestionIndex < selectedQuestions.length - 1) {
+      setCurrentQuestionIndex((prev) => prev + 1);
+    } else {
+      finishQuiz();
+    }
   };
 
   const goToQuestion = (index) => {
@@ -51,6 +85,11 @@ export default function QuizClient({ quizData, settings }) {
   };
 
   const handleNextQuestion = () => {
+    if (isInstantMode && !questionStates[currentQuestionIndex]) {
+      // In instant mode, must check answer first
+      return;
+    }
+    
     if (currentQuestionIndex < selectedQuestions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
@@ -141,48 +180,48 @@ export default function QuizClient({ quizData, settings }) {
     ((currentQuestionIndex + 1) / selectedQuestions.length) * 100;
 
   return (
-    <div className="max-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="max-h-screen">
       <div className="max-w-8xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
           {/* LEFT SIDE - Question Card */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 h-full flex flex-col">
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200 h-full flex flex-col">
               {/* Question Header */}
-              <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-white/90 text-sm font-medium">
+              <div className="p-6 border-b-2 border-gray-200">
+                <div className="flex items-center justify-between mb-6">
+                  <span className="text-gray-700 text-base font-semibold">
                     Question {currentQuestionIndex + 1} of{" "}
                     {selectedQuestions.length}
                   </span>
                   {currentQuestion.difficulty && (
-                    <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold text-white">
+                    <span className="px-3 py-1 bg-gray-200 rounded-full text-sm font-semibold text-gray-700">
                       {currentQuestion.difficulty}
                     </span>
                   )}
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white leading-relaxed">
+                <h3 className="text-2xl md:text-3xl border border-gray-300 rounded p-3 text-gray-900 leading-relaxed min-h-[170px] max-h-[170px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
                   {currentQuestion.question}
-                </h2>
+                </h3>
               </div>
 
               {/* Options */}
-              <div className="p-6 space-y-4 flex-grow">
+              <div className="p-8 space-y-4 flex-grow min-h-[370px] border-b-2 border-gray-200">
                 {currentQuestion.options.map((option, index) => (
                   <button
                     key={index}
                     onClick={() => handleAnswerSelect(option)}
-                    className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 ${
+                    className={`w-full text-left p-4 rounded border-2 transition-all duration-200 ${
                       selectedOption === option
-                        ? "border-indigo-600 bg-indigo-50 shadow-md scale-[1.02]"
-                        : "border-gray-200 hover:border-indigo-300 hover:bg-gray-50"
+                        ? "border-indigo-600 bg-indigo-50 shadow-md"
+                        : "border-gray-300 hover:border-indigo-400 hover:bg-gray-50"
                     }`}
                   >
                     <div className="flex items-center">
                       <div
-                        className={`w-8 h-8 rounded-full border-2 flex items-center justify-center mr-4 flex-shrink-0 ${
+                        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center mr-4 flex-shrink-0 ${
                           selectedOption === option
                             ? "border-indigo-600 bg-indigo-600"
-                            : "border-gray-300"
+                            : "border-gray-400"
                         }`}
                       >
                         {selectedOption === option && (
@@ -199,7 +238,7 @@ export default function QuizClient({ quizData, settings }) {
                           </svg>
                         )}
                       </div>
-                      <span className="text-gray-900 font-medium text-lg">
+                      <span className="text-gray-900 font-light text-xl">
                         {option}
                       </span>
                     </div>
@@ -207,148 +246,275 @@ export default function QuizClient({ quizData, settings }) {
                 ))}
               </div>
 
+              {/* Instant Feedback */}
+              {isInstantMode && feedbackShown[currentQuestionIndex] && (
+                <div className="px-8 pb-4">
+                  <div className={`p-4 rounded-lg border-2 ${userAnswers[currentQuestionIndex] === currentQuestion.correct
+                    ? 'bg-green-50 border-green-500 text-green-700'
+                    : 'bg-red-50 border-red-500 text-red-700'
+                  }`}>
+                    <div className="flex items-center space-x-2">
+                      {userAnswers[currentQuestionIndex] === currentQuestion.correct ? (
+                        <CheckCircle className="h-5 w-5 text-green-600" />
+                      ) : (
+                        <Circle className="h-5 w-5 text-red-600" />
+                      )}
+                      <span className="font-semibold">
+                        {userAnswers[currentQuestionIndex] === currentQuestion.correct
+                          ? 'Correct!'
+                          : 'Incorrect'}
+                      </span>
+                    </div>
+                    {userAnswers[currentQuestionIndex] !== currentQuestion.correct && (
+                      <p className="mt-2 text-sm">
+                        Correct answer: <strong>{currentQuestion.correct}</strong>
+                      </p>
+                    )}
+                    {currentQuestion.explanation && (
+                      <p className="mt-2 text-sm">
+                        <strong>Explanation:</strong> {currentQuestion.explanation}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+
               {/* Navigation Buttons */}
-              <div className="p-6 pt-0 flex gap-3">
+              <div className="p-8 flex gap-4">
                 <button
                   onClick={handlePreviousQuestion}
                   disabled={currentQuestionIndex === 0}
-                  className="flex-1 bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                  className="flex-1 bg-gray-100 text-gray-700 py-4 rounded font-semibold text-lg hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
                 >
                   Previous
                 </button>
-                {currentQuestionIndex < selectedQuestions.length - 1 ? (
-                  <button
-                    onClick={handleNextQuestion}
-                    className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
-                  >
-                    Next Question
-                  </button>
+                
+                {isInstantMode ? (
+                  // Instant feedback mode buttons
+                  !feedbackShown[currentQuestionIndex] ? (
+                    <button
+                      onClick={handleSaveAndCheck}
+                      disabled={!userAnswers[currentQuestionIndex]}
+                      className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-xl"
+                    >
+                      Save & Check
+                    </button>
+                  ) : (
+                    currentQuestionIndex < selectedQuestions.length - 1 ? (
+                      <button
+                        onClick={handleNextAfterCheck}
+                        className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 hover:shadow-xl"
+                      >
+                        Next Question
+                      </button>
+                    ) : (
+                      <button
+                        onClick={finishQuiz}
+                        className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-xl"
+                      >
+                        Submit Quiz
+                      </button>
+                    )
+                  )
                 ) : (
-                  <button
-                    onClick={finishQuiz}
-                    className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 rounded-xl font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl"
-                  >
-                    Submit Quiz
-                  </button>
+                  // Normal mode buttons
+                  currentQuestionIndex < selectedQuestions.length - 1 ? (
+                    <button
+                      onClick={handleNextQuestion}
+                      className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 hover:shadow-xl"
+                    >
+                      Next Question
+                    </button>
+                  ) : (
+                    <button
+                      onClick={finishQuiz}
+                      className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-xl"
+                    >
+                      Submit Quiz
+                    </button>
+                  )
                 )}
               </div>
             </div>
           </div>
 
           {/* RIGHT SIDE - Stats & Navigation */}
-          <div className="lg:col-span-1 space-y-6 h-full">
-            {/* Timer Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-gray-900">Time Remaining</h3>
-                <Clock className="h-5 w-5 text-purple-600" />
+          <div className="lg:col-span-1 bg-white h-full border border-gray-200 rounded-2xl shadow-xl overflow-hidden">
+            <div className="space-y-6 p-6">
+              {/* Timer Card */}
+              <div className="pb-6 border-b-2 border-gray-200">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-semibold text-gray-900 text-lg">
+                    Time Remaining
+                  </h3>
+                  <Clock className="h-6 w-6 text-purple-600" />
+                </div>
+                <div className="text-center">
+                  <p
+                    className={`text-4xl font-bold ${
+                      totalTimer <= 30
+                        ? "text-red-600  "
+                        : "text-gray-900"
+                    }`}
+                  >
+                    {formatTime(totalTimer)}
+                  </p>
+                </div>
               </div>
-              <div className="text-center">
-                <p
-                  className={`text-4xl font-bold ${
-                    totalTimer <= 30
-                      ? "text-red-600 animate-pulse"
-                      : "text-gray-900"
-                  }`}
+
+              {/* Question Bubble Menu */}
+              <div className="pb-6 border-b-2 border-gray-200 flex flex-col h-[350px]">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-4 flex-shrink-0">
+                  <h3 className="font-semibold text-gray-900 text-lg flex items-center">
+                    <Hash className="h-5 w-5 mr-2 text-indigo-600" />
+                    All Questions
+                  </h3>
+                </div>
+
+                {/* Scrollable Grid */}
+<div className="grid grid-cols-6 gap-2 pb-4 overflow-y-auto bg-gray-200 rounded p-2 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent flex-grow shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)]">
+                  {selectedQuestions.map((_, index) => {
+                    const isAnswered = userAnswers[index] !== undefined;
+                    const isCurrent = index === currentQuestionIndex;
+                    const isChecked = questionStates[index] === 'checked';
+                    const isCorrect = isChecked && userAnswers[index] === selectedQuestions[index].correct;
+
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => goToQuestion(index)}
+                        className={`aspect-square rounded-full h-12 w-12 font-semibold text-sm flex items-center justify-center border-2 transition-all ${
+                          isCurrent
+                            ? "bg-gradient-to-br from-indigo-600 to-purple-600 text-white border-indigo-500 ring-2 ring-indigo-300"
+                            : isInstantMode && isChecked
+                            ? isCorrect
+                              ? "bg-green-500 text-white hover:bg-green-600 border-green-600"
+                              : "bg-red-500 text-white hover:bg-red-600 border-red-600"
+                            : isAnswered
+                            ? "bg-blue-500 text-white hover:bg-blue-600 border-blue-600"
+                            : "bg-gray-100 text-gray-600 hover:bg-gray-200 border-gray-400"
+                        }`}
+                      >
+                        {(isAnswered && !isCurrent) || isChecked ? (
+                          <CheckCircle className="h-5 w-5" />
+                        ) : (
+                          index + 1
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Legend */}
+                <div className="mt-4 pt-4 border-t border-gray-200 flex-shrink-0">
+                  <div className="flex flex-wrap items-center justify-between text-xs gap-2">
+                    {isInstantMode ? (
+                      <>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-green-500 border-2 border-green-600"></div>
+                          <span className="text-gray-600 font-medium">
+                            Correct
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-red-500 border-2 border-red-600"></div>
+                          <span className="text-gray-600 font-medium">
+                            Incorrect
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-blue-500 border-2 border-blue-600"></div>
+                          <span className="text-gray-600 font-medium">
+                            Selected
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-gray-100 border-2 border-gray-400"></div>
+                          <span className="text-gray-600 font-medium">
+                            Unanswered
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-gradient-to-br from-indigo-600 to-purple-600 border-2 border-indigo-500"></div>
+                          <span className="text-gray-600 font-medium">Current</span>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-green-500 border-2 border-green-600"></div>
+                          <span className="text-gray-600 font-medium">
+                            Answered
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-gray-100 border-2 border-gray-400"></div>
+                          <span className="text-gray-600 font-medium">
+                            Unanswered
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-4 h-4 rounded bg-gradient-to-br from-indigo-600 to-purple-600 border-2 border-indigo-500"></div>
+                          <span className="text-gray-600 font-medium">Current</span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Progress Card */}
+              <div className="pb-6 border-b-2 border-gray-200">
+                <h3 className="font-semibold text-gray-900 text-lg mb-4">
+                  Progress
+                </h3>
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
+                      <span className="font-medium">Questions Answered</span>
+                      <span className="font-bold text-gray-900 text-base">
+                        {getAnsweredCount()} / {selectedQuestions.length}
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden border border-gray-300">
+                      <div
+                        className="bg-gradient-to-r from-indigo-600 to-purple-600 h-3 rounded-full transition-all duration-300"
+                        style={{
+                          width: `${
+                            (getAnsweredCount() / selectedQuestions.length) *
+                            100
+                          }%`,
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <div>
+                <button
+                  onClick={finishQuiz}
+                  className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-bold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center space-x-2"
                 >
-                  {formatTime(totalTimer)}
-                </p>
-              </div>
-            </div>
-            {/* Question Bubble Menu */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 max-h-[300px] overflow-y-auto">
-              <h3 className="font-semibold text-gray-900 mb-4 flex items-center">
-                <Hash className="h-4 w-4 mr-2 text-indigo-600 " />
-                All Questions
-              </h3>
-              <div className="grid grid-cols-5 gap-2 overflow-y-auto">
-                {selectedQuestions.map((_, index) => {
-                  const isAnswered = userAnswers[index] !== undefined;
-                  const isCurrent = index === currentQuestionIndex;
-
-                  return (
-                    <button
-                      key={index}
-                      onClick={() => goToQuestion(index)}
-                      className={`aspect-square rounded-full h-14 w-14 font-semibold text-sm transition-all duration-200 flex items-center justify-center ${
-                        isCurrent
-                          ? "bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-lg ring-2 ring-indigo-300"
-                          : isAnswered
-                          ? "bg-green-500 text-white hover:bg-green-600 shadow-md"
-                          : "bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-gray-300"
-                      }`}
-                    >
-                      {isAnswered && !isCurrent ? (
-                        <CheckCircle className="h-4 w-4" />
-                      ) : (
-                        index + 1
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-              <div className="mt-4 pt-4 border-t border-gray-200">
-                <div className="flex items-center gap-3 text-xs">
-                  <div className="flex items-center gap-1">
-                    <div className="w-4 h-4 rounded bg-green-500"></div>
-                    <span className="text-gray-600">Answered</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <div className="w-4 h-4 rounded bg-gray-100 border-2 border-gray-300"></div>
-                    <span className="text-gray-600">Unanswered</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <div className="w-4 h-4 rounded bg-gradient-to-br from-indigo-600 to-purple-600"></div>
-                    <span className="text-gray-600">Current</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Progress Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-              <h3 className="font-semibold text-gray-900 mb-4">Progress</h3>
-              <div className="space-y-4">
-                <div>
-                  <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-                    <span>Questions Answered</span>
-                    <span className="font-bold text-gray-900">
-                      {getAnsweredCount()} / {selectedQuestions.length}
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
-                    <div
-                      className="bg-gradient-to-r from-indigo-600 to-purple-600 h-2 rounded-full transition-all duration-300"
-                      style={{
-                        width: `${
-                          (getAnsweredCount() / selectedQuestions.length) * 100
-                        }%`,
-                      }}
+                  <span>Submit Quiz</span>
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
-                  </div>
-                </div>
+                  </svg>
+                </button>
               </div>
             </div>
-
-            {/* Submit Button (Always Visible) */}
-            <button
-              onClick={finishQuiz}
-              className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded-xl font-bold hover:from-green-700 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
-            >
-              <span>Submit Quiz</span>
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </button>
           </div>
         </div>
       </div>

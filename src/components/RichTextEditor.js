@@ -43,7 +43,7 @@ export default function RichTextEditor({ content, onChange, placeholder = "Enter
 
   if (!editor) {
     return (
-      <div className="border border-gray-300 rounded-md p-4 min-h-[200px] bg-gray-50 animate-pulse">
+      <div className="border border-gray-300 rounded-md p-4 min-h-[200px] bg-gray-50  ">
         Loading editor...
       </div>
     );
