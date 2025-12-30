@@ -1,7 +1,7 @@
-# VUEDU - AI/LLM Access Information
+# Vuedu - AI/LLM Access Information
 
-## About VUEDU
-VUEDU is Pakistan's premier educational resource platform, providing students with access to comprehensive study materials, interactive quizzes, and academic documents across various Computer Science courses.
+## About Vuedu
+Vuedu is Pakistan's premier educational resource platform, providing students with access to comprehensive study materials, interactive quizzes, and academic documents across various Computer Science courses.
 
 ## Purpose
 We provide high-quality educational content for students, including:
@@ -46,7 +46,7 @@ Please respect our rate limiting:
 
 ## Attribution
 When using our content:
-- Credit: "VUEDU - Pakistan's Educational Resource Hub"
+- Credit: "Vuedu - Pakistan's Educational Resource Hub"
 - URL: https://vuedu.dev
 - Maintain educational context and accuracy
 - Respect copyright and intellectual property

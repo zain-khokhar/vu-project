@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #ffffff;
@@ -85,222 +86,6 @@ html {
   background: #a1a1a1;
 }
 
-/* Rich text content styles */
-.prose {
-  color: #374151;
-}
-
-.prose h1 {
-  color: #111827;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-.prose h2 {
-  color: #111827;
-  font-weight: 600;
-  line-height: 1.3;
-  margin-top: 1.75rem;
-  margin-bottom: 0.875rem;
-}
-
-.prose h3 {
-  color: #111827;
-  font-weight: 600;
-  line-height: 1.4;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.prose p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-.prose strong {
-  color: #111827;
-  font-weight: 600;
-}
-
-.prose code {
-  background-color: #f3f4f6;
-  color: #dc2626;
-  padding: 0.125rem 0.25rem;
-  border-radius: 0.25rem;
-  font-size: 0.875em;
-  font-family: ui-monospace, SFMono-Regular, 'SF Mono', monospace;
-}
-
-.prose blockquote {
-  border-left: 4px solid #3b82f6;
-  background-color: #eff6ff;
-  padding: 1rem;
-  margin: 1.5rem 0;
-  border-radius: 0.375rem;
-  font-style: italic;
-}
-
-.prose ul,
-.prose ol {
-  margin-bottom: 1rem;
-  padding-left: 1.5rem;
-}
-
-.prose li {
-  margin-bottom: 0.25rem;
-}
-
-.prose ul li {
-  list-style-type: disc;
-}
-
-.prose ol li {
-  list-style-type: decimal;
-}
-
-/* Blog Editor Styles - Override all default prose styles */
-.blog-content.prose,
-.blog-content.prose-lg {
-  max-width: none;
-  color: #111827 !important;
-}
-
-/* Reset all text to default color */
-.blog-content.prose *,
-.blog-content.prose-lg * {
-  color: inherit;
-}
-
-.blog-content.prose h1,
-.blog-content.prose-lg h1 {
-  font-size: 2.5rem !important;
-  line-height: 1.2 !important;
-  color: #111827 !important;
-  font-weight: 600 !important;
-  margin-top: 2rem !important;
-  margin-bottom: 1rem !important;
-}
-
-.blog-content.prose h2,
-.blog-content.prose-lg h2 {
-  font-size: 2rem !important;
-  line-height: 1.3 !important;
-  color: #111827 !important;
-  font-weight: 600 !important;
-  margin-top: 1.75rem !important;
-  margin-bottom: 0.875rem !important;
-}
-
-.blog-content.prose h3,
-.blog-content.prose-lg h3 {
-  font-size: 1.5rem !important;
-  line-height: 1.4 !important;
-  color: #111827 !important;
-  font-weight: 600 !important;
-  margin-top: 1.5rem !important;
-  margin-bottom: 0.75rem !important;
-}
-
-.blog-content.prose h4,
-.blog-content.prose-lg h4 {
-  font-size: 1.25rem !important;
-  line-height: 1.5 !important;
-  color: #111827 !important;
-  font-weight: 600 !important;
-  margin-top: 1.25rem !important;
-  margin-bottom: 0.625rem !important;
-}
-
-.blog-content.prose h5,
-.blog-content.prose-lg h5 {
-  font-size: 1.125rem !important;
-  line-height: 1.5 !important;
-  color: #111827 !important;
-  font-weight: 600 !important;
-  margin-top: 1rem !important;
-  margin-bottom: 0.5rem !important;
-}
-
-.blog-content.prose h6,
-.blog-content.prose-lg h6 {
-  font-size: 1rem !important;
-  line-height: 1.5 !important;
-  color: #111827 !important;
-  font-weight: 600 !important;
-  margin-top: 1rem !important;
-  margin-bottom: 0.5rem !important;
-}
-
-.blog-content.prose p,
-.blog-content.prose-lg p {
-  font-size: 1.125rem !important;
-  line-height: 1.7 !important;
-  margin-bottom: 1rem !important;
-  color: #111827 !important;
-}
-
-/* Blog content links - remove blue color and underline by default */
-.blog-content.prose a,
-.blog-content.prose-lg a {
-  color: rgb(26, 115, 232) !important;
-  text-decoration: none !important;
-  font-weight: inherit !important;
-}
-
-.blog-content.prose a:hover,
-.blog-content.prose-lg a:hover {
-  color: #2563eb !important;
-  text-decoration: underline !important;
-}
-
-/* Custom styled links preserve their classes */
-.blog-content.prose a[class*="bg-"],
-.blog-content.prose a[class*="border-"],
-.blog-content.prose a[class*="inline-block"],
-.blog-content.prose-lg a[class*="bg-"],
-.blog-content.prose-lg a[class*="border-"],
-.blog-content.prose-lg a[class*="inline-block"] {
-  color: inherit !important;
-  text-decoration: none !important;
-}
-
-.blog-content.prose a[class*="bg-"]:hover,
-.blog-content.prose a[class*="border-"]:hover,
-.blog-content.prose-lg a[class*="bg-"]:hover,
-.blog-content.prose-lg a[class*="border-"]:hover {
-  text-decoration: none !important;
-}
-
-/* Lists */
-.blog-content.prose ul,
-.blog-content.prose ol,
-.blog-content.prose-lg ul,
-.blog-content.prose-lg ol {
-  color: #111827 !important;
-}
-
-.blog-content.prose li,
-.blog-content.prose-lg li {
-  color: #111827 !important;
-}
-
-/* Strong and emphasis */
-.blog-content.prose strong,
-.blog-content.prose b,
-.blog-content.prose-lg strong,
-.blog-content.prose-lg b {
-  color: #111827 !important;
-  font-weight: 600 !important;
-}
-
-.blog-content.prose em,
-.blog-content.prose i,
-.blog-content.prose-lg em,
-.blog-content.prose-lg i {
-  color: #111827 !important;
-}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -326,7 +111,7 @@ html {
   --input: transparent;
   --input-background: rgba(255, 255, 255, 0.7);
   --switch-background: #94a3b8;
-  --font-weight-medium: 600;
+  --font-weight-medium: 500;
   --font-weight-normal: 500;
   --ring: rgba(91, 111, 245, 0.6);
   --chart-1: #5b6ff5;
@@ -369,7 +154,7 @@ html {
   --input: transparent;
   --input-background: rgba(15, 15, 46, 0.6);
   --switch-background: #334155;
-  --font-weight-medium: 600;
+  --font-weight-medium: 500;
   --font-weight-normal: 500;
   --ring: rgba(91, 111, 245, 0.6);
   --chart-1: #5b6ff5;
@@ -510,6 +295,7 @@ html {
   }
 }
 
+
 /**
  * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
  */
@@ -517,27 +303,27 @@ html {
   :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
     h1 {
       font-size: var(--text-2xl);
-      font-weight: 600;
+      font-weight: 500;
       line-height: 1.2;
       letter-spacing: -0.02em;
     }
 
     h2 {
       font-size: var(--text-xl);
-      font-weight: 600;
+      font-weight: 500;
       line-height: 1.3;
       letter-spacing: -0.01em;
     }
 
     h3 {
       font-size: var(--text-lg);
-      font-weight: 600;
+      font-weight: 500;
       line-height: 1.4;
     }
 
     h4 {
       font-size: var(--text-base);
-      font-weight: 600;
+      font-weight: 500;
       line-height: 1.4;
     }
 

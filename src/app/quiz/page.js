@@ -1,12 +1,41 @@
-import Link from 'next/link';
-import { BookOpen, ArrowRight } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import SearchFilters from '@/components/SearchFilters';
 import { getQuizzes, getQuizFilterOptions } from '@/actions/quizzes';
+import QuizCard from '@/components/QuizCard';
+import QuizFAQ from '@/components/QuizFAQ';
+import QuizCTA from '@/components/QuizCTA';
+import { generateFAQSchema, generateBreadcrumbSchema, generateWebPageSchema } from '@/lib/quizSchemas';
 
 export const metadata = {
-  title: 'Online Quiz System - VUEDU',
-  description: 'Test your knowledge with our interactive quiz system',
+  title: 'Online Quiz System - Test Your Knowledge | Vuedu',
+  description: 'Access interactive online quizzes across multiple categories. Test your knowledge with timed questions, instant feedback, and detailed explanations. Best place for Virtual University of Pakistan Students to prepare for their exams. Start learning today!',
+  keywords: 'online quiz, interactive quiz, test knowledge, quiz system, educational quizzes, practice tests, free quizzes, custom quiz',
+  authors: [{ name: 'Vuedu' }],
+  openGraph: {
+    title: 'Online Quiz System - Test Your Knowledge | Vuedu',
+    description: 'Access interactive online quizzes with instant feedback and detailed explanations. Completely free!',
+    type: 'website',
+    url: 'https://vuedu.dev/quiz',
+    siteName: 'Vuedu',
+    images: [
+      {
+        url: 'https://vuedu.dev/og-quiz.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Vuedu Online Quiz System',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Online Quiz System | Vuedu',
+    description: 'Test your knowledge with interactive quizzes - completely free!',
+    images: ['https://vuedu.dev/og-quiz.jpg'],
+  },
+  alternates: {
+    canonical: 'https://vuedu.dev/quiz',
+  },
 };
 
 
@@ -47,9 +76,9 @@ export default async function QuizHomePage({ searchParams }) {
   const page = parseInt(params?.page) || 1;
   const search = params?.search || '';
   const category = params?.category || '';
-  
+
   const [quizzesResult, filterOptionsResult] = await Promise.all([
-    getQuizzes({ page, limit: 6, search, category }),
+    getQuizzes({ page, limit: 12, search, category }),
     getQuizFilterOptions()
   ]);
 
@@ -62,204 +91,123 @@ export default async function QuizHomePage({ searchParams }) {
     ? filterOptionsResult
     : { categories: [] };
 
+  // Generate JSON-LD schemas
+  const faqSchema = generateFAQSchema();
+  const breadcrumbSchema = generateBreadcrumbSchema();
+  const webPageSchema = generateWebPageSchema();
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative">
-      <div className="relative z-10 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="mb-16">
-          {/* Premium Badge */}
-          <div className="mb-6">
-            <div className="relative backdrop-blur-3xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden inline-block group">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-400/20 via-purple-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <span className="relative text-sm font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-wide">INTERACTIVE LEARNING</span>
-            </div>
-          </div>
+    <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
 
-          {/* Heading */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 leading-tight tracking-tight mb-6 lg:mb-4">
-            <span className="block bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
-              Online Quiz
-            </span>
-            <span className="block xl:inline bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent  ">
-              System
-            </span>
-          </h1>
-
-          {/* Subheading */}
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto font-light leading-relaxed lg:-mt-16">
-            Test your knowledge with our interactive quizzes. Choose a category and challenge yourself with engaging questions!
-          </p>
-        </div>
-
-        {/* Search and Filters */}
-        <div className="mb-12">
-          <SearchFilters
-            filterOptions={{
-              categories: categories,
-              subjects: [], // Not used for quizzes
-              universities: [], // Not used for quizzes
-              years: [], // Not used for quizzes
-              types: [] // Not used for quizzes
-            }}
-            searchPlaceholder="Search quizzes by title, description, or category..."
-            showTypeFilter={false}
-            showSubjectFilter={false}
-            showUniversityFilter={false}
-            showYearFilter={false}
-            categoryLabel="Category"
-            baseUrl="/quiz"
-          />
-        </div>
-
-        {/* Quiz Cards */}
-        {quizzes.length > 0 ? (
-          <>
-            {/* Section Heading */}
-            <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-light text-gray-900 bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent mb-2">
-                Available Quizzes
-              </h2>
-              <p className="text-gray-600 font-light">
-                Choose a subject to test your knowledge
-              </p>
+      <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative" role="main">
+        <div className="relative z-10 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+          {/* Hero Section */}
+          <header className="mb-16" aria-labelledby="page-title">
+            {/* Premium Badge */}
+            <div className="mb-6">
+              <span className="relative bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl overflow-hidden inline-block" aria-label="Interactive Learning Platform">
+                <span className="relative sm:text-sm text-xs font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-wide">INTERACTIVE LEARNING</span>
+              </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {quizzes.map((quiz) => (
-              <Link
-                key={quiz.id}
-                href={`/quiz/${quiz.id}`}
-                className="group"
-              >
-                <div className="h-full backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 hover:border-white/100 overflow-hidden">
-                  {/* Glossy overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 pointer-events-none"></div>
+            {/* Heading */}
+            <h1 id="page-title" className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 leading-tight tracking-tight mb-6 lg:mb-4">
+              <span className="block bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
+                Online Quiz
+              </span>
+              <span className="block xl:inline bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+                System
+              </span>
+            </h1>
 
-                  {/* Card Header with Gradient */}
-                  <div className={`bg-gradient-to-br ${quiz.color} p-6 text-white relative overflow-hidden`}>
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="relative flex items-center justify-between mb-4">
-                      <span className="text-6xl drop-shadow-lg">{quiz.icon}</span>
-                      <div className="backdrop-blur-xl bg-white/20 px-3 py-1.5 rounded-full text-xs font-medium border border-white/40 shadow-lg">
-                        {quiz.questionsCount} Q
-                      </div>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-light">{quiz.name}</h3>
-                    {quiz.category && (
-                      <p className="text-white/80 text-sm mt-2 font-light">{quiz.category}</p>
-                    )}
-                  </div>
-
-                  {/* Card Body */}
-                  <div className="relative p-6 space-y-4">
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-3 text-gray-700">
-                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-400 to-purple-400"></div>
-                        <span className="text-sm font-light">Multiple Choice Questions</span>
-                      </div>
-                      <div className="flex items-center space-x-3 text-gray-700">
-                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400"></div>
-                        <span className="text-sm font-light">Timed Quiz Challenge</span>
-                      </div>
-                      <div className="flex items-center space-x-3 text-gray-700">
-                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400"></div>
-                        <span className="text-sm font-light">Instant Results & Feedback</span>
-                      </div>
-                    </div>
-
-                    <button className="w-full mt-4 group/btn relative px-6 py-3 bg-gradient-to-r from-indigo-500/80 via-purple-600/70 to-blue-600/80 text-white font-medium text-sm rounded-xl overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-indigo-500/30 hover:scale-105 active:scale-95">
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/15 via-transparent to-white/15 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 -skew-x-12 group-hover/btn:skew-x-0"></div>
-                      <div className="relative flex items-center justify-center space-x-2">
-                        <span>Start Quiz</span>
-                        <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-            {/* Pagination */}
-            {pagination && pagination.totalPages > 1 && (
-              <div className="mt-8">
-                <Pagination 
-                  pagination={pagination} 
-                  baseUrl="/quiz"
-                />
-              </div>
-            )}
-          </>
-        ) : (
-          <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center max-w-md mx-auto mb-16">
-            <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-2xl font-light text-gray-900 mb-2">
-              No Quizzes Available
-            </h3>
-            <p className="text-gray-700 font-light">
-              Please add quiz JSON files to the /data folder.
+            {/* Subheading */}
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto font-light leading-relaxed lg:-mt-16">
+              Test your knowledge with our interactive quizzes. Choose a category and challenge yourself with engaging questions!
             </p>
-          </div>
-        )}
+          </header>
 
-        {/* Features Section */}
-        <section className="relative py-12 overflow-hidden">
+          {/* Search and Filters */}
+          <search className="mb-12" role="search" aria-label="Search and filter quizzes">
+            <SearchFilters
+              filterOptions={{
+                categories: categories
+              }}
+              baseUrl="/quiz"
+              searchPlaceholder="Search quizzes by title or course code..."
+              searchLabel="Search quizzes by title or course code"
+              searchHelpText="💡 Tip: Search by quiz title or course code (e.g., CS101, MTH202). Use the category filter to narrow down results."
+              showTypeFilter={false}
+              showSubjectFilter={false}
+              showUniversityFilter={false}
+              showYearFilter={false}
+              showCategoryFilter={true}
+              categoryLabel="Category"
+            />
+          </search>
 
-          <div className="max-w-7xl mx-auto relative z-10">
-            {/* Section Header */}
-            <div className="text-center mb-12">
-              <div className="inline-block mb-4 group">
-                <div className="backdrop-blur-3xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-4 py-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                  <span className="text-xs font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-wide">POWERFUL FEATURES</span>
-                </div>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-light bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
-                Quiz Features
+          {/* Quiz Cards */}
+          {quizzes.length > 0 ? (
+            <section aria-labelledby="quizzes-heading">
+              {/* Section Heading */}
+              <header className="text-center mb-8">
+                <h2 id="quizzes-heading" className="text-3xl md:text-4xl font-light text-gray-900 bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent mb-2">
+                  Available Quizzes
+                </h2>
+                <p className="text-gray-600 font-light">
+                  Choose a subject to test your knowledge
+                </p>
+              </header>
+
+              <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 list-none p-0" role="list" aria-label="Quiz list">
+                {quizzes.map((quiz) => (
+                  <li key={quiz.id}>
+                    <QuizCard quiz={quiz} />
+                  </li>
+                ))}
+              </ul>
+
+              {/* Pagination */}
+              {pagination && pagination.totalPages > 1 && (
+                <nav className="mt-8" aria-label="Quiz pagination">
+                  <Pagination
+                    pagination={pagination}
+                    baseUrl="/quiz"
+                  />
+                </nav>
+              )}
+            </section>
+          ) : (
+            <section className="bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center max-w-md mx-auto mb-16" aria-labelledby="no-quizzes-heading" role="status">
+              <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" aria-hidden="true" />
+              <h2 id="no-quizzes-heading" className="text-2xl font-light text-gray-900 mb-2">
+                No Quizzes Available
               </h2>
-            </div>
+              <p className="text-gray-700 font-light">
+                Please add quiz JSON files to the /data folder.
+              </p>
+            </section>
+          )}
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "Timed Questions",
-                  description: "Each question has a timer to challenge your speed and knowledge",
-                  icon: "⏱️",
-                  gradient: "from-blue-100/50 via-cyan-100/30 to-blue-50/50"
-                },
-                {
-                  title: "Detailed Results",
-                  description: "Get comprehensive results with explanations for each answer",
-                  icon: "📊",
-                  gradient: "from-green-100/50 via-emerald-100/30 to-green-50/50"
-                },
-                {
-                  title: "Random Questions",
-                  description: "Questions are randomized each time for a fresh experience",
-                  icon: "🔄",
-                  gradient: "from-purple-100/50 via-pink-100/30 to-purple-50/50"
-                }
-              ].map((feature, index) => (
-                <div
-                  key={index}
-                  className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
+          {/* CTA Section */}
+          <QuizCTA />
 
-                  <div className={`bg-gradient-to-br ${feature.gradient} w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-500`}>
-                    <span className="text-3xl drop-shadow-lg">{feature.icon}</span>
-                  </div>
-                  <h3 className="font-medium text-gray-900 mb-2 text-center">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-700 text-sm font-light text-center leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
+          {/* FAQ Section */}
+          <QuizFAQ />
+        </div>
+      </main>
+    </>
   );
 }

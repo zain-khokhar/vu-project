@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { ArrowLeft, FileText, AlertTriangle, Scale, Globe } from 'lucide-react';
+import { ArrowLeft, FileText, Shield, Users, BookOpen, AlertTriangle, Upload } from 'lucide-react';
 
 export const metadata = {
-  title: 'Terms & Conditions - VUEDU',
-  description: 'Terms of service, acceptable use policy, and legal information for VUEDU users.',
-  keywords: 'terms of service, conditions, acceptable use, liability, legal'
+  title: 'Terms of Service - Vuedu',
+  description: 'Terms and conditions for using Vuedu educational platform and resources.',
+  keywords: 'terms of service, terms and conditions, user agreement, acceptable use'
 };
 
 export default function TermsPage() {
@@ -12,7 +12,7 @@ export default function TermsPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
-        <Link 
+        <Link
           href="/"
           className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors"
         >
@@ -25,29 +25,61 @@ export default function TermsPage() {
           <div className="flex items-center justify-center mb-4">
             <FileText className="h-12 w-12 text-blue-600" />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Terms & Conditions</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Terms of Service</h1>
           <p className="text-xl text-gray-600">
-            Please read these terms carefully before using our services.
+            Please read these terms carefully before using Vuedu.
           </p>
         </div>
 
         {/* Content */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 md:p-12">
           <div className="prose prose-lg max-w-none">
-            
+
             {/* Introduction */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Agreement to Terms</h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                These Terms and Conditions ("Terms") govern your use of VUEDU's website and services ("Service") operated by VUEDU ("us," "we," or "our").
+                Welcome to Vuedu! These Terms of Service ("Terms") govern your access to and use of our website, services, and educational resources (collectively, the "Services").
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
-                By accessing or using our Service, you agree to be bound by these Terms. If you disagree with any part of these terms, then you may not access the Service.
+                By accessing or using our Services, you agree to be bound by these Terms. If you disagree with any part of these Terms, you may not access our Services.
               </p>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <p className="text-blue-800 font-medium">
-                  <AlertTriangle className="h-5 w-5 inline mr-2" />
-                  These Terms constitute a legally binding agreement between you and VUEDU.
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+                <p className="text-blue-700 text-sm">
+                  <strong>Important:</strong> Vuedu is a free educational platform. We do not require user accounts or registration to access our resources.
+                </p>
+              </div>
+            </section>
+
+            {/* Platform Overview */}
+            <section className="mb-12">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                <BookOpen className="h-6 w-6 text-blue-600 mr-2" />
+                About Vuedu
+              </h2>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                Vuedu is an educational resource platform that provides:
+              </p>
+              <ul className="list-disc list-inside text-gray-600 space-y-2">
+                <li>Access to educational documents, notes, papers, and past exams</li>
+                <li>Interactive quizzes and learning materials</li>
+                <li>Blog posts and educational articles</li>
+                <li>Community feedback and comment features</li>
+              </ul>
+            </section>
+
+            {/* No User Accounts */}
+            <section className="mb-12">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                <h2 className="text-2xl font-bold text-green-900 mb-3 flex items-center">
+                  <Users className="h-6 w-6 text-green-600 mr-2" />
+                  No User Accounts Required
+                </h2>
+                <p className="text-green-700 leading-relaxed mb-3">
+                  <strong>Vuedu does not require user registration.</strong> You can access all educational resources without creating an account, providing an email, or setting a password.
+                </p>
+                <p className="text-green-700 leading-relaxed">
+                  Users can provide feedback and post comments without authentication. However, only authorized administrators can upload or modify content.
                 </p>
               </div>
             </section>
@@ -55,158 +87,160 @@ export default function TermsPage() {
             {/* Acceptable Use */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Acceptable Use Policy</h2>
-              
+
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Permitted Uses</h3>
               <ul className="list-disc list-inside text-gray-600 mb-6 space-y-2">
                 <li>Access and download educational documents for personal study</li>
-                <li>Upload original academic content you have rights to share</li>
-                <li>Use our LMS handling and academic support services</li>
-                <li>Participate in our community through comments and blogs</li>
-                <li>Share resources with fellow students for educational purposes</li>
+                <li>Take quizzes and use interactive learning tools</li>
+                <li>Read blog posts and educational articles</li>
+                <li>Provide constructive feedback and comments</li>
+                <li>Share resources with others for educational purposes</li>
               </ul>
 
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Prohibited Activities</h3>
-              <p className="text-gray-600 mb-4">You agree NOT to:</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Prohibited Uses</h3>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>Upload copyrighted material without proper authorization</li>
-                <li>Use the service for commercial purposes without permission</li>
-                <li>Attempt to hack, disrupt, or damage the website or servers</li>
-                <li>Share login credentials or create multiple accounts</li>
-                <li>Upload malicious code, viruses, or harmful content</li>
-                <li>Engage in harassment, spam, or abusive behavior</li>
-                <li>Violate any applicable laws or regulations</li>
-                <li>Resell or redistribute our services without authorization</li>
-              </ul>
-            </section>
-
-            {/* User Accounts */}
-            <section className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">User Accounts and Registration</h2>
-              <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>You are responsible for maintaining the confidentiality of your account</li>
-                <li>You must provide accurate and complete information during registration</li>
-                <li>You are responsible for all activities under your account</li>
-                <li>We reserve the right to suspend or terminate accounts that violate these terms</li>
-                <li>One person may not maintain more than one account</li>
+                <li>Attempting to upload, modify, or delete content without authorization</li>
+                <li>Using automated tools to scrape or download bulk content</li>
+                <li>Posting spam, offensive, or inappropriate comments</li>
+                <li>Impersonating others or providing false information</li>
+                <li>Attempting to hack, disrupt, or compromise our Services</li>
+                <li>Using content for commercial purposes without permission</li>
+                <li>Violating any applicable laws or regulations</li>
+                <li>Redistributing our proprietary content without permission</li>
               </ul>
             </section>
 
             {/* Content and Intellectual Property */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Content and Intellectual Property</h2>
-              
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Your Content</h3>
-              <ul className="list-disc list-inside text-gray-600 mb-6 space-y-2">
-                <li>You retain ownership of content you upload or create</li>
-                <li>You grant us a license to display, distribute, and promote your content</li>
-                <li>You represent that you have rights to all content you upload</li>
-                <li>We may remove content that violates these terms or applicable laws</li>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                <Upload className="h-6 w-6 text-blue-600 mr-2" />
+                Content and Intellectual Property
+              </h2>
+
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Platform Content</h3>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                Vuedu hosts two types of content:
+              </p>
+
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                <h4 className="font-semibold text-yellow-900 mb-2">1. Third-Party Educational Materials</h4>
+                <p className="text-yellow-700 text-sm leading-relaxed">
+                  Documents, papers, and materials uploaded by our administrators that originate from universities, educational institutions, or other organizations. <strong>We credit the original owners and organizations</strong> for all such content. These materials are provided for educational purposes only.
+                </p>
+              </div>
+
+              <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 mb-6">
+                <h4 className="font-semibold text-indigo-900 mb-2">2. Vuedu Proprietary Content</h4>
+                <p className="text-indigo-700 text-sm leading-relaxed">
+                  Original content created by Vuedu, including but not limited to: custom quizzes, blog posts, tutorials, and educational materials. <strong>This content is proprietary and may not be uploaded to other platforms without our explicit written permission.</strong>
+                </p>
+              </div>
+
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">User-Generated Content (Comments & Feedback)</h3>
+              <ul className="list-disc list-inside text-gray-600 mb-4 space-y-2">
+                <li>You retain ownership of comments and feedback you submit</li>
+                <li>By posting, you grant Vuedu a non-exclusive license to display your content</li>
+                <li>You are responsible for the content you post</li>
+                <li>We reserve the right to remove inappropriate or spam content</li>
               </ul>
 
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Our Content</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Copyright and Attribution</h3>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>VUEDU's original content is protected by intellectual property laws</li>
-                <li>You may not copy, modify, or create derivative works without permission</li>
-                <li>Our trademarks and logos may not be used without written consent</li>
+                <li>All third-party content is attributed to its original source</li>
+                <li>If you believe your copyrighted work is being used improperly, contact us at team@vuedu.dev</li>
+                <li>We respect intellectual property rights and will respond to valid DMCA notices</li>
               </ul>
             </section>
 
-            {/* Services Disclaimer */}
+            {/* Content Upload Restrictions */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                <AlertTriangle className="h-6 w-6 text-orange-500 mr-2" />
-                Services Disclaimer
-              </h2>
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-6 mb-6">
-                <h3 className="text-lg font-semibold text-orange-800 mb-3">Academic Support Services</h3>
-                <ul className="list-disc list-inside text-orange-700 space-y-2">
-                  <li>Our LMS handling and academic support services are supplementary aids</li>
-                  <li>We do not guarantee specific grades, outcomes, or academic success</li>
-                  <li>Students remain responsible for their own academic integrity</li>
-                  <li>Services should be used in compliance with your institution's policies</li>
+              <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+                <h2 className="text-2xl font-bold text-red-900 mb-3 flex items-center">
+                  <AlertTriangle className="h-6 w-6 text-red-600 mr-2" />
+                  Content Upload Restrictions
+                </h2>
+                <p className="text-red-700 leading-relaxed mb-3">
+                  <strong>Only authorized Vuedu administrators can upload documents and educational materials.</strong>
+                </p>
+                <p className="text-red-700 leading-relaxed">
+                  Regular users cannot upload files or create content beyond comments and feedback. Any attempt to bypass these restrictions may result in being blocked from our Services.
+                </p>
+              </div>
+            </section>
+
+            {/* Educational Use Disclaimer */}
+            <section className="mb-12">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Educational Use and Academic Integrity</h2>
+
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
+                <h3 className="text-lg font-semibold text-yellow-800 mb-3">Student Responsibility</h3>
+                <p className="text-yellow-700 leading-relaxed">
+                  <strong>Resources on Vuedu are for study and reference purposes only.</strong> Students are responsible for:
+                </p>
+                <ul className="list-disc list-inside text-yellow-700 mt-2 space-y-1">
+                  <li>Using materials ethically and in accordance with their institution's academic integrity policies</li>
+                  <li>Not submitting downloaded content as their own work</li>
+                  <li>Understanding that past papers and exams are for practice, not cheating</li>
+                  <li>Verifying information accuracy with official sources</li>
                 </ul>
               </div>
-              
+
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Content Accuracy</h3>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>We do not guarantee the accuracy, completeness, or reliability of user-generated content</li>
-                <li>Educational materials are provided "as-is" for informational purposes</li>
-                <li>Users should verify information from multiple sources</li>
-                <li>We are not responsible for errors in third-party content</li>
+                <li>We strive for accuracy but do not guarantee all content is error-free</li>
+                <li>Users should verify important information with official sources</li>
+                <li>Past papers and materials may be outdated</li>
+                <li>We are not responsible for academic consequences of using our materials</li>
               </ul>
             </section>
 
-            {/* Liability Limitations */}
+            {/* Disclaimer of Warranties */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                <Scale className="h-6 w-6 text-blue-600 mr-2" />
-                Limitation of Liability
+                <Shield className="h-6 w-6 text-blue-600 mr-2" />
+                Disclaimer of Warranties
               </h2>
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  <strong>IMPORTANT:</strong> To the maximum extent permitted by law:
-                </p>
-                <ul className="list-disc list-inside text-gray-600 space-y-2">
-                  <li>VUEDU shall not be liable for any indirect, incidental, or consequential damages</li>
-                  <li>Our total liability shall not exceed the amount paid by you for our services</li>
-                  <li>We are not responsible for losses due to service interruptions or technical issues</li>
-                  <li>We disclaim all warranties, express or implied, including merchantability and fitness for purpose</li>
-                  <li>Users assume all risks associated with using our services</li>
-                </ul>
-              </div>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                Our Services are provided "as is" and "as available" without warranties of any kind, either express or implied, including but not limited to:
+              </p>
+              <ul className="list-disc list-inside text-gray-600 space-y-2">
+                <li>Accuracy, completeness, or reliability of content</li>
+                <li>Uninterrupted or error-free service</li>
+                <li>Fitness for a particular purpose</li>
+                <li>Non-infringement of third-party rights</li>
+              </ul>
             </section>
 
-            {/* Third-Party Links */}
+            {/* Limitation of Liability */}
             <section className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Third-Party Links and Services</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Limitation of Liability</h2>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                To the maximum extent permitted by law, Vuedu shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:
+              </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>Our website may contain links to third-party websites and services</li>
-                <li>We do not control or endorse third-party content or practices</li>
-                <li>Your interactions with third parties are solely between you and them</li>
-                <li>We are not responsible for third-party privacy policies or terms</li>
-                <li>Use third-party services at your own risk</li>
+                <li>Loss of data or academic performance</li>
+                <li>Service interruptions or errors</li>
+                <li>Reliance on content accuracy</li>
+                <li>Unauthorized access to your device or data</li>
               </ul>
+              <p className="text-gray-600 leading-relaxed mt-4">
+                <strong>Use our Services at your own risk.</strong> We provide educational resources as a free service and cannot be held responsible for how you use them.
+              </p>
             </section>
 
             {/* Termination */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Termination</h2>
-              <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>We may terminate or suspend your account immediately for terms violations</li>
-                <li>You may terminate your account at any time by contacting us</li>
-                <li>Upon termination, your right to use the service ceases immediately</li>
-                <li>We may retain certain information as required by law or for legitimate purposes</li>
-                <li>Provisions regarding liability, indemnity, and governing law survive termination</li>
-              </ul>
-            </section>
-
-            {/* Indemnification */}
-            <section className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Indemnification</h2>
               <p className="text-gray-600 leading-relaxed">
-                You agree to indemnify and hold harmless VUEDU, its officers, directors, employees, and agents from any claims, damages, losses, or expenses arising from your use of the service, violation of these terms, or infringement of any rights of another party.
+                We reserve the right to restrict or terminate access to our Services for users who violate these Terms, engage in prohibited activities, or for any other reason at our discretion. Since we don't have user accounts, termination may involve IP blocking or other technical measures.
               </p>
-            </section>
-
-            {/* Governing Law */}
-            <section className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                <Globe className="h-6 w-6 text-blue-600 mr-2" />
-                Governing Law and Jurisdiction
-              </h2>
-              <ul className="list-disc list-inside text-gray-600 space-y-2">
-                <li>These Terms are governed by the laws of [Your Jurisdiction]</li>
-                <li>Any disputes shall be resolved in the courts of [Your Jurisdiction]</li>
-                <li>If any provision is found unenforceable, the remainder remains in effect</li>
-                <li>These Terms constitute the entire agreement between you and VUEDU</li>
-              </ul>
             </section>
 
             {/* Changes to Terms */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Changes to Terms</h2>
               <p className="text-gray-600 leading-relaxed">
-                We reserve the right to modify these Terms at any time. We will notify users of significant changes via email or website notice. Continued use of the service after changes constitutes acceptance of the new terms.
+                We may update these Terms from time to time. Changes will be posted on this page with an updated "Last Updated" date. Continued use of our Services after changes constitutes acceptance of the updated Terms.
               </p>
             </section>
 
@@ -217,16 +251,16 @@ export default function TermsPage() {
                 If you have questions about these Terms and Conditions, please contact us:
               </p>
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-gray-600"><strong>Email:</strong> legal@vuedu.dev</p>
-                <p className="text-gray-600"><strong>Address:</strong> VUEDU Legal Team</p>
-                <p className="text-gray-600">123 Education Street, Learning City, LC 12345</p>
+                <p className="text-gray-600"><strong>Email:</strong> team@vuedu.dev</p>
+                <p className="text-gray-600"><strong>Address:</strong> Vuedu Legal Team</p>
+                <p className="text-gray-600">Punjab, Lahore, Pakistan</p>
               </div>
             </section>
 
             {/* Last Updated */}
             <div className="border-t border-gray-200 pt-8">
               <p className="text-sm text-gray-500 text-center">
-                Last Updated: September 30, 2025
+                Last Updated: December 13, 2025
               </p>
             </div>
 

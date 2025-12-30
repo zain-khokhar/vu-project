@@ -3,7 +3,7 @@
  * Generates comprehensive metadata, structured data, and Open Graph tags
  */
 
-const SITE_NAME = 'VUEDU';
+const SITE_NAME = 'Vuedu';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev';
 
 /**
@@ -14,7 +14,7 @@ export function generateDocumentMetadata(document, slug) {
   const description = document.description
     ? document.description.replace(/<[^>]*>/g, '').substring(0, 160)
     : `Download ${document.title} - ${document.subject} notes from ${document.university}. Free educational documents for ${document.year}.`;
-  
+
   const keywords = [
     document.title,
     document.subject,
@@ -38,7 +38,7 @@ export function generateDocumentMetadata(document, slug) {
     creator: SITE_NAME,
     publisher: SITE_NAME,
     applicationName: SITE_NAME,
-    
+
     // Open Graph
     openGraph: {
       title,
@@ -92,7 +92,7 @@ export function generateDocumentMetadata(document, slug) {
  */
 export function generateDocumentStructuredData(document, slug) {
   const documentUrl = `${SITE_URL}/documents/${slug}`;
-  
+
   return {
     '@context': 'https://schema.org',
     '@type': 'EducationalOccupationalCredential',
@@ -103,12 +103,12 @@ export function generateDocumentStructuredData(document, slug) {
     educationalLevel: document.year,
     competencyRequired: document.subject,
     credentialCategory: document.type,
-    
+
     // Educational Material properties
     learningResourceType: document.type,
     educationalUse: 'study',
     inLanguage: 'en',
-    
+
     // Organization info
     provider: {
       '@type': 'EducationalOrganization',
@@ -118,7 +118,7 @@ export function generateDocumentStructuredData(document, slug) {
     // Publishing info
     datePublished: document.createdAt,
     dateModified: document.updatedAt || document.createdAt,
-    
+
     // Subject area
     about: {
       '@type': 'Thing',
@@ -186,7 +186,7 @@ export function generateBreadcrumbStructuredData(document, slug) {
  */
 export function generateWebPageStructuredData(document, slug) {
   const documentUrl = `${SITE_URL}/documents/${slug}`;
-  
+
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -197,7 +197,7 @@ export function generateWebPageStructuredData(document, slug) {
     datePublished: document.createdAt,
     dateModified: document.updatedAt || document.createdAt,
     inLanguage: 'en-US',
-    
+
     // Main entity
     mainEntity: {
       '@type': 'DigitalDocument',

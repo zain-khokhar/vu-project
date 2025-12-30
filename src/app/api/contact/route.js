@@ -87,7 +87,7 @@ export async function POST(request) {
     await transporter.sendMail({
       from: process.env.SMTP_FROM,
       to: email,
-      subject: 'Thank you for contacting VUEDU',
+      subject: 'Thank you for contacting Vuedu',
       html: `
         <h3>Thank you for your message!</h3>
         <p>Dear ${fullName},</p>
@@ -95,22 +95,22 @@ export async function POST(request) {
         <p><strong>Your message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
         <hr>
-        <p>Best regards,<br>VUEDU Support Team</p>
+        <p>Best regards,<br>Vuedu Support Team</p>
       `
     });
     */
 
     return NextResponse.json(
-      { 
-        success: true, 
-        message: 'Message sent successfully! We will get back to you soon.' 
+      {
+        success: true,
+        message: 'Message sent successfully! We will get back to you soon.'
       },
       { status: 200 }
     );
 
   } catch (error) {
     console.error('Error processing contact form:', error);
-    
+
     return NextResponse.json(
       { error: 'Internal server error. Please try again later.' },
       { status: 500 }

@@ -11,11 +11,11 @@
 export function generateQuizMetadata(quiz) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.dev';
   const quizUrl = `${baseUrl}/quiz/${quiz.slug}`;
-  
-  const title = `${quiz.title} - Interactive Online Quiz | VUEDU`;
-  const description = quiz.description || 
+
+  const title = `${quiz.title} - Interactive Online Quiz | Vuedu`;
+  const description = quiz.description ||
     `Test your ${quiz.category} knowledge with ${quiz.totalQuestions} carefully crafted questions. ${quiz.title} - Free interactive quiz with instant results and detailed explanations.`;
-  
+
   const keywords = [
     quiz.title,
     quiz.category,
@@ -26,7 +26,7 @@ export function generateQuizMetadata(quiz) {
     'MCQ',
     'education',
     'learning',
-    'VUEDU',
+    'Vuedu',
     `${quiz.category} quiz`,
     'free quiz',
     'interactive quiz'
@@ -36,16 +36,16 @@ export function generateQuizMetadata(quiz) {
     title,
     description,
     keywords,
-    authors: [{ name: 'VUEDU Team' }],
-    creator: 'VUEDU',
-    publisher: 'VUEDU',
-    
+    authors: [{ name: 'Vuedu Team' }],
+    creator: 'Vuedu',
+    publisher: 'Vuedu',
+
     // Open Graph
     openGraph: {
       title,
       description,
       url: quizUrl,
-      siteName: 'VUEDU',
+      siteName: 'Vuedu',
       type: 'website',
       locale: 'en_US',
       images: [
@@ -57,7 +57,7 @@ export function generateQuizMetadata(quiz) {
         },
       ],
     },
-    
+
     // Twitter Card
     twitter: {
       card: 'summary_large_image',
@@ -66,7 +66,7 @@ export function generateQuizMetadata(quiz) {
       images: [`${baseUrl}/api/og?title=${encodeURIComponent(quiz.title)}&type=quiz`],
       creator: '@vuedu',
     },
-    
+
     // Additional SEO
     robots: {
       index: true,
@@ -79,12 +79,12 @@ export function generateQuizMetadata(quiz) {
         'max-snippet': -1,
       },
     },
-    
+
     // Alternates
     alternates: {
       canonical: quizUrl,
     },
-    
+
     // Verification
     verification: {
       google: process.env.GOOGLE_VERIFICATION,
@@ -100,7 +100,7 @@ export function generateQuizMetadata(quiz) {
 export function generateQuizStructuredData(quiz) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.dev';
   const quizUrl = `${baseUrl}/quiz/${quiz.slug}`;
-  
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Quiz',
@@ -109,36 +109,36 @@ export function generateQuizStructuredData(quiz) {
     description: quiz.description,
     url: quizUrl,
     inLanguage: 'en',
-    
+
     // Educational context
     educationalLevel: 'intermediate',
     learningResourceType: 'Assessment',
     educationalUse: 'assessment',
-    
+
     // Quiz details
     timeRequired: `PT${Math.ceil(quiz.totalQuestions * 0.5)}M`, // ISO 8601 duration
-    
+
     // Subject matter
     about: {
       '@type': 'Thing',
       name: quiz.category,
     },
-    
+
     // Provider
     provider: {
       '@type': 'Organization',
-      name: 'VUEDU',
+      name: 'Vuedu',
       url: baseUrl,
       logo: {
         '@type': 'ImageObject',
         url: `${baseUrl}/logo.png`,
       },
     },
-    
+
     // Interactivity
     interactivityType: 'active',
     isAccessibleForFree: true,
-    
+
     // Offers (free)
     offers: {
       '@type': 'Offer',
@@ -146,7 +146,7 @@ export function generateQuizStructuredData(quiz) {
       priceCurrency: 'USD',
       availability: 'https://schema.org/InStock',
     },
-    
+
     // Dates
     datePublished: quiz.createdAt,
     dateModified: quiz.updatedAt,
@@ -160,7 +160,7 @@ export function generateQuizStructuredData(quiz) {
  */
 export function generateQuizBreadcrumbs(quiz) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.dev';
-  
+
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -247,7 +247,7 @@ export function generateQuizFAQData(quiz) {
 export function generateQuizWebPageData(quiz) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.dev';
   const quizUrl = `${baseUrl}/quiz/${quiz.slug}`;
-  
+
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -255,20 +255,20 @@ export function generateQuizWebPageData(quiz) {
     url: quizUrl,
     name: quiz.title,
     description: quiz.description,
-    
+
     breadcrumb: generateQuizBreadcrumbs(quiz),
-    
+
     mainEntity: {
       '@type': 'Quiz',
       name: quiz.title,
     },
-    
+
     isPartOf: {
       '@type': 'WebSite',
-      name: 'VUEDU',
+      name: 'Vuedu',
       url: baseUrl,
     },
-    
+
     inLanguage: 'en',
     datePublished: quiz.createdAt,
     dateModified: quiz.updatedAt,

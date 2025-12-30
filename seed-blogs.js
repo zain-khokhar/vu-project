@@ -365,7 +365,7 @@ const sampleDocuments = [
     university: "Virtual University of Pakistan",
     year: 2025,
     tags: ["sociology", "society", "culture", "socialization", "human behavior", "social sciences"]
-  },
+  }, 
   {
     title: "SOC401 Cultural Anthropology Handout PDF Download",
     slug: "soc401-cultural-anthropology-handout-pdf-download",

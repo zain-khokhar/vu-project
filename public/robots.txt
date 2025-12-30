@@ -1,4 +1,4 @@
-# robots.txt for VUEDU
+# robots.txt for Vuedu
 # https://vuedu.dev/robots.txt
 # Last updated: October 2025
 

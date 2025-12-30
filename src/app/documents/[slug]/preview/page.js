@@ -4,25 +4,25 @@ import PDFViewerWrapper from '@/components/PDFViewerWrapper';
 import Link from 'next/link';
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const result = await getDocumentBySlug(slug);
-  
+
   if (!result.success) {
     return {
-      title: 'Document Not Found - VUEDU'
+      title: 'Document Not Found - Vuedu'
     };
   }
 
   const { document } = result;
-  
+
   return {
-    title: `Preview: ${document.title} - VUEDU`,
+    title: `Preview: ${document.title} - Vuedu`,
     description: `Preview ${document.title} online`,
   };
 }
 
 export default async function PreviewPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const result = await getDocumentBySlug(slug);
 
   if (!result.success) {

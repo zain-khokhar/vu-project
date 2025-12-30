@@ -10,26 +10,48 @@ import {
   Upload,
   Brain,
   LogOut,
-  Settings,
-  BarChart3,
-  Users,
   FileText,
   Zap,
-  MessageCircle
+  MessageCircle,
+  BookOpen
 } from 'lucide-react';
 import FeedbackManagement from '@/components/FeedbackManagement';
+import CommentManagement from '@/components/CommentManagement';
+import BlogManagement from '@/components/BlogManagement';
+import DocumentManagement from '@/components/DocumentManagement';
+import QuizManagement from '@/components/QuizManagement';
+import { getAdminStats } from '@/actions/admin';
 
 export default function AdminDashboard() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [stats, setStats] = useState({
+    blogs: 0,
+    documents: 0,
+    quizzes: 0,
+    feedback: 0,
+    comments: 0
+  });
 
   useEffect(() => {
     if (!requireAdminAuth()) {
       return;
     }
     setLoading(false);
+    fetchStats();
   }, []);
+
+  const fetchStats = async () => {
+    try {
+      const data = await getAdminStats();
+      if (data.success) {
+        setStats(data.stats);
+      }
+    } catch (error) {
+      console.error('Failed to fetch stats:', error);
+    }
+  };
 
   const handleLogout = () => {
     clearAdminSession();
@@ -74,29 +96,36 @@ export default function AdminDashboard() {
   const statsCards = [
     {
       title: 'Total Blogs',
-      value: '24',
+      value: stats.blogs,
       icon: FileText,
       color: 'text-green-600',
       bgColor: 'bg-green-50'
     },
     {
       title: 'Documents',
-      value: '156',
-      icon: Upload,
+      value: stats.documents,
+      icon: BookOpen,
       color: 'text-blue-600',
       bgColor: 'bg-blue-50'
     },
     {
       title: 'Quizzes',
-      value: '12',
+      value: stats.quizzes,
       icon: Brain,
       color: 'text-purple-600',
       bgColor: 'bg-purple-50'
     },
     {
-      title: 'Users',
-      value: '1.2k',
-      icon: Users,
+      title: 'Feedback',
+      value: stats.feedback,
+      icon: MessageCircle,
+      color: 'text-orange-600',
+      bgColor: 'bg-orange-50'
+    },
+    {
+      title: 'Comments',
+      value: stats.comments,
+      icon: MessageCircle,
       color: 'text-indigo-600',
       bgColor: 'bg-indigo-50'
     }
@@ -121,40 +150,74 @@ export default function AdminDashboard() {
                 </div>
                 <div>
                   <h1 className="text-xl font-bold text-gray-900">Admin Dashboard</h1>
-                  <p className="text-sm text-gray-500">VUEDU Management Panel</p>
+                  <p className="text-sm text-gray-500">Vuedu Management Panel</p>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2 overflow-x-auto">
                 <button
                   onClick={() => setActiveTab('dashboard')}
-                  className={`px-4 py-2 rounded-lg transition-colors ${
-                    activeTab === 'dashboard' 
-                      ? 'bg-indigo-100 text-indigo-700' 
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
+                  className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap text-sm ${activeTab === 'dashboard'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-500 hover:text-gray-700'
+                    }`}
                 >
                   Dashboard
                 </button>
                 <button
+                  onClick={() => setActiveTab('blogs')}
+                  className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap text-sm ${activeTab === 'blogs'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-500 hover:text-gray-700'
+                    }`}
+                >
+                  Blogs
+                </button>
+                <button
+                  onClick={() => setActiveTab('documents')}
+                  className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap text-sm ${activeTab === 'documents'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-500 hover:text-gray-700'
+                    }`}
+                >
+                  Documents
+                </button>
+                <button
+                  onClick={() => setActiveTab('quizzes')}
+                  className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap text-sm ${activeTab === 'quizzes'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-500 hover:text-gray-700'
+                    }`}
+                >
+                  Quizzes
+                </button>
+                <button
                   onClick={() => setActiveTab('feedback')}
-                  className={`px-4 py-2 rounded-lg transition-colors ${
-                    activeTab === 'feedback' 
-                      ? 'bg-indigo-100 text-indigo-700' 
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
+                  className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap text-sm ${activeTab === 'feedback'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-500 hover:text-gray-700'
+                    }`}
                 >
                   Feedback
                 </button>
+                <button
+                  onClick={() => setActiveTab('comments')}
+                  className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap text-sm ${activeTab === 'comments'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-500 hover:text-gray-700'
+                    }`}
+                >
+                  Comments
+                </button>
                 <Link
                   href="/"
-                  className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+                  className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors whitespace-nowrap text-sm"
                 >
                   Visit Site
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="flex items-center space-x-2 text-gray-500 hover:text-red-600 px-3 py-2 rounded-lg hover:bg-red-50 transition-colors"
+                  className="flex items-center space-x-2 text-gray-500 hover:text-red-600 px-3 py-2 rounded-lg hover:bg-red-50 transition-colors whitespace-nowrap text-sm"
                 >
                   <LogOut className="w-4 h-4" />
                   <span>Logout</span>
@@ -174,7 +237,7 @@ export default function AdminDashboard() {
               </div>
 
               {/* Stats Overview */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
                 {statsCards.map((stat, index) => (
                   <div key={index} className="backdrop-blur-xl bg-white/80 border border-gray-200/60 rounded-2xl p-6 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center justify-between">
@@ -199,15 +262,15 @@ export default function AdminDashboard() {
                       <div className={`group backdrop-blur-xl bg-gradient-to-br ${action.bgColor} border border-white/60 rounded-3xl p-8 hover:shadow-2xl hover:scale-105 transition-all duration-500 cursor-pointer`}>
                         {/* Glossy overlay */}
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
-                        
+
                         <div className="relative">
                           <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${action.color} rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300`}>
                             <action.icon className="w-8 h-8 text-white" />
                           </div>
-                          
+
                           <h4 className="text-xl font-bold text-gray-900 mb-2">{action.title}</h4>
                           <p className="text-gray-600 mb-4">{action.description}</p>
-                          
+
                           <div className="flex items-center text-sm font-medium text-gray-500 group-hover:text-gray-700 transition-colors">
                             <span>Get Started</span>
                             <Zap className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
@@ -218,31 +281,17 @@ export default function AdminDashboard() {
                   ))}
                 </div>
               </div>
-
-              {/* Recent Activity Section */}
-              <div className="backdrop-blur-xl bg-white/80 border border-gray-200/60 rounded-3xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Recent Activity</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-4 p-4 bg-gray-50/80 rounded-xl">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <p className="text-gray-700">New blog post published: "Advanced React Patterns"</p>
-                    <span className="text-sm text-gray-500 ml-auto">2 hours ago</span>
-                  </div>
-                  <div className="flex items-center space-x-4 p-4 bg-gray-50/80 rounded-xl">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <p className="text-gray-700">Document uploaded: "CS301 Midterm Study Guide"</p>
-                    <span className="text-sm text-gray-500 ml-auto">1 day ago</span>
-                  </div>
-                  <div className="flex items-center space-x-4 p-4 bg-gray-50/80 rounded-xl">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <p className="text-gray-700">Quiz created: "JavaScript Fundamentals"</p>
-                    <span className="text-sm text-gray-500 ml-auto">3 days ago</span>
-                  </div>
-                </div>
-              </div>
             </>
-          ) : (
+          ) : activeTab === 'blogs' ? (
+            <BlogManagement />
+          ) : activeTab === 'documents' ? (
+            <DocumentManagement />
+          ) : activeTab === 'quizzes' ? (
+            <QuizManagement />
+          ) : activeTab === 'feedback' ? (
             <FeedbackManagement />
+          ) : (
+            <CommentManagement />
           )}
         </main>
       </div>

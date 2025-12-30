@@ -19,7 +19,7 @@ export function generateDocumentMetadata({
   canonical,
   publishedTime,
   modifiedTime,
-  author = 'VUEDU Team'
+  author = 'Vuedu Team'
 }) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev';
   const fullUrl = url ? `${baseUrl}${url}` : baseUrl;
@@ -31,7 +31,7 @@ export function generateDocumentMetadata({
     keywords: keywords.join(', '),
     authors: [{ name: author }],
     creator: author,
-    publisher: 'VUEDU',
+    publisher: 'Vuedu',
     formatDetection: {
       email: false,
       address: false,
@@ -45,7 +45,7 @@ export function generateDocumentMetadata({
       title,
       description,
       url: fullUrl,
-      siteName: 'VUEDU',
+      siteName: 'Vuedu',
       locale: 'en_US',
       type,
       images: images.length > 0 ? images : [
@@ -174,7 +174,7 @@ export function generateDocumentStructuredData({
   // Add organization data
   structuredData.publisher = {
     '@type': 'Organization',
-    name: 'VUEDU',
+    name: 'Vuedu',
     url: baseUrl,
     logo: {
       '@type': 'ImageObject',
@@ -195,7 +195,7 @@ export function generateWebsiteStructuredData() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'VUEDU',
+    name: 'Vuedu',
     description: 'Free educational documents, notes, books, and study materials for students',
     url: baseUrl,
     potentialAction: {
@@ -208,7 +208,7 @@ export function generateWebsiteStructuredData() {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'VUEDU',
+      name: 'Vuedu',
       url: baseUrl,
       logo: {
         '@type': 'ImageObject',
@@ -233,7 +233,7 @@ export function generateOrganizationStructuredData() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'VUEDU',
+    name: 'Vuedu',
     alternateName: 'Doc Library',
     url: baseUrl,
     logo: `${baseUrl}/logo.png`,
@@ -241,7 +241,7 @@ export function generateOrganizationStructuredData() {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Service',
-      email: 'support@vuedu.dev',
+      email: 'team@vuedu.dev',
       availableLanguage: 'English',
     },
     sameAs: [

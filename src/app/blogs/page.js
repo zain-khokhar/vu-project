@@ -35,7 +35,7 @@ export default async function BlogsPage({ searchParams }) {
   }));
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white/80 to-blue-50/30 overflow-hidden relative">
       {/* JSON-LD Structured Data */}
       <script
         type="application/ld+json"
@@ -44,7 +44,7 @@ export default async function BlogsPage({ searchParams }) {
             generateWebsiteStructuredData(),
             generateDocumentStructuredData({
               type: 'Blog',
-              name: 'VUEDU Blog',
+              name: 'Vuedu Blog',
               description: 'Educational articles, tutorials, and insights for students and learners',
               url: '/blogs',
               breadcrumbs: [
@@ -285,7 +285,7 @@ export default async function BlogsPage({ searchParams }) {
               </div>
             </>
           ) : (
-            <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center">
+            <div className=" bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center">
               <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
               <h3 className="text-2xl font-light text-gray-900 mb-2">No blog posts yet</h3>
               <p className="text-gray-700 mb-6 font-light">Be the first to share your knowledge with the community!</p>
@@ -320,7 +320,7 @@ export async function generateStaticParams() {
 //   const params = await searchParams;
 //   const page = parseInt(params?.page) || 1;
 
-//   let title = 'Educational Blogs & Articles - VUEDU';
+//   let title = 'Educational Blogs & Articles - Vuedu';
 //   let description = 'Read the latest educational articles, tutorials, study tips, and insights from experts. Learn about programming, data structures, web development, and more.';
 //   const keywords = [
 //     'educational blogs',
@@ -336,7 +336,7 @@ export async function generateStaticParams() {
 //   ];
 
 //   if (page > 1) {
-//     title = `Educational Blogs & Articles - Page ${page} | VUEDU`;
+//     title = `Educational Blogs & Articles - Page ${page} | Vuedu`;
 //     description = `Browse educational articles and tutorials - Page ${page}. Expert insights on programming, computer science, and study strategies.`;
 //   }
 
@@ -352,7 +352,7 @@ export async function generateStaticParams() {
 //         url: '/og-blogs.jpg',
 //         width: 1200,
 //         height: 630,
-//         alt: 'VUEDU Blog - Educational Articles & Tutorials',
+//         alt: 'Vuedu Blog - Educational Articles & Tutorials',
 //       },
 //     ],
 //   });

@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { ArrowLeft, AlertTriangle, BookOpen, Users, Shield, Info } from 'lucide-react';
 
 export const metadata = {
-  title: 'Disclaimer - VUEDU',
-  description: 'Important disclaimers about VUEDU services, educational content, and limitations.',
+  title: 'Disclaimer - Vuedu',
+  description: 'Important disclaimers about Vuedu services, educational content, and limitations.',
   keywords: 'disclaimer, educational content, academic integrity, limitations, liability'
 };
 
@@ -12,7 +12,7 @@ export default function DisclaimerPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
-        <Link 
+        <Link
           href="/"
           className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors"
         >
@@ -34,7 +34,7 @@ export default function DisclaimerPage() {
         {/* Content */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 md:p-12">
           <div className="prose prose-lg max-w-none">
-            
+
             {/* General Disclaimer */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">General Disclaimer</h2>
@@ -44,12 +44,12 @@ export default function DisclaimerPage() {
                   IMPORTANT: READ CAREFULLY
                 </p>
                 <p className="text-red-700 leading-relaxed">
-                  The information and services provided by VUEDU are for educational and informational purposes only. By using our website and services, you acknowledge and agree to the limitations and disclaimers outlined below.
+                  The information and services provided by Vuedu are for educational and informational purposes only. By using our website and services, you acknowledge and agree to the limitations and disclaimers outlined below.
                 </p>
               </div>
-              
+
               <p className="text-gray-600 leading-relaxed mb-4">
-                VUEDU ("we," "our," or "us") provides academic resources, document management tools, and educational support services. These services are designed to assist students and educators, but they come with important limitations that users must understand.
+                Vuedu ("we," "our," or "us") provides academic resources, document management tools, and educational support services. These services are designed to assist students and educators, but they come with important limitations that users must understand.
               </p>
             </section>
 
@@ -59,14 +59,14 @@ export default function DisclaimerPage() {
                 <BookOpen className="h-6 w-6 text-blue-600 mr-2" />
                 Educational Content Disclaimer
               </h2>
-              
+
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Content Accuracy</h3>
               <ul className="list-disc list-inside text-gray-600 mb-6 space-y-2">
                 <li>Educational materials are provided "as-is" for informational purposes only</li>
                 <li>We do not guarantee the accuracy, completeness, or reliability of any content</li>
                 <li>Information may become outdated or incorrect over time</li>
                 <li>Users should verify information from multiple authoritative sources</li>
-                <li>Content reflects the views of individual contributors, not necessarily VUEDU</li>
+                <li>Content reflects the views of individual contributors, not necessarily Vuedu</li>
               </ul>
 
               <h3 className="text-xl font-semibold text-gray-900 mb-3">User-Generated Content</h3>
@@ -84,11 +84,11 @@ export default function DisclaimerPage() {
                 <Users className="h-6 w-6 text-green-600 mr-2" />
                 Academic Integrity Notice
               </h2>
-              
+
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
                 <h3 className="text-lg font-semibold text-yellow-800 mb-3">Student Responsibility</h3>
                 <p className="text-yellow-700 leading-relaxed">
-                  Students using VUEDU services must comply with their institution's academic integrity policies, honor codes, and ethical guidelines. Our services are intended to support learning, not replace it.
+                  Students using Vuedu services must comply with their institution's academic integrity policies, honor codes, and ethical guidelines. Our services are intended to support learning, not replace it.
                 </p>
               </div>
 
@@ -116,7 +116,7 @@ export default function DisclaimerPage() {
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                 <p className="text-blue-800 font-semibold mb-3">Important Limitation:</p>
                 <p className="text-blue-700 leading-relaxed mb-4">
-                  VUEDU does not provide professional academic advising, career counseling, or official educational guidance. Our services are informational only.
+                  Vuedu does not provide professional academic advising, career counseling, or official educational guidance. Our services are informational only.
                 </p>
                 <ul className="list-disc list-inside text-blue-700 space-y-2">
                   <li>We are not a substitute for qualified academic advisors or counselors</li>
@@ -130,7 +130,7 @@ export default function DisclaimerPage() {
             {/* Technical Limitations */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Technical Limitations</h2>
-              
+
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Service Availability</h3>
               <ul className="list-disc list-inside text-gray-600 mb-6 space-y-2">
                 <li>Services may be temporarily unavailable due to maintenance or technical issues</li>
@@ -185,7 +185,7 @@ export default function DisclaimerPage() {
               <div className="bg-red-50 border border-red-200 rounded-lg p-6">
                 <p className="text-red-800 font-semibold mb-3">LIMITATION NOTICE:</p>
                 <p className="text-red-700 leading-relaxed mb-4">
-                  To the maximum extent permitted by applicable law, VUEDU disclaims all liability for:
+                  To the maximum extent permitted by applicable law, Vuedu disclaims all liability for:
                 </p>
                 <ul className="list-disc list-inside text-red-700 space-y-2">
                   <li>Academic consequences resulting from use of our services</li>
@@ -228,9 +228,9 @@ export default function DisclaimerPage() {
                 If you have questions about this disclaimer or need clarification about our services:
               </p>
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-gray-600"><strong>Email:</strong> support@vuedu.dev</p>
+                <p className="text-gray-600"><strong>Email:</strong> team@vuedu.dev</p>
                 <p className="text-gray-600"><strong>Subject:</strong> Disclaimer Inquiry</p>
-                <p className="text-gray-600"><strong>Address:</strong> VUEDU Support Team</p>
+                <p className="text-gray-600"><strong>Address:</strong> Vuedu Support Team</p>
                 <p className="text-gray-600">123 Education Street, Learning City, LC 12345</p>
               </div>
             </section>

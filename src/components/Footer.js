@@ -13,7 +13,7 @@ export default function Footer() {
               <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <BookOpen className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-light bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">VUEDU</span>
+              <span className="text-2xl font-light bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">Vuedu</span>
             </Link>
             <p className="text-gray-700 mb-6 max-w-md font-light leading-relaxed">
               A free document library platform where students can access and share
@@ -28,7 +28,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group">
+          <div className="bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
             <h3 className="font-medium text-gray-900 mb-4 relative">Quick Links</h3>
             <ul className="space-y-3 text-gray-700">
@@ -66,7 +66,7 @@ export default function Footer() {
           </div>
 
           {/* Resources */}
-          <div className="backdrop-blur-2xl bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group">
+          <div className=" bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
             <h3 className="font-medium text-gray-900 mb-4 relative">Resources</h3>
             <ul className="space-y-3 text-gray-700">
@@ -74,6 +74,13 @@ export default function Footer() {
                 <Link href="/blogs" className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
                   <span className="inline-block w-1 h-1 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 group-hover/link:scale-150 transition-transform"></span>
                   <span className="font-light group-hover/link:translate-x-1 transition-transform">Blog</span>
+                </Link>
+
+              </li>
+              <li>
+                <Link href="/quiz" className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
+                  <span className="inline-block w-1 h-1 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 group-hover/link:scale-150 transition-transform"></span>
+                  <span className="font-light group-hover/link:translate-x-1 transition-transform">Quiz</span>
                 </Link>
               </li>
               <li>
@@ -96,7 +103,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-white/30">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-sm text-gray-600 font-light">
-              © {new Date().getFullYear()} VUEDU. All rights reserved.
+              © {new Date().getFullYear()} Vuedu. All rights reserved.
             </div>
             <div className="flex flex-wrap justify-center gap-6">
               <Link

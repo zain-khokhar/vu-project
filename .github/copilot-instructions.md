@@ -4,7 +4,7 @@ This document provides guidance for AI coding agents working on the `vu-project`
 
 ## Project Overview
 
-The `vu-project` is a Next.js-based educational web application (VUEDU.dev) with the following key components:
+The `vu-project` is a Next.js-based educational web application (Vuedu.dev) with the following key components:
 
 - **Frontend**: Located in `src/app/`, this directory contains the main pages and layouts for the application. Each subdirectory represents a route (e.g., `quiz/`, `blogs/`, `contact/`).
 - **Components**: Reusable UI components are stored in `src/components/`. Examples include `Navbar.js`, `Footer.js`, and `QuizClient.jsx`.
