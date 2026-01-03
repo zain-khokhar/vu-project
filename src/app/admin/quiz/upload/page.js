@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Upload, CheckCircle, XCircle, Loader } from 'lucide-react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import AdminProtected from '@/components/AdminProtected';
-import { getQuizForEdit, updateQuiz } from '@/actions/quizzes';
+import { getQuizForEdit, updateQuiz, createQuiz } from '@/actions/quizzes';
 
 function QuizUploadPageContent() {
   const searchParams = useSearchParams();
