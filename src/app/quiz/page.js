@@ -38,6 +38,39 @@ export const metadata = {
   },
 };
 
+
+async function getAvailableQuizzes() {
+  try {
+    const dataDirectory = path.join(process.cwd(), 'src');
+    const files = await fs.readdir(dataDirectory);
+    const jsonFiles = files.filter(file => file.endsWith('.json') && !file.includes('package'));
+    
+    const quizzes = await Promise.all(
+      jsonFiles.map(async (file) => {
+        const filePath = path.join(dataDirectory, file);
+        const fileContents = await fs.readFile(filePath, 'utf8');
+        const questions = JSON.parse(fileContents);
+        
+        const name = file.replace('.json', '');
+        const displayName = name.charAt(0).toUpperCase() + name.slice(1);
+        
+        return {
+          id: name,
+          name: displayName,
+          questionsCount: questions.length,
+          icon: getIconForCategory(name),
+          color: getColorForCategory(name),
+        };
+      })
+    );
+    
+    return quizzes;
+  } catch (error) {
+    console.error('Error reading quiz files:', error);
+    return [];
+  }
+}
+
 export default async function QuizHomePage({ searchParams }) {
   const params = await searchParams;
   const page = parseInt(params?.page) || 1;
@@ -48,6 +81,7 @@ export default async function QuizHomePage({ searchParams }) {
     getQuizzes({ page, limit: 12, search, category }),
     getQuizFilterOptions()
   ]);
+
 
   const { quizzes, pagination } = quizzesResult.success
     ? quizzesResult
