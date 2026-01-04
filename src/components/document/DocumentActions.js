@@ -7,7 +7,7 @@
 import Link from 'next/link';
 import { Eye, Download, ExternalLink, FileDown } from 'lucide-react';
 
-export default function DocumentActions({ slug, previewInfo, title }) {
+export default function DocumentActions({ slug, previewInfo, title, type }) {
   return (
     <div
       className="flex flex-col gap-3"
@@ -34,7 +34,7 @@ export default function DocumentActions({ slug, previewInfo, title }) {
 
       {/* Secondary Preview Button */}
       <Link
-        href={`/documents/${slug}/preview`}
+        href={`/${type}/${slug}/preview`}
         className="w-full bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 hover:text-gray-900 px-4 sm:px-6 py-3 sm:py-3.5 rounded-xl font-medium text-sm sm:text-base transition-all duration-300 inline-flex items-center justify-center gap-2 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-200"
         aria-label={`Preview ${title} online`}
       >

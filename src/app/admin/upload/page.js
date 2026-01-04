@@ -21,6 +21,7 @@ function UploadPageContent() {
 
   const [formData, setFormData] = useState({
     title: '',
+    slug: '',
     description: '',
     type: 'note',
     fileUrl: '',
@@ -28,6 +29,21 @@ function UploadPageContent() {
     university: '',
     year: new Date().getFullYear(),
   });
+
+  // Helper function to generate slug preview
+  const generateSlugPreview = (text) => {
+    if (!text) return '';
+    return text
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w\-]+/g, '')
+      .replace(/\-\-+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '');
+  };
+
+  const slugPreview = formData.slug || generateSlugPreview(formData.title);
 
   // Load document data when in edit mode
   useEffect(() => {
@@ -45,6 +61,7 @@ function UploadPageContent() {
         const doc = result.document;
         setFormData({
           title: doc.title,
+          slug: doc.slug || '',
           description: doc.description,
           type: doc.type,
           fileUrl: doc.fileUrl,
@@ -150,8 +167,8 @@ function UploadPageContent() {
         {/* Message */}
         {message.content && (
           <div className={`mb-6 p-4 rounded-lg flex items-center space-x-2 ${message.type === 'success'
-              ? 'bg-green-50 text-green-800 border border-green-200'
-              : 'bg-red-50 text-red-800 border border-red-200'
+            ? 'bg-green-50 text-green-800 border border-green-200'
+            : 'bg-red-50 text-red-800 border border-red-200'
             }`}>
             {message.type === 'success' ? (
               <CheckCircle className="h-5 w-5" />
@@ -181,6 +198,33 @@ function UploadPageContent() {
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Enter document title"
                 />
+              </div>
+
+              {/* Custom Slug Field */}
+              <div className="lg:col-span-2">
+                <label htmlFor="slug" className="block text-sm font-medium text-gray-700 mb-2">
+                  Custom URL Slug (Optional)
+                </label>
+                <input
+                  type="text"
+                  id="slug"
+                  name="slug"
+                  value={formData.slug}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Leave empty for auto-generation from title"
+                  pattern="[a-z0-9-]*"
+                />
+                <div className="mt-2 flex items-start gap-2">
+                  <div className="flex-1">
+                    <p className="text-xs text-gray-500">
+                      URL Preview: <span className="font-mono text-blue-600">/{formData.type}/{slugPreview || 'auto-generated-slug'}</span>
+                    </p>
+                    <p className="text-xs text-gray-400 mt-1">
+                      Only lowercase letters, numbers, and hyphens allowed. Leave empty to auto-generate from title.
+                    </p>
+                  </div>
+                </div>
               </div>
 
               <div>
@@ -259,7 +303,7 @@ function UploadPageContent() {
                 Description *
               </label>
               <BlogEditor
-              className="prose sm:prose-lg
+                className="prose sm:prose-lg
                     prose-a:text-purple-500 hover:prose-a:underline
                     prose-quote:border-purple-500
                     prose-ul:list-disc 

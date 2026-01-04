@@ -52,6 +52,11 @@ const QuizSchema = new mongoose.Schema({
     required: [true, 'Quiz description is required'],
     trim: true,
   },
+  content: {
+    type: String,
+    default: '',
+    trim: true,
+  },
   category: {
     type: String,
     required: true,
@@ -69,7 +74,7 @@ const QuizSchema = new mongoose.Schema({
     type: [QuestionSchema],
     required: true,
     validate: {
-      validator: function(v) {
+      validator: function (v) {
         return v.length > 0;
       },
       message: 'Quiz must have at least one question'
@@ -94,14 +99,14 @@ const QuizSchema = new mongoose.Schema({
 });
 
 // Update totalQuestions before saving
-QuizSchema.pre('save', function(next) {
+QuizSchema.pre('save', function (next) {
   this.totalQuestions = this.questions.length;
   this.updatedAt = Date.now();
   next();
 });
 
 // Create slug from title if not provided
-QuizSchema.pre('validate', function(next) {
+QuizSchema.pre('validate', function (next) {
   if (this.title && !this.slug) {
     this.slug = this.title
       .toLowerCase()

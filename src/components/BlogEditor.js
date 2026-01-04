@@ -55,8 +55,44 @@ import {
 import { useEffect, useState, useCallback } from 'react';
 import { uploadToCloudinary } from '@/lib/cloudinary';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import Editor from 'react-simple-code-editor';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-markup';
+import 'prismjs/themes/prism-tomorrow.css';
 
 const lowlight = createLowlight(common);
+
+// Syntax Highlighted Code Editor Component using react-simple-code-editor
+const SyntaxHighlightedEditor = ({ value, onChange, language = 'html', placeholder = '', rows = 10 }) => {
+  const highlight = (code) => {
+    try {
+      return Prism.highlight(code, Prism.languages.markup, 'markup');
+    } catch (e) {
+      return code;
+    }
+  };
+
+  return (
+    <div className="rounded-xl overflow-hidden border-2 border-gray-600">
+      <Editor
+        value={value}
+        onValueChange={onChange}
+        highlight={highlight}
+        padding={16}
+        placeholder={placeholder}
+        style={{
+          fontFamily: '"Fira Code", "Courier New", monospace',
+          fontSize: 14,
+          backgroundColor: '#1e1e1e',
+          color: '#d4d4d4',
+          minHeight: `${rows * 24}px`,
+          outline: 'none',
+        }}
+        textareaClassName="focus:outline-none"
+      />
+    </div>
+  );
+};
 
 // Custom HTML Block Extension
 const HtmlBlock = Node.create({
@@ -88,14 +124,16 @@ const HtmlBlock = Node.create({
   },
 
   renderHTML({ node }) {
-    return [
-      'div',
-      {
-        'data-html-block': '',
-        'data-level': node.attrs.dataLevel,
-        class: 'html-block-content my-4',
-      },
-    ];
+    // Return structure that includes the HTML content as innerHTML
+    const div = document.createElement('div');
+    div.setAttribute('data-html-block', '');
+    div.setAttribute('data-level', node.attrs.dataLevel || '1');
+    div.className = 'html-block-content my-4';
+    div.innerHTML = node.attrs.htmlContent || '';
+
+    return {
+      dom: div,
+    };
   },
 
   addNodeView() {
@@ -654,7 +692,7 @@ const MenuBar = ({ editor }) => {
 
       {/* Custom Link Dialog */}
       {showCustomLinkDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
+        <div className="fixed inset-0 bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
           <div className="bg-white rounded-2xl max-w-lg w-full shadow-2xl transform transition-all animate-slideUp">
             {/* Header */}
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 rounded-t-2xl">
@@ -823,7 +861,7 @@ const MenuBar = ({ editor }) => {
 
       {/* Image Upload Dialog */}
       {showImageDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
+        <div className="fixed inset-0 max-h-[calc(100vh-4rem)] bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
           <div className="bg-white rounded-2xl max-w-lg w-full shadow-2xl transform transition-all animate-slideUp">
             {/* Header */}
             <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4 rounded-t-2xl">
@@ -978,7 +1016,7 @@ const MenuBar = ({ editor }) => {
 
       {/* HTML Block Dialog */}
       {showHtmlDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
+        <div className="fixed inset-0 max-h-[calc(100vh-4rem)] bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
           <div className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl transform transition-all animate-slideUp">
             {/* Header */}
             <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-4 rounded-t-2xl">
@@ -1011,12 +1049,12 @@ const MenuBar = ({ editor }) => {
                   HTML Content
                   <span className="text-red-500 ml-1">*</span>
                 </label>
-                <textarea
+                <SyntaxHighlightedEditor
                   value={htmlContent}
-                  onChange={(e) => setHtmlContent(e.target.value)}
+                  onChange={(value) => setHtmlContent(value)}
+                  language="html"
                   placeholder="<div>Your HTML content here...</div>"
                   rows={10}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all outline-none text-gray-900 placeholder-gray-400 font-mono text-sm"
                 />
                 <p className="text-xs text-gray-500">
                   Paste your HTML code here. It will be rendered directly in the editor.
@@ -1025,7 +1063,7 @@ const MenuBar = ({ editor }) => {
 
               {/* Preview */}
               {htmlContent && (
-                <div className="space-y-2">
+                <div className="space-y-2 max-h-[300px] overflow-y-auto">
                   <label className="flex items-center text-sm font-semibold text-gray-700">
                     <span className="bg-purple-100 text-purple-700 w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
                     Preview
@@ -1136,7 +1174,7 @@ export default function BlogEditor({ content, onChange, placeholder = "Start wri
       <div className="prose prose-sm max-w-none blog-content">
         <EditorContent
           editor={editor}
-          className="min-h-[300px] p-4 focus-within:outline-none blog-content"
+          className="min-h-[300px] max-h-[calc(100vh-200px)] p-4 overflow-y-auto focus-within:outline-none blog-content"
           placeholder={placeholder}
         />
       </div>
@@ -1238,6 +1276,82 @@ export default function BlogEditor({ content, onChange, placeholder = "Start wri
           border: none;
           border-top: 2px solid #e5e7eb;
           margin: 2rem 0;
+        }
+
+        /* Lowlight Syntax Highlighting */
+        .hljs-comment,
+        .hljs-quote {
+          color: #6b7280;
+          font-style: italic;
+        }
+
+        .hljs-keyword,
+        .hljs-selector-tag,
+        .hljs-addition {
+          color: #c678dd;
+        }
+
+        .hljs-number,
+        .hljs-string,
+        .hljs-meta .hljs-string,
+        .hljs-literal,
+        .hljs-doctag,
+        .hljs-regexp {
+          color: #98c379;
+        }
+
+        .hljs-title,
+        .hljs-section,
+        .hljs-name,
+        .hljs-selector-id,
+        .hljs-selector-class {
+          color: #e06c75;
+        }
+
+        .hljs-attribute,
+        .hljs-attr,
+        .hljs-variable,
+        .hljs-template-variable,
+        .hljs-class .hljs-title,
+        .hljs-type {
+          color: #d19a66;
+        }
+
+        .hljs-symbol,
+        .hljs-bullet,
+        .hljs-subst,
+        .hljs-meta,
+        .hljs-meta .hljs-keyword,
+        .hljs-selector-attr,
+        .hljs-selector-pseudo,
+        .hljs-link {
+          color: #61aeee;
+        }
+
+        .hljs-built_in,
+        .hljs-deletion {
+          color: #e06c75;
+        }
+
+        .hljs-formula {
+          background: #3b3b3b;
+        }
+
+        .hljs-emphasis {
+          font-style: italic;
+        }
+
+        .hljs-strong {
+          font-weight: bold;
+        }
+
+        /* Hide scrollbar on syntax highlight overlay */
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>

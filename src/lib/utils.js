@@ -38,5 +38,21 @@ export const documentTypes = {
   exam: {
     label: 'Exam',
     color: 'bg-red-100 text-red-800'
+  },
+  mcqs: {
+    label: 'MCQs',
+    color: 'bg-indigo-100 text-indigo-800'
+  },
+  syllabus: {
+    label: 'Syllabus',
+    color: 'bg-indigo-100 text-indigo-800'
+  },
+  pastpaper: {
+    label: 'Pastpaper',
+    color: 'bg-indigo-100 text-indigo-800'
+  },
+  assignment: {
+    label: 'Assignment',
+    color: 'bg-indigo-100 text-indigo-800'
   }
 };

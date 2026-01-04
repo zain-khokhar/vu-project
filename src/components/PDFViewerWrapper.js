@@ -8,14 +8,14 @@ import { getPdfPreviewInfo } from '@/lib/urlUtils';
 
 export default function PDFViewerWrapper({ document }) {
   const [useFallback, setUseFallback] = useState(false);
-  
+
   const previewInfo = getPdfPreviewInfo(document.fileUrl);
 
   const handleClose = () => {
     if (window.history.length > 1) {
       window.history.back();
     } else {
-      window.location.href = `/documents/${document.slug}`;
+      window.location.href = `/${document.type}/${document.slug}`;
     }
   };
 

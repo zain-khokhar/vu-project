@@ -219,452 +219,303 @@ export default function QuizClient({ quizData, settings }) {
 
   const currentQuestion = selectedQuestions[currentQuestionIndex];
   const selectedOption = userAnswers[currentQuestionIndex] || null;
-  const progress =
-    ((currentQuestionIndex + 1) / selectedQuestions.length) * 100;
+
+  // Custom Circular Timer Component
+  const TimerCircle = ({ seconds }) => (
+    <div className="relative flex items-center justify-center w-16 h-16 bg-[#2D2B44] rounded-full border-4 border-[#00FFFF] shadow-[0_0_15px_rgba(0,255,255,0.4)] z-20 -mb-8">
+      <span className="text-[#00FFFF] font-bold text-xl">{seconds}</span>
+    </div>
+  );
 
   return (
     <main
-      className=" select-none"
+      className="bg-gray-50 flex flex-col font-sans select-none"
       role="main"
-      aria-label="Quiz interface"
       onContextMenu={(e) => e.preventDefault()}
-      onCopy={(e) => e.preventDefault()}
-      onCut={(e) => e.preventDefault()}
       style={{ userSelect: 'none', WebkitUserSelect: 'none' }}
     >
-      <div className="max-w-8xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
-          {/* LEFT SIDE - Question Card */}
-          <article className="lg:col-span-2" aria-labelledby="question-heading">
-            <section className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200 h-full flex flex-col">
-              {/* Question Header */}
-              <header className="p-6 border-b-2 border-gray-200">
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-gray-700 text-base font-semibold" aria-live="polite">
-                    Question {currentQuestionIndex + 1} of {selectedQuestions.length}
-                  </span>
-                  {currentQuestion.difficulty && (
-                    <span className="px-3 py-1 bg-gray-200 rounded-full text-sm font-semibold text-gray-700" aria-label={`Difficulty: ${currentQuestion.difficulty}`}>
-                      {currentQuestion.difficulty}
-                    </span>
-                  )}
+      {/* 1. Dark Header */}
+      <header className="bg-[#2D2B44] text-white h-14 fixed top-0 left-0 right-0 z-1000 shadow-md">
+        <div className="max-w-[1920px] mx-auto px-4 h-full flex items-center justify-between">
+          {/* Left: Title */}
+          <div className="flex-1">
+            <h1 className="text-white font-medium text-sm md:text-base truncate">
+              {quizData.displayName || "Quiz Session"}
+            </h1>
+          </div>
+
+          {/* Center: Timer Placeholder (The actual timer sits on top of the border) */}
+          <div className="flex-1 flex justify-center">
+            {/* This is empty, the timer is absolutely positioned or handled in the sub-header intersection if possible, 
+                 but to match the 'overlap' look, let's put it here and translate it down */}
+            <div className="translate-y-[50%]">
+              <TimerCircle seconds={totalTimer} />
+            </div>
+          </div>
+
+          {/* Right: User Info */}
+          <div className="flex-1 flex justify-end items-center gap-4 text-xs md:text-sm">
+            <div className="text-right hidden sm:block">
+              <p className="text-gray-300">Start Time {new Date(quizStartTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+              <p className="font-bold">{settings.username}</p>
+            </div>
+            <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden border-2 border-gray-600">
+              <svg className="w-8 h-8 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </header>
+
+
+      {/* 3. Main Content Grid */}
+      <div className="flex-grow mt-14 md:p-1 w-full max-w-[1920px] mx-auto ">
+
+
+        <div className="flex flex-col lg:flex-row gap-1 h-full">
+
+          {/* LEFT: Question Area */}
+          <div className="flex-grow lg:w-3/4 flex flex-col gap-1">
+            {/* 2. Purple Sub-Header */}
+            <div className="bg-[#7341FF] text-white h-10 flex items-center mt-0">
+              <div className="max-w-[1920px] w-full mx-auto px-4 flex justify-between items-center text-sm md:text-base font-medium">
+                <div className="flex-1">
+                  Question No : {currentQuestionIndex + 1} of {selectedQuestions.length}
                 </div>
-                <h2 id="question-heading" className="text-lg md:text-xl border border-gray-300 rounded p-3 text-gray-900 leading-relaxed min-h-[170px] max-h-[170px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-                  {currentQuestion.question}
-                </h2>
-              </header>
+                {/* Spacer for the central timer */}
+                <div className="w-20"></div>
 
-              {/* Options */}
-              <fieldset className="p-8 space-y-4 flex-grow min-h-[370px] border-b-2 border-gray-200" aria-labelledby="question-heading">
-                <legend className="sr-only">Select your answer</legend>
-                {currentQuestion.options.map((option, index) => (
-                  <label
-                    key={index}
-                    className={`w-full block text-left p-4 rounded border-2 transition-all duration-200 cursor-pointer ${selectedOption === option
-                      ? "border-indigo-600 bg-indigo-50 shadow-md"
-                      : "border-gray-300 hover:border-indigo-400 hover:bg-gray-50"
-                      }`}
-                  >
-                    <input
-                      type="radio"
-                      name={`question-${currentQuestionIndex}`}
-                      value={option}
-                      checked={selectedOption === option}
-                      onChange={() => handleAnswerSelect(option)}
-                      className="sr-only"
-                      aria-describedby={`option-${index}`}
-                    />
-                    <div className="flex items-center">
-                      <div
-                        className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 flex-shrink-0 ${selectedOption === option
-                          ? "border-indigo-600 bg-indigo-600"
-                          : "border-gray-400"
-                          }`}
-                        aria-hidden="true"
-                      >
-                        {selectedOption === option && (
-                          <svg
-                            className="w-5 h-5 text-white"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        )}
-                      </div>
-                      <span id={`option-${index}`} className="text-gray-900 font-light text-md">
-                        {option}
-                      </span>
-                    </div>
-                  </label>
-                ))}
-              </fieldset>
-
-              {/* Instant Feedback */}
-              {isInstantMode && feedbackShown[currentQuestionIndex] && (
-                <aside className="px-8 pb-4" role="alert" aria-live="polite">
-                  <div className={`p-4 rounded-lg border-2 ${userAnswers[currentQuestionIndex] === currentQuestion.correct
-                    ? 'bg-green-50 border-green-500 text-green-700'
-                    : 'bg-red-50 border-red-500 text-red-700'
-                    }`}>
-                    <div className="flex items-center space-x-2">
-                      {userAnswers[currentQuestionIndex] === currentQuestion.correct ? (
-                        <CheckCircle className="h-5 w-5 text-green-600" aria-hidden="true" />
-                      ) : (
-                        <Circle className="h-5 w-5 text-red-600" aria-hidden="true" />
-                      )}
-                      <span className="font-semibold">
-                        {userAnswers[currentQuestionIndex] === currentQuestion.correct
-                          ? 'Correct!'
-                          : 'Incorrect'}
-                      </span>
-                    </div>
-                    {userAnswers[currentQuestionIndex] !== currentQuestion.correct && (
-                      <p className="mt-2 text-sm">
-                        Correct answer: <strong>{currentQuestion.correct}</strong>
-                      </p>
-                    )}
-                    {currentQuestion.explanation && (
-                      <p className="mt-2 text-sm">
-                        <strong>Explanation:</strong> {currentQuestion.explanation}
-                      </p>
-                    )}
-                  </div>
-                </aside>
-              )}
-
-              {/* Navigation Buttons */}
-              <nav className="p-8 flex gap-4" aria-label="Question navigation">
-                <button
-                  onClick={handlePreviousQuestion}
-                  disabled={currentQuestionIndex === 0}
-                  className="flex-1 bg-gray-100 text-gray-700 py-4 rounded font-semibold text-lg hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-                  aria-label="Previous question"
-                >
-                  Previous
-                </button>
-
-                {isInstantMode ? (
-                  // Instant feedback mode buttons
-                  !feedbackShown[currentQuestionIndex] ? (
-                    <button
-                      onClick={handleSaveAndCheck}
-                      disabled={!userAnswers[currentQuestionIndex]}
-                      className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 rounded font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-xl"
-                      aria-label="Save and check your answer"
-                    >
-                      Save & Check
-                    </button>
-                  ) : (
-                    currentQuestionIndex < selectedQuestions.length - 1 ? (
-                      <button
-                        onClick={handleNextAfterCheck}
-                        className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 hover:shadow-xl"
-                        aria-label="Go to next question"
-                      >
-                        Next Question
-                      </button>
-                    ) : (
-                      <button
-                        onClick={handleSubmitClick}
-                        className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-xl"
-                        aria-label="Submit quiz"
-                      >
-                        Submit Quiz
-                      </button>
-                    )
-                  )
-                ) : (
-                  // Normal mode buttons
-                  currentQuestionIndex < selectedQuestions.length - 1 ? (
-                    <button
-                      onClick={handleNextQuestion}
-                      className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 hover:shadow-xl"
-                      aria-label="Go to next question"
-                    >
-                      Next Question
-                    </button>
-                  ) : (
-                    <button
-                      onClick={handleSubmitClick}
-                      className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-xl"
-                      aria-label="Submit quiz"
-                    >
-                      Submit Quiz
-                    </button>
-                  )
-                )}
-              </nav>
-            </section>
-          </article>
-
-          {/* RIGHT SIDE - Stats & Navigation */}
-          <aside className="lg:col-span-1 bg-white h-full border border-gray-200 rounded-2xl shadow-xl overflow-hidden" aria-label="Quiz statistics and navigation">
-            <div className="space-y-6 p-6">
-              {/* Timer Card */}
-              <section className="pb-6 border-b-2 border-gray-200" aria-labelledby="timer-heading">
-                <header className="flex items-center justify-between mb-4">
-                  <h3 id="timer-heading" className="font-semibold text-gray-900 text-lg">
-                    Time Remaining
-                  </h3>
-                  <Clock className="h-6 w-6 text-purple-600" aria-hidden="true" />
-                </header>
-                <div className="text-center" role="timer" aria-live="polite" aria-atomic="true">
-                  <p
-                    className={`text-4xl font-bold ${totalTimer <= 30
-                      ? "text-red-600"
-                      : "text-gray-900"
-                      }`}
-                    aria-label={`${Math.floor(totalTimer / 60)} minutes and ${totalTimer % 60} seconds remaining`}
-                  >
-                    {formatTime(totalTimer)}
-                  </p>
+                <div className="flex-1 flex justify-end items-center gap-4">
+                  <span>Marks: 1</span>
+                  <span className="text-[#00FFFF]">(Time {settings.timePerQuestion} Sec)</span>
+                  <div className="bg-yellow-500 rounded-full w-5 h-5 flex items-center justify-center text-[#2D2B44] font-bold text-xs" title="Report Issue">!</div>
                 </div>
-              </section>
-
-              {/* Question Bubble Menu */}
-              <nav className="pb-6 border-b-2 border-gray-200 flex flex-col h-[350px]" aria-label="Question navigation">
-                {/* Header */}
-                <header className="flex items-center justify-between mb-4 flex-shrink-0">
-                  <h3 className="font-semibold text-gray-900 text-lg flex items-center">
-                    <Hash className="h-5 w-5 mr-2 text-indigo-600" aria-hidden="true" />
-                    All Questions
-                  </h3>
-                </header>
-
-                {/* Scrollable Grid */}
-                <div className="grid grid-cols-6 gap-2 pb-4 overflow-y-auto bg-gray-200 rounded p-2 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent flex-grow shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)]" role="list" aria-label="Question list">
-                  {selectedQuestions.map((_, index) => {
-                    const isAnswered = userAnswers[index] !== undefined;
-                    const isCurrent = index === currentQuestionIndex;
-                    const isChecked = questionStates[index] === 'checked';
-                    const isCorrect = isChecked && userAnswers[index] === selectedQuestions[index].correct;
-
-                    return (
-                      <button
-                        key={index}
-                        onClick={() => goToQuestion(index)}
-                        role="listitem"
-                        aria-label={`Question ${index + 1}${isAnswered ? ', answered' : ', not answered'}${isCurrent ? ', current' : ''}`}
-                        aria-current={isCurrent ? 'true' : undefined}
-                        className={`aspect-square rounded-full h-12 w-12 font-semibold text-sm flex items-center justify-center border-2 transition-all ${isCurrent
-                          ? "bg-gradient-to-br from-indigo-600 to-purple-600 text-white border-indigo-500 ring-2 ring-indigo-300"
-                          : isInstantMode && isChecked
-                            ? isCorrect
-                              ? "bg-green-500 text-white hover:bg-green-600 border-green-600"
-                              : "bg-red-500 text-white hover:bg-red-600 border-red-600"
-                            : isAnswered
-                              ? "bg-blue-500 text-white hover:bg-blue-600 border-blue-600"
-                              : "bg-gray-100 text-gray-600 hover:bg-gray-200 border-gray-400"
-                          }`}
-                      >
-                        {(isAnswered && !isCurrent) || isChecked ? (
-                          <CheckCircle className="h-5 w-5" aria-hidden="true" />
-                        ) : (
-                          index + 1
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Legend */}
-                <div className="mt-4 pt-4 border-t border-gray-200 flex-shrink-0">
-                  <div className="flex flex-wrap items-center justify-between text-xs gap-2">
-                    {isInstantMode ? (
-                      <>
-                        <div className="flex items-center gap-1">
-                          <div className="w-4 h-4 rounded bg-green-500 border-2 border-green-600"></div>
-                          <span className="text-gray-600 font-medium">
-                            Correct
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <div className="w-4 h-4 rounded bg-red-500 border-2 border-red-600"></div>
-                          <span className="text-gray-600 font-medium">
-                            Incorrect
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <div className="w-4 h-4 rounded bg-blue-500 border-2 border-blue-600"></div>
-                          <span className="text-gray-600 font-medium">
-                            Selected
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <div className="w-4 h-4 rounded bg-gray-100 border-2 border-gray-400"></div>
-                          <span className="text-gray-600 font-medium">
-                            Unanswered
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <div className="w-4 h-4 rounded bg-gradient-to-br from-indigo-600 to-purple-600 border-2 border-indigo-500"></div>
-                          <span className="text-gray-600 font-medium">Current</span>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="flex items-center gap-1">
-                          <div className="w-4 h-4 rounded bg-green-500 border-2 border-green-600"></div>
-                          <span className="text-gray-600 font-medium">
-                            Answered
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <div className="w-4 h-4 rounded bg-gray-100 border-2 border-gray-400"></div>
-                          <span className="text-gray-600 font-medium">
-                            Unanswered
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <div className="w-4 h-4 rounded bg-gradient-to-br from-indigo-600 to-purple-600 border-2 border-indigo-500"></div>
-                          <span className="text-gray-600 font-medium">Current</span>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </nav>
-
-              {/* Progress Card */}
-              <section className="pb-6 border-b-2 border-gray-200" aria-labelledby="progress-heading">
-                <h3 id="progress-heading" className="font-semibold text-gray-900 text-lg mb-4">
-                  Progress
-                </h3>
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
-                      <span className="font-medium">Questions Answered</span>
-                      <span className="font-bold text-gray-900 text-base" aria-live="polite">
-                        {getAnsweredCount()} / {selectedQuestions.length}
-                      </span>
-                    </div>
-                    <div
-                      className="w-full bg-gray-200 rounded-full h-3 overflow-hidden border border-gray-300"
-                      role="progressbar"
-                      aria-valuenow={getAnsweredCount()}
-                      aria-valuemin={0}
-                      aria-valuemax={selectedQuestions.length}
-                      aria-label="Quiz progress"
-                    >
-                      <div
-                        className="bg-gradient-to-r from-indigo-600 to-purple-600 h-3 rounded-full transition-all duration-300"
-                        style={{
-                          width: `${(getAnsweredCount() / selectedQuestions.length) * 100}%`,
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Submit Button */}
-              <div>
-                <button
-                  onClick={handleSubmitClick}
-                  className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded font-bold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center space-x-2"
-                  aria-label="Submit quiz now"
-                >
-                  <span>Submit Quiz</span>
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </button>
               </div>
             </div>
-          </aside>
+            {/* Question Text Box */}
+            <div className="bg-white border text-md border-gray-300 rounded shadow-sm text-gray-800 p-6 h-[160px] overflow-y-auto relative">
+              {currentQuestion.question}
+            </div>
+
+            {/* Answer Section */}
+            <div className="bg-white border border-gray-300 rounded shadow-sm flex flex-col overflow-y-auto mb-5 transition-all">
+              <div className="bg-[#7341FF] text-white px-4 py-2 font-medium text-sm">
+                Answer
+              </div>
+              <div className="p-4 space-y-3 overflow-y-auto h-[calc(100vh-400px)]">
+                {currentQuestion.options.map((option, index) => (
+                  <div key={index} className="contents">
+                    <label
+                      className={`flex items-center gap-3 my-2 p-3 rounded border cursor-pointer hover:bg-gray-50 transition-colors ${selectedOption === option ? 'border-[#FFB800] bg-yellow-50' : 'border-gray-200'
+                        }`}
+                    >
+                      <input
+                        type="radio"
+                        name={`q-${currentQuestionIndex}`}
+                        className="w-4 h-4 text-[#7341FF] focus:ring-[#7341FF] border-gray-300"
+                        checked={selectedOption === option}
+                        onChange={() => handleAnswerSelect(option)}
+                      />
+                      <span className="text-gray-800 text-sm">{option}</span>
+                    </label>
+
+                    {/* Feedback for this specific option if selected */}
+                    {isInstantMode && feedbackShown[currentQuestionIndex] && selectedOption === option && (
+                      <div className={`mt-2 ml-4 p-4 rounded-lg border mb-3 ${userAnswers[currentQuestionIndex] === currentQuestion.correct
+                        ? 'bg-green-50 border-green-500 text-green-700'
+                        : 'bg-red-50 border-red-500 text-red-700'
+                        }`}>
+                        {/* <div className="flex items-center space-x-2 mb-2">
+                          {userAnswers[currentQuestionIndex] === currentQuestion.correct ? (
+                            <CheckCircle className="h-5 w-5 text-green-600" />
+                          ) : (
+                            <Circle className="h-5 w-5 text-red-600" />
+                          )}
+                          <span className="font-bold text-lg">
+                            {userAnswers[currentQuestionIndex] === currentQuestion.correct ? 'Correct!' : 'Incorrect'}
+                          </span>
+                        </div> */}
+
+                        {userAnswers[currentQuestionIndex] !== currentQuestion.correct && (
+                          <p className="border-l-4 border-red-400 pl-3 py-1 mb-3 bg-red-100/50 rounded-r">
+                            Correct answer: <strong>{currentQuestion.correct}</strong>
+                          </p>
+                        )}
+
+                        {currentQuestion.explanation && (
+                          <div className="mt-3 pt-3 border-t border-current/20">
+                            <p className="font-semibold mb-1">Explanation:</p>
+                            <p className="text-sm leading-relaxed opacity-90">{currentQuestion.explanation}</p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
+          {/* RIGHT: Sidebar (Summary) */}
+          <div className="lg:w-1/5 min-w-[280px] flex flex-col mb-5">
+            <div className="bg-white border border-gray-300 rounded shadow-sm flex flex-col h-full justify-between overflow-hidden">
+              <div>
+                <div className="bg-[#7341FF] px-4 py-2 font-medium text-white flex justify-between items-center">
+                  <span>Summary</span>
+                </div>
+
+                {/* Number Grid */}
+                <div className="p-4 flex-grow overflow-y-auto max-h-[300px]">
+                  <div className="grid grid-cols-6 gap-1">
+                    {selectedQuestions.map((_, idx) => {
+                      const isCurrent = idx === currentQuestionIndex;
+                      const isAnswered = userAnswers[idx] !== undefined;
+                      const isChecked = questionStates[idx] === 'checked';
+                      const isCorrect = isChecked && userAnswers[idx] === selectedQuestions[idx].correct;
+
+                      let bgClass = "bg-white border-gray-300 text-gray-600";
+
+                      if (isCurrent) {
+                        bgClass = "bg-[#FFB800] border-[#FFB800] text-white"; // Current takes precedence
+                      } else if (isInstantMode && isChecked) {
+                        if (isCorrect) bgClass = "bg-green-500 border-green-500 text-white";
+                        else bgClass = "bg-red-500 border-red-500 text-white";
+                      } else if (isAnswered) {
+                        bgClass = "bg-[#7341FF] border-[#7341FF] text-white";
+                      }
+
+                      return (
+                        <button
+                          key={idx}
+                          onClick={() => goToQuestion(idx)}
+                          className={`w-8 h-8 rounded-full border flex items-center justify-center text-sm font-medium transition-all ${bgClass} hover:opacity-80`}
+                        >
+                          {String(idx + 1).padStart(2, '0')}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+
+
+              {/* Footer Legend/Status */}
+              <div className="bg-gray-50 border-t border-gray-200 p-4 space-y-4 ">
+
+                {/* Progress Bar */}
+                <div>
+                  <div className="flex justify-between text-xs text-gray-500 mb-1">
+                    <span>Progress</span>
+                    <span>{Math.round((getAnsweredCount() / selectedQuestions.length) * 100)}%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      className="bg-[#7341FF] h-2 rounded-full transition-all duration-300"
+                      style={{ width: `${(getAnsweredCount() / selectedQuestions.length) * 100}%` }}
+                    ></div>
+                  </div>
+                </div>
+
+                {/* Legend Grid */}
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-[#7341FF] border border-[#7341FF]"></div>
+                    <span className="text-gray-600">Answered</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-white border border-gray-300"></div>
+                    <span className="text-gray-600">Unanswered</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-[#FFB800] border border-[#FFB800]"></div>
+                    <span className="text-gray-600">Current</span>
+                  </div>
+                  {isInstantMode && (
+                    <>
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-3 h-3 rounded-full bg-green-500 border border-green-500"></div>
+                        <span className="text-gray-600">Correct</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-3 h-3 rounded-full bg-red-500 border border-red-500"></div>
+                        <span className="text-gray-600">Incorrect</span>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      {/* Confirmation Dialog */}
+      {/* Fixed Bottom Navigation Bar */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-2 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-40">
+        <div className="max-w-[1920px] mx-auto flex justify-between gap-4">
+
+
+          <div className="flex gap-4 justify-end w-4/5">
+            <button
+              onClick={handlePreviousQuestion}
+              disabled={currentQuestionIndex === 0}
+              className="px-8 py-3 bg-gray-100 text-gray-700 font-bold rounded-lg hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              PREVIOUS
+            </button>
+            {/* ACTION BUTTON (Save & Check / Next) */}
+            {/* Logic: Show if NOT last question OR (is instant mode AND not checked yet) */}
+            {(currentQuestionIndex < selectedQuestions.length - 1 || (isInstantMode && !feedbackShown[currentQuestionIndex])) && (
+              isInstantMode && !feedbackShown[currentQuestionIndex] ? (
+                <button
+                  onClick={handleSaveAndCheck}
+                  disabled={!selectedOption}
+                  className="px-8 py-3 bg-[#7341FF] text-white font-bold rounded-lg hover:bg-[#6035D6] disabled:opacity-50 transition-colors shadow-md"
+                >
+                  SAVE & CHECK
+                </button>
+              ) : (
+                <button
+                  onClick={isInstantMode ? handleNextAfterCheck : handleNextQuestion}
+                  className="px-8 py-3 bg-[#7341FF] text-white font-bold rounded-lg hover:bg-[#6035D6] transition-colors shadow-md"
+                >
+                  NEXT QUESTION
+                </button>
+              )
+            )}
+
+
+          </div>
+          {/* SUBMIT BUTTON - Always visible on right */}
+          <div className="w-1/5 flex items-center justify-end">
+            <button
+              onClick={handleSubmitClick}
+              className="px-8 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition-colors shadow-md"
+            >
+              SUBMIT QUIZ
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Confirmation Dialog (Kept same but styled slightly to match) */}
       {showConfirmDialog && (
-        <div
-          className="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center z-50 p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="confirm-dialog-title"
-        >
-          <article className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 transform transition-all" role="alertdialog">
-            <div className="text-center">
-              {/* Icon */}
-              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-yellow-100 mb-4">
-                <svg
-                  className="h-10 w-10 text-yellow-600"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                  />
-                </svg>
-              </div>
-
-              {/* Title */}
-              <h2 id="confirm-dialog-title" className="text-2xl font-bold text-gray-900 mb-3">
-                Submit Quiz?
-              </h2>
-
-              {/* Message */}
-              <div className="mb-6 space-y-3">
-                <p className="text-gray-600 text-base">
-                  Are you sure you want to submit your quiz?
-                </p>
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                  <div className="flex items-center justify-between text-sm mb-2">
-                    <span className="text-gray-600">Questions Answered:</span>
-                    <span className="font-semibold text-gray-900">
-                      {getAnsweredCount()} / {selectedQuestions.length}
-                    </span>
-                  </div>
-                  {getAnsweredCount() < selectedQuestions.length && (
-                    <p className="text-yellow-600 text-sm font-medium mt-2">
-                      ⚠️ You have {selectedQuestions.length - getAnsweredCount()} unanswered question(s)
-                    </p>
-                  )}
-                </div>
-                <p className="text-gray-500 text-sm">
-                  Once submitted, you cannot change your answers.
-                </p>
-              </div>
-
-              {/* Buttons */}
-              <div className="flex gap-3">
-                <button
-                  onClick={handleCancelSubmit}
-                  className="flex-1 bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-all duration-200"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={handleConfirmSubmit}
-                  className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-4 rounded-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-200 shadow-lg"
-                >
-                  Confirm Submit
-                </button>
-              </div>
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-2xl max-w-md w-full p-6">
+            <h2 className="text-xl font-bold text-[#2D2B44] mb-4">Submit Quiz?</h2>
+            <p className="text-gray-600 mb-6">Are you sure you want to finish the quiz? You have answered {getAnsweredCount()} out of {selectedQuestions.length} questions.</p>
+            <div className="flex gap-3 justify-end">
+              <button onClick={handleCancelSubmit} className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 font-medium">Cancel</button>
+              <button onClick={handleConfirmSubmit} className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 font-medium">Confirm Submit</button>
             </div>
-          </article>
+          </div>
         </div>
       )}
+
     </main>
   );
 }

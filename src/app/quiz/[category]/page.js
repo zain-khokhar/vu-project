@@ -157,6 +157,16 @@ export default async function QuizCategoryPage({ params }) {
                 <ExpandableDescription description={quizData.description} />
               </div>
             )}
+
+            {/* Additional Content Section */}
+            {quizData.content && (
+              <div className="p-6 border-t border-gray-200 bg-white">
+                <div
+                  className="prose prose-sm max-w-none"
+                  dangerouslySetInnerHTML={{ __html: quizData.content }}
+                />
+              </div>
+            )}
           </article>
 
           {/* Quiz Setup Section */}

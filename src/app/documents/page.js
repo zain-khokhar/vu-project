@@ -195,8 +195,11 @@ export async function generateStaticParams() {
     { type: 'book' },
     { type: 'notes' },
     { type: 'handout' },
-    { type: 'past-paper' },
+    { type: 'pastpaper' },
     { type: 'assignment' },
+    { type: 'exam' },
+    { type: 'mcqs' },
+    { type: 'syllabus' },
   ];
 
   return staticParams;

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { MessageCircle, Send, User, Mail, Phone, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
+import { MessageCircle, Send, User, Mail, Phone, Loader2, CheckCircle, AlertCircle, Quote } from 'lucide-react';
 
 export default function FeedbackForm() {
   const [formData, setFormData] = useState({
@@ -30,7 +30,7 @@ export default function FeedbackForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!formData.name.trim() || !formData.description.trim()) {
       setStatus({ type: 'error', message: 'Please fill in all required fields' });
       return;
@@ -70,158 +70,104 @@ export default function FeedbackForm() {
   };
 
   return (
-    <div className="backdrop-blur-xl bg-gradient-to-br from-white/80 via-white/70 to-white/60 border border-white/90 rounded-3xl shadow-2xl p-6 md:p-8">
-      {/* Header */}
-      <div className="text-center mb-6">
-        <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl mb-4">
-          <MessageCircle className="w-6 h-6 text-white" />
-        </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-2">Share Your Feedback</h3>
-        <p className="text-gray-600 text-sm">Help us improve your experience. We value your thoughts!</p>
-      </div>
+    <div className="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-xl text-white relative overflow-hidden">
+      {/* Decorative background circles */}
+      <div className="absolute top-0 right-0 -mt-16 -mr-16 w-48 h-48 sm:w-64 sm:h-64 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 -mb-16 -ml-16 w-48 h-48 sm:w-64 sm:h-64 bg-indigo-500/30 rounded-full blur-3xl pointer-events-none"></div>
 
-      {/* Status Message */}
-      {status.message && (
-        <div className={`mb-6 p-4 rounded-xl flex items-center space-x-3 ${
-          status.type === 'success' 
-            ? 'bg-green-50 border border-green-200 text-green-800' 
-            : 'bg-red-50 border border-red-200 text-red-800'
-        }`}>
-          {status.type === 'success' ? (
-            <CheckCircle className="h-5 w-5 flex-shrink-0" />
-          ) : (
-            <AlertCircle className="h-5 w-5 flex-shrink-0" />
-          )}
-          <p className="text-sm font-medium">{status.message}</p>
+      <div className="relative z-10 flex flex-col lg:flex-row gap-6 sm:gap-8 items-start">
+        {/* Left Side: Call to Action */}
+        <div className="lg:w-1/3 pt-2 sm:pt-4 w-full">
+          <div className="inline-flex items-center justify-center p-2.5 sm:p-3 bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl mb-4 sm:mb-6 shadow-inner ring-1 ring-white/20">
+            <Quote className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+          </div>
+          <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Rate Your Experience</h3>
+          <p className="text-sm sm:text-base text-indigo-100 leading-relaxed opacity-90">
+            Help us improve the quiz platform. Did you find any wrong answers or have suggestions for new features? Let us know!
+          </p>
         </div>
-      )}
 
-      {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Name Field */}
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-            Your Name *
-          </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <User className="h-4 w-4 text-gray-400" />
+        {/* Right Side: Form */}
+        <div className="lg:w-2/3 w-full bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg text-slate-800">
+          {/* Status Message */}
+          {status.message && (
+            <div className={`mb-4 sm:mb-6 p-3 sm:p-4 rounded-xl flex items-center space-x-3 text-xs sm:text-sm font-medium ${status.type === 'success'
+              ? 'bg-emerald-50 border border-emerald-100 text-emerald-700'
+              : 'bg-rose-50 border border-rose-100 text-rose-700'
+              }`}>
+              {status.type === 'success' ? (
+                <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
+              ) : (
+                <AlertCircle className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
+              )}
+              <p>{status.message}</p>
             </div>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              maxLength={100}
-              className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white/50 backdrop-blur-sm transition-all duration-200 text-gray-900 placeholder-gray-500"
-              placeholder="Enter your name"
-              required
-            />
-          </div>
-        </div>
+          )}
 
-        {/* Description Field */}
-        <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
-            Your Feedback *
-          </label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-            maxLength={1000}
-            rows={4}
-            className="block w-full px-3 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white/50 backdrop-blur-sm transition-all duration-200 text-gray-900 placeholder-gray-500 resize-none"
-            placeholder="Share your thoughts, suggestions, or report any issues..."
-            required
-          />
-          <div className="mt-1 text-right">
-            <span className={`text-xs ${formData.description.length > 900 ? 'text-red-500' : 'text-gray-400'}`}>
-              {formData.description.length}/1000
-            </span>
-          </div>
-        </div>
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              {/* Name */}
+              <div>
+                <label className="block text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5 sm:mb-2">Name *</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  className="block w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-slate-50 border border-slate-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-sm sm:text-base text-slate-900 placeholder-slate-400"
+                  placeholder="John Doe"
+                />
+              </div>
+              {/* Contact */}
+              <div>
+                <label className="block text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5 sm:mb-2">Contact (Optional)</label>
+                <input
+                  type="text"
+                  name="contact"
+                  value={formData.contact}
+                  onChange={handleInputChange}
+                  className="block w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-slate-50 border border-slate-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-sm sm:text-base text-slate-900 placeholder-slate-400"
+                  placeholder="Email or Phone"
+                />
+              </div>
+            </div>
 
-        {/* Contact Information (Optional) */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-3">
-            Contact Information <span className="text-gray-400">(Optional - for reply)</span>
-          </label>
-          
-          {/* Contact Type Buttons */}
-          <div className="flex space-x-2 mb-3">
-            {[
-              { type: 'email', icon: Mail, label: 'Email' },
-              { type: 'phone', icon: Phone, label: 'Phone' },
-              { type: 'other', icon: MessageCircle, label: 'Other' }
-            ].map(({ type, icon: Icon, label }) => (
-              <button
-                key={type}
-                type="button"
-                onClick={() => handleContactTypeChange(type)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 ${
-                  formData.contactType === type
-                    ? 'bg-indigo-500 text-white shadow-md'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                <Icon className="h-3 w-3" />
-                <span>{label}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Contact Input */}
-          {formData.contactType && (
-            <div className="relative">
-              <input
-                type={formData.contactType === 'email' ? 'email' : 'text'}
-                id="contact"
-                name="contact"
-                value={formData.contact}
+            {/* Description */}
+            <div>
+              <label className="block text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5 sm:mb-2">Feedback *</label>
+              <textarea
+                name="description"
+                value={formData.description}
                 onChange={handleInputChange}
-                maxLength={100}
-                className="block w-full px-3 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white/50 backdrop-blur-sm transition-all duration-200 text-gray-900 placeholder-gray-500"
-                placeholder={
-                  formData.contactType === 'email' ? 'your@email.com' :
-                  formData.contactType === 'phone' ? '+1 (555) 123-4567' :
-                  'Your contact information'
-                }
-              />
+                required
+                rows={3}
+                className="block w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-slate-50 border border-slate-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-sm sm:text-base text-slate-900 placeholder-slate-400 resize-none"
+                placeholder="Tell us what you think..."
+              ></textarea>
             </div>
-          )}
+
+            <div className="text-right">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="inline-flex items-center justify-center space-x-2 px-6 py-2.5 sm:px-8 sm:py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5 text-sm sm:text-base w-full sm:w-auto"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-4 w-4 sm:h-5 sm:w-5" />
+                    <span>Send Feedback</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </form>
         </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          disabled={isSubmitting || !formData.name.trim() || !formData.description.trim()}
-          className="w-full group relative px-6 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-xl hover:from-indigo-600 hover:to-purple-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-indigo-500 disabled:hover:to-purple-600 flex items-center justify-center space-x-2"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-white/15 via-transparent to-white/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-          <div className="relative flex items-center space-x-2">
-            {isSubmitting ? (
-              <>
-                <Loader2 className="h-5 w-5 animate-spin" />
-                <span>Submitting...</span>
-              </>
-            ) : (
-              <>
-                <Send className="h-5 w-5" />
-                <span>Submit Feedback</span>
-              </>
-            )}
-          </div>
-        </button>
-      </form>
-
-      {/* Privacy Notice */}
-      <div className="mt-6 pt-6 border-t border-gray-200">
-        <p className="text-xs text-gray-500 text-center">
-          Your feedback helps us improve. We respect your privacy and will only use your contact information to respond to your feedback.
-        </p>
       </div>
     </div>
   );

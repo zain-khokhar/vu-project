@@ -131,25 +131,8 @@ export async function createDocument(documentData) {
   try {
     await connectDB();
 
-    // Generate slug from title
-    const slug = documentData.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '');
-
-    // Check if slug already exists
-    const existingDoc = await Document.findOne({ slug });
-    let finalSlug = slug;
-
-    if (existingDoc) {
-      const timestamp = Date.now();
-      finalSlug = `${slug}-${timestamp}`;
-    }
-
-    const document = await Document.create({
-      ...documentData,
-      slug: finalSlug
-    });
+    // Use slug from documentData if provided, otherwise let model auto-generate
+    const document = await Document.create(documentData);
 
     revalidatePath('/documents');
     revalidatePath('/');
@@ -196,7 +179,7 @@ export async function updateDocument(id, documentData) {
 
     // Revalidate paths
     revalidatePath('/documents');
-    revalidatePath(`/documents/${document.slug}`);
+    revalidatePath(`/${document.type}/${document.slug}`);
     revalidatePath('/');
     revalidatePath('/admin');
 

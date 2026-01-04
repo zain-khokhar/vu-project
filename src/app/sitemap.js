@@ -106,12 +106,12 @@ export default async function sitemap() {
   // Get all documents
   let documentRoutes = [];
   try {
-    const documentsResult = await getDocuments({ page: 1, limit: 100 }); // Get first 100 documents
+    const documentsResult = await getDocuments({ page: 1, limit: 1000 }); // Get all documents for sitemap
     if (documentsResult.success && documentsResult.documents) {
       documentRoutes = documentsResult.documents
-        .filter(doc => doc && doc.slug) // Filter out invalid documents
+        .filter(doc => doc && doc.slug && doc.type) // Filter out invalid documents
         .map((doc) => ({
-          url: `${baseUrl}/documents/${doc.slug}`,
+          url: `${baseUrl}/${doc.type}/${doc.slug}`,
           lastModified: safeDate(doc.updatedAt || doc.createdAt),
           changeFrequency: 'weekly',
           priority: 0.7,

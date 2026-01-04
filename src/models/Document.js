@@ -1,5 +1,18 @@
 import mongoose from 'mongoose';
 
+// Helper function to generate URL-safe slug
+function generateSlug(text) {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')        // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')    // Remove all non-word chars
+    .replace(/\-\-+/g, '-')      // Replace multiple - with single -
+    .replace(/^-+/, '')          // Trim - from start of text
+    .replace(/-+$/, '');         // Trim - from end of text
+}
+
 const documentSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -9,10 +22,10 @@ const documentSchema = new mongoose.Schema({
   },
   slug: {
     type: String,
-    required: [true, 'Slug is required'],
-    unique: true,
+    required: false,  // Made optional - will auto-generate if not provided
     trim: true,
-    lowercase: true
+    lowercase: true,
+    index: true
   },
   description: {
     type: String,
@@ -23,8 +36,8 @@ const documentSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Type is required'],
     enum: {
-      values: ['handout', 'book', 'note', 'exam'],
-      message: 'Type must be one of: handout, book, note, exam'
+      values: ['book', 'notes', 'handout', 'pastpaper', 'assignment', 'exam', 'mcqs', 'syllabus'],
+      message: 'Type must be one of: book, notes, handout, pastpaper, assignment, exam, mcqs, syllabus'
     }
   },
   fileUrl: {
@@ -62,13 +75,40 @@ const documentSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Create indexes for better query performance (slug index auto-created by unique: true)
+// Auto-generate slug from title if not provided
+documentSchema.pre('validate', async function (next) {
+  if (!this.slug && this.title) {
+    let baseSlug = generateSlug(this.title);
+    let slug = baseSlug;
+    let counter = 1;
+
+    // Check for uniqueness within the same type
+    while (await mongoose.models.Document.findOne({ type: this.type, slug: slug, _id: { $ne: this._id } })) {
+      slug = `${baseSlug}-${counter}`;
+      counter++;
+    }
+
+    this.slug = slug;
+  }
+  next();
+});
+
+// Update slug when title changes (only if slug was auto-generated)
+documentSchema.pre('save', function (next) {
+  this.updatedAt = Date.now();
+  next();
+});
+
+// Create indexes for better query performance
 documentSchema.index({ type: 1 });
 documentSchema.index({ subject: 1 });
 documentSchema.index({ university: 1 });
 documentSchema.index({ year: 1 });
 documentSchema.index({ tags: 1 });
 documentSchema.index({ createdAt: -1 });
+
+// Compound unique index: slug must be unique per type
+documentSchema.index({ type: 1, slug: 1 }, { unique: true });
 
 // Create compound indexes for common filter combinations
 documentSchema.index({ type: 1, subject: 1 });

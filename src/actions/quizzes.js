@@ -107,7 +107,7 @@ export async function getQuizBySlug(slug) {
     await connectDB();
 
     const quiz = await Quiz.findOne({ slug, isActive: true })
-      .select('title description slug totalQuestions category icon color createdAt updatedAt')
+      .select('title description content slug totalQuestions category icon color createdAt updatedAt')
       .lean();
 
     if (!quiz) {
@@ -120,6 +120,7 @@ export async function getQuizBySlug(slug) {
         slug: quiz.slug,
         title: quiz.title,
         description: quiz.description,
+        content: quiz.content || '',
         totalQuestions: quiz.totalQuestions,
         category: quiz.category,
         icon: quiz.icon,
@@ -190,7 +191,7 @@ export async function createQuiz(quizData) {
   try {
     await connectDB();
 
-    const { title, description, category, icon, color, questions } = quizData;
+    const { title, description, content, category, icon, color, questions, slug: customSlug } = quizData;
 
     // 1️⃣ Validation (same as POST)
     if (
@@ -207,11 +208,10 @@ export async function createQuiz(quizData) {
       };
     }
 
-    // 2️⃣ Slug generation (same logic)
-    const slug = title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '');
+    // 2️⃣ Slug generation - use custom slug if provided, otherwise auto-generate
+    const slug = (customSlug && customSlug.trim())
+      ? customSlug.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+      : title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
     // 3️⃣ Slug uniqueness check
     const existingQuiz = await Quiz.findOne({ slug });
@@ -227,6 +227,7 @@ export async function createQuiz(quizData) {
     const quiz = new Quiz({
       title,
       description,
+      content: content || '',
       category,
       slug,
       icon: icon || '📚',

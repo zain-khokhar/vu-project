@@ -3,7 +3,7 @@ import { BookOpen, Github, Heart, Mail, ArrowRight } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden">
+    <footer id="footer" className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden">
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">

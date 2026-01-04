@@ -11,6 +11,37 @@ export default function QuizPlayPage({ params }) {
     const [settings, setSettings] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    useEffect(() => {
+        const footer = document.querySelector("footer");
+        const navbar = document.querySelector("#navbar");
+        if (footer) {
+            footer.style.display = "none";
+        }
+        if (navbar) {
+            navbar.style.display = "none";
+        }
+        // Optional: restore footer when unmounting
+        return () => {
+            if (footer) {
+                footer.style.display = "";
+            }
+            if (navbar) {
+                navbar.style.display = "";
+            }
+        };
+    }, []);
+    // useEffect(() => {
+    //     const observer = new MutationObserver(() => {
+    //         const footer = document.querySelector("footer");
+    //         if (footer) {
+    //             footer.style.display = "none";
+    //         }
+    //     });
+
+    //     observer.observe(document.body, { childList: true, subtree: true });
+
+    //     return () => observer.disconnect();
+    // }, []);
 
     useEffect(() => {
         // Read quiz session data from sessionStorage

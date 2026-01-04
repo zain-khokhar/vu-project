@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Upload, CheckCircle, XCircle, Loader } from 'lucide-react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import AdminProtected from '@/components/AdminProtected';
+import BlogEditor from '@/components/BlogEditor';
 import { getQuizForEdit, updateQuiz, createQuiz } from '@/actions/quizzes';
 
 function QuizUploadPageContent() {
@@ -15,7 +16,9 @@ function QuizUploadPageContent() {
 
   const [formData, setFormData] = useState({
     title: '',
+    slug: '',
     description: '',
+    content: '',
     category: '',
     icon: '📚',
     color: 'from-gray-500 to-slate-500',
@@ -42,7 +45,9 @@ function QuizUploadPageContent() {
         const quiz = result.quiz;
         setFormData({
           title: quiz.title,
+          slug: quiz.slug || '',
           description: quiz.description,
+          content: quiz.content || '',
           category: quiz.category,
           icon: quiz.icon || '📚',
           color: quiz.color || 'from-gray-500 to-slate-500',
@@ -132,7 +137,9 @@ function QuizUploadPageContent() {
 
       const quizData = {
         title: formData.title,
+        slug: formData.slug, // Pass custom slug (will be auto-generated if empty)
         description: formData.description,
+        content: formData.content,
         category: formData.category,
         icon: formData.icon,
         color: formData.color,
@@ -234,6 +241,25 @@ function QuizUploadPageContent() {
             />
           </div>
 
+          {/* Custom Slug */}
+          <div className="mb-6">
+            <label htmlFor="slug" className="block text-sm font-medium text-gray-700 mb-2">
+              Custom URL Slug (Optional)
+            </label>
+            <input
+              type="text"
+              id="slug"
+              name="slug"
+              value={formData.slug}
+              onChange={handleInputChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+              placeholder="e.g., cs101-midterm-quiz"
+            />
+            <p className="mt-1 text-xs text-gray-500">
+              Leave empty to auto-generate from title. Only lowercase letters, numbers, and hyphens allowed.
+            </p>
+          </div>
+
           {/* Category */}
           <div className="mb-6">
             <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
@@ -251,21 +277,33 @@ function QuizUploadPageContent() {
             />
           </div>
 
-          {/* Description */}
+          {/* Description - Rich Text Editor */}
           <div className="mb-6">
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
-              Description *
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Description * (Rich Text)
             </label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-              required
-              rows={3}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-              placeholder="Brief description of the quiz..."
+            <BlogEditor
+              className="prose sm:prose-lg prose-a:text-purple-500 hover:prose-a:underline prose-quote:border-purple-500 prose-ul:list-disc max-w-none overflow-hidden"
+              content={formData.description}
+              onChange={(html) => setFormData(prev => ({ ...prev, description: html }))}
+              placeholder="Write a detailed description of the quiz. Use the toolbar to format text with headings, lists, bold, and more..."
             />
+          </div>
+
+          {/* Additional Content - Rich Text Editor */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Additional Content (Optional Rich Text)
+            </label>
+            <BlogEditor
+              className="prose sm:prose-lg prose-a:text-purple-500 hover:prose-a:underline prose-quote:border-purple-500 prose-ul:list-disc max-w-none overflow-hidden"
+              content={formData.content}
+              onChange={(html) => setFormData(prev => ({ ...prev, content: html }))}
+              placeholder="Add any additional content that will appear below the description on the quiz page..."
+            />
+            <p className="mt-1 text-xs text-gray-500">
+              This content will render below the quiz description.
+            </p>
           </div>
 
           {/* Icon and Color Selection */}

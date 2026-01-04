@@ -5,7 +5,9 @@ export default function ExpandableDescription({ description, maxLines = 3 }) {
 
     // Generate unique ID for the checkbox hack
     const checkboxId = `expand-desc-${Math.random().toString(36).substr(2, 9)}`;
-    const needsExpansion = description && description.length > 150;
+    // Check if description is long enough to need expansion (rough estimate for HTML content)
+    const plainText = description.replace(/<[^>]*>/g, '');
+    const needsExpansion = plainText && plainText.length > 150;
 
     return (
         <div>
@@ -17,6 +19,7 @@ export default function ExpandableDescription({ description, maxLines = 3 }) {
                         display: block !important;
                         -webkit-line-clamp: unset !important;
                         overflow: visible !important;
+                        max-height: none !important;
                     }
                     .expandable-toggle:checked ~ .expandable-btn .expand-text,
                     .expandable-toggle:checked ~ .expandable-btn .expand-icon {
@@ -25,6 +28,10 @@ export default function ExpandableDescription({ description, maxLines = 3 }) {
                     .expandable-toggle:checked ~ .expandable-btn .collapse-text,
                     .expandable-toggle:checked ~ .expandable-btn .collapse-icon {
                         display: inline !important;
+                    }
+                    .expandable-content:not(:checked ~ .expandable-content) {
+                        max-height: 4.5em;
+                        overflow: hidden;
                     }
                 `}</style>
 
@@ -36,12 +43,19 @@ export default function ExpandableDescription({ description, maxLines = 3 }) {
                     aria-hidden="true"
                 />
 
-                <p
-                    className="expandable-content text-gray-600 text-sm leading-relaxed line-clamp-3 transition-all duration-300"
+                {/* Render HTML content with prose styling */}
+                <div
+                    className="expandable-content prose prose-sm max-w-none text-gray-600 leading-relaxed transition-all duration-300
+                        prose-headings:text-gray-800 prose-headings:font-semibold
+                        prose-p:text-gray-600 prose-p:my-2
+                        prose-a:text-indigo-600 prose-a:no-underline hover:prose-a:underline
+                        prose-strong:text-gray-700
+                        prose-ul:list-disc prose-ul:pl-5
+                        prose-ol:list-decimal prose-ol:pl-5
+                        prose-li:my-1"
                     itemProp="description"
-                >
-                    {description}
-                </p>
+                    dangerouslySetInnerHTML={{ __html: description }}
+                />
 
                 {needsExpansion && (
                     <label
@@ -64,3 +78,4 @@ export default function ExpandableDescription({ description, maxLines = 3 }) {
         </div>
     );
 }
+

@@ -1,205 +1,128 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { X, Download, ExternalLink, AlertTriangle, RefreshCw, ZoomIn, ZoomOut } from 'lucide-react';
-import { convertGoogleDriveUrl, convertGoogleDrivePreviewUrl } from '@/lib/urlUtils';
+import { useState } from 'react';
+import { X, Download, ExternalLink, Loader2 } from 'lucide-react';
 
+/**
+ * Optimized Google Drive Viewer
+ * Uses the native /preview endpoint which is the most performant way to embed Drive files.
+ * Removes unnecessary retry logic and complex state management.
+ */
 export default function GoogleDriveViewer({ fileUrl, documentTitle, onClose }) {
-  const [iframeError, setIframeError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [retryCount, setRetryCount] = useState(0);
+  const [hasError, setHasError] = useState(false);
 
-  const previewUrl = convertGoogleDrivePreviewUrl(fileUrl);
-  const downloadUrl = convertGoogleDriveUrl(fileUrl);
-
-  // Generate alternative preview URLs for better compatibility
+  // Extract File ID for the fastest preview URL construction
+  // Supported formats: 
+  // - https://drive.google.com/file/d/[ID]/view
+  // - https://drive.google.com/open?id=[ID]
   const getFileId = (url) => {
-    const fileIdMatch = url.match(/\/file\/d\/([a-zA-Z0-9-_]+)/);
-    return fileIdMatch ? fileIdMatch[1] : null;
+    const match = url.match(/\/file\/d\/([a-zA-Z0-9-_]+)/) || url.match(/[?&]id=([a-zA-Z0-9-_]+)/);
+    return match ? match[1] : null;
   };
 
   const fileId = getFileId(fileUrl);
-  
-  // Multiple preview URL strategies
-  const previewUrls = fileId ? [
-    `https://drive.google.com/file/d/${fileId}/preview`,
-    `https://docs.google.com/viewer?url=https://drive.google.com/uc?id=${fileId}&embedded=true`,
-    `https://drive.google.com/viewerng/viewer?url=https://drive.google.com/uc?id=${fileId}&pid=explorer&efh=false&a=v&chrome=false&embedded=true`
-  ] : [previewUrl];
 
-  const currentPreviewUrl = previewUrls[Math.min(retryCount, previewUrls.length - 1)];
+  // The /preview endpoint is the modern, optimized embed viewer for Google Drive
+  // efficient caching and native PDF rendering support
+  const embedUrl = fileId
+    ? `https://drive.google.com/file/d/${fileId}/preview`
+    : fileUrl;
 
-  const handleIframeLoad = () => {
-    setIsLoading(false);
-  };
-
-  const handleIframeError = () => {
-    setIsLoading(false);
-    setIframeError(true);
-  };
-
-  const handleRetry = () => {
-    if (retryCount < previewUrls.length - 1) {
-      setRetryCount(prev => prev + 1);
-      setIframeError(false);
-      setIsLoading(true);
-    } else {
-      setIframeError(true);
-    }
-  };
-
-  // Auto-retry once after 3 seconds if first attempt fails
-  useEffect(() => {
-    if (iframeError && retryCount === 0) {
-      const timer = setTimeout(() => {
-        handleRetry();
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [iframeError, retryCount]);
+  const downloadUrl = fileId
+    ? `https://drive.google.com/uc?export=download&id=${fileId}`
+    : fileUrl;
 
   return (
-    <div className="fixed inset-0 z-50 bg-gray-900 bg-opacity-95">
-      {/* Header */}
-      <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-3 sm:px-4 py-3 flex items-center justify-between gap-2">
-        <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
+    <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm animate-in fade-in duration-200">
+      {/* Header - Transparent overlay style for better immersion */}
+      <div className="absolute top-0 left-0 right-0 z-10 p-4 flex items-start justify-between pointer-events-none">
+        <div className="flex items-center gap-3 pointer-events-auto">
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors flex-shrink-0"
+            className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-md transition-all duration-200 hover:scale-105"
             title="Close Preview"
           >
             <X className="h-5 w-5" />
           </button>
-          <div className="min-w-0 flex-1">
-            <h2 className="text-sm sm:text-lg font-semibold text-gray-900 truncate">
-              {documentTitle}
-            </h2>
-            <p className="text-xs sm:text-sm text-gray-600 hidden sm:block">Google Drive Preview</p>
-          </div>
+          <h2 className="text-white font-medium text-sm sm:text-base drop-shadow-md truncate max-w-[200px] sm:max-w-md hidden sm:block">
+            {documentTitle}
+          </h2>
         </div>
 
-        <div className="flex items-center gap-2 flex-shrink-0">
-          {/* Retry Button */}
-          {iframeError && (
-            <button
-              onClick={handleRetry}
-              className="flex items-center space-x-1 sm:space-x-2 bg-gray-600 text-white px-2 sm:px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors text-xs sm:text-sm"
-            >
-              <RefreshCw className="h-3 w-3 sm:h-4 sm:w-4" />
-              <span className="hidden sm:inline">Retry</span>
-            </button>
-          )}
-
-          {/* Download Button */}
+        <div className="flex items-center gap-2 pointer-events-auto">
           <a
             href={downloadUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center space-x-1 sm:space-x-2 bg-blue-600 text-white px-2 sm:px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-xs sm:text-sm"
-            title="Download"
+            className="flex items-center gap-2 bg-blue-600/90 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105 shadow-lg"
           >
-            <Download className="h-3 w-3 sm:h-4 sm:w-4" />
+            <Download className="h-4 w-4" />
             <span className="hidden sm:inline">Download</span>
           </a>
-          
-          {/* Open in Google Drive */}
+
           <a
             href={fileUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center space-x-1 sm:space-x-2 bg-green-600 text-white px-2 sm:px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-xs sm:text-sm"
+            className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-md transition-all duration-200 hover:scale-105"
             title="Open in Drive"
           >
-            <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
-            <span className="hidden md:inline">Open in Drive</span>
-            <span className="hidden sm:inline md:hidden">Drive</span>
+            <ExternalLink className="h-5 w-5" />
           </a>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="h-full relative">
-        {/* Loading Indicator */}
-        {isLoading && !iframeError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 z-10">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-              <p className="text-gray-600">Loading document preview...</p>
-            </div>
-          </div>
-        )}
+      {/* Main Content */}
+      <div className="w-full h-full flex items-center justify-center pt-16 pb-4 px-4 sm:pt-0 sm:pb-0 sm:px-0">
+        <div className="w-full h-full sm:max-w-5xl sm:h-[85vh] bg-white rounded-lg sm:rounded-xl shadow-2xl overflow-hidden relative">
 
-        {/* Error State */}
-        {iframeError ? (
-          <div className="flex items-center justify-center h-full p-8">
-            <div className="max-w-md text-center bg-white rounded-lg p-8 shadow-lg">
-              <AlertTriangle className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Preview Not Available</h3>
-              <p className="text-gray-600 mb-4">
-                {retryCount < previewUrls.length - 1 
-                  ? "Trying alternative preview method..." 
-                  : "This Google Drive document cannot be previewed directly."
-                }
-              </p>
-              {retryCount >= previewUrls.length - 1 && (
-                <div className="mb-6">
-                  <p className="text-sm text-gray-600 mb-4">This might be due to:</p>
-                  <ul className="text-sm text-gray-600 text-left space-y-1">
-                    <li>• Document permissions restrictions</li>
-                    <li>• File format not supported for preview</li>
-                    <li>• Network connectivity issues</li>
-                    <li>• Google Drive temporary unavailability</li>
-                  </ul>
-                </div>
-              )}
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                {retryCount < previewUrls.length - 1 ? (
-                  <button
-                    onClick={handleRetry}
-                    className="flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-                  >
-                    <RefreshCw className="h-4 w-4" />
-                    <span>Try Alternative Method</span>
-                  </button>
-                ) : (
-                  <>
-                    <a
-                      href={fileUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      <span>Open in Drive</span>
-                    </a>
-                    <a
-                      href={downloadUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-                    >
-                      <Download className="h-4 w-4" />
-                      <span>Download PDF</span>
-                    </a>
-                  </>
-                )}
+          {/* Loading State */}
+          {isLoading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-gray-50 z-20">
+              <div className="text-center">
+                <Loader2 className="h-8 w-8 text-blue-600 animate-spin mx-auto mb-2" />
+                <p className="text-sm text-gray-500 font-medium">Loading preview...</p>
               </div>
             </div>
-          </div>
-        ) : (
-          /* Google Drive Iframe */
-          <iframe
-            key={retryCount} // Force re-render when retrying
-            src={currentPreviewUrl}
-            className="w-full h-full border-0"
-            title={documentTitle}
-            onLoad={handleIframeLoad}
-            onError={handleIframeError}
-            allow="autoplay fullscreen"
-            sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads"
-            style={{ minHeight: '600px' }}
-          />
-        )}
+          )}
+
+          {/* Error Fallback */}
+          {hasError ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 p-6 text-center z-10">
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 max-w-sm w-full">
+                <h3 className="text-gray-900 font-semibold mb-2">Preview Unavailable</h3>
+                <p className="text-gray-500 text-sm mb-6">
+                  This document cannot be embedded directly. Please view it on Google Drive.
+                </p>
+                <a
+                  href={fileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full bg-blue-600 text-white px-4 py-2.5 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  View on Google Drive
+                </a>
+              </div>
+            </div>
+          ) : (
+            <iframe
+              src={embedUrl}
+              className="w-full h-full border-0 bg-white"
+              title={documentTitle}
+              sandbox="allow-scripts allow-same-origin allow-popups"
+
+              allow="autoplay"
+              loading="lazy"
+              onLoad={() => setIsLoading(false)}
+              onError={() => {
+                setIsLoading(false);
+                setHasError(true);
+              }}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

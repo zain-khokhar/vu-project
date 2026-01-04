@@ -32,6 +32,26 @@ const typeConfig = {
     Icon: FileText,
     gradient: "from-slate-500 to-zinc-600",
   },
+  pastpaper: {
+    label: "Pastpaper",
+    Icon: FileText,
+    gradient: "from-slate-500 to-zinc-600",
+  },
+  assignment: {
+    label: "Assignment",
+    Icon: FileText,
+    gradient: "from-slate-500 to-zinc-600",
+  },
+  mcqs: {
+    label: "MCQs File",
+    Icon: FileText,
+    gradient: "from-rose-500 to-red-600",
+  },
+  syllabus: {
+    label: "Syllabus",
+    Icon: FileText,
+    gradient: "from-yellow-500 to-orange-500",
+  },
 };
 
 export default function DocumentCard({ document }) {
@@ -39,7 +59,7 @@ export default function DocumentCard({ document }) {
     typeConfig[document.type] || typeConfig.default;
 
   return (
-    <Link href={`/documents/${document.slug}`} className="block h-full">
+    <Link href={`/${document.type}/${document.slug}`} className="block h-full">
 
       {/* Card */}
       <div className="relative h-full rounded-3xl bg-white/80 border border-gray-200 overflow-hidden shadow-sm group-hover:shadow-xl transition-all duration-300">
