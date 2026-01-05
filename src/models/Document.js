@@ -36,7 +36,7 @@ const documentSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Type is required'],
     enum: {
-      values: ['book', 'notes', 'handout', 'pastpaper', 'assignment', 'exam', 'mcqs', 'syllabus'],
+      values: ['book', 'note', 'handout', 'pastpaper', 'assignment', 'exam', 'mcqs', 'syllabus'],
       message: 'Type must be one of: book, notes, handout, pastpaper, assignment, exam, mcqs, syllabus'
     }
   },
