@@ -89,7 +89,7 @@ export function getCoverImageData(coverImage) {
  * @returns {Object} Next.js metadata object
  */
 export function generateBlogMetadata(blog, slug) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.dev';
+  const baseUrl = 'https://vuedu.dev';
   const url = `${baseUrl}/blogs/${slug}`;
 
   // Extract plain text excerpt from content
