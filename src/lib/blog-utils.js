@@ -174,7 +174,7 @@ export function generateBlogMetadata(blog, slug) {
  * @returns {Object} JSON-LD structured data
  */
 export function generateBlogStructuredData(blog, readingTime) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.dev';
+  const baseUrl = 'https://vuedu.dev';
   const plainTextContent = extractPlainText(blog.content);
   const excerpt = blog.excerpt || generateExcerpt(plainTextContent);
   const wordCount = getWordCount(blog.content);

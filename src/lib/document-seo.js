@@ -28,7 +28,7 @@ export function generateDocumentMetadata(document, slug) {
     'academic resources',
   ].join(', ');
 
-  const documentUrl = `${SITE_URL}/documents/${slug}`;
+  const documentUrl = `${SITE_URL}/${document.type}/${slug}`;
 
   return {
     title,
