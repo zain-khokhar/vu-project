@@ -47,7 +47,20 @@ export async function generateStaticParams() {
  * Generate comprehensive SEO metadata
  */
 export async function generateMetadata({ params }) {
-    const { slug } = await params;
+    const { documenttype, slug } = await params;
+
+    // Validate document type early - return 404 metadata for invalid types
+    if (!documentTypes[documenttype]) {
+        return {
+            title: 'Document Not Found - Vuedu',
+            description: 'The requested document could not be found.',
+            robots: {
+                index: false,
+                follow: false,
+            },
+        };
+    }
+
     const result = await getDocumentBySlug(slug);
 
     if (!result.success) {
@@ -56,12 +69,25 @@ export async function generateMetadata({ params }) {
             description: 'The requested document could not be found.',
             robots: {
                 index: false,
-                follow: true,
+                follow: false,
             },
         };
     }
 
     const { document } = result;
+
+    // Validate that URL's document type matches actual document type
+    if (document.type !== documenttype) {
+        return {
+            title: 'Document Not Found - Vuedu',
+            description: 'The requested document could not be found.',
+            robots: {
+                index: false,
+                follow: false,
+            },
+        };
+    }
+
     return generateDocumentMetadata(document, slug);
 }
 
@@ -71,7 +97,13 @@ export async function generateMetadata({ params }) {
  * Distinct from blog pages with file-focused UI
  */
 export default async function DocumentPage({ params }) {
-    const { slug } = await params;
+    const { documenttype, slug } = await params;
+
+    // Early validation: Check if document type is valid
+    if (!documentTypes[documenttype]) {
+        notFound();
+    }
+
     const result = await getDocumentBySlug(slug);
 
     if (!result.success) {
@@ -79,6 +111,12 @@ export default async function DocumentPage({ params }) {
     }
 
     const { document } = result;
+
+    // Validate that URL's document type matches actual document type
+    if (document.type !== documenttype) {
+        notFound();
+    }
+
     const typeConfig = documentTypes[document.type] || documentTypes.note;
 
     // Fetch initial comments
