@@ -9,6 +9,13 @@ const nextConfig = {
   // Experimental features for performance
   experimental: {
     scrollRestoration: true,
+    optimizePackageImports: [
+      'lucide-react',
+      'date-fns',
+      '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-popover',
+      '@floating-ui/react',
+    ],
   },
 
   images: {

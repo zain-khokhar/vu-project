@@ -8,12 +8,54 @@ import { createBlog, getBlogForEdit, updateBlog } from '@/actions/blogs';
 import { getAuthors } from '@/actions/authors';
 import { uploadToCloudinary } from '@/lib/cloudinary';
 
+// Helper to ensure internal links are dofollow
+const sanitizeContentLinks = (htmlContent) => {
+  if (typeof window === 'undefined' || !htmlContent) return htmlContent;
+
+  try {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlContent, 'text/html');
+    const links = doc.querySelectorAll('a');
+
+    let hasChanges = false;
+
+    links.forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+
+      // Check if internal link (relative path or vuedu.dev domain)
+      const isInternal = href.startsWith('/') || href.includes('vuedu.dev');
+
+      if (isInternal) {
+        const rel = link.getAttribute('rel');
+        if (rel && rel.includes('nofollow')) {
+          // Remove 'nofollow' while preserving other values like 'noopener'
+          const newRel = rel.replace(/\bnofollow\b/g, '').replace(/\s+/g, ' ').trim();
+
+          if (newRel) {
+            link.setAttribute('rel', newRel);
+          } else {
+            link.removeAttribute('rel');
+          }
+          hasChanges = true;
+        }
+      }
+    });
+
+    return hasChanges ? doc.body.innerHTML : htmlContent;
+  } catch (e) {
+    console.error('Error sanitizing links:', e);
+    return htmlContent;
+  }
+};
+
 export default function BlogWriteForm() {
   const searchParams = useSearchParams();
   const editSlug = searchParams.get('edit');
   const [isEditMode, setIsEditMode] = useState(false);
   const [isLoadingData, setIsLoadingData] = useState(false);
 
+  // ... (existing state) ...
   const [title, setTitle] = useState('');
   const [excerpt, setExcerpt] = useState('');
   const [coverImage, setCoverImage] = useState({
@@ -149,10 +191,13 @@ export default function BlogWriteForm() {
     }
 
     try {
+      // Ensure internal links are dofollow
+      const sanitizedContent = sanitizeContentLinks(content);
+
       const blogData = {
         title: title.trim(),
         excerpt: excerpt.trim(),
-        content,
+        content: sanitizedContent,
         coverImage,
         author: selectedAuthor,
       };

@@ -1,6 +1,7 @@
 import "./globals.css";
 import LayoutContent from "@/components/LayoutContent";
 import { generateDocumentMetadata, generateOrganizationStructuredData } from "@/lib/seo-utils";
+import Script from "next/script";
 
 export const metadata = generateDocumentMetadata({
   title: "Vuedu - Free Educational Documents & Study Resources in Pakistan",
@@ -56,19 +57,25 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* Google Tag Manager */}
-        <script
+        <Script
+          id="gtm-script"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MFDXN6QK');`,
+            __html: `
+        (function(w,d,s,l,i){w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MFDXN6QK');
+      `,
           }}
         />
         {/* End Google Tag Manager */}
 
         {/* Organization Structured Data */}
-        <script
+        <Script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(generateOrganizationStructuredData()),
@@ -89,12 +96,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <link rel="alternate" type="text/plain" href="/llms.txt" title="AI/LLM Access Information" />
         <meta name="ai-content-declaration" content="This site provides educational content. AI crawlers welcome with rate limiting." />
 
-        {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
-        {/* DNS Prefetch */}
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 
         {/* Favicon: explicit PNG link (cache-busted) */}
         <link rel="icon" href="/favicon.png?v=2" type="image/png" />

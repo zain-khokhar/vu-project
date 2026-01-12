@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { BookOpen, Github, Heart, Mail, ArrowRight } from 'lucide-react';
+import { BookOpen, Heart, Mail, Facebook } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer id="footer" className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden">
+    <footer id="footer" className="relative overflow-hidden">
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -84,16 +84,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="https://github.com"
+                {/* <Link
+                  href="https://www.facebook.com/profile.php?id=61585256488728"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link"
                 >
                   <span className="inline-block w-1 h-1 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 group-hover/link:scale-150 transition-transform"></span>
-                  <Github className="h-4 w-4" />
-                  <span className="font-light group-hover/link:translate-x-1 transition-transform">GitHub</span>
-                </a>
+                  <Facebook className="h-4 w-4" />
+                  <span className="font-light group-hover/link:translate-x-1 transition-transform">Facebook</span>
+                </Link> */}
               </li>
             </ul>
           </div>
@@ -107,19 +107,19 @@ export default function Footer() {
             </div>
             <div className="flex flex-wrap justify-center gap-6">
               <Link
-                href="/privacy-policy"
+                href="/privacy-policy" prefetch={false}
                 className="text-sm text-gray-600 hover:text-purple-600 font-light transition-all duration-300 hover:translate-y-[-2px]"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="/terms"
+                href="/terms" prefetch={false}
                 className="text-sm text-gray-600 hover:text-purple-600 font-light transition-all duration-300 hover:translate-y-[-2px]"
               >
                 Terms of Service
               </Link>
               <Link
-                href="/contact"
+                href="/contact" prefetch={false}
                 className="flex items-center space-x-1 text-sm text-gray-600 hover:text-purple-600 font-light transition-all duration-300 group"
               >
                 <span>Contact</span>

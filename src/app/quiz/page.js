@@ -44,16 +44,16 @@ async function getAvailableQuizzes() {
     const dataDirectory = path.join(process.cwd(), 'src');
     const files = await fs.readdir(dataDirectory);
     const jsonFiles = files.filter(file => file.endsWith('.json') && !file.includes('package'));
-    
+
     const quizzes = await Promise.all(
       jsonFiles.map(async (file) => {
         const filePath = path.join(dataDirectory, file);
         const fileContents = await fs.readFile(filePath, 'utf8');
         const questions = JSON.parse(fileContents);
-        
+
         const name = file.replace('.json', '');
         const displayName = name.charAt(0).toUpperCase() + name.slice(1);
-        
+
         return {
           id: name,
           name: displayName,
@@ -63,7 +63,7 @@ async function getAvailableQuizzes() {
         };
       })
     );
-    
+
     return quizzes;
   } catch (error) {
     console.error('Error reading quiz files:', error);
@@ -124,7 +124,7 @@ export default async function QuizHomePage({ searchParams }) {
             </div>
 
             {/* Heading */}
-            <h1 id="page-title" className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 leading-tight tracking-tight mb-6 lg:mb-4">
+            <h1 id="page-title" className="text-5xl md:text-6xl lg:text-7xl !font-light text-gray-900 leading-tight tracking-tight mb-6 lg:mb-4">
               <span className="block bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">
                 Online Quiz
               </span>
@@ -163,7 +163,7 @@ export default async function QuizHomePage({ searchParams }) {
             <section aria-labelledby="quizzes-heading">
               {/* Section Heading */}
               <header className="text-center mb-8">
-                <h2 id="quizzes-heading" className="text-3xl md:text-4xl font-light text-gray-900 bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent mb-2">
+                <h2 id="quizzes-heading" className="text-3xl md:text-4xl !font-light text-gray-900 bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent mb-2">
                   Available Quizzes
                 </h2>
                 <p className="text-gray-600 font-light">

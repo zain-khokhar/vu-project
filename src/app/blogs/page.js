@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { PenTool, BookOpen, ArrowRight, FileText } from 'lucide-react';
+import { FileText } from 'lucide-react';
 import { getBlogs } from '@/actions/blogs';
 import BlogCard from '@/components/BlogCard';
 import Pagination from '@/components/Pagination';
@@ -238,7 +238,7 @@ export default async function BlogsPage({ searchParams }) {
 
       {/* Featured Posts Section */}
       {enhancedBlogs.length > 0 && (
-        <section className="relative py-12 px-4 sm:px-6 lg:px-8" id='first'>
+        <section className="relative py-12 !px-4 !sm:px-6 !lg:px-12" id='first'>
           <FeaturedPosts blogs={enhancedBlogs} />
         </section>
       )}
@@ -255,49 +255,35 @@ export default async function BlogsPage({ searchParams }) {
                   <span className="text-xs font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent tracking-wide">LATEST POSTS</span>
                 </div>
               </div>
-              <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-2 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">Latest Blog Posts</h2>
-              <p className="text-lg text-gray-700 font-light">Stay updated with the newest articles and insights</p>
+              <h2 className="text-4xl md:text-5xl !font-light text-gray-900 mb-2 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">Latest Blog Posts</h2>
+              <p className="text-lg text-gray-700 !font-light">Stay updated with the newest articles and insights</p>
             </div>
           </div>
 
           {/* Content */}
-          {blogs.length > 0 ? (
-            <>
-              {/* Blog Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {blogs.map((blog) => (
-                  <div key={blog._id} className="group  overflow-hidden">
-                    {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-50/40 via-white/20 to-transparent pointer-events-none"></div>
+          <>
+            {/* Blog Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {blogs.map((blog) => (
+                <div key={blog._id} className="group  overflow-hidden">
+                  {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-50/40 via-white/20 to-transparent pointer-events-none"></div>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500"></div> */}
-                    <div className="relative">
-                      <BlogCard blog={blog} />
-                    </div>
+                  <div className="relative">
+                    <BlogCard blog={blog} />
                   </div>
-                ))}
-              </div>
-
-              {/* Pagination */}
-              <div className="mt-16 flex justify-center">
-                <Pagination
-                  pagination={enhancedPagination}
-                  baseUrl="/blogs"
-                />
-              </div>
-            </>
-          ) : (
-            <div className=" bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center">
-              <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-2xl font-light text-gray-900 mb-2">No blog posts yet</h3>
-              <p className="text-gray-700 mb-6 font-light">Be the first to share your knowledge with the community!</p>
-              <Link
-                href="/blog/write"
-                className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-500/80 via-purple-600/70 to-pink-600/80 text-white font-medium rounded-xl hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105"
-              >
-                <FileText className="h-4 w-4" />
-                <span>Write First Blog Post</span>
-              </Link>
+                </div>
+              ))}
             </div>
-          )}
+
+            {/* Pagination */}
+            <div className="mt-16 flex justify-center">
+              <Pagination
+                pagination={enhancedPagination}
+                baseUrl="/blogs"
+              />
+            </div>
+          </>
+
         </div>
       </section>
     </div>

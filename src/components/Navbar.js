@@ -23,13 +23,13 @@ export default function Navbar() {
   ];
 
   return (
-    <header id="navbar" className="top-0 left-0 right-0 z-50 w-full">
-      <div className="bg-white/40 backdrop-blur glass mx-4 max-sm:mx-2 mt-4 rounded-3xl shadow-lg shadow-purple-500/10">
+    <header id="navbar" className="top-0 left-0 sticky right-0 z-50 w-full">
+      <div className="bg-white mx-2 sm:mx-4 sm:mt-4 rounded-3xl">
         <div className="max-w-7xl mx-auto px-6 max-sm:px-2 lg:px-2">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <Image src={"/favicon.png"} height={48} width={48} alt="website logo" />
+              <Image src={"/favicon.svg"} height={48} width={48} alt="website logo" />
               <Link href="/" className="text-xl bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent hover:opacity-80 transition-opacity">
                 EDU
               </Link>
@@ -48,7 +48,7 @@ export default function Navbar() {
                     </Link>
 
                     {/* Dropdown Menu - Pure CSS with :hover */}
-                    <div className="absolute top-full left-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-purple-500/20 border border-white/50 py-3 px-2 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-200">
+                    <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-2xl shadow-2xl shadow-purple-500/20 border border-white/90 py-3 px-2 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-200">
                       <div className="px-3 py-2 mb-2">
                         <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Document Types</p>
                       </div>
@@ -116,7 +116,7 @@ export default function Navbar() {
               />
 
               {/* Mobile Menu Dropdown */}
-              <div className="hidden group-has-[:checked]/menu:block fixed left-2 right-2 top-28 bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl shadow-purple-500/20 border border-white/50 z-50 max-h-[calc(100vh-8rem)] overflow-y-auto">
+              <div className="hidden group-has-[:checked]/menu:block fixed left-2 right-2 top-28 bg-white rounded-3xl shadow-2xl shadow-purple-500/20 border border-white/50 z-50 max-h-[calc(100vh-8rem)] overflow-y-auto">
                 <nav className="px-4 py-6 space-y-2">
                   {navLinks.map((link) => (
                     link.hasDropdown ? (
@@ -151,6 +151,20 @@ export default function Navbar() {
                                 </a>
                               </label>
                             ))}
+                          </div>
+
+                          <div className="mt-2 pt-2 border-t border-gray-100 px-2">
+                            <label
+                              htmlFor="mobile-menu-toggle"
+                              className="block cursor-pointer"
+                            >
+                              <Link
+                                href="/documents"
+                                className="text-xs text-indigo-600 hover:text-indigo-700 font-medium inline-block"
+                              >
+                                View All Documents →
+                              </Link>
+                            </label>
                           </div>
                         </div>
                       </details>

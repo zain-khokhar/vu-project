@@ -113,10 +113,10 @@ export default function DocumentCard({ document }) {
         </div>
 
         {/* Action */}
-        <div className="mt-auto p-4 border-t bg-gray-100">
+        <div className="mt-auto p-4 bg-gray-100">
           <div className="flex justify-end">
             <div
-              className={`inline-flex items-center gap-3 px-4 py-3 rounded-xl text-white bg-gradient-to-r ${gradient} shadow-md group-hover:shadow-lg transition-all`}
+              className={`inline-flex rounded-3xl items-center gap-3 px-4 py-3 text-white bg-gradient-to-r ${gradient} shadow-md group-hover:shadow-lg transition-all`}
             >
               {/* <Download className="w-4 h-4" /> */}
               <span className="text-sm font-bold">Get Document</span>

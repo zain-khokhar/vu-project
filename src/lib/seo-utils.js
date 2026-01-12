@@ -21,7 +21,7 @@ export function generateDocumentMetadata({
   modifiedTime,
   author = 'Vuedu Team'
 }) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev';
+  const baseUrl = 'https://vuedu.dev';
   const fullUrl = url ? `${baseUrl}${url}` : baseUrl;
   const canonicalUrl = canonical || fullUrl;
 

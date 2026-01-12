@@ -19,7 +19,7 @@ export default function QuizCard({ quiz }) {
 
     return (
         <article
-            className="group relative block h-full"
+            className="group relative block h-full rounded-3xl"
             aria-labelledby={`quiz-title-${quiz.id}`}
         >
             {/* Tailwind safelist for dynamic color classes */}
@@ -34,10 +34,10 @@ export default function QuizCard({ quiz }) {
 
             <Link
                 href={`/quiz/${quiz.id}`}
-                className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 rounded-3xl"
+                className="block h-full rounded-3xl border border-gray-200"
                 aria-label={`Start ${quiz.name} quiz - ${quiz.questionsCount} questions in ${quiz.category} category`}
             >
-                <div className="flex h-full flex-col justify-between rounded-tr-[3rem] rounded-bl-3xl rounded-tl-3xl rounded-br-3xl bg-white p-6 shadow-sm ring-1 ring-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-gray-200">
+                <div className="flex h-full flex-col justify-between rounded-tr-[3rem] rounded-bl-3xl rounded-tl-3xl rounded-br-3xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-gray-200">
 
                     {/* Decorative fold effect */}
                     <div

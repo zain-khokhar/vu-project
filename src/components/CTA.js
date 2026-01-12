@@ -12,7 +12,7 @@ function Button({
   children,
   ...props
 }) {
-  const base = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-light transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+  const base = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm !font-light transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
 
   const variants = {
     default: "bg-[#6b46ff] text-white hover:bg-[#5a3ee6]",
@@ -66,7 +66,7 @@ export function CTA() {
                 <span className="text-xs sm:text-sm bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">🇵🇰 Trusted by 1000+ Pakistani Students</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light bg-gradient-to-br from-[#1a1f36] to-[#667eea] bg-clip-text text-transparent leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl !font-light bg-gradient-to-br from-[#1a1f36] to-[#667eea] bg-clip-text text-transparent leading-tight">
                 Start Your Learning Journey Today
               </h2>
 

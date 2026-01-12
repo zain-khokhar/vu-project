@@ -309,3 +309,49 @@ export function generateBlogStructuredData(blog, readingTime) {
 
   return structuredData;
 }
+
+/**
+ * Process HTML content to extract H2/H3 headings and inject IDs
+ * Returns modified HTML and TOC data structure
+ */
+export function processContentForTOC(htmlContent) {
+  if (!htmlContent) return { processedContent: '', toc: [] };
+
+  const toc = [];
+  const headingRegex = /<(h[23])(?:[^>]*?)>(.*?)<\/\1>/gi;
+  const ids = new Set();
+
+  const processedContent = htmlContent.replace(headingRegex, (match, tag, text) => {
+    // Remove HTML tags from the text for the ID
+    const plainText = text.replace(/<[^>]*>/g, '');
+
+    // Generate URL-safe ID
+    let baseId = plainText
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+
+    if (!baseId) baseId = 'section'; // Fallback for empty headings
+
+    // Ensure unique IDs
+    let id = baseId;
+    let counter = 1;
+    while (ids.has(id)) {
+      id = `${baseId}-${counter}`;
+      counter++;
+    }
+    ids.add(id);
+
+    // Add to TOC array
+    toc.push({
+      id,
+      text: plainText,
+      level: parseInt(tag.charAt(1)), // 2 or 3
+    });
+
+    // Return the modified matching string with the ID injected
+    return `<${tag} id="${id}">${text}</${tag}>`;
+  });
+
+  return { processedContent, toc };
+}

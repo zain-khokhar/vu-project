@@ -68,5 +68,9 @@
     "eslint-config-next": "16.0.10",
     "sass": "^1.93.2",
     "tailwindcss": "^4"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ]
 }

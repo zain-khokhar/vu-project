@@ -47,29 +47,29 @@ export function Features() {
       {/* <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
        */}
-        <div className="absolute inset-0 gradient-mesh opacity-60 pointer-events-none"></div>
+      <div className="absolute inset-0 gradient-mesh opacity-60 pointer-events-none"></div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 w-fit shadow-lg mb-6 mx-auto">
             <span className="h-2 w-2 rounded-full bg-purple-500  "></span>
             <span className="text-sm bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">Powerful Features</span>
           </div>
-          
-          <h2 className="text-4xl lg:text-5xl mb-4 font-light bg-gradient-to-br from-[#1a1f36] to-[#667eea] bg-clip-text text-transparent">
+
+          <h2 className="text-4xl lg:text-5xl mb-4 !font-light bg-gradient-to-br from-[#1a1f36] to-[#667eea] bg-clip-text text-transparent">
             Everything you need to manage documents
           </h2>
           <p className="text-xl text-gray-700/70 max-w-2xl mx-auto">
             Powerful features designed to make document management simple and efficient
           </p>
         </div>
-        
-         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <div 
-                key={index} 
-                className="glass rounded-3xl p-8 hover:scale-105 transition-all duration-500 hover:shadow-2xl group"
+              <div
+                key={index}
+                className="rounded-3xl p-8 hover:scale-105 transition-all duration-500 hover:shadow-2xl group"
               >
                 <div className="flex flex-col gap-5">
                   <div className={`h-14 w-14 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>

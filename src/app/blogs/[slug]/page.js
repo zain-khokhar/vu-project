@@ -1,17 +1,20 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Calendar, Clock } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { getBlogBySlug, getAllBlogs, getRelatedBlogs } from '@/actions/blogs';
 import { formatDate } from '@/lib/utils';
 import {
   getReadingTime,
   generateBlogMetadata,
   generateBlogStructuredData,
-  getCoverImageData
+  getCoverImageData,
+  processContentForTOC
 } from '@/lib/blog-utils';
 import AuthorInfo from '@/components/AuthorInfo';
 import BlogCard from '@/components/BlogCard';
+import TableOfContents from '@/components/TableOfContents';
+import Script from 'next/script';
 
 /**
  * Extract H1 tag content from HTML string
@@ -110,9 +113,9 @@ export default async function BlogPostPage({ params }) {
 
   // Remove H1 from content for body rendering (to avoid duplication)
   const cleanedContent = removeH1FromContent(blog.content);
-
-  // Use blog.excerpt for display
   const displayExcerpt = blog.excerpt;
+  // Process content for Table of Contents - generate IDs and extract TOC
+  const { processedContent, toc } = processContentForTOC(cleanedContent);
 
   // Fetch related blogs for "Explore More" section
   const relatedResult = await getRelatedBlogs(slug, 3);
@@ -121,25 +124,36 @@ export default async function BlogPostPage({ params }) {
   return (
     <>
       {/* JSON-LD Structured Data */}
-      <script
+      <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <main className="min-h-screen bg-white" aria-labelledby="blog-title">
-        <div className="max-w-6xl mx-auto px-0 sm:px-6 lg:px-12 py-8">
+      <main className="min-h-screen" aria-labelledby="blog-title">
+        <div className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-12 py-8">
 
-          {/* Back Button */}
-          <div className="mb-2">
+          {/* Breadcrumbs */}
+          <nav aria-label="Breadcrumb" className="mb-6 px-2 flex flex-wrap items-center text-sm text-gray-500">
+            <Link
+              href="/"
+              prefetch={false}
+              className="hover:text-purple-600 transition-colors"
+            >
+              Home
+            </Link>
+            <ChevronRight className="h-4 w-4 mx-1 text-gray-400" aria-hidden="true" />
             <Link
               href="/blogs"
-              className="inline-flex items-center gap-2 px-2 max-sm:text-xs sm:px-4 py-2 sm:py-2 cursor-pointer hover:text-purple-600 transition-colors"
-              aria-label="Go back to all blog posts"
+              prefetch={false}
+              className="hover:text-purple-600 transition-colors"
             >
-              <ArrowLeft className="sm:h-4 sm:w-4 h-3 w-3" aria-hidden="true" />
-              <span>Back to Blog</span>
+              Blogs
             </Link>
-          </div>
+            <ChevronRight className="h-4 w-4 mx-1 text-gray-400" aria-hidden="true" />
+            <span className="text-gray-900 truncate max-w-[200px] sm:max-w-md" aria-current="page">
+              Blog
+            </span>
+          </nav>
 
           {/* Google-Style Blog Header - Above Image */}
           <header className="mb-8 py-6" aria-label="Blog post header">
@@ -198,48 +212,58 @@ export default async function BlogPostPage({ params }) {
             />
           </figure>
 
-          {/* Article */}
-          <article
-            className="prose sm:prose-lg
-                    prose-a:text-purple-500 prose-a:no-underline
- hover:prose-a:underline
-                    prose-quote:border-purple-500
-                    prose-ul:list-disc 
-                    max-w-none overflow-hidden"            itemScope
-            itemType="https://schema.org/BlogPosting"
-          >
-            <div className="p-4 sm:p-6 md:p-16">
+          {/* Main Layout Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 max-sm:px-4">
 
-              <meta itemProp="image" content={coverImageData.url} />
-              <meta itemProp="author" content={blog.author?.name || 'Vuedu'} />
-              <meta itemProp="publisher" content="Vuedu" />
-              {blog.updatedAt && (
-                <meta itemProp="dateModified" content={blog.updatedAt} />
-              )}
+            {/* Article Content - Spans 8 columns on large screens */}
+            <div className="lg:col-span-8">
+              <article
+                className="prose xl:prose-lg prose-a:text-purple-500 prose-a:hover:text-purple-600 max-w-none prose-img:rounded-xl " itemScope
+                itemType="https://schema.org/BlogPosting"
+              >
+                <div className="py-4 sm:py-6">
 
-              <section
-                itemProp="articleBody"
-                dangerouslySetInnerHTML={{ __html: cleanedContent }}
-              />
+                  <meta itemProp="image" content={coverImageData.url} />
+                  <meta itemProp="author" content={blog.author?.name || 'Vuedu'} />
+                  <meta itemProp="publisher" content="Vuedu" />
+                  {blog.updatedAt && (
+                    <meta itemProp="dateModified" content={blog.updatedAt} />
+                  )}
 
+                  <section
+                    itemProp="articleBody"
+                    dangerouslySetInnerHTML={{ __html: processedContent }}
+                    className="blog-content"
+                  />
+
+                </div>
+              </article>
+
+              {/* Author Info - Full version at bottom */}
+              <footer className="mt-12 pt-8 border-t border-gray-100" aria-label="Author information">
+                <AuthorInfo author={blog.author} publishedDate={blog.createdAt} />
+              </footer>
             </div>
-          </article>
 
+            {/* Sidebar - Spans 4 columns on large screens */}
+            <aside className="lg:col-span-4 order-first lg:order-last">
+              <div className="lg:sticky lg:top-24">
+                <TableOfContents toc={toc} />
+              </div>
+            </aside>
 
-          {/* Author Info - Full version at bottom */}
-          <footer className="mt-12 px-3" aria-label="Author information">
-            <AuthorInfo author={blog.author} publishedDate={blog.createdAt} />
-          </footer>
+          </div>
 
           {/* Explore More / Related Blogs Section */}
           {relatedBlogs.length > 0 && (
-            <section className="mt-16 pt-12 border-t border-gray-200 px-3" aria-label="Related blog posts">
+            <section className="mt-20 pt-12 border-t border-gray-200 max-sm:px-4" aria-label="Related blog posts">
               <div className="flex items-center justify-between mb-8">
                 <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900">
                   Explore More
                 </h2>
                 <Link
                   href="/blogs"
+                  prefetch={false}
                   className="text-purple-600 hover:text-purple-700 font-medium text-sm flex items-center gap-1 transition-colors"
                 >
                   View all

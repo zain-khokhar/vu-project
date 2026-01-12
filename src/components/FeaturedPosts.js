@@ -42,14 +42,14 @@ export default function FeaturedPosts({ blogs }) {
                 <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-gradient-to-tl from-purple-400/15 via-pink-300/10 to-transparent rounded-full blur-3xl  " style={{ animationDelay: '2s' }}></div>
             </div> */}
 
-            <div className="max-w-7xl mx-auto relative z-10">
+            <div className="max-w-7xl mx-auto relative z-10 px-2 lg:px-8">
                 {/* Header with Liquid Badge */}
                 <div className="inline-block mb-4 group">
                     <div className=" bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-4 py-2 shadow-lg hover:shadow-xl transition-all duration-300 ">
                         <span className="text-xs font-medium bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent tracking-wide">FEATURED COLLECTION</span>
                     </div>
                 </div>
-                <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-12 bg-gradient-to-r from-gray-900 via-purple-800 to-pink-800 bg-clip-text text-transparent">Featured Posts</h2>
+                <h2 className="text-4xl md:text-5xl !font-light text-gray-900 mb-12 bg-gradient-to-r from-gray-900 via-purple-800 to-pink-800 bg-clip-text text-transparent">Featured Posts</h2>
 
                 <div className="grid grid-cols-12 grid-rows-2 gap-6 lg:gap-8">
                     {/* --- Left Big Post --- */}

@@ -130,7 +130,7 @@ async function DocumentsContent({ searchParams }) {
           <>
             {/* Section Heading */}
             <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-light text-gray-900 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-2">
+              <h2 className="text-3xl md:text-4xl !font-light text-gray-900 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-2">
                 Available Documents
               </h2>
               <p className="text-gray-600 font-light">
