@@ -34,7 +34,7 @@ export async function getQuizzes({
     const [quizzes, totalCount] = await Promise.all([
       Quiz.find(query)
         .select('title slug description category icon color totalQuestions')
-        .sort({ createdAt: -1 })
+        .sort({ createdAt: -1, _id: 1 })
         .skip(skip)
         .limit(limit)
         .lean(),

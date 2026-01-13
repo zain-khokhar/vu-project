@@ -270,5 +270,4 @@ export async function generateMetadata({ searchParams }) {
   });
 }
 
-// export const dynamic = 'force-dynamic'; // Enable dynamic rendering for search/filter
-// export const revalidate = 0; // Disable caching for real-time search results
+export const dynamic = 'force-static';

@@ -345,4 +345,3 @@ export async function generateStaticParams() {
 // }
 
 export const dynamic = 'force-static';
-export const revalidate = 3600; // Revalidate every 30 minutes

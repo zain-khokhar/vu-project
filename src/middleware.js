@@ -27,12 +27,10 @@ export function middleware(request) {
 
   // Add security headers
   // Content Security Policy - protects against XSS attacks
-  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
   const isDevelopment = process.env.NODE_ENV === 'development';
-  const cspHeader = generateCSPHeader(nonce, isDevelopment);
+  const cspHeader = generateCSPHeader(isDevelopment);
 
   const requestHeaders = new Headers(request.headers);
-  requestHeaders.set('x-nonce', nonce);
   requestHeaders.set('Content-Security-Policy', cspHeader);
 
   const response = NextResponse.next({

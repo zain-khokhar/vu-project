@@ -14,7 +14,6 @@ import {
 import AuthorInfo from '@/components/AuthorInfo';
 import BlogCard from '@/components/BlogCard';
 import TableOfContents from '@/components/TableOfContents';
-import Script from 'next/script';
 
 /**
  * Extract H1 tag content from HTML string

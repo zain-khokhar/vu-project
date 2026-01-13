@@ -2,7 +2,7 @@ import "./globals.css";
 import LayoutContent from "@/components/LayoutContent";
 import { generateDocumentMetadata, generateOrganizationStructuredData } from "@/lib/seo-utils";
 import Script from "next/script";
-import { headers } from "next/headers";
+// Headers import removed to allow static generation
 
 export const metadata = generateDocumentMetadata({
   title: "Vuedu - Free Educational Documents & Study Resources in Pakistan",
@@ -55,8 +55,7 @@ export const viewport = {
 
 
 
-export default async function RootLayout({ children }) {
-  const nonce = (await headers()).get('x-nonce') || '';
+export default function RootLayout({ children }) {
 
   return (
     <html lang="en" data-scroll-behavior="smooth">
@@ -64,18 +63,17 @@ export default async function RootLayout({ children }) {
         {/* Google Tag Manager */}
         <Script
           id="gtm-script"
-          strategy="lazyOnload"
-          nonce={nonce}
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-        (function(w,d,s,l,i){w[l]=w[l]||[];
-        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-        var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-        j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-        f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-MFDXN6QK');
-      `,
+            (function(w,d,s,l,i){w[l]=w[l]||[];
+            w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+            var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+            j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+            f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-MFDXN6QK');
+          `,
           }}
         />
         {/* End Google Tag Manager */}
@@ -83,7 +81,6 @@ export default async function RootLayout({ children }) {
         {/* Organization Structured Data */}
         <Script
           type="application/ld+json"
-          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(generateOrganizationStructuredData()),
           }}

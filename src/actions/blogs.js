@@ -99,7 +99,7 @@ export async function getBlogs(page = 1, limit = 12) {
       Blog.find({ published: true })
         .select('title slug excerpt coverImage createdAt author')
         .populate('author', 'name slug avatar')
-        .sort({ createdAt: -1 })
+        .sort({ createdAt: -1, _id: 1 })
         .skip(skip)
         .limit(limit)
         .lean(),
@@ -180,7 +180,7 @@ export async function getLatestBlogs(limit = 6) {
     const blogs = await Blog.find({ published: true })
       .select('title slug excerpt coverImage createdAt author')
       .populate('author', 'name slug avatar')
-      .sort({ createdAt: -1 })
+      .sort({ createdAt: -1, _id: 1 })
       .limit(limit)
       .lean();
     return {
@@ -223,7 +223,7 @@ export async function getRelatedBlogs(currentSlug, limit = 3) {
     })
       .select('title slug excerpt coverImage createdAt author')
       .populate('author', 'name slug avatar')
-      .sort({ createdAt: -1 })
+      .sort({ createdAt: -1, _id: 1 })
       .limit(limit)
       .lean();
 

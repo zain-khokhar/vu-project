@@ -56,7 +56,7 @@ export async function getDocuments({
 
     const [documents, totalCount] = await Promise.all([
       Document.find(query)
-        .sort({ createdAt: -1 })
+        .sort({ createdAt: -1, _id: 1 })
         .skip(skip)
         .limit(limit)
         .select('title slug type subject university year')

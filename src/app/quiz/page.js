@@ -211,3 +211,5 @@ export default async function QuizHomePage({ searchParams }) {
     </>
   );
 }
+
+export const dynamic = 'force-static';

@@ -1,14 +1,12 @@
-export function generateCSPHeader(nonce, isDevelopment = false) {
+export function generateCSPHeader(isDevelopment = false) {
   const directives = [
     "default-src 'self'",
 
-    isDevelopment
-      ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com"
-      : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://www.googletagmanager.com https://www.google-analytics.com`,
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com",
 
     "style-src 'self' 'unsafe-inline'",
 
-    "img-src 'self' data: https://res.cloudinary.com",
+    "img-src 'self' data: https://res.cloudinary.com https://images.unsplash.com",
 
     "connect-src 'self' https://res.cloudinary.com https://www.google-analytics.com",
 
