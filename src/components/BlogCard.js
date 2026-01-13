@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { formatDate } from '@/lib/utils';
-import { Calendar, BookOpen } from 'lucide-react';
+import { CalendarIcon } from '@/components/ChevronRight';
 
 export default function BlogCard({ blog }) {
   // Handle both old string format and new object format for backward compatibility
@@ -51,7 +51,7 @@ export default function BlogCard({ blog }) {
 
             {/* Date with Icon */}
             <div className="flex items-center space-x-2 text-gray-600 text-sm font-light mb-4">
-              <Calendar className="h-3.5 w-3.5 text-purple-500/70" />
+              <CalendarIcon size={16} className="text-purple-500/70" />
               <span>{formatDate(blog.createdAt)}</span>
             </div>
 

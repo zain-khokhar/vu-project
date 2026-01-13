@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight } from '@/components/ChevronRight';
 import { getBlogBySlug, getAllBlogs, getRelatedBlogs } from '@/actions/blogs';
 import { formatDate } from '@/lib/utils';
 import {
@@ -124,7 +124,7 @@ export default async function BlogPostPage({ params }) {
   return (
     <>
       {/* JSON-LD Structured Data */}
-      <Script
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
@@ -141,7 +141,7 @@ export default async function BlogPostPage({ params }) {
             >
               Home
             </Link>
-            <ChevronRight className="h-4 w-4 mx-1 text-gray-400" aria-hidden="true" />
+            <ChevronRight size={16} className="mx-1 text-gray-400" aria-hidden="true" />
             <Link
               href="/blogs"
               prefetch={false}
@@ -149,7 +149,7 @@ export default async function BlogPostPage({ params }) {
             >
               Blogs
             </Link>
-            <ChevronRight className="h-4 w-4 mx-1 text-gray-400" aria-hidden="true" />
+            <ChevronRight size={16} className="mx-1 text-gray-400" aria-hidden="true" />
             <span className="text-gray-900 truncate max-w-[200px] sm:max-w-md" aria-current="page">
               Blog
             </span>

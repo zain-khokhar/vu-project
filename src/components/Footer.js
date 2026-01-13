@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BookOpen, Heart, Mail, Facebook } from 'lucide-react';
+import { BookOpen, Heart, Mail, } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -33,31 +33,31 @@ export default function Footer() {
             <h3 className="font-medium text-gray-900 mb-4 relative">Quick Links</h3>
             <ul className="space-y-3 text-gray-700">
               <li>
-                <Link href="/" className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
+                <Link href="/" prefetch={false} className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
                   <span className="inline-block w-1 h-1 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 group-hover/link:scale-150 transition-transform"></span>
                   <span className="font-light group-hover/link:translate-x-1 transition-transform">Home</span>
                 </Link>
               </li>
               <li>
-                <Link href="/documents" className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
+                <Link href="/documents" prefetch={false} className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
                   <span className="inline-block w-1 h-1 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 group-hover/link:scale-150 transition-transform"></span>
                   <span className="font-light group-hover/link:translate-x-1 transition-transform">Browse Documents</span>
                 </Link>
               </li>
               <li>
-                <Link href="/documents?type=book" className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
+                <Link href="/documents?type=book" prefetch={false} className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
                   <span className="inline-block w-1 h-1 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 group-hover/link:scale-150 transition-transform"></span>
                   <span className="font-light group-hover/link:translate-x-1 transition-transform">Books</span>
                 </Link>
               </li>
               <li>
-                <Link href="/documents?type=note" className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
+                <Link href="/documents?type=note" prefetch={false} className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
                   <span className="inline-block w-1 h-1 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 group-hover/link:scale-150 transition-transform"></span>
                   <span className="font-light group-hover/link:translate-x-1 transition-transform">Notes</span>
                 </Link>
               </li>
               <li>
-                <Link href="/documents?type=exam" className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
+                <Link href="/documents?type=exam" prefetch={false} className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
                   <span className="inline-block w-1 h-1 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 group-hover/link:scale-150 transition-transform"></span>
                   <span className="font-light group-hover/link:translate-x-1 transition-transform">Exams</span>
                 </Link>
@@ -71,14 +71,14 @@ export default function Footer() {
             <h3 className="font-medium text-gray-900 mb-4 relative">Resources</h3>
             <ul className="space-y-3 text-gray-700">
               <li>
-                <Link href="/blogs" className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
+                <Link href="/blogs" prefetch={false} className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
                   <span className="inline-block w-1 h-1 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 group-hover/link:scale-150 transition-transform"></span>
                   <span className="font-light group-hover/link:translate-x-1 transition-transform">Blog</span>
                 </Link>
 
               </li>
               <li>
-                <Link href="/quiz" className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
+                <Link href="/quiz" prefetch={false} className="flex items-center space-x-2 hover:text-purple-600 transition-all duration-300 group/link">
                   <span className="inline-block w-1 h-1 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 group-hover/link:scale-150 transition-transform"></span>
                   <span className="font-light group-hover/link:translate-x-1 transition-transform">Quiz</span>
                 </Link>

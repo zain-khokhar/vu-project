@@ -26,23 +26,32 @@ export function middleware(request) {
   }
 
   // Add security headers
-  const response = NextResponse.next();
-  
   // Content Security Policy - protects against XSS attacks
+  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
   const isDevelopment = process.env.NODE_ENV === 'development';
-  const cspHeader = generateCSPHeader(isDevelopment);
-  
+  const cspHeader = generateCSPHeader(nonce, isDevelopment);
+
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-nonce', nonce);
+  requestHeaders.set('Content-Security-Policy', cspHeader);
+
+  const response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
+
   response.headers.set('Content-Security-Policy', cspHeader);
-  
+
   // Additional security headers
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('X-Frame-Options', 'DENY');
   response.headers.set('X-XSS-Protection', '1; mode=block');
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-  
+
   // SEO headers
   response.headers.set('X-Robots-Tag', 'index, follow');
-  
+
   return response;
 }
 

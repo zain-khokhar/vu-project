@@ -1,4 +1,4 @@
-import { Calendar, Globe, Twitter, Linkedin } from 'lucide-react';
+import { CalendarIcon } from '@/components/ChevronRight';
 import { formatDate } from '@/lib/utils';
 
 export default function AuthorInfo({ author, publishedDate }) {
@@ -26,7 +26,7 @@ export default function AuthorInfo({ author, publishedDate }) {
           {/* Meta Info */}
           <div className="flex items-center space-x-4 text-sm text-gray-500 mb-3">
             <div className="flex items-center space-x-1">
-              <Calendar className="h-4 w-4" />
+              <CalendarIcon size={16} />
               <span>Published {formatDate(publishedDate)}</span>
             </div>
           </div>

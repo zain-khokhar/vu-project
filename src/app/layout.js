@@ -2,6 +2,7 @@ import "./globals.css";
 import LayoutContent from "@/components/LayoutContent";
 import { generateDocumentMetadata, generateOrganizationStructuredData } from "@/lib/seo-utils";
 import Script from "next/script";
+import { headers } from "next/headers";
 
 export const metadata = generateDocumentMetadata({
   title: "Vuedu - Free Educational Documents & Study Resources in Pakistan",
@@ -52,14 +53,19 @@ export const viewport = {
   ],
 };
 
-export default function RootLayout({ children }) {
+
+
+export default async function RootLayout({ children }) {
+  const nonce = (await headers()).get('x-nonce') || '';
+
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <head>
         {/* Google Tag Manager */}
         <Script
           id="gtm-script"
           strategy="lazyOnload"
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: `
         (function(w,d,s,l,i){w[l]=w[l]||[];
@@ -77,6 +83,7 @@ export default function RootLayout({ children }) {
         {/* Organization Structured Data */}
         <Script
           type="application/ld+json"
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(generateOrganizationStructuredData()),
           }}
