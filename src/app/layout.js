@@ -1,7 +1,6 @@
 import "./globals.css";
 import LayoutContent from "@/components/LayoutContent";
 import { generateDocumentMetadata, generateOrganizationStructuredData } from "@/lib/seo-utils";
-import Script from "next/script";
 // Headers import removed to allow static generation
 
 export const metadata = generateDocumentMetadata({
@@ -61,7 +60,7 @@ export default function RootLayout({ children }) {
     <html lang="en" data-scroll-behavior="smooth">
       <head>
         {/* Google Tag Manager */}
-        <Script
+        {/* <Script
           id="gtm-script"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -75,11 +74,11 @@ export default function RootLayout({ children }) {
             })(window,document,'script','dataLayer','GTM-MFDXN6QK');
           `,
           }}
-        />
+        /> */}
         {/* End Google Tag Manager */}
 
         {/* Organization Structured Data */}
-        <Script
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(generateOrganizationStructuredData()),
@@ -119,14 +118,14 @@ export default function RootLayout({ children }) {
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-gray-50">
         {/* Google Tag Manager (noscript) */}
-        <noscript>
+        {/* <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-MFDXN6QK"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
           />
-        </noscript>
+        </noscript> */}
         {/* End Google Tag Manager (noscript) */}
 
         <LayoutContent>

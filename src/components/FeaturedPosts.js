@@ -60,6 +60,8 @@ export default function FeaturedPosts({ blogs }) {
                                     src={getCoverImageUrl(first.coverImage)}
                                     alt={getCoverImageAlt(first.coverImage, first.title)}
                                     fill
+                                    priority
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
                                     className="object-cover object-center group-hover:scale-110 transition-transform duration-700 rounded-3xl"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-3xl"></div>
@@ -92,6 +94,7 @@ export default function FeaturedPosts({ blogs }) {
                                             src={getCoverImageUrl(second.coverImage)}
                                             alt={getCoverImageAlt(second.coverImage, second.title)}
                                             fill
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             className="object-cover object-center group-hover:scale-110 transition-transform duration-500"
                                         />
                                     </Link>
@@ -130,6 +133,7 @@ export default function FeaturedPosts({ blogs }) {
                                             src={getCoverImageUrl(third.coverImage)}
                                             alt={getCoverImageAlt(third.coverImage, third.title)}
                                             fill
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             className="object-cover object-center group-hover:scale-110 transition-transform duration-500"
                                         />
                                     </Link>

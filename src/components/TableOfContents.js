@@ -9,42 +9,29 @@ export default function TableOfContents({ toc }) {
     const [isMobileOpen, setIsMobileOpen] = useState(false);
 
     useEffect(() => {
-        let ticking = false;
-
-        const handleScroll = () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const headings = document.querySelectorAll('h2[id], h3[id]');
-                    let currentActiveId = '';
-
-                    // Find the first heading that is currently visible or above the viewport
-                    for (const heading of headings) {
-                        const rect = heading.getBoundingClientRect();
-                        // Check if the heading is in the top part of the viewport (with some buffer)
-                        // 150px buffer works well for sticky headers
-                        if (rect.top >= 0 && rect.top < 300) {
-                            currentActiveId = heading.id;
-                            break;
-                        } else if (rect.top < 0) {
-                            // If we've scrolled past this heading, it's a candidate for being the active one
-                            currentActiveId = heading.id;
-                        }
+        // Use IntersectionObserver to track active heading without forced reflows
+        // This avoids querying getBoundingClientRect on every scroll frame
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveId(entry.target.id);
                     }
-
-                    if (currentActiveId) {
-                        setActiveId((prev) => (prev !== currentActiveId ? currentActiveId : prev));
-                    }
-                    ticking = false;
                 });
-                ticking = true;
+            },
+            {
+                // Trigger when the heading enters the top 20% of the viewport
+                // This creates a "spy" effect near the top of the screen
+                rootMargin: '0px 0px -80% 0px',
+                threshold: 0
             }
-        };
+        );
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll(); // Initial check
+        const headings = document.querySelectorAll('h2[id], h3[id]');
+        headings.forEach((heading) => observer.observe(heading));
 
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+        return () => observer.disconnect();
+    }, [toc]);
 
     if (!toc || toc.length === 0) return null;
 

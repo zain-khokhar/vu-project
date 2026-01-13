@@ -72,9 +72,10 @@ export default async function BlogsPage({ searchParams }) {
         <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-400/20 to-purple-400/20 opacity-40"></div>
 
         {/* Liquid orbs */}
-        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-purple-400/15 via-pink-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl  "></div>
-        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-blue-400/15 via-cyan-300/10 to-transparent rounded-full mix-blend-multiply filter blur-3xl  " style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/3 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/8 via-blue-300/8 to-purple-300/8 rounded-full mix-blend-multiply filter blur-3xl   transform -translate-x-1/2" style={{ animationDelay: '4s' }}></div>
+        {/* Liquid orbs - Optimized for performance (removed mix-blend-multiply) */}
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-purple-400/20 via-pink-300/10 to-transparent rounded-full filter blur-3xl opacity-60"></div>
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-blue-400/20 via-cyan-300/10 to-transparent rounded-full filter blur-3xl opacity-60"></div>
+        <div className="absolute top-1/3 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/10 via-blue-300/10 to-purple-300/10 rounded-full filter blur-3xl transform -translate-x-1/2 opacity-60"></div>
       </div>
 
       {/* Hero Section */}
