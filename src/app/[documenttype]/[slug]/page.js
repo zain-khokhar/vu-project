@@ -148,6 +148,7 @@ export default async function DocumentPage({ params }) {
                         href="/documents"
                         className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors text-sm"
                         aria-label="Back to all documents"
+
                     >
                         <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                         <span>Back to Documents</span>
@@ -171,13 +172,37 @@ export default async function DocumentPage({ params }) {
                         {/* Two Column Layout */}
                         <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
 
-                            {/* Left Column - Main Info (appears first on mobile) */}
-                            <div className="lg:col-span-3 p-4 sm:p-6 lg:p-10 lg:border-r border-gray-100 order-2 lg:order-1">
-                                {/* Document Title */}
-                                <header className="mb-6 sm:mb-8">
+                            {/* Mobile-Only Title Section (appears first on mobile) */}
+                            <div className="lg:hidden p-4 sm:p-6 border-b border-gray-100 order-1">
+                                <header>
+                                    <h1
+                                        className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight"
+                                        itemProp="name"
+                                    >
+                                        {document.title}
+                                    </h1>
+
+                                    {/* Quick Info Pills */}
+                                    <div className="flex flex-wrap gap-2">
+                                        <span className={`inline-flex items-center px-2.5 py-1 text-xs sm:text-sm font-medium rounded-full ${typeConfig.color}`}>
+                                            {typeConfig.label}
+                                        </span>
+                                        <span className="inline-flex items-center px-2.5 py-1 text-xs sm:text-sm font-medium rounded-full bg-gray-100 text-gray-700">
+                                            {document.year}
+                                        </span>
+                                        <span className="inline-flex items-center px-2.5 py-1 text-xs sm:text-sm font-medium rounded-full bg-gray-100 text-gray-700">
+                                            {document.subject}
+                                        </span>
+                                    </div>
+                                </header>
+                            </div>
+
+                            {/* Left Column - Main Info (appears third on mobile, first on desktop) */}
+                            <div className="lg:col-span-3 p-4 sm:p-6 lg:p-10 lg:border-r border-gray-100 order-3 lg:order-1">
+                                {/* Document Title - Desktop Only */}
+                                <header className="mb-6 sm:mb-8 hidden lg:block">
                                     <h1
                                         className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight"
-                                        itemProp="name"
                                     >
                                         {document.title}
                                     </h1>
@@ -218,8 +243,8 @@ export default async function DocumentPage({ params }) {
                                 {/* Document Metadata */}
                             </div>
 
-                            {/* Right Column - Download Actions (appears second on mobile, first visually on large screens) */}
-                            <div className="lg:col-span-2 p-4 sm:p-6 lg:p-10 bg-gradient-to-b from-gray-50 to-white order-1 lg:order-2 border-b lg:border-b-0 border-gray-100">
+                            {/* Right Column - Download Actions (appears second on mobile, second on desktop) */}
+                            <div className="lg:col-span-2 p-4 sm:p-6 lg:p-10 bg-gradient-to-b from-gray-50 to-white order-2 border-b lg:border-b-0 border-gray-100">
 
                                 <div className="sticky top-8">
                                     {/* Download Card Header */}

@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <header id="navbar" className="top-0 left-0 sticky right-0 z-50 w-full">
-      <div className="bg-white mx-2 sm:mx-4 rounded-3xl">
+      <div className="bg-white shadow-2xl rounded-2xl">
         <div className="max-w-7xl mx-auto px-6 max-sm:px-2 lg:px-2">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
@@ -158,12 +158,12 @@ export default function Navbar() {
                               htmlFor="mobile-menu-toggle"
                               className="block cursor-pointer"
                             >
-                              <Link
+                              <a
                                 href="/documents"
                                 className="text-xs text-indigo-600 hover:text-indigo-700 font-medium inline-block"
                               >
                                 View All Documents →
-                              </Link>
+                              </a>
                             </label>
                           </div>
                         </div>
