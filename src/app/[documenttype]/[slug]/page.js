@@ -43,6 +43,7 @@ export async function generateStaticParams() {
     }
 }
 
+
 /**
  * Generate comprehensive SEO metadata
  */
