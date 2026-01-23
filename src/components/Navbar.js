@@ -42,6 +42,7 @@ export default function Navbar() {
                   <div key={link.href} className="relative group/dropdown">
                     <Link
                       href={link.href}
+
                       className="text-gray-700/70 hover:text-gray-900 transition-all duration-300 hover:scale-105 font-medium text-sm"
                     >
                       {link.label}
@@ -58,6 +59,7 @@ export default function Navbar() {
                         {DOCUMENT_TYPES.map((type) => (
                           <Link
                             key={type.value}
+                            prefetch={false}
                             href={`/documents?type=${type.value}`}
                             className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50 rounded-lg transition-all duration-200 font-medium"
                           >
@@ -69,6 +71,7 @@ export default function Navbar() {
                       <div className="border-t border-gray-100 mt-2 pt-2 px-3">
                         <Link
                           href="/documents"
+                          prefetch={false}
                           className="text-xs text-indigo-600 hover:text-indigo-700 font-medium inline-block"
                         >
                           View All Documents →
