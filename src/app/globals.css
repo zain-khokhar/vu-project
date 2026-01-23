@@ -140,25 +140,32 @@ h3 {
   font-weight: 600 !important;
 }
 
+.wraper {}
 
-
-/* Table base */
-table {
-  width: 100% !important;
-  border-collapse: collapse !important;
-  /* border: none !important;` */
+/* global.css */
+.prose table {
+  display: inline-block;
+  /* make table scrollable */
+  /* width: max-content;   table keeps its natural width */
+  min-width: 100%;
+  /* prevents shrinking too small */
+  overflow-x: auto;
+  scrollbar-width: thin;
+  font-size: 0.75rem; 
+  /* enable horizontal scroll */
 }
 
-/* Table header */
-th {
-  /* border: none !important; */
-  padding: 4px !important;
-  /* tight padding */
-  text-align: left !important;
+.prose th,
+.prose td {
+  font-size: 0.75rem; 
+  white-space: nowrap;
+  /* prevent cell text from wrapping */
 }
-
-/* Table body cells */
-td {
-  border: none !important;
-  padding: 4px !important;
+.prose td p{
+  margin: 8px;
+}
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }

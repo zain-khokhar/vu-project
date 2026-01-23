@@ -31,9 +31,8 @@ function DocumentsLoading() {
 
 // Server component for documents content
 async function DocumentsContent({ searchParams }) {
-  // Await searchParams as required by Next.js 15
   const params = await searchParams;
-  const page = parseInt(params?.page) || 1;
+  const page = 1; // Always page 1 for main /documents route
   const search = params?.search || '';
   const type = params?.type || '';
   const subject = params?.subject || '';
@@ -53,8 +52,21 @@ async function DocumentsContent({ searchParams }) {
     ? filterOptionsResult.filters
     : { subjects: [], universities: [], years: [] };
 
+  // Build base URL with filters for pagination
+  const buildBaseUrl = () => {
+    const params = new URLSearchParams();
+    if (search) params.set('search', search);
+    if (type) params.set('type', type);
+    if (subject) params.set('subject', subject);
+    if (university) params.set('university', university);
+    if (year) params.set('year', year);
+
+    const queryString = params.toString();
+    return queryString ? `/documents?${queryString}` : '/documents';
+  };
+
   return (
-    <div className="overflow-hidden relative min-h-screen">
+    <div className=" relative min-h-screen">
       {/* JSON-LD Structured Data */}
       <script
         type="application/ld+json"
@@ -88,38 +100,37 @@ async function DocumentsContent({ searchParams }) {
         }}
       />
 
-      {/* Premium Liquid Background */}
-
-
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-12">
-        <div className="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto">
-          <div className="mb-12">
-            {/* Premium Badge */}
-            <div className="mb-6">
-              <div className="relative bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden inline-block group">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <span className="relative text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent tracking-wide">PREMIUM CONTENT</span>
+      {/* Hero Section - Only on page 1 without filters */}
+      {!search && !type && !subject && !university && !year && (
+        <section className="relative pt-32 pb-12">
+          <div className="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto">
+            <div className="mb-12">
+              {/* Premium Badge */}
+              <div className="mb-6">
+                <div className="relative bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden inline-block group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <span className="relative text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent tracking-wide">PREMIUM CONTENT</span>
+                </div>
               </div>
+
+              {/* Heading */}
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 leading-tight tracking-tight mb-6 lg:mb-4">
+                <span className="block bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
+                  Educational Documents
+                </span>
+                <span className="block xl:inline bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  Library
+                </span>
+              </h1>
+
+              {/* Subheading */}
+              <p className="text-lg text-gray-700 max-w-2xl mx-auto font-light leading-relaxed lg:-mt-16">
+                Access thousands of free educational documents including books, notes, handouts, past papers, and study materials shared by students worldwide.
+              </p>
             </div>
-
-            {/* Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 leading-tight tracking-tight mb-6 lg:mb-4">
-              <span className="block bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
-                Educational Documents
-              </span>
-              <span className="block xl:inline bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Library
-              </span>
-            </h1>
-
-            {/* Subheading */}
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto font-light leading-relaxed lg:-mt-16">
-              Access thousands of free educational documents including books, notes, handouts, past papers, and study materials shared by students worldwide.
-            </p>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Search and Filters */}
       <SearchFilters filterOptions={filterOptions} />
@@ -131,10 +142,10 @@ async function DocumentsContent({ searchParams }) {
             {/* Section Heading */}
             <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl !font-light text-gray-900 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-2">
-                Available Documents
+                {search ? `Search Results for "${search}"` : 'Available Documents'}
               </h2>
               <p className="text-gray-600 font-light">
-                Browse our collection of educational materials
+                {pagination?.totalCount ? `${pagination.totalCount} documents found` : 'Browse our collection of educational materials'}
               </p>
             </div>
 
@@ -149,7 +160,7 @@ async function DocumentsContent({ searchParams }) {
             </div>
 
             {/* Pagination */}
-            {pagination && <Pagination pagination={pagination} />}
+            {pagination && <Pagination pagination={pagination} baseUrl={buildBaseUrl()} />}
 
             {/* Document Request Form */}
             <div className="mt-12">
@@ -187,87 +198,7 @@ export default function DocumentsPage({ searchParams }) {
   );
 }
 
-// Generate static params for popular document types
-export async function generateStaticParams() {
-  // Pre-generate static pages for common document types and filters
-  const staticParams = [
-    {},
-    { type: 'book' },
-    { type: 'notes' },
-    { type: 'handout' },
-    { type: 'pastpaper' },
-    { type: 'assignment' },
-    { type: 'exam' },
-    { type: 'mcqs' },
-    { type: 'syllabus' },
-  ];
-
-  return staticParams;
-}
-
-// Generate dynamic metadata based on search params
-export async function generateMetadata({ searchParams }) {
-  const params = await searchParams;
-  const search = params?.search || '';
-  const type = params?.type || '';
-  const subject = params?.subject || '';
-  const university = params?.university || '';
-  const year = params?.year || '';
-  const page = parseInt(params?.page) || 1;
-
-  // Build dynamic title and description
-  let title = 'Browse Educational Documents';
-  let description = 'Browse our comprehensive collection of free educational documents including books, notes, handouts, past papers, and study materials.';
-  const keywords = ['educational documents', 'study materials', 'free documents', 'student resources'];
-
-  if (search) {
-    title = `Search Results for "${search}" - Vuedu`;
-    description = `Find educational documents matching "${search}". Browse books, notes, handouts, and more.`;
-    keywords.push(search, `${search} documents`, `${search} study material`);
-  } else if (type) {
-    const typeLabel = type.charAt(0).toUpperCase() + type.slice(1).replace(/-/g, ' ');
-    title = `${typeLabel} - Educational Documents | Vuedu`;
-    description = `Browse our collection of free ${typeLabel.toLowerCase()}. High-quality educational resources for students.`;
-    keywords.push(type, `${type} documents`, `free ${type}`);
-  }
-
-  if (subject) {
-    title = `${subject} ${type ? type.charAt(0).toUpperCase() + type.slice(1) : 'Documents'} - Vuedu`;
-    description = `Free ${subject} ${type || 'educational materials'}. Comprehensive study resources for ${subject}.`;
-    keywords.push(subject, `${subject} documents`, `${subject} study material`);
-  }
-
-  if (university) {
-    title = `${university} ${subject || 'Documents'} - Vuedu`;
-    description = `Educational materials from ${university}. ${subject ? `${subject} resources` : 'Study materials'} shared by students.`;
-    keywords.push(university, `${university} documents`);
-  }
-
-  if (year) {
-    keywords.push(`${year} documents`, year);
-  }
-
-  if (page > 1) {
-    title = `${title} - Page ${page}`;
-    description = `${description} - Page ${page}`;
-  }
-
-  return generateDocumentMetadata({
-    title,
-    description,
-    keywords,
-    url: '/documents',
-    canonical: page > 1 ? `/documents?page=${page}` : '/documents',
-    type: 'website',
-    images: [
-      {
-        url: '/og-documents.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Vuedu - Educational Documents',
-      },
-    ],
-  });
-}
-
-export const dynamic = 'force-static';
+// Use dynamic rendering when search params are present (filters applied)
+// Otherwise use static generation for better performance
+export const dynamic = 'auto';
+export const revalidate = 3600; // Revalidate every hour

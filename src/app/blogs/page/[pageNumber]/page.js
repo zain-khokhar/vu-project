@@ -1,0 +1,296 @@
+import Link from 'next/link';
+import { FileText } from 'lucide-react';
+import { getBlogs } from '@/actions/blogs';
+import BlogCard from '@/components/BlogCard';
+import Pagination from '@/components/Pagination';
+import FeaturedPosts from '@/components/FeaturedPosts';
+import {
+    generateDocumentMetadata,
+    generateDocumentStructuredData,
+    generateWebsiteStructuredData,
+} from '@/lib/seo-utils';
+
+export default async function BlogsPageNumber({ params }) {
+    const { pageNumber } = await params;
+    const page = parseInt(pageNumber) || 1;
+    const result = await getBlogs(page, 12);
+
+    const { blogs = [], pagination = {} } = result.success
+        ? result
+        : { blogs: [], pagination: {} };
+
+    // Enhance the pagination object with hasPrev and hasNext flags
+    const enhancedPagination = pagination ? {
+        ...pagination,
+        hasPrev: pagination.currentPage > 1,
+        hasNext: pagination.hasMore || pagination.currentPage < pagination.totalPages
+    } : {};
+
+    // Add category for each blog if it doesn't exist
+    const enhancedBlogs = blogs.map(blog => ({
+        ...blog,
+        tags: blog.tags || ['General'],
+    }));
+
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white/80 to-blue-50/30 overflow-hidden relative">
+            {/* JSON-LD Structured Data */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify([
+                        generateWebsiteStructuredData(),
+                        generateDocumentStructuredData({
+                            type: 'Blog',
+                            name: 'Vuedu Blog',
+                            description: 'Educational articles, tutorials, and insights for students and learners',
+                            url: '/blogs',
+                            breadcrumbs: [
+                                { name: 'Home', url: '/' },
+                                { name: 'Blogs', url: '/blogs' },
+                            ],
+                            items: enhancedBlogs.slice(0, 13).map(blog => ({
+                                title: blog.title,
+                                description: blog.excerpt || blog.description,
+                                url: `/blogs/${blog.slug}`,
+                                type: 'BlogPosting',
+                                subject: blog.tags?.[0] || 'Education',
+                            })),
+                            totalItems: pagination?.totalCount || enhancedBlogs.length,
+                            dateModified: enhancedBlogs[0]?.updatedAt || new Date().toISOString(),
+                        }),
+                    ]),
+                }}
+            />
+
+            {/* Premium Liquid Background */}
+            <div className="fixed inset-0 -z-10">
+                {/* Base gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/20 to-purple-50/30"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-400/20 to-purple-400/20 opacity-40"></div>
+
+                {/* Liquid orbs */}
+                <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-purple-400/20 via-pink-300/10 to-transparent rounded-full filter blur-3xl opacity-60"></div>
+                <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-blue-400/20 via-cyan-300/10 to-transparent rounded-full filter blur-3xl opacity-60"></div>
+                <div className="absolute top-1/3 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/10 via-blue-300/10 to-purple-300/10 rounded-full filter blur-3xl transform -translate-x-1/2 opacity-60"></div>
+            </div>
+
+            {/* Hero Section - Only show on first page */}
+            {page === 1 && (
+                <section className="relative pt-32 pb-12 ">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            {/* Left Side Content */}
+                            <div className="space-y-6">
+                                {/* Premium Badge */}
+                                <div className="inline-block group">
+                                    <div className="relative backdrop-blur-3xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden">
+                                        <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 via-blue-400/20 to-pink-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                        <span className="relative text-xs font-medium bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent tracking-wide">COMMUNITY KNOWLEDGE</span>
+                                    </div>
+                                </div>
+
+                                {/* Main Heading */}
+                                <div className="space-y-3">
+                                    <h1 className="text-5xl md:text-6xl lg:text-6xl font-light text-gray-900 leading-tight tracking-tight">
+                                        <span className="block bg-gradient-to-r from-gray-900 via-purple-800 to-pink-800 bg-clip-text text-transparent">
+                                            Explore Our
+                                        </span>
+                                        <span className="block bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent  ">
+                                            Blog Collection
+                                        </span>
+                                    </h1>
+                                    <div className="w-24 h-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full  "></div>
+                                </div>
+
+                                {/* Subheading */}
+                                <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl font-normal">
+                                    Discover insightful articles, tutorials, and knowledge shared by our community. Learn from experts and grow your skills.
+                                </p>
+
+                                {/* CTA Button */}
+                                <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                                    <Link
+                                        href="#first"
+                                        className="group relative px-6 py-3 bg-gradient-to-r from-purple-500/80 via-purple-600/70 to-pink-600/80 text-white font-medium text-sm rounded-xl overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/30 hover:scale-105 active:scale-95 w-fit"
+                                    >
+                                        <div className="absolute inset-0 bg-gradient-to-r from-white/15 via-transparent to-white/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -skew-x-12 group-hover:skew-x-0"></div>
+                                        <div className="relative flex items-center justify-center space-x-2">
+                                            <FileText className="h-4 w-4 text-pink-200 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
+                                            <span>Explore Blogs</span>
+                                        </div>
+                                    </Link>
+                                </div>
+                            </div>
+
+                            {/* Right Side - Vector Sketch Elements */}
+                            <div className="relative h-[500px] hidden lg:block">
+                                {/* Floating Vector Elements */}
+                                <div className="absolute inset-0 pointer-events-none">
+                                    {/* Badge - Top Right */}
+                                    <div className="absolute top-0 right-0 w-40 h-14 backdrop-blur-xl bg-gradient-to-r from-purple-100/50 via-white/40 to-pink-100/50 border-2 border-white/70 rounded-full shadow-xl p-3  ">
+                                        <div className="flex items-center justify-between h-full">
+                                            <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400"></div>
+                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
+                                            <div className="w-2 h-2 rounded-full bg-gradient-to-r from-pink-400 to-purple-400"></div>
+                                        </div>
+                                    </div>
+
+                                    {/* Half Badge - Top Right (Semi-circle) */}
+                                    <div className="absolute top-20 right-12 w-32 h-16 backdrop-blur-xl bg-gradient-to-b from-blue-100/50 to-transparent border-l-2 border-b-2 border-white/70 rounded-bl-3xl shadow-lg p-3 animate-bounce" style={{ animationDuration: '4s' }}>
+                                        <div className="space-y-1">
+                                            <div className="w-3/4 h-1.5 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"></div>
+                                            <div className="w-1/2 h-1 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full"></div>
+                                        </div>
+                                    </div>
+
+                                    {/* Full Circle - Right Side Middle */}
+                                    <div className="absolute top-1/3 right-4 w-24 h-24 backdrop-blur-xl bg-gradient-to-br from-pink-100/50 to-purple-100/50 border-2 border-white/70 rounded-full shadow-xl animate-spin" style={{ animationDuration: '20s' }}>
+                                        <div className="w-full h-full flex items-center justify-center">
+                                            <div className="w-14 h-14 bg-gradient-to-br from-pink-400/60 to-purple-400/60 rounded-full"></div>
+                                        </div>
+                                    </div>
+
+                                    {/* Rectangle with rounded corners - Left Center */}
+                                    <div className="absolute top-2/3 left-0 w-36 h-20 backdrop-blur-xl bg-gradient-to-br from-indigo-100/50 via-white/40 to-blue-100/50 border-2 border-white/70 rounded-3xl shadow-lg p-3 hover:scale-105 transition-transform duration-500">
+                                        <div className="space-y-2">
+                                            <div className="w-full h-2 bg-gradient-to-r from-indigo-400 to-blue-400 rounded-full"></div>
+                                            <div className="w-4/5 h-1.5 bg-gradient-to-r from-indigo-300 to-blue-300 rounded-full"></div>
+                                            <div className="w-3/5 h-1.5 bg-gradient-to-r from-indigo-300 to-blue-300 rounded-full"></div>
+                                        </div>
+                                    </div>
+
+                                    {/* Vector Card 1 - Top Center */}
+                                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-40 backdrop-blur-xl bg-gradient-to-br from-purple-100/40 via-white/30 to-purple-50/40 border-2 border-white/70 rounded-3xl shadow-xl p-4 hover:shadow-2xl transition-all duration-500 hover:scale-105  ">
+                                        <div className="space-y-2">
+                                            <div className="w-full h-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
+                                            <div className="w-4/5 h-2 bg-gradient-to-r from-blue-300 to-purple-300 rounded-full"></div>
+                                            <div className="w-3/5 h-2 bg-gradient-to-r from-purple-300 to-pink-300 rounded-full"></div>
+                                        </div>
+                                    </div>
+
+                                    {/* Additional decorative elements... */}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* Featured Posts Section - Only on first page */}
+            {page === 1 && enhancedBlogs.length > 0 && (
+                <section className="relative py-12 !px-4 !sm:px-6 !lg:px-12" id='first'>
+                    <FeaturedPosts blogs={enhancedBlogs} />
+                </section>
+            )}
+
+            {/* Latest Posts Section */}
+            <section className="relative py-20 overflow-hidden">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    {/* Header with Liquid Badge */}
+                    <div className="flex items-center justify-between mb-12">
+                        <div>
+                            <div className="inline-block mb-4 group">
+                                <div className="backdrop-blur-3xl bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-4 py-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                                    <span className="text-xs font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent tracking-wide">
+                                        {page === 1 ? 'LATEST POSTS' : `PAGE ${page}`}
+                                    </span>
+                                </div>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl !font-light text-gray-900 mb-2 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
+                                {page === 1 ? 'Latest Blog Posts' : `Blog Posts - Page ${page}`}
+                            </h2>
+                            <p className="text-lg text-gray-700 !font-light">
+                                {page === 1 ? 'Stay updated with the newest articles and insights' : `Showing page ${page} of ${pagination.totalPages}`}
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Content */}
+                    <>
+                        {/* Blog Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {(page === 1 ? blogs.slice(3) : blogs).map((blog) => (
+                                <div key={blog._id} className="group  overflow-hidden">
+                                    <div className="relative">
+                                        <BlogCard blog={blog} />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Pagination */}
+                        <div className="mt-16 flex justify-center">
+                            <Pagination
+                                pagination={enhancedPagination}
+                                baseUrl="/blogs"
+                            />
+                        </div>
+                    </>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+// Generate static params for all blog pages
+export async function generateStaticParams() {
+    const result = await getBlogs(1, 12);
+
+    if (!result.success || !result.pagination) {
+        return [{ pageNumber: '1' }];
+    }
+
+    const { totalPages } = result.pagination;
+
+    // Generate params for all pages
+    return Array.from({ length: totalPages }, (_, i) => ({
+        pageNumber: String(i + 1)
+    }));
+}
+
+// Generate dynamic metadata
+export async function generateMetadata({ params }) {
+    const { pageNumber } = await params;
+    const page = parseInt(pageNumber) || 1;
+
+    let title = 'Educational Blogs & Articles - Vuedu';
+    let description = 'Read the latest educational articles, tutorials, study tips, and insights from experts. Learn about programming, data structures, web development, and more.';
+    const keywords = [
+        'educational blogs',
+        'programming tutorials',
+        'study tips',
+        'computer science articles',
+        'web development',
+        'data structures',
+        'algorithms',
+        'student resources',
+        'learning materials',
+        'tech education',
+    ];
+
+    if (page > 1) {
+        title = `Educational Blogs & Articles - Page ${page} | Vuedu`;
+        description = `Browse educational articles and tutorials - Page ${page}. Expert insights on programming, computer science, and study strategies.`;
+    }
+
+    return generateDocumentMetadata({
+        title,
+        description,
+        keywords,
+        url: '/blogs',
+        canonical: page > 1 ? `/blogs/page/${page}` : '/blogs',
+        type: 'website',
+        images: [
+            {
+                url: '/og-blogs.jpg',
+                width: 1200,
+                height: 630,
+                alt: 'Vuedu Blog - Educational Articles & Tutorials',
+            },
+        ],
+    });
+}
+
+export const dynamic = 'force-static';
+export const revalidate = false; // Never revalidate automatically

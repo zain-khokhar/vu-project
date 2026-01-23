@@ -14,7 +14,7 @@ export default function BlogCard({ blog }) {
     : blog.title;
 
   return (
-    <Link href={`/blogs/${blog.slug}`}>
+    <Link href={`/blogs/${blog.slug}`} prefetch={false}>
       <div className="group h-full flex border border-gray-200 flex-col rounded-3xl overflow-hidden  bg-white/80 bg-clip-padding cursor-pointer">
 
         <div className={`relative `}>

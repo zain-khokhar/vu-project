@@ -218,10 +218,10 @@ export default async function BlogPostPage({ params }) {
             {/* Article Content - Spans 8 columns on large screens */}
             <div className="lg:col-span-8">
               <article
-                className="prose xl:prose-lg prose-a:text-purple-500 prose-a:hover:text-purple-600 max-w-none prose-img:rounded-xl " itemScope
+                className="" itemScope
                 itemType="https://schema.org/BlogPosting"
               >
-                <div className="py-4 sm:py-6">
+                <div className="py-4 sm:py-6 overflow-hidden">
 
                   <meta itemProp="image" content={coverImageData.url} />
                   <meta itemProp="author" content={blog.author?.name || 'Vuedu'} />
@@ -233,7 +233,9 @@ export default async function BlogPostPage({ params }) {
                   <section
                     itemProp="articleBody"
                     dangerouslySetInnerHTML={{ __html: processedContent }}
-                    className="blog-content"
+                    className="prose xl:prose-lg max-w-none
+            prose-table:max-w-full
+            prose-td:py-0 prose-td:px-2 prose-a:hover:text-purple-600 prose-img:rounded-xl"
                   />
 
                 </div>

@@ -38,50 +38,17 @@ export const metadata = {
   },
 };
 
+export default async function QuizPage({ searchParams }) {
+  const page = 1; // Always page 1 for main /quiz route
 
-async function getAvailableQuizzes() {
-  try {
-    const dataDirectory = path.join(process.cwd(), 'src');
-    const files = await fs.readdir(dataDirectory);
-    const jsonFiles = files.filter(file => file.endsWith('.json') && !file.includes('package'));
-
-    const quizzes = await Promise.all(
-      jsonFiles.map(async (file) => {
-        const filePath = path.join(dataDirectory, file);
-        const fileContents = await fs.readFile(filePath, 'utf8');
-        const questions = JSON.parse(fileContents);
-
-        const name = file.replace('.json', '');
-        const displayName = name.charAt(0).toUpperCase() + name.slice(1);
-
-        return {
-          id: name,
-          name: displayName,
-          questionsCount: questions.length,
-          icon: getIconForCategory(name),
-          color: getColorForCategory(name),
-        };
-      })
-    );
-
-    return quizzes;
-  } catch (error) {
-    console.error('Error reading quiz files:', error);
-    return [];
-  }
-}
-
-export default async function QuizHomePage({ searchParams }) {
-  const params = await searchParams;
-  const page = parseInt(params?.page) || 1;
-  const search = params?.search || '';
-  const category = params?.category || '';
+  const urlParams = await searchParams;
+  const search = urlParams?.search || '';
+  const category = urlParams?.category || '';
 
   const [quizzesResult, filterOptionsResult] = await Promise.all([
     getQuizzes({ page, limit: 12, search, category }),
     getQuizFilterOptions()
   ]);
-
 
   const { quizzes, pagination } = quizzesResult.success
     ? quizzesResult
@@ -90,6 +57,16 @@ export default async function QuizHomePage({ searchParams }) {
   const { categories } = filterOptionsResult.success
     ? filterOptionsResult
     : { categories: [] };
+
+  // Build base URL with filters for pagination
+  const buildBaseUrl = () => {
+    const params = new URLSearchParams();
+    if (search) params.set('search', search);
+    if (category) params.set('category', category);
+
+    const queryString = params.toString();
+    return queryString ? `/quiz?${queryString}` : '/quiz';
+  };
 
   // Generate JSON-LD schemas
   const faqSchema = generateFAQSchema();
@@ -112,13 +89,14 @@ export default async function QuizHomePage({ searchParams }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
       />
 
-      <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden relative" role="main">
-        <div className="relative z-10 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-          {/* Hero Section */}
-          <header className="mb-16" aria-labelledby="page-title">
+      <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative" role="main">
+        {/* <div className="relative z-10 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8"> */}
+        {/* Hero Section - Only without filters */}
+        {!search && !category && (
+          <header className="mb-16 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="page-title">
             {/* Premium Badge */}
             <div className="mb-6">
-              <span className="relative bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl overflow-hidden inline-block" aria-label="Interactive Learning Platform">
+              <span className="relative bg-gradient-to-r from-white/60 via-white/40 to-white/60 border border-white/80 rounded-full px-6 py-3 shadow-2xl inline-block" aria-label="Interactive Learning Platform">
                 <span className="relative sm:text-sm text-xs font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-wide">INTERACTIVE LEARNING</span>
               </span>
             </div>
@@ -138,78 +116,79 @@ export default async function QuizHomePage({ searchParams }) {
               Test your knowledge with our interactive quizzes. Choose a category and challenge yourself with engaging questions!
             </p>
           </header>
+        )}
 
-          {/* Search and Filters */}
-          <search className="mb-12" role="search" aria-label="Search and filter quizzes">
-            <SearchFilters
-              filterOptions={{
-                categories: categories
-              }}
-              baseUrl="/quiz"
-              searchPlaceholder="Search quizzes by title or course code..."
-              searchLabel="Search quizzes by title or course code"
-              searchHelpText="💡 Tip: Search by quiz title or course code (e.g., CS101, MTH202). Use the category filter to narrow down results."
-              showTypeFilter={false}
-              showSubjectFilter={false}
-              showUniversityFilter={false}
-              showYearFilter={false}
-              showCategoryFilter={true}
-              categoryLabel="Category"
-            />
-          </search>
+        <SearchFilters
+          filterOptions={{
+            categories: categories
+          }}
+          baseUrl="/quiz"
+          searchPlaceholder="Search quizzes by title or course code (e.g., CS101, MTH202)"
+          searchLabel="Search quizzes by title or course code (e.g., CS101, ENG101)"
+          // searchHelpText="💡 Tip: Search by quiz title or course code (e.g., CS101, MTH202). Use the category filter to narrow down results."
+          showTypeFilter={false}
+          showSubjectFilter={false}
+          showUniversityFilter={false}
+          showYearFilter={false}
+          showCategoryFilter={true}
+          categoryLabel="Category"
+        />
 
-          {/* Quiz Cards */}
-          {quizzes.length > 0 ? (
-            <section aria-labelledby="quizzes-heading">
-              {/* Section Heading */}
-              <header className="text-center mb-8">
-                <h2 id="quizzes-heading" className="text-3xl md:text-4xl !font-light text-gray-900 bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent mb-2">
-                  Available Quizzes
-                </h2>
-                <p className="text-gray-600 font-light">
-                  Choose a subject to test your knowledge
-                </p>
-              </header>
-
-              <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 list-none p-0" role="list" aria-label="Quiz list">
-                {quizzes.map((quiz) => (
-                  <li key={quiz.id}>
-                    <QuizCard quiz={quiz} />
-                  </li>
-                ))}
-              </ul>
-
-              {/* Pagination */}
-              {pagination && pagination.totalPages > 1 && (
-                <nav className="mt-8" aria-label="Quiz pagination">
-                  <Pagination
-                    pagination={pagination}
-                    baseUrl="/quiz"
-                  />
-                </nav>
-              )}
-            </section>
-          ) : (
-            <section className="bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center max-w-md mx-auto mb-16" aria-labelledby="no-quizzes-heading" role="status">
-              <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" aria-hidden="true" />
-              <h2 id="no-quizzes-heading" className="text-2xl font-light text-gray-900 mb-2">
-                No Quizzes Available
+        {/* Quiz Cards */}
+        {quizzes.length > 0 ? (
+          <section aria-labelledby="quizzes-heading" className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            {/* Section Heading */}
+            <header className="text-center mb-8">
+              <h2 id="quizzes-heading" className="text-3xl md:text-4xl !font-light text-gray-900 bg-gradient-to-r from-gray-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent mb-2">
+                {search ? `Search Results for "${search}"` : 'Available Quizzes'}
               </h2>
-              <p className="text-gray-700 font-light">
-                Please add quiz JSON files to the /data folder.
+              <p className="text-gray-600 font-light">
+                {pagination?.totalCount ? `${pagination.totalCount} quizzes found` : 'Choose a subject to test your knowledge'}
               </p>
-            </section>
-          )}
+            </header>
 
-          {/* CTA Section */}
-          <QuizCTA />
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 list-none p-0" role="list" aria-label="Quiz list">
+              {quizzes.map((quiz) => (
+                <li key={quiz.id}>
+                  <QuizCard quiz={quiz} />
+                </li>
+              ))}
+            </ul>
 
-          {/* FAQ Section */}
-          <QuizFAQ />
-        </div>
+            {/* Pagination */}
+            {pagination && pagination.totalPages > 1 && (
+              <nav className="mt-8" aria-label="Quiz pagination">
+                <Pagination
+                  pagination={pagination}
+                  baseUrl={buildBaseUrl()}
+                />
+              </nav>
+            )}
+          </section>
+        ) : (
+          <section className="bg-gradient-to-br from-white/70 via-white/60 to-white/50 border border-white/90 rounded-3xl p-12 shadow-2xl text-center max-w-md mx-auto mb-16" aria-labelledby="no-quizzes-heading" role="status">
+            <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" aria-hidden="true" />
+            <h2 id="no-quizzes-heading" className="text-2xl font-light text-gray-900 mb-2">
+              No Quizzes Available
+            </h2>
+            <p className="text-gray-700 font-light">
+              {search || category ? 'Try adjusting your search criteria or filters' : 'Please add quiz JSON files to the /data folder.'}
+            </p>
+          </section>
+        )}
+
+        {/* CTA Section */}
+        <QuizCTA />
+
+        {/* FAQ Section */}
+        <QuizFAQ />
+        {/* </div> */}
       </main>
     </>
   );
 }
 
-export const dynamic = 'force-static';
+// Use dynamic rendering when search params are present (filters applied)
+// Otherwise use static generation for better performance
+export const dynamic = 'auto';
+export const revalidate = 3600; // Revalidate every hour

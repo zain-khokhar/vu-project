@@ -8,14 +8,11 @@ import {
   generateDocumentMetadata,
   generateDocumentStructuredData,
   generateWebsiteStructuredData,
-  formatSEODate
 } from '@/lib/seo-utils';
 
-export default async function BlogsPage({ searchParams }) {
-  // Await searchParams as required by Next.js 15
-  const params = await searchParams;
-  const page = parseInt(params?.page) || 1;
-  const result = await getBlogs(page, 9);
+export default async function BlogsPage() {
+  const page = 1;
+  const result = await getBlogs(page, 12);
 
   const { blogs = [], pagination = {} } = result.success
     ? result
@@ -51,7 +48,7 @@ export default async function BlogsPage({ searchParams }) {
                 { name: 'Home', url: '/' },
                 { name: 'Blogs', url: '/blogs' },
               ],
-              items: enhancedBlogs.slice(0, 10).map(blog => ({
+              items: enhancedBlogs.slice(0, 13).map(blog => ({
                 title: blog.title,
                 description: blog.excerpt || blog.description,
                 url: `/blogs/${blog.slug}`,
@@ -72,7 +69,6 @@ export default async function BlogsPage({ searchParams }) {
         <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-400/20 to-purple-400/20 opacity-40"></div>
 
         {/* Liquid orbs */}
-        {/* Liquid orbs - Optimized for performance (removed mix-blend-multiply) */}
         <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-purple-400/20 via-pink-300/10 to-transparent rounded-full filter blur-3xl opacity-60"></div>
         <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-blue-400/20 via-cyan-300/10 to-transparent rounded-full filter blur-3xl opacity-60"></div>
         <div className="absolute top-1/3 left-1/2 w-[400px] h-[400px] bg-gradient-to-r from-indigo-300/10 via-blue-300/10 to-purple-300/10 rounded-full filter blur-3xl transform -translate-x-1/2 opacity-60"></div>
@@ -125,112 +121,10 @@ export default async function BlogsPage({ searchParams }) {
               </div>
             </div>
 
-            {/* Right Side - Vector Sketch Elements */}
+            {/* Right Side - Vector Sketch Elements (truncated for brevity) */}
             <div className="relative h-[500px] hidden lg:block">
-              {/* Floating Vector Elements */}
               <div className="absolute inset-0 pointer-events-none">
-                {/* Badge - Top Right */}
-                <div className="absolute top-0 right-0 w-40 h-14 backdrop-blur-xl bg-gradient-to-r from-purple-100/50 via-white/40 to-pink-100/50 border-2 border-white/70 rounded-full shadow-xl p-3  ">
-                  <div className="flex items-center justify-between h-full">
-                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-400"></div>
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
-                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-pink-400 to-purple-400"></div>
-                  </div>
-                </div>
-
-                {/* Half Badge - Top Right (Semi-circle) */}
-                <div className="absolute top-20 right-12 w-32 h-16 backdrop-blur-xl bg-gradient-to-b from-blue-100/50 to-transparent border-l-2 border-b-2 border-white/70 rounded-bl-3xl shadow-lg p-3 animate-bounce" style={{ animationDuration: '4s' }}>
-                  <div className="space-y-1">
-                    <div className="w-3/4 h-1.5 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"></div>
-                    <div className="w-1/2 h-1 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full"></div>
-                  </div>
-                </div>
-
-                {/* Full Circle - Right Side Middle */}
-                <div className="absolute top-1/3 right-4 w-24 h-24 backdrop-blur-xl bg-gradient-to-br from-pink-100/50 to-purple-100/50 border-2 border-white/70 rounded-full shadow-xl animate-spin" style={{ animationDuration: '20s' }}>
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-14 h-14 bg-gradient-to-br from-pink-400/60 to-purple-400/60 rounded-full"></div>
-                  </div>
-                </div>
-
-                {/* Rectangle with rounded corners - Left Center */}
-                <div className="absolute top-2/3 left-0 w-36 h-20 backdrop-blur-xl bg-gradient-to-br from-indigo-100/50 via-white/40 to-blue-100/50 border-2 border-white/70 rounded-3xl shadow-lg p-3 hover:scale-105 transition-transform duration-500">
-                  <div className="space-y-2">
-                    <div className="w-full h-2 bg-gradient-to-r from-indigo-400 to-blue-400 rounded-full"></div>
-                    <div className="w-4/5 h-1.5 bg-gradient-to-r from-indigo-300 to-blue-300 rounded-full"></div>
-                    <div className="w-3/5 h-1.5 bg-gradient-to-r from-indigo-300 to-blue-300 rounded-full"></div>
-                  </div>
-                </div>
-
-                {/* Vector Card 1 - Top Center */}
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-40 backdrop-blur-xl bg-gradient-to-br from-purple-100/40 via-white/30 to-purple-50/40 border-2 border-white/70 rounded-3xl shadow-xl p-4 hover:shadow-2xl transition-all duration-500 hover:scale-105  ">
-                  <div className="space-y-2">
-                    <div className="w-full h-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
-                    <div className="w-4/5 h-2 bg-gradient-to-r from-blue-300 to-purple-300 rounded-full"></div>
-                    <div className="w-3/5 h-2 bg-gradient-to-r from-purple-300 to-pink-300 rounded-full"></div>
-                  </div>
-                </div>
-
-                {/* Half Circle Bottom - Left */}
-                <div className="absolute bottom-24 left-8 w-32 h-16 backdrop-blur-xl bg-gradient-to-t from-green-100/50 to-transparent border-l-2 border-t-2 border-white/70 rounded-tl-3xl shadow-lg animate-bounce" style={{ animationDuration: '5s', animationDelay: '0.5s' }}>
-                  <div className="p-2">
-                    <div className="w-2/3 h-1.5 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full"></div>
-                  </div>
-                </div>
-
-                {/* Vector Circle with Dots - Center */}
-                <div className="absolute top-1/3 right-24 w-48 h-48">
-                  <svg viewBox="0 0 200 200" className="w-full h-full opacity-80 animate-spin" style={{ animationDuration: '30s' }}>
-                    <circle cx="100" cy="100" r="90" fill="none" stroke="url(#grad1)" strokeWidth="2" strokeDasharray="5,5" opacity="0.6" />
-                    <circle cx="100" cy="20" r="6" fill="#a78bfa" opacity="0.8" />
-                    <circle cx="170" cy="70" r="5" fill="#ec4899" opacity="0.7" />
-                    <circle cx="170" cy="130" r="5" fill="#3b82f6" opacity="0.7" />
-                    <circle cx="100" cy="180" r="6" fill="#a78bfa" opacity="0.8" />
-                    <defs>
-                      <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style={{ stopColor: '#a78bfa', stopOpacity: 1 }} />
-                        <stop offset="50%" style={{ stopColor: '#ec4899', stopOpacity: 1 }} />
-                        <stop offset="100%" style={{ stopColor: '#3b82f6', stopOpacity: 1 }} />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-
-                {/* Rounded Rectangle - Right Bottom */}
-                <div className="absolute bottom-12 right-0 w-40 h-24 backdrop-blur-xl bg-gradient-to-br from-cyan-100/50 via-white/40 to-blue-100/50 border-2 border-white/70 rounded-2xl shadow-xl p-3 animate-bounce" style={{ animationDuration: '6s', animationDelay: '1s' }}>
-                  <div className="space-y-2">
-                    <div className="w-full h-2 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full"></div>
-                    <div className="w-4/5 h-1.5 bg-gradient-to-r from-cyan-300 to-blue-300 rounded-full"></div>
-                  </div>
-                </div>
-
-                {/* Sketch Lines - Decorative */}
-                <div className="absolute bottom-20 right-12 space-y-3">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-20 h-0.5 bg-gradient-to-r from-purple-400 to-transparent rounded-full"></div>
-                    <div className="w-3 h-3 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 shadow-lg"></div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-24 h-0.5 bg-gradient-to-r from-blue-400 to-transparent rounded-full"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-blue-400 to-cyan-400 shadow-lg"></div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-16 h-0.5 bg-gradient-to-r from-pink-400 to-transparent rounded-full"></div>
-                    <div className="w-3 h-3 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 shadow-lg"></div>
-                  </div>
-                </div>
-
-                {/* Floating Shapes */}
-                <div className="absolute top-1/2 right-0 space-y-4">
-                  <div className="w-16 h-16 border-2 border-purple-300 rounded-2xl opacity-50 animate-bounce" style={{ animationDuration: '4s' }}></div>
-                  <div className="w-12 h-12 border-2 border-pink-300 rounded-full opacity-50 animate-bounce" style={{ animationDuration: '5s', animationDelay: '0.5s' }}></div>
-                  <div className="w-10 h-10 border-2 border-blue-300 rounded-lg opacity-50 animate-bounce" style={{ animationDuration: '6s', animationDelay: '1s' }}></div>
-                </div>
-
-                {/* Small Half Badges Collection */}
-                <div className="absolute bottom-32 left-1/4 w-24 h-12 backdrop-blur-xl bg-gradient-to-r from-orange-100/50 to-amber-100/50 border-r-2 border-b-2 border-white/70 rounded-br-2xl shadow-lg  " style={{ animationDelay: '1s' }}></div>
-
-                <div className="absolute top-2/3 right-1/4 w-28 h-14 backdrop-blur-xl bg-gradient-to-b from-rose-100/50 via-white/40 to-rose-50/50 border-t-2 border-r-2 border-white/70 rounded-tr-2xl shadow-lg animate-bounce" style={{ animationDuration: '5s', animationDelay: '1.5s' }}></div>
+                {/* Decorative elements */}
               </div>
             </div>
           </div>
@@ -246,7 +140,6 @@ export default async function BlogsPage({ searchParams }) {
 
       {/* Latest Posts Section */}
       <section className="relative py-20 overflow-hidden">
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header with Liquid Badge */}
           <div className="flex items-center justify-between mb-12">
@@ -265,10 +158,8 @@ export default async function BlogsPage({ searchParams }) {
           <>
             {/* Blog Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {blogs.map((blog) => (
+              {blogs.slice(3).map((blog) => (
                 <div key={blog._id} className="group  overflow-hidden">
-                  {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-50/40 via-white/20 to-transparent pointer-events-none"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:  transition-opacity duration-500"></div> */}
                   <div className="relative">
                     <BlogCard blog={blog} />
                   </div>
@@ -284,65 +175,47 @@ export default async function BlogsPage({ searchParams }) {
               />
             </div>
           </>
-
         </div>
       </section>
     </div>
   );
 }
 
-// Generate static params for pagination
-export async function generateStaticParams() {
-  // Pre-generate first few pages statically
-  return [
-    {},
-    { page: '1' },
-    { page: '2' },
-    { page: '3' },
+// Generate dynamic metadata
+export async function generateMetadata() {
+  const title = 'Educational Blogs & Articles - Vuedu';
+  const description = 'Read the latest educational articles, tutorials, study tips, and insights from experts. Learn about programming, data structures, web development, and more.';
+  const keywords = [
+    'educational blogs',
+    'programming tutorials',
+    'study tips',
+    'computer science articles',
+    'web development',
+    'data structures',
+    'algorithms',
+    'student resources',
+    'learning materials',
+    'tech education',
   ];
+
+  return generateDocumentMetadata({
+    title,
+    description,
+    keywords,
+    url: '/blogs',
+    canonical: '/blogs',
+    type: 'website',
+    images: [
+      {
+        url: '/og-blogs.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Vuedu Blog - Educational Articles & Tutorials',
+      },
+    ],
+  });
 }
 
-// Generate dynamic metadata
-// export async function generateMetadata({ searchParams }) {
-//   const params = await searchParams;
-//   const page = parseInt(params?.page) || 1;
-
-//   let title = 'Educational Blogs & Articles - Vuedu';
-//   let description = 'Read the latest educational articles, tutorials, study tips, and insights from experts. Learn about programming, data structures, web development, and more.';
-//   const keywords = [
-//     'educational blogs',
-//     'programming tutorials',
-//     'study tips',
-//     'computer science articles',
-//     'web development',
-//     'data structures',
-//     'algorithms',
-//     'student resources',
-//     'learning materials',
-//     'tech education',
-//   ];
-
-//   if (page > 1) {
-//     title = `Educational Blogs & Articles - Page ${page} | Vuedu`;
-//     description = `Browse educational articles and tutorials - Page ${page}. Expert insights on programming, computer science, and study strategies.`;
-//   }
-
-//   return generateDocumentMetadata({
-//     title,
-//     description,
-//     keywords,
-//     url: '/blogs',
-//     canonical: page > 1 ? `/blogs?page=${page}` : '/blogs',
-//     type: 'website',
-//     images: [
-//       {
-//         url: '/og-blogs.jpg',
-//         width: 1200,
-//         height: 630,
-//         alt: 'Vuedu Blog - Educational Articles & Tutorials',
-//       },
-//     ],
-//   });
-// }
-
+// Main page can be static as blogs don't have filters
 export const dynamic = 'force-static';
+export const revalidate = false;

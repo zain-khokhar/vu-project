@@ -57,6 +57,9 @@ export default function SearchFilters({
     startTransition(() => {
       router.push(`${baseUrl}${queryString ? `?${queryString}` : ''}`);
     });
+
+    // Auto-hide filters after selection on all screen sizes
+    setShowFilters(false);
   };
 
   const clearAllFilters = () => {
@@ -69,10 +72,11 @@ export default function SearchFilters({
   const hasActiveFilters = Object.values(currentFilters).some(filter => filter) || searchTerm;
 
   return (
-    <div className="sticky top-16 z-40 backdrop-blur-2xl py-6 border-b border-purple-200/40">
+    <div className="sticky top-16 z-40 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
         {/* Search Bar */}
-        <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
+        <form onSubmit={handleSearch} className="flex gap-2">
+          {/* Search Input with Icon */}
           <div className="relative flex-1">
             <Search
               className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none"
@@ -85,39 +89,62 @@ export default function SearchFilters({
               placeholder={searchPlaceholder}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white/90 border-2 border-gray-200/80 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 shadow-sm hover:shadow-md hover:border-gray-300/80"
+              className="w-full pl-12 pr-4 py-3 bg-white border-2 border-gray-200/80 rounded-3xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 shadow-sm hover:shadow-md hover:border-gray-300/80"
               aria-label={searchLabel}
               autoComplete="off"
             />
           </div>
-          <div className="flex gap-3 sm:gap-4">
+
+          {/* Search Button - Hidden on mobile, shown on desktop */}
+          <button
+            type="submit"
+            disabled={isPending}
+            className="hidden sm:flex group relative px-7 py-3 bg-purple-600 text-white font-semibold text-sm rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/40 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed items-center justify-center gap-2"
+            aria-label="Search"
+          >
+            <span>Search</span>
+          </button>
+
+          {/* Mobile: Search + Filter buttons */}
+          <div className="flex sm:hidden gap-2">
             <button
               type="submit"
               disabled={isPending}
-              className="flex-1 sm:flex-none group relative px-6 sm:px-7 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-purple-600 text-white font-semibold text-sm rounded-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/40 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed"
+              className="group relative p-3 bg-purple-600 text-white font-semibold text-sm rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/40 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
               aria-label="Search"
             >
-              <div className="relative flex items-center justify-center gap-2">
-                <Search className="h-4 w-4 sm:hidden" aria-hidden="true" />
-                <span>Search</span>
-              </div>
+              <Search className="h-5 w-5" aria-hidden="true" />
             </button>
             <button
               type="button"
               onClick={() => setShowFilters(!showFilters)}
-              className="flex-1 sm:flex-none group flex items-center justify-center sm:justify-start gap-2 px-4 sm:px-5 py-3 bg-white/90 text-gray-900 font-semibold text-sm rounded-xl border-2 border-gray-200/80 hover:border-purple-400/60 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105 active:scale-95"
+              className="group p-3 bg-white text-gray-900 font-semibold text-sm rounded-3xl border-2 border-gray-200/80 hover:border-purple-400/60 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 active:scale-95"
               aria-label={showFilters ? 'Hide filters' : 'Show filters'}
               aria-expanded={showFilters}
               aria-controls="filter-panel"
             >
               <Filter
-                className={`h-4 w-4 transition-all duration-300 ${showFilters ? 'rotate-180 text-purple-600' : 'group-hover:rotate-12 text-gray-700'}`}
+                className={`h-5 w-5 transition-all duration-300 ${showFilters ? 'rotate-180 text-purple-600' : 'text-gray-700'}`}
                 aria-hidden="true"
               />
-              <span className="hidden sm:inline">Filters</span>
-              <span className="sm:hidden">{showFilters ? 'Hide' : 'Filters'}</span>
             </button>
           </div>
+
+          {/* Desktop: Filter button */}
+          <button
+            type="button"
+            onClick={() => setShowFilters(!showFilters)}
+            className="hidden sm:flex group items-center justify-start gap-2 px-5 py-3 bg-white text-gray-900 font-semibold text-sm rounded-3xl border-2 border-gray-200/80 hover:border-purple-400/60 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105 active:scale-95"
+            aria-label={showFilters ? 'Hide filters' : 'Show filters'}
+            aria-expanded={showFilters}
+            aria-controls="filter-panel"
+          >
+            <Filter
+              className={`h-4 w-4 transition-all duration-300 ${showFilters ? 'rotate-180 text-purple-600' : 'group-hover:rotate-12 text-gray-700'}`}
+              aria-hidden="true"
+            />
+            <span>Filters</span>
+          </button>
         </form>
 
         {/* Search Help Text */}
@@ -130,7 +157,7 @@ export default function SearchFilters({
         {/* Active Filters */}
         {hasActiveFilters && (
           <div
-            className="flex flex-wrap items-center gap-2 p-4 bg-white/80 rounded-2xl border border-purple-200/40 shadow-lg mb-6"
+            className="flex flex-wrap items-center gap-2 p-4 bg-white rounded-2xl border border-purple-200/40 shadow-lg mb-6"
             role="status"
             aria-label="Active filters"
           >
@@ -194,9 +221,9 @@ export default function SearchFilters({
           <div
             id="filter-panel"
             className={`grid grid-cols-1 ${[showTypeFilter, showSubjectFilter, showUniversityFilter, showYearFilter, showCategoryFilter].filter(Boolean).length > 2
-                ? 'sm:grid-cols-2 lg:grid-cols-4'
-                : 'sm:grid-cols-2'
-              } gap-4 p-6 bg-white/90 border-2 border-purple-200/50 rounded-2xl shadow-xl shadow-purple-500/10`}
+              ? 'sm:grid-cols-2 lg:grid-cols-4'
+              : 'sm:grid-cols-2'
+              } gap-3 sm:gap-4 p-4 sm:p-6 bg-white border-2 border-purple-200/50 rounded-2xl shadow-xl shadow-purple-500/10 mt-4`}
             role="region"
             aria-label="Filter options"
           >
@@ -205,7 +232,7 @@ export default function SearchFilters({
               <div>
                 <label
                   htmlFor="filter-type"
-                  className="block text-sm font-bold text-gray-900 mb-2.5"
+                  className="block text-xs sm:text-sm font-bold text-gray-900 mb-1.5 sm:mb-2.5"
                 >
                   Type
                 </label>
@@ -213,7 +240,7 @@ export default function SearchFilters({
                   id="filter-type"
                   value={currentFilters.type}
                   onChange={(e) => updateURL({ type: e.target.value })}
-                  className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
+                  className="w-full bg-white border-2 border-gray-200/80 rounded-3xl px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
                   aria-label="Filter by document type"
                 >
                   <option value="">All Types</option>
@@ -231,7 +258,7 @@ export default function SearchFilters({
               <div>
                 <label
                   htmlFor="filter-subject"
-                  className="block text-sm font-bold text-gray-900 mb-2.5"
+                  className="block text-xs sm:text-sm font-bold text-gray-900 mb-1.5 sm:mb-2.5"
                 >
                   Subject
                 </label>
@@ -239,7 +266,7 @@ export default function SearchFilters({
                   id="filter-subject"
                   value={currentFilters.subject}
                   onChange={(e) => updateURL({ subject: e.target.value })}
-                  className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
+                  className="w-full bg-white border-2 border-gray-200/80 rounded-3xl px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
                   aria-label="Filter by subject"
                 >
                   <option value="">All Subjects</option>
@@ -257,7 +284,7 @@ export default function SearchFilters({
               <div>
                 <label
                   htmlFor="filter-university"
-                  className="block text-sm font-bold text-gray-900 mb-2.5"
+                  className="block text-xs sm:text-sm font-bold text-gray-900 mb-1.5 sm:mb-2.5"
                 >
                   University
                 </label>
@@ -265,7 +292,7 @@ export default function SearchFilters({
                   id="filter-university"
                   value={currentFilters.university}
                   onChange={(e) => updateURL({ university: e.target.value })}
-                  className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
+                  className="w-full bg-white border-2 border-gray-200/80 rounded-3xl px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
                   aria-label="Filter by university"
                 >
                   <option value="">All Universities</option>
@@ -283,7 +310,7 @@ export default function SearchFilters({
               <div>
                 <label
                   htmlFor="filter-year"
-                  className="block text-sm font-bold text-gray-900 mb-2.5"
+                  className="block text-xs sm:text-sm font-bold text-gray-900 mb-1.5 sm:mb-2.5"
                 >
                   Year
                 </label>
@@ -291,7 +318,7 @@ export default function SearchFilters({
                   id="filter-year"
                   value={currentFilters.year}
                   onChange={(e) => updateURL({ year: e.target.value })}
-                  className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
+                  className="w-full bg-white border-2 border-gray-200/80 rounded-3xl px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
                   aria-label="Filter by year"
                 >
                   <option value="">All Years</option>
@@ -309,7 +336,7 @@ export default function SearchFilters({
               <div>
                 <label
                   htmlFor="filter-category"
-                  className="block text-sm font-bold text-gray-900 mb-2.5"
+                  className="block text-xs sm:text-sm font-bold text-gray-900 mb-1.5 sm:mb-2.5"
                 >
                   {categoryLabel}
                 </label>
@@ -317,7 +344,7 @@ export default function SearchFilters({
                   id="filter-category"
                   value={currentFilters.category}
                   onChange={(e) => updateURL({ category: e.target.value })}
-                  className="w-full bg-white/80 border-2 border-gray-200/80 rounded-xl px-4 py-2.5 text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
+                  className="w-full bg-white border-2 border-gray-200/80 rounded-3xl px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-gray-900 font-medium focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 hover:border-gray-300/80 shadow-sm"
                   aria-label={`Filter by ${categoryLabel.toLowerCase()}`}
                 >
                   <option value="">All Categories</option>

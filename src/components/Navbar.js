@@ -7,7 +7,7 @@ export default function Navbar() {
     { href: "/", label: "Home" },
     { href: "/documents", label: "Documents", hasDropdown: true },
     { href: "/blogs", label: "Blogs" },
-    { href: "/quiz", label: "Quiz" },
+    { href: "/quiz", label: "Online Quiz" },
     { href: "/contact", label: "Contact" },
   ];
 
@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <header id="navbar" className="top-0 left-0 sticky right-0 z-50 w-full">
-      <div className="bg-white shadow-2xl rounded-2xl">
+      <div className="bg-white shadow-xl rounded-2xl">
         <div className="max-w-7xl mx-auto px-6 max-sm:px-2 lg:px-2">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
@@ -42,7 +42,7 @@ export default function Navbar() {
                   <div key={link.href} className="relative group/dropdown">
                     <Link
                       href={link.href}
-
+                  prefetch={false}
                       className="text-gray-700/70 hover:text-gray-900 transition-all duration-300 hover:scale-105 font-medium text-sm"
                     >
                       {link.label}
