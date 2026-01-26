@@ -4,7 +4,10 @@ import { ArrowLeft, AlertTriangle, BookOpen, Users, Shield, Info } from 'lucide-
 export const metadata = {
   title: 'Disclaimer - Vuedu',
   description: 'Important disclaimers about Vuedu services, educational content, and limitations.',
-  keywords: 'disclaimer, educational content, academic integrity, limitations, liability'
+  keywords: 'disclaimer, educational content, academic integrity, limitations, liability',
+  alternates: {
+    canonical: '/disclaimer'
+  }
 };
 
 export default function DisclaimerPage() {

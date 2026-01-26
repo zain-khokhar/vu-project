@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BookOpen, Download, Search, Users, ArrowRight, FileText, HelpCircle, Mail } from 'lucide-react';
+import { BookOpen, ArrowRight, FileText, HelpCircle, Mail } from 'lucide-react';
 import DocumentCard from '@/components/DocumentCard';
 import BlogCard from '@/components/BlogCard';
 import QuizCard from '@/components/QuizCard';

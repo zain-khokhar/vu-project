@@ -3,27 +3,21 @@ import { getDocumentBySlug } from '@/actions/documents';
 import PDFViewerWrapper from '@/components/PDFViewerWrapper';
 import Link from 'next/link';
 
-export async function generateMetadata({ params }) {
-  const { slug } = await params;
-  const result = await getDocumentBySlug(slug);
-
-  if (!result.success) {
-    return {
-      title: 'Document Not Found - Vuedu'
-    };
-  }
-
-  const { document } = result;
-
-  return {
-    title: `Preview: ${document.title} - Vuedu`,
-    description: `Preview ${document.title} online`,
-  };
-}
+export const metadata = {
+  title: 'Document Preview – Vuedu',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+  },
+};
 
 export default async function PreviewPage({ params }) {
   const { slug } = await params;
   const result = await getDocumentBySlug(slug);
+  if (!result?.success || !result.document) {
+    notFound();
+  }
 
   if (!result.success) {
     notFound();

@@ -4,7 +4,10 @@ import { ArrowLeft, Shield, Eye, Database, UserCheck, Cookie } from 'lucide-reac
 export const metadata = {
   title: 'Privacy Policy - Vuedu',
   description: 'Learn how Vuedu protects your privacy. We collect minimal data - only Google Analytics for website improvement.',
-  keywords: 'privacy policy, data protection, Google Analytics, minimal data collection'
+  keywords: 'privacy policy, data protection, Google Analytics, minimal data collection',
+  alternates: {
+    canonical: '/privacy-policy'
+  }
 };
 
 export default function PrivacyPolicyPage() {

@@ -4,7 +4,10 @@ import { ArrowLeft, Cookie, Settings, Eye, BarChart3, Shield } from 'lucide-reac
 export const metadata = {
   title: 'Cookie Policy - Vuedu',
   description: 'Information about how Vuedu uses cookies and similar technologies to enhance your experience.',
-  keywords: 'cookies, tracking, privacy, web storage, analytics'
+  keywords: 'cookies, tracking, privacy, web storage, analytics',
+  alternates: {
+    canonical: '/cookie-policy'
+  }
 };
 
 export default function CookiePage() {

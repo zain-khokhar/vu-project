@@ -11,6 +11,83 @@ import {
   generateWebsiteStructuredData
 } from '@/lib/seo-utils';
 
+/**
+ * Generate dynamic metadata based on search params
+ */
+export async function generateMetadata({ searchParams }) {
+  const params = await searchParams;
+  const search = params?.search || '';
+  const type = params?.type || '';
+  const subject = params?.subject || '';
+  const university = params?.university || '';
+  const year = params?.year || '';
+
+  // Build dynamic title and description
+  let title = 'Educational Documents Library';
+  let description = 'Access thousands of free educational documents including books, notes, handouts, past papers, and study materials shared by students worldwide.';
+
+  if (search) {
+    title = `Search Results for "${search}" - Documents`;
+    description = `Find educational documents matching "${search}". Browse books, notes, past papers, and study materials.`;
+  } else if (type) {
+    const typeLabel = type.charAt(0).toUpperCase() + type.slice(1);
+    title = `${typeLabel} Documents - Free Educational Resources`;
+    description = `Browse our collection of free ${typeLabel.toLowerCase()} for various subjects and universities.`;
+  } else if (subject) {
+    title = `${subject} Documents - Study Materials & Resources`;
+    description = `Download free ${subject} documents including books, notes, past papers, and study materials.`;
+  } else if (university) {
+    title = `${university} Documents - Study Materials`;
+    description = `Access free educational documents from ${university}. Books, notes, past papers, and more.`;
+  } else if (year) {
+    title = `${year} Documents - Educational Materials`;
+    description = `Browse educational documents for year ${year}. Free access to books, notes, and study materials.`;
+  }
+
+  return {
+    title: `${title} - Vuedu`,
+    description,
+    keywords: [
+      'educational documents',
+      'free study materials',
+      'university notes',
+      'past papers',
+      'lecture notes',
+      'handouts',
+      'books',
+      'student resources',
+      search,
+      type,
+      subject,
+      university,
+      year
+    ].filter(Boolean).join(', '),
+    openGraph: {
+      title: `${title} - Vuedu`,
+      description,
+      type: 'website',
+      url: '/documents',
+      images: [
+        {
+          url: '/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Vuedu Educational Documents',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${title} - Vuedu`,
+      description,
+      images: ['/og-image.jpg'],
+    },
+    alternates: {
+      canonical: '/documents',
+    },
+  };
+}
+
 // Loading component for Suspense
 function DocumentsLoading() {
   return (
@@ -200,5 +277,5 @@ export default function DocumentsPage({ searchParams }) {
 
 // Use dynamic rendering when search params are present (filters applied)
 // Otherwise use static generation for better performance
-export const dynamic = 'auto';
+// export const dynamic = 'auto';
 export const revalidate = 3600; // Revalidate every hour

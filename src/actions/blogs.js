@@ -193,6 +193,35 @@ export async function getLatestBlogs(limit = 6) {
   }
 }
 
+// Get blogs by author slug
+export async function getBlogsByAuthor(authorSlug) {
+  try {
+    await connectDB();
+
+    // First, find the author by slug
+    const author = await Author.findOne({ slug: authorSlug, isActive: true }).lean();
+    
+    if (!author) {
+      return { success: false, error: 'Author not found' };
+    }
+
+    // Then find all published blogs by this author
+    const blogs = await Blog.find({ author: author._id, published: true })
+      .select('title slug excerpt coverImage createdAt author')
+      .populate('author', 'name slug avatar')
+      .sort({ createdAt: -1, _id: 1 })
+      .lean();
+
+    return {
+      success: true,
+      blogs: JSON.parse(JSON.stringify(blogs))
+    };
+  } catch (error) {
+    console.error('Error fetching blogs by author:', error);
+    return { success: false, error: 'Failed to fetch blogs by author' };
+  }
+}
+
 // Get all blogs (for static path generation)
 export async function getAllBlogs() {
   try {

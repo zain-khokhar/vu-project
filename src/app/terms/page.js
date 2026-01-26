@@ -4,7 +4,10 @@ import { ArrowLeft, FileText, Shield, Users, BookOpen, AlertTriangle, Upload } f
 export const metadata = {
   title: 'Terms of Service - Vuedu',
   description: 'Terms and conditions for using Vuedu educational platform and resources.',
-  keywords: 'terms of service, terms and conditions, user agreement, acceptable use'
+  keywords: 'terms of service, terms and conditions, user agreement, acceptable use',
+  alternates: {
+    canonical: '/terms'
+  }
 };
 
 export default function TermsPage() {

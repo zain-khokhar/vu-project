@@ -42,7 +42,7 @@ export default function Navbar() {
                   <div key={link.href} className="relative group/dropdown">
                     <Link
                       href={link.href}
-                  prefetch={false}
+                      prefetch={false}
                       className="text-gray-700/70 hover:text-gray-900 transition-all duration-300 hover:scale-105 font-medium text-sm"
                     >
                       {link.label}

@@ -43,6 +43,12 @@ export async function generateStaticParams() {
     }
 }
 
+/**
+ * Disable automatic ISR - only use manual revalidation
+ * Pages will be static and only regenerate via revalidatePath() calls
+ */
+export const revalidate = false;
+
 
 /**
  * Generate comprehensive SEO metadata
