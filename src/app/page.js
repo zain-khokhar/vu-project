@@ -55,7 +55,7 @@ export default async function Home() {
   const { quizzes } = quizzesResult.success ? quizzesResult : { quizzes: [] };
 
   // Ensure consistent URL for hydration
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev';
+  const siteUrl =  'https://vuedu.dev';
 
   // FAQ Structured Data
   const faqData = [

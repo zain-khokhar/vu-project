@@ -106,7 +106,7 @@ export function generateDocumentStructuredData({
   dateModified,
   image
 }) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev';
+  const baseUrl =  'https://vuedu.dev';
   const fullUrl = url ? `${baseUrl}${url}` : baseUrl;
 
   const structuredData = {
@@ -190,7 +190,7 @@ export function generateDocumentStructuredData({
  * @returns {Object} Website JSON-LD structured data
  */
 export function generateWebsiteStructuredData() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev';
+  const baseUrl =  'https://vuedu.dev';
 
   return {
     '@context': 'https://schema.org',
@@ -228,7 +228,7 @@ export function generateWebsiteStructuredData() {
  * @returns {Object} Organization JSON-LD structured data
  */
 export function generateOrganizationStructuredData() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev';
+  const baseUrl =  'https://vuedu.dev';
 
   return {
     '@context': 'https://schema.org',
@@ -310,7 +310,7 @@ export function formatSEODate(date) {
  * @returns {string} Full canonical URL
  */
 export function generateCanonicalUrl(path) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev';
+  const baseUrl =  'https://vuedu.dev';
   return `${baseUrl}${path}`;
 }
 

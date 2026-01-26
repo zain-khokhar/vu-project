@@ -19,7 +19,7 @@ function safeDate(dateValue, fallback = new Date()) {
 }
 
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev';
+  const baseUrl =  'https://vuedu.dev';
 
   // Static routes
   const staticRoutes = [

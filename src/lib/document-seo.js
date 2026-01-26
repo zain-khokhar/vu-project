@@ -4,7 +4,7 @@
  */
 
 const SITE_NAME = 'Vuedu';
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://vuedu.dev';
+const SITE_URL =  'https://vuedu.dev';
 
 /**
  * Generate comprehensive metadata for document pages

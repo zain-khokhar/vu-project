@@ -9,7 +9,7 @@
  * @returns {Object} Next.js metadata object
  */
 export function generateQuizMetadata(quiz) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.dev';
+  const baseUrl = 'https://vuedu.dev';
   const quizUrl = `${baseUrl}/quiz/${quiz.slug}`;
 
   const title = `${quiz.title} - Interactive Online Quiz | Vuedu`;
@@ -98,7 +98,7 @@ export function generateQuizMetadata(quiz) {
  * @returns {Object} JSON-LD structured data
  */
 export function generateQuizStructuredData(quiz) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.dev';
+  const baseUrl =  'https://vuedu.dev';
   const quizUrl = `${baseUrl}/quiz/${quiz.slug}`;
 
   return {
@@ -159,7 +159,7 @@ export function generateQuizStructuredData(quiz) {
  * @returns {Object} Breadcrumb JSON-LD
  */
 export function generateQuizBreadcrumbs(quiz) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.dev';
+  const baseUrl =  'https://vuedu.dev';
 
   return {
     '@context': 'https://schema.org',
@@ -245,7 +245,7 @@ export function generateQuizFAQData(quiz) {
  * @returns {Object} WebPage JSON-LD
  */
 export function generateQuizWebPageData(quiz) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vuedu.dev';
+  const baseUrl =  'https://vuedu.dev';
   const quizUrl = `${baseUrl}/quiz/${quiz.slug}`;
 
   return {
